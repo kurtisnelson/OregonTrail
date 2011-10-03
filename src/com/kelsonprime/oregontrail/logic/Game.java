@@ -25,7 +25,7 @@ public class Game {
 
 	public int getPace() {
 		// TODO method stub
-		return null;
+		return 0;
 	}
 
 	/**
