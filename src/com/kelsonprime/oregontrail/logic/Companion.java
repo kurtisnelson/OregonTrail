@@ -2,11 +2,17 @@ package com.kelsonprime.oregontrail.logic;
 
 public class Companion {
 
-	protected int health;
+	protected int health; //Percent
 	protected String name;
 	protected boolean isAlive;
 	protected String sickness;
 
+	public Companion(String name){
+		this.name = name;
+		isAlive = true;
+		sickness = "";
+		health = 100;
+	}
 	/**
 	 * 
 	 * @param game
