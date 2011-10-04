@@ -5,16 +5,32 @@ public class Game {
 
 	Listener reciever;
 	Wagon wagon;
-	private int date;
+	private int days;
 	private Pace pace;
 	private Ration ration;
 
 	public Game(Listener reciever){
 		this.reciever = reciever;
-		this.date = 0;
+		this.days = 0;
 		this.pace = Pace.STEADY;
 		this.ration = Ration.NORMAL;
 		this.wagon = new Wagon();		
+	}
+	
+	/**
+	 * Number of days since game start
+	 * @return days
+	 */
+	public int getDays() {
+		return days;
+	}
+	
+	/**
+	 * Current pace
+	 * @return pace
+	 */
+	public Pace getPace() {
+		return pace;
 	}
 	
 	/**
@@ -33,11 +49,6 @@ public class Game {
 		// TODO method stub
 	}
 
-	public int getPace() {
-		// TODO method stub
-		return 0;
-	}
-
 	/**
 	 * 
 	 * @param pace
@@ -46,9 +57,8 @@ public class Game {
 		this.pace = pace;
 	}
 
-	public int getRation() {
-		// TODO method stub
-		return 0;
+	public Ration getRation() {
+		return ration;
 	}
 
 	/**
@@ -67,7 +77,7 @@ public class Game {
 	/**
 	 * Call pass day on EVERYTHING
 	 */
-	private void passDay() {
+	public void passDay() {
 		// TODO method stub
 	}
 	public Part offerTrade(Part need, int quantity) {
