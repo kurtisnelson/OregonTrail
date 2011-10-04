@@ -4,8 +4,12 @@ public class Player extends Companion {
 
 	private Occupation occupation;
 
-	public Occupation getOccupation() {
+	Occupation getOccupation() {
 		return occupation;
+	}
+	
+	int startingMoney(){
+		return occupation.startingMoney();
 	}
 
 }

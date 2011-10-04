@@ -9,12 +9,12 @@ public class Game {
 	private Pace pace;
 	private Ration ration;
 
-	public Game(Listener reciever){
+	public Game(Listener reciever, Wagon wagon){
 		this.reciever = reciever;
 		this.days = 0;
 		this.pace = Pace.STEADY;
 		this.ration = Ration.NORMAL;
-		this.wagon = new Wagon();		
+		this.wagon = wagon;
 	}
 	
 	/**
