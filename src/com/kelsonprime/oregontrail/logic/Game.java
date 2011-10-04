@@ -6,8 +6,8 @@ public class Game {
 	Listener reciever;
 	Wagon wagon;
 	private int date;
-	private int pace;
-	private int ration;
+	private Pace pace;
+	private Ration ration;
 
 	public Game(Listener reciever){
 		this.reciever = reciever;
