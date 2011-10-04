@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class Wagon {
+public class Wagon implements PassDay{
 
 	private int oxen;
 	private int food;
@@ -33,7 +33,7 @@ public class Wagon {
 	 * 
 	 * @param game
 	 */
-	void passDay(Game game) {
+	public void passDay(Game game) {
 		// TODO method stub
 	}
 
