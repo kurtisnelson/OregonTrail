@@ -1,5 +1,12 @@
 package com.kelsonprime.oregontrail.logic;
 
-public enum Occupation {
-	Banker, Carpenter, Farmer
+public abstract class Occupation {
+	private int startingMoney;
+	private String name;
+	public String toString(){
+		return name;
+	}
+	public int startingMoney(){
+		return startingMoney;
+	}
 }

@@ -1,5 +1,7 @@
 package com.kelsonprime.oregontrail.logic;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class Wagon {
@@ -8,16 +10,30 @@ public class Wagon {
 	private int food;
 	private int clothes;
 	private int bullets;
-	private List<Part> activeParts;
-	private List<Part> spareParts;
-	private List<Companion> party;
+	private Collection<Part> activeParts;
+	private Collection<Part> spareParts;
+	private Collection<Companion> party;
 	private int money;
 
+	public Wagon(Player player, List<Companion> companions){
+		party = new ArrayList<Companion>();
+		party.add(player);
+		party.addAll(companions);
+		activeParts = new ArrayList<Part>();
+		// TODO setup intial parts
+		spareParts = new ArrayList<Part>();
+		money = player.startingMoney();
+		bullets = 0;
+		clothes = 0;
+		food = 0;
+		oxen = 0;
+	}
+	
 	/**
 	 * 
 	 * @param game
 	 */
-	public void passDay(Game game) {
+	void passDay(Game game) {
 		// TODO method stub
 	}
 
@@ -30,12 +46,20 @@ public class Wagon {
 		return false;
 	}
 
+	public int getMoney(){
+		return money;
+	}
+	
 	/**
 	 * 
 	 * @param moneyUsed
 	 */
-	public void updateMoney(int moneyUsed) {
-		// TODO method stub
+	public boolean spendMoney(int amount) {
+		if(checkMoney(amount)){
+			money -= amount;
+			return true;
+		}
+		return false;
 	}
 
 }
