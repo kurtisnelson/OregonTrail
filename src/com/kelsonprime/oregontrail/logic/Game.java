@@ -1,12 +1,22 @@
 package com.kelsonprime.oregontrail.logic;
+import com.kelsonprime.oregontrail.gui.Listener;
 
 public class Game {
 
-	com.kelsonprime.oregontrail.gui.Listener uses;
+	Listener reciever;
+	Wagon wagon;
 	private int date;
 	private int pace;
 	private int ration;
 
+	public Game(Listener reciever){
+		this.reciever = reciever;
+		this.date = 0;
+		this.pace = Pace.NORMAL;
+		this.ration = Ration.NORMAL;
+		this.wagon = new Wagon();		
+	}
+	
 	/**
 	 * 
 	 * @param item
@@ -32,8 +42,8 @@ public class Game {
 	 * 
 	 * @param pace
 	 */
-	public void setPace(int pace) {
-		// TODO method stub
+	public void setPace(Pace pace) {
+		this.pace = pace;
 	}
 
 	public int getRation() {
@@ -45,8 +55,8 @@ public class Game {
 	 * 
 	 * @param ration
 	 */
-	public void setRation(int ration) {
-		// TODO method stub
+	public void setRation(Ration ration) {
+		this.ration = ration;
 	}
 
 	public boolean beginDay() {

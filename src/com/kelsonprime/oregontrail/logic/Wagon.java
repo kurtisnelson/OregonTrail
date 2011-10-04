@@ -4,7 +4,6 @@ import java.util.List;
 
 public class Wagon {
 
-	Part contains;
 	private int oxen;
 	private int food;
 	private int clothes;
