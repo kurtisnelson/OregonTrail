@@ -1,5 +1,5 @@
 package com.kelsonprime.oregontrail.logic;
 
 public enum Pace{
-	NORMAL
+	STOPPED, LEISURELY, STEADY, GREULING
 } 

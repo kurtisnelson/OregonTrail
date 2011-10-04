@@ -12,7 +12,7 @@ public class Game {
 	public Game(Listener reciever){
 		this.reciever = reciever;
 		this.date = 0;
-		this.pace = Pace.NORMAL;
+		this.pace = Pace.STEADY;
 		this.ration = Ration.NORMAL;
 		this.wagon = new Wagon();		
 	}

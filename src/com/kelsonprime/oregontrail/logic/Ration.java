@@ -1,5 +1,5 @@
 package com.kelsonprime.oregontrail.logic;
 
 public enum Ration{
-	NORMAL
+	NONE, BARE, MEAGER, NORMAL, WELLFED
 }
