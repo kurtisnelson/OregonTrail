@@ -1,13 +1,5 @@
 package com.kelsonprime.oregontrail.logic;
 
-abstract class Part {
-
+abstract class Part implements PassDay{
 	protected int health;
-
-	/**
-	 * 
-	 * @param game
-	 */
-	abstract void passDay(Game game);
-
 }
