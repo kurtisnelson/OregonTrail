@@ -5,6 +5,10 @@ class Events {
 	void death() {
 		// TODO method stub
 	}
+	
+	void calculateRandomEvent(){
+		
+	}
 
 	/**
 	 * 
