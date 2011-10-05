@@ -22,6 +22,7 @@ import java.awt.event.ItemListener;
  */
 public class OregonTrail {
 	Game game;
+	JMenuBar mainMenu;
 
 	private static JFrame frame;
 
@@ -41,22 +42,26 @@ public class OregonTrail {
 		@Override
 		public void actionPerformed(ActionEvent event) {
 			if (event.getActionCommand().equals("newGame")) {
-				JPanel newGameFrame = new NewGameScreen(app);
-				frame.add(newGameFrame);
-				frame.pack();
+				app.newGameScreen();
 			}
 
 		}
 	}
 
+	public void newGameScreen(){
+		JPanel newGameFrame = new NewGameScreen(this);
+		frame.add(newGameFrame);
+		frame.pack();
+	}
+	
 	public static void main(String[] args) {
 		OregonTrail app = new OregonTrail();
 	}
 
 	public OregonTrail() {
-		JMenuBar menuBar = new JMenuBar();
+		this.mainMenu = new MainMenu();
 		JMenu fileMenu = new JMenu("File");
-		menuBar.add(fileMenu);
+		mainMenu.add(fileMenu);
 
 		JMenuItem newGame = new JMenuItem("New Game");
 
@@ -69,7 +74,7 @@ public class OregonTrail {
 
 		frame = new JFrame("Oregon Trail");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setJMenuBar(menuBar);
+		frame.setJMenuBar(mainMenu);
 
 		// frame.add(p);
 		frame.pack();
