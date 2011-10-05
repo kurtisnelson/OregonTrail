@@ -26,28 +26,6 @@ public class OregonTrail {
 
 	private static JFrame frame;
 
-	private static class MenuListener implements ActionListener, ItemListener {
-		OregonTrail app;
-
-		public MenuListener(OregonTrail app) {
-			this.app = app;
-		}
-
-		@Override
-		public void itemStateChanged(ItemEvent e) {
-			// TODO Auto-generated method stub
-
-		}
-
-		@Override
-		public void actionPerformed(ActionEvent event) {
-			if (event.getActionCommand().equals("newGame")) {
-				app.newGameScreen();
-			}
-
-		}
-	}
-
 	public void newGameScreen(){
 		JPanel newGameFrame = new NewGameScreen(this);
 		frame.add(newGameFrame);
