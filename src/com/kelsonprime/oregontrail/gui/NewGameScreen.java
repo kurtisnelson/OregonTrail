@@ -12,7 +12,7 @@ import javax.swing.UIManager;
 import java.awt.Color;
 
 
-public class NewGameScreen extends JFrame {
+public class NewGameScreen extends JPanel {
 	private JTextField txtPlayer;
 	private JTextField txtCompanion;
 	private JTextField txtCompanion_1;
@@ -26,14 +26,13 @@ public class NewGameScreen extends JFrame {
 	private JTextField txtNumoxen;
 	private JTextField txtNumfood;
 	
-	public NewGameScreen(String title) {
-		super(title);
+	public NewGameScreen() {
 		setBackground(Color.WHITE);
-		getContentPane().setLayout(new BorderLayout(0, 0));
+		setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(UIManager.getColor("OptionPane.warningDialog.titlePane.shadow"));
-		getContentPane().add(panel, BorderLayout.NORTH);
+		add(panel, BorderLayout.NORTH);
 		
 		JLabel lblGetReadyFor = new JLabel("Get Ready for the Oregon Trail!");
 		panel.add(lblGetReadyFor);
@@ -41,7 +40,7 @@ public class NewGameScreen extends JFrame {
 		JPanel panel_2 = new JPanel();
 		panel_2.setForeground(Color.WHITE);
 		panel_2.setBackground(UIManager.getColor("OptionPane.warningDialog.titlePane.foreground"));
-		getContentPane().add(panel_2, BorderLayout.CENTER);
+		add(panel_2, BorderLayout.CENTER);
 		panel_2.setLayout(null);
 		
 		txtPlayer = new JTextField();
