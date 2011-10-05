@@ -35,13 +35,11 @@ public class NewGameScreen extends JPanel {
 	private JTextField txtNumbullets;
 	private JTextField txtNumoxen;
 	private JTextField txtNumfood;
-	private NewGameListener listen;
 	private ButtonGroup occupationGroup;
 
 	public NewGameScreen(OregonTrail app) {
 		super();
 		this.app = app;
-		this.listen = new NewGameListener();
 		setBackground(Color.WHITE);
 		setLayout(new BorderLayout(0, 0));
 		setSize(new Dimension(600,300));
@@ -96,19 +94,16 @@ public class NewGameScreen extends JPanel {
 		
 		JRadioButton rdbtnBanker = new JRadioButton("Banker");
 		rdbtnBanker.setBounds(178, 27, 75, 23);
-		rdbtnBanker.addActionListener(listen);
 		rdbtnBanker.setActionCommand("banker");
 		panel_2.add(rdbtnBanker);
 		
 		JRadioButton rdbtnCarpenter = new JRadioButton("Carpenter");
 		rdbtnCarpenter.setBounds(178, 62, 97, 23);
-		rdbtnCarpenter.addActionListener(listen);
 		rdbtnBanker.setActionCommand("carpenter");
 		panel_2.add(rdbtnCarpenter);
 		
 		JRadioButton rdbtnFarmer = new JRadioButton("Farmer");
 		rdbtnFarmer.setBounds(178, 94, 75, 23);
-		rdbtnCarpenter.addActionListener(listen);
 		rdbtnBanker.setActionCommand("carpenter");
 		panel_2.add(rdbtnFarmer);
 		
@@ -174,22 +169,7 @@ public class NewGameScreen extends JPanel {
 		panel_2.add(txtNumfood);
 		txtNumfood.setColumns(10);
 	}
-	/**
-	 * Here's some pseudo code representing the work that needs to be done with the info above.
-	 * We can uncoment it once we're sure everything above is correct. I just wanted to start thinking it through.
-	 * 
-	 * ArrayList companionList = new ArrayList(4);
-	 * if(companion 1 has text)
-	 * 	companionList.add(new Companion(text));
-	 * etc. for all companions.
-	 * 
-	 * Wagon newWagon = new Wagon(new Player(player text, occupation), companionList)
-	 * Game newGame = newGame(new Listener(), newWagon);
-	 * 
-	 * game.setPace(pace);
-	 * game.setRation(ration);
-	 *  
-	 */
+	
 	public void createGame(){
 		
 		ArrayList<Companion> companionList = new ArrayList<Companion>(4);
