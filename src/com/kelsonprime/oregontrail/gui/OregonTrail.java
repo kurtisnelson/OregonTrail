@@ -1,5 +1,10 @@
 package com.kelsonprime.oregontrail.gui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -19,7 +24,12 @@ public class OregonTrail{
 		menuBar.add(fileMenu);
 		
 		JMenuItem newGame = new JMenuItem("New Game");
+		
 		fileMenu.add(newGame);
+		
+		MenuListener menuListen = new MenuListener();
+		newGame.addActionListener(menuListen);
+		
 		
 		JFrame frame = new JFrame("Oregon Trail");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -28,6 +38,5 @@ public class OregonTrail{
 		//frame.add(p);
 		frame.pack();
 		frame.setVisible(true);
-	}
-	
+	}		
 }
