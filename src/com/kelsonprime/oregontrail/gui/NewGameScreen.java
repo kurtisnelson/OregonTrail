@@ -148,4 +148,20 @@ public class NewGameScreen extends JFrame {
 		panel_2.add(txtNumfood);
 		txtNumfood.setColumns(10);
 	}
+	
+	/**
+	 * Here's some pseudo code representing the work that needs to be done with the info above.
+	 * We can uncoment it once we're sure everything above is correct. I just wanted to start thinking it through.
+	 * 
+	 * ArrayList companionList = new ArrayList(4);
+	 * if(companion 1 has text)
+	 * 	companionList.add(new Companion(text));
+	 * etc. for all companions.
+	 * 
+	 * Wagon newWagon = new Wagon(new Player(player text, occupation), companionList)
+	 * Game newGame = newGame(new Listener(), newWagon);
+	 * 
+	 * 
+	 *  
+	 */
 }
