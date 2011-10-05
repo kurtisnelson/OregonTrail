@@ -1,10 +1,21 @@
 package com.kelsonprime.oregontrail.gui;
 
-import javax.swing.*;
-import java.awt.*;
+import com.kelsonprime.oregontrail.logic.Game;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+import javax.swing.JRadioButton;
+import javax.swing.UIManager;
+import java.awt.Color;
 
 public class NewGameScreen extends JPanel {
+	OregonTrail app;
 	private JTextField txtPlayer;
 	private JTextField txtCompanion;
 	private JTextField txtCompanion_1;
@@ -17,8 +28,10 @@ public class NewGameScreen extends JPanel {
 	private JTextField txtNumbullets;
 	private JTextField txtNumoxen;
 	private JTextField txtNumfood;
-	
-	public NewGameScreen() {
+
+	public NewGameScreen(OregonTrail app) {
+		super();
+		this.app = app;
 		setBackground(Color.WHITE);
 		setLayout(new BorderLayout(0, 0));
 		setSize(new Dimension(600,300));
@@ -140,7 +153,6 @@ public class NewGameScreen extends JPanel {
 		panel_2.add(txtNumfood);
 		txtNumfood.setColumns(10);
 	}
-	
 	/**
 	 * Here's some pseudo code representing the work that needs to be done with the info above.
 	 * We can uncoment it once we're sure everything above is correct. I just wanted to start thinking it through.
@@ -157,4 +169,9 @@ public class NewGameScreen extends JPanel {
 	 * game.setRation(ration);
 	 *  
 	 */
+	public void createGame(){
+		// TODO actually create this game.
+		Game game = null;
+		app.setGame(game);
+	}
 }
