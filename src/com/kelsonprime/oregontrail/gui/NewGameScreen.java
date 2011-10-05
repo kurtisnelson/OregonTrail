@@ -5,6 +5,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -12,8 +14,7 @@ import javax.swing.JRadioButton;
 import javax.swing.UIManager;
 import java.awt.Color;
 
-
-public class NewGameScreen extends JFrame {
+public class NewGameScreen extends JPanel {
 	OregonTrail app;
 	private JTextField txtPlayer;
 	private JTextField txtCompanion;
@@ -27,16 +28,17 @@ public class NewGameScreen extends JFrame {
 	private JTextField txtNumbullets;
 	private JTextField txtNumoxen;
 	private JTextField txtNumfood;
-	
-	public NewGameScreen(String title, OregonTrail app) {
-		super(title);
+
+	public NewGameScreen(OregonTrail app) {
+		super();
 		this.app = app;
 		setBackground(Color.WHITE);
-		getContentPane().setLayout(new BorderLayout(0, 0));
+		setLayout(new BorderLayout(0, 0));
+		setSize(new Dimension(600,300));
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(UIManager.getColor("OptionPane.warningDialog.titlePane.shadow"));
-		getContentPane().add(panel, BorderLayout.NORTH);
+		add(panel, BorderLayout.NORTH);
 		
 		JLabel lblGetReadyFor = new JLabel("Get Ready for the Oregon Trail!");
 		panel.add(lblGetReadyFor);
@@ -44,7 +46,7 @@ public class NewGameScreen extends JFrame {
 		JPanel panel_2 = new JPanel();
 		panel_2.setForeground(Color.WHITE);
 		panel_2.setBackground(UIManager.getColor("OptionPane.warningDialog.titlePane.foreground"));
-		getContentPane().add(panel_2, BorderLayout.CENTER);
+		add(panel_2, BorderLayout.CENTER);
 		panel_2.setLayout(null);
 		
 		txtPlayer = new JTextField();
