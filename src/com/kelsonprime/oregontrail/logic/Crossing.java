@@ -8,6 +8,9 @@ public class Crossing extends Location {
 	private int floatCost;
 	private int ferryCost;
 	
+	public Crossing(String name){
+		super(name);
+	}
 	public String ford() {
 		// TODO method stub
 		return null;

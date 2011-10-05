@@ -6,7 +6,6 @@ abstract class Part implements PassDay{
 
 	/**
 	 * 
-	 * @param game
 	 */
 	public Part(int health){
 		this.health = health;

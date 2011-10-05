@@ -6,7 +6,9 @@ package com.kelsonprime.oregontrail.gui;
  *
  */
 public class OregonTrail{
+	
 	public static void main(String[] args){
 		
 	}
+	
 }

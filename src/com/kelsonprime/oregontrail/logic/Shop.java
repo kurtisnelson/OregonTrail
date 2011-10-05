@@ -10,6 +10,10 @@ public class Shop extends Location {
 	private int tonguePrice;
 	private int axlePrice;
 
+	public Shop(String name){
+		super(name);
+	}
+	
 	public void sellItem() {
 		// TODO method stub
 	}
