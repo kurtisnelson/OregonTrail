@@ -21,7 +21,7 @@ public class MenuListener implements ActionListener, ItemListener {
 	public void actionPerformed(ActionEvent event) {
 		if (event.getActionCommand().equals("newGame")){
 			JFrame newGameFrame = new NewGameScreen("New Game");
-			newGameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			newGameFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 			
 			newGameFrame.pack();
 			newGameFrame.setVisible(true);
