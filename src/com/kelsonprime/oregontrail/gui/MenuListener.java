@@ -5,6 +5,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
+import javax.swing.JFrame;
+
+
+
 public class MenuListener implements ActionListener, ItemListener {
 
 	@Override
@@ -14,8 +18,14 @@ public class MenuListener implements ActionListener, ItemListener {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+	public void actionPerformed(ActionEvent event) {
+		if (event.getActionCommand().equals("newGame")){
+			JFrame newGameFrame = new NewGameScreen("New Game");
+			newGameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			
+			newGameFrame.pack();
+			newGameFrame.setVisible(true);
+		}
 		
 	}
 
