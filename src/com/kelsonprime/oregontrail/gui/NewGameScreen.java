@@ -153,7 +153,8 @@ public class NewGameScreen extends JPanel {
 	 * Wagon newWagon = new Wagon(new Player(player text, occupation), companionList)
 	 * Game newGame = newGame(new Listener(), newWagon);
 	 * 
-	 * 
+	 * game.setPace(pace);
+	 * game.setRation(ration);
 	 *  
 	 */
 }
