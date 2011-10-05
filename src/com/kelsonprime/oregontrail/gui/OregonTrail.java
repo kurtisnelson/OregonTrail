@@ -23,13 +23,15 @@ import java.awt.event.ItemListener;
 public class OregonTrail {
 	Game game;
 	JMenuBar mainMenu;
-
+	
 	private static JFrame frame;
 
 	public void newGameScreen(){
 		JPanel newGameFrame = new NewGameScreen(this);
 		frame.add(newGameFrame);
 		frame.pack();
+		frame.setSize(new Dimension(600, 300));
+		frame.setVisible(true);
 	}
 	
 	public static void main(String[] args) {
@@ -37,24 +39,15 @@ public class OregonTrail {
 	}
 
 	public OregonTrail() {
-		this.mainMenu = new MainMenu();
-		JMenu fileMenu = new JMenu("File");
-		mainMenu.add(fileMenu);
-
-		JMenuItem newGame = new JMenuItem("New Game");
-
-		fileMenu.add(newGame);
-
+		
 		MenuListener menuListen = new MenuListener(this);
+		this.mainMenu = new MainMenu(menuListen);
 
-		newGame.addActionListener(menuListen);
-		newGame.setActionCommand("newGame");
-
+		//NewGameScreen test = new NewGameScreen(this);
 		frame = new JFrame("Oregon Trail");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setJMenuBar(mainMenu);
-
-		// frame.add(p);
+		//frame.add(test);
 		frame.pack();
 		frame.setSize(new Dimension(600, 300));
 		frame.setVisible(true);
