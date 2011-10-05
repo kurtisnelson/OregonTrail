@@ -40,8 +40,7 @@ public class OregonTrail {
 
 	public OregonTrail() {
 		
-		MenuListener menuListen = new MenuListener(this);
-		this.mainMenu = new MainMenu(menuListen);
+		this.mainMenu = new MainMenu(this);
 
 		//NewGameScreen test = new NewGameScreen(this);
 		frame = new JFrame("Oregon Trail");

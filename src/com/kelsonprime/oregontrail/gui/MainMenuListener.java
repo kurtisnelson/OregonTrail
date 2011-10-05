@@ -2,20 +2,12 @@ package com.kelsonprime.oregontrail.gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 
-class MenuListener implements ActionListener, ItemListener {
+public class MainMenuListener implements ActionListener {
 	OregonTrail app;
 
-	public MenuListener(OregonTrail app) {
+	public MainMenuListener(OregonTrail app) {
 		this.app = app;
-	}
-
-	@Override
-	public void itemStateChanged(ItemEvent e) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -23,6 +15,5 @@ class MenuListener implements ActionListener, ItemListener {
 		if (event.getActionCommand().equals("newGame")) {
 			app.newGameScreen();
 		}
-
 	}
 }

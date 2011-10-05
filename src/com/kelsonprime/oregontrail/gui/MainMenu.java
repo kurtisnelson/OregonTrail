@@ -8,10 +8,10 @@ import javax.swing.JMenuItem;
 
 public class MainMenu extends JMenuBar {
 	
-	private MenuListener menuListen;
+	private MainMenuListener menuListen;
 	
-	public MainMenu(MenuListener listen){
-		
+	public MainMenu(OregonTrail app){
+		menuListen = new MainMenuListener(app);
 		JMenu fileMenu = new JMenu("File");
 		this.add(fileMenu);
 		
