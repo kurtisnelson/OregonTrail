@@ -1,15 +1,7 @@
 package com.kelsonprime.oregontrail.gui;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import java.awt.BorderLayout;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
-import javax.swing.JRadioButton;
-import javax.swing.UIManager;
-import java.awt.Color;
+import javax.swing.*;
+import java.awt.*;
 
 
 public class NewGameScreen extends JPanel {
@@ -29,6 +21,7 @@ public class NewGameScreen extends JPanel {
 	public NewGameScreen() {
 		setBackground(Color.WHITE);
 		setLayout(new BorderLayout(0, 0));
+		setSize(new Dimension(600,300));
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(UIManager.getColor("OptionPane.warningDialog.titlePane.shadow"));
