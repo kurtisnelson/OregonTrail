@@ -1,5 +1,6 @@
 package com.kelsonprime.oregontrail.gui;
 
+import com.kelsonprime.oregontrail.logic.Game;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -11,7 +12,7 @@ import javax.swing.JMenuItem;
  *
  */
 public class OregonTrail{
-	
+	Game game;	
 	public static void main(String[] args){
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -35,5 +36,8 @@ public class OregonTrail{
 		//frame.add(p);
 		frame.pack();
 		frame.setVisible(true);
-	}		
+	}	
+	public void setGame(Game game) {
+		this.game = game;
+	}	
 }

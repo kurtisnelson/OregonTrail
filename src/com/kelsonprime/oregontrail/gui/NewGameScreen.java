@@ -1,5 +1,6 @@
 package com.kelsonprime.oregontrail.gui;
 
+import com.kelsonprime.oregontrail.logic.Game;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -13,6 +14,7 @@ import java.awt.Color;
 
 
 public class NewGameScreen extends JFrame {
+	OregonTrail app;
 	private JTextField txtPlayer;
 	private JTextField txtCompanion;
 	private JTextField txtCompanion_1;
@@ -26,8 +28,9 @@ public class NewGameScreen extends JFrame {
 	private JTextField txtNumoxen;
 	private JTextField txtNumfood;
 	
-	public NewGameScreen(String title) {
+	public NewGameScreen(String title, OregonTrail app) {
 		super(title);
+		this.app = app;
 		setBackground(Color.WHITE);
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		
@@ -147,5 +150,11 @@ public class NewGameScreen extends JFrame {
 		txtNumfood.setBounds(316, 127, 114, 19);
 		panel_2.add(txtNumfood);
 		txtNumfood.setColumns(10);
+	}
+	
+	public void createGame(){
+		// TODO actually create this game.
+		Game game = null;
+		app.setGame(game);
 	}
 }
