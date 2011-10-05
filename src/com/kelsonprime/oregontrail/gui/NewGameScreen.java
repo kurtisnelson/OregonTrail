@@ -1,18 +1,25 @@
 package com.kelsonprime.oregontrail.gui;
 
+import com.kelsonprime.oregontrail.logic.Companion;
 import com.kelsonprime.oregontrail.logic.Game;
+import com.kelsonprime.oregontrail.logic.Occupation;
+import com.kelsonprime.oregontrail.logic.Player;
+import com.kelsonprime.oregontrail.logic.Wagon;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.UIManager;
 import java.awt.Color;
+import java.util.ArrayList;
 
 public class NewGameScreen extends JPanel {
 	OregonTrail app;
@@ -28,10 +35,13 @@ public class NewGameScreen extends JPanel {
 	private JTextField txtNumbullets;
 	private JTextField txtNumoxen;
 	private JTextField txtNumfood;
+	private NewGameListener listen;
+	private ButtonGroup occupationGroup;
 
 	public NewGameScreen(OregonTrail app) {
 		super();
 		this.app = app;
+		this.listen = new NewGameListener();
 		setBackground(Color.WHITE);
 		setLayout(new BorderLayout(0, 0));
 		setSize(new Dimension(600,300));
@@ -86,15 +96,26 @@ public class NewGameScreen extends JPanel {
 		
 		JRadioButton rdbtnBanker = new JRadioButton("Banker");
 		rdbtnBanker.setBounds(178, 27, 75, 23);
+		rdbtnBanker.addActionListener(listen);
+		rdbtnBanker.setActionCommand("banker");
 		panel_2.add(rdbtnBanker);
 		
 		JRadioButton rdbtnCarpenter = new JRadioButton("Carpenter");
 		rdbtnCarpenter.setBounds(178, 62, 97, 23);
+		rdbtnCarpenter.addActionListener(listen);
+		rdbtnBanker.setActionCommand("carpenter");
 		panel_2.add(rdbtnCarpenter);
 		
 		JRadioButton rdbtnFarmer = new JRadioButton("Farmer");
 		rdbtnFarmer.setBounds(178, 94, 75, 23);
+		rdbtnCarpenter.addActionListener(listen);
+		rdbtnBanker.setActionCommand("carpenter");
 		panel_2.add(rdbtnFarmer);
+		
+		occupationGroup = new ButtonGroup();
+		occupationGroup.add(rdbtnBanker);
+		occupationGroup.add(rdbtnCarpenter);
+		occupationGroup.add(rdbtnFarmer);
 		
 		JLabel lblPartyNames = new JLabel("Party Names");
 		lblPartyNames.setForeground(Color.WHITE);
@@ -170,8 +191,43 @@ public class NewGameScreen extends JPanel {
 	 *  
 	 */
 	public void createGame(){
-		// TODO actually create this game.
-		Game game = null;
-		app.setGame(game);
+		
+		ArrayList<Companion> companionList = new ArrayList<Companion>(4);
+		if (txtCompanion.getText() != null){
+			companionList.add(new Companion(txtCompanion.getText()));
+		}
+		if (txtCompanion_1.getText() != null){
+			companionList.add(new Companion(txtCompanion_1.getText()));
+		}
+		if (txtCompanion_2.getText() != null){
+			companionList.add(new Companion(txtCompanion_2.getText()));
+		}
+		if (txtCompanion_3.getText() != null){
+			companionList.add(new Companion(txtCompanion_3.getText()));
+		}
+		
+		String occString = occupationGroup.getSelection().getActionCommand();
+		Occupation newOccupation;
+		
+		if (occString.equals("Banker")){
+			newOccupation = null;
+			// TODO once the occupation classes get made, this should create and instance of Banker.
+		}
+		else if (occString.equals("carpenter")){
+			newOccupation = null;
+			// TODO once the occupation classes get made, this should create and instance of Carpenter.
+		}
+		else {
+			newOccupation = null;
+			// TODO once the occupation classes get made, this should create and instance of Farmer.
+		}
+		
+		Player newPlayer = new Player(txtPlayer.getText(), newOccupation);
+		
+		Wagon newWagon = new Wagon(newPlayer, companionList);
+		
+		Game newGame = new Game(new Listener(), newWagon);
+		
+		app.setGame(newGame);
 	}
 }
