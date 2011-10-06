@@ -5,7 +5,7 @@ import javax.swing.*;
 import com.kelsonprime.oregontrail.logic.*;
 
 public class ShopScreen extends JPanel{
-	
+	private static final long serialVersionUID = -7550296665413775236L;
 	Shop shop;
 	private JTextField txtNumoxen;
 	private JTextField txtNumAxles;
