@@ -1,24 +1,11 @@
 package com.kelsonprime.oregontrail.gui;
 
-import com.kelsonprime.oregontrail.logic.Companion;
-import com.kelsonprime.oregontrail.logic.Game;
-import com.kelsonprime.oregontrail.logic.Occupation;
-import com.kelsonprime.oregontrail.logic.Player;
-import com.kelsonprime.oregontrail.logic.Wagon;
-
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-
-import javax.swing.ButtonGroup;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.JRadioButton;
-import javax.swing.UIManager;
-import java.awt.Color;
+import com.kelsonprime.oregontrail.logic.*;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 import java.util.ArrayList;
-import java.awt.Font;
+
 import javax.swing.JComboBox;
 
 public class NewGameScreen extends JPanel {
@@ -30,6 +17,8 @@ public class NewGameScreen extends JPanel {
 	private JTextField txtCompanion_2;
 	private JTextField txtCompanion_3;
 	private ButtonGroup occupationGroup;
+	private JLabel lblAbilitiesList;
+	private JLabel lblStartMoney;
 
 	public NewGameScreen(OregonTrail app) {
 		super();
@@ -87,19 +76,24 @@ public class NewGameScreen extends JPanel {
 		lblPickAnOccupation.setBounds(242, 4, 176, 15);
 		panel_2.add(lblPickAnOccupation);
 		
+		ButtonListener listen = new ButtonListener();
+		
 		JRadioButton rdbtnBanker = new JRadioButton("Banker");
 		rdbtnBanker.setBounds(178, 27, 75, 23);
 		rdbtnBanker.setActionCommand("banker");
+		rdbtnBanker.addActionListener(listen);
 		panel_2.add(rdbtnBanker);
 		
 		JRadioButton rdbtnCarpenter = new JRadioButton("Carpenter");
-		rdbtnCarpenter.setBounds(274, 27, 97, 23);
-		rdbtnBanker.setActionCommand("carpenter");
+		rdbtnCarpenter.setBounds(269, 27, 97, 23);
+		rdbtnCarpenter.setActionCommand("carpenter");
+		rdbtnCarpenter.addActionListener(listen);
 		panel_2.add(rdbtnCarpenter);
 		
 		JRadioButton rdbtnFarmer = new JRadioButton("Farmer");
 		rdbtnFarmer.setBounds(385, 27, 75, 23);
-		rdbtnBanker.setActionCommand("carpenter");
+		rdbtnFarmer.setActionCommand("farmer");
+		rdbtnFarmer.addActionListener(listen);
 		panel_2.add(rdbtnFarmer);
 		
 		occupationGroup = new ButtonGroup();
@@ -120,7 +114,7 @@ public class NewGameScreen extends JPanel {
 		
 		JLabel lblOccupationalAbilities = new JLabel("Occupational Abilities:");
 		lblOccupationalAbilities.setForeground(Color.WHITE);
-		lblOccupationalAbilities.setBounds(183, 66, 169, 15);
+		lblOccupationalAbilities.setBounds(183, 66, 262, 15);
 		panel_2.add(lblOccupationalAbilities);
 		
 		JLabel lblSetStartingConditions = new JLabel("Set Starting Conditions");
@@ -157,7 +151,21 @@ public class NewGameScreen extends JPanel {
 		
 		JButton btnContinue = new JButton("Continue -->");
 		btnContinue.setBounds(430, 226, 144, 25);
+		btnContinue.setActionCommand("continue");
+		btnContinue.addActionListener(listen);
 		panel_2.add(btnContinue);
+		
+		lblAbilitiesList = new JLabel("---");
+		lblAbilitiesList.setFont(new Font("Dialog", Font.PLAIN, 12));
+		lblAbilitiesList.setForeground(Color.WHITE);
+		lblAbilitiesList.setBounds(193, 85, 282, 15);
+		panel_2.add(lblAbilitiesList);
+		
+		lblStartMoney = new JLabel("---");
+		lblStartMoney.setFont(new Font("Dialog", Font.PLAIN, 12));
+		lblStartMoney.setForeground(Color.WHITE);
+		lblStartMoney.setBounds(194, 129, 145, 15);
+		panel_2.add(lblStartMoney);
 	}
 	
 	public void createGame(){
@@ -199,5 +207,27 @@ public class NewGameScreen extends JPanel {
 		Game newGame = new Game(new Listener(), newWagon);
 		
 		app.setGame(newGame);
+	}
+	
+	private class ButtonListener implements ActionListener{
+
+		public void actionPerformed(ActionEvent e) {
+			Object o = e.getActionCommand();
+			if (o.equals("banker")){
+				lblAbilitiesList.setText("-None-");
+				lblStartMoney.setText("$3000");
+			}
+			else if (o.equals("carpenter")){
+				lblAbilitiesList.setText("Wagon Fixing");
+				lblStartMoney.setText("$2000");
+			}
+			else if (o.equals("farmer")){
+				lblAbilitiesList.setText("Oxen Care | Food Scavaging");
+				lblStartMoney.setText("$1500");
+			}
+			else if (o.equals("continue")){
+				createGame();
+			}
+		}
 	}
 }
