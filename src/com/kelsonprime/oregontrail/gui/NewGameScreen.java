@@ -6,22 +6,20 @@ import com.kelsonprime.oregontrail.logic.Occupation;
 import com.kelsonprime.oregontrail.logic.Player;
 import com.kelsonprime.oregontrail.logic.Wagon;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
 import javax.swing.ButtonGroup;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.UIManager;
 import java.awt.Color;
 import java.util.ArrayList;
 
 public class NewGameScreen extends JPanel {
+	private static final long serialVersionUID = 7996950179577943594L;
 	OregonTrail app;
 	private JTextField txtPlayer;
 	private JTextField txtCompanion;
