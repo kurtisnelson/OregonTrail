@@ -19,7 +19,6 @@ public class Companion {
 	 */
 	void passDay(Game game) {
 		// TODO method stub
-		return;
 	}
 
 }
