@@ -20,6 +20,8 @@ import javax.swing.JRadioButton;
 import javax.swing.UIManager;
 import java.awt.Color;
 import java.util.ArrayList;
+import java.awt.Font;
+import javax.swing.JComboBox;
 
 public class NewGameScreen extends JPanel {
 	OregonTrail app;
@@ -28,13 +30,6 @@ public class NewGameScreen extends JPanel {
 	private JTextField txtCompanion_1;
 	private JTextField txtCompanion_2;
 	private JTextField txtCompanion_3;
-	private JTextField txtNumwheels;
-	private JTextField txtNumaxles;
-	private JTextField txtNumtongues;
-	private JTextField txtNumclothes;
-	private JTextField txtNumbullets;
-	private JTextField txtNumoxen;
-	private JTextField txtNumfood;
 	private ButtonGroup occupationGroup;
 
 	public NewGameScreen(OregonTrail app) {
@@ -88,8 +83,9 @@ public class NewGameScreen extends JPanel {
 		txtCompanion_3.setColumns(10);
 		
 		JLabel lblPickAnOccupation = new JLabel("Pick an Occupation");
+		lblPickAnOccupation.setFont(new Font("Dialog", Font.BOLD, 14));
 		lblPickAnOccupation.setForeground(Color.WHITE);
-		lblPickAnOccupation.setBounds(152, 2, 134, 15);
+		lblPickAnOccupation.setBounds(242, 4, 176, 15);
 		panel_2.add(lblPickAnOccupation);
 		
 		JRadioButton rdbtnBanker = new JRadioButton("Banker");
@@ -98,12 +94,12 @@ public class NewGameScreen extends JPanel {
 		panel_2.add(rdbtnBanker);
 		
 		JRadioButton rdbtnCarpenter = new JRadioButton("Carpenter");
-		rdbtnCarpenter.setBounds(178, 62, 97, 23);
+		rdbtnCarpenter.setBounds(274, 27, 97, 23);
 		rdbtnBanker.setActionCommand("carpenter");
 		panel_2.add(rdbtnCarpenter);
 		
 		JRadioButton rdbtnFarmer = new JRadioButton("Farmer");
-		rdbtnFarmer.setBounds(178, 94, 75, 23);
+		rdbtnFarmer.setBounds(385, 27, 75, 23);
 		rdbtnBanker.setActionCommand("carpenter");
 		panel_2.add(rdbtnFarmer);
 		
@@ -113,61 +109,56 @@ public class NewGameScreen extends JPanel {
 		occupationGroup.add(rdbtnFarmer);
 		
 		JLabel lblPartyNames = new JLabel("Party Names");
+		lblPartyNames.setFont(new Font("Dialog", Font.BOLD, 14));
 		lblPartyNames.setForeground(Color.WHITE);
-		lblPartyNames.setBounds(9, 2, 97, 15);
+		lblPartyNames.setBounds(9, 2, 114, 15);
 		panel_2.add(lblPartyNames);
 		
-		JLabel lblMoney = new JLabel("Money:");
+		JLabel lblMoney = new JLabel("Starting Money:");
 		lblMoney.setForeground(Color.WHITE);
-		lblMoney.setBounds(161, 145, 70, 15);
+		lblMoney.setBounds(184, 112, 117, 15);
 		panel_2.add(lblMoney);
 		
-		JLabel lblStockTheWagon = new JLabel("Stock The Wagon ");
-		lblStockTheWagon.setForeground(Color.WHITE);
-		lblStockTheWagon.setBounds(306, 2, 132, 15);
-		panel_2.add(lblStockTheWagon);
+		JLabel lblOccupationalAbilities = new JLabel("Occupational Abilities:");
+		lblOccupationalAbilities.setForeground(Color.WHITE);
+		lblOccupationalAbilities.setBounds(183, 66, 169, 15);
+		panel_2.add(lblOccupationalAbilities);
 		
-		txtNumwheels = new JTextField();
-		txtNumwheels.setText("numWheels");
-		txtNumwheels.setBounds(316, 29, 114, 19);
-		panel_2.add(txtNumwheels);
-		txtNumwheels.setColumns(10);
+		JLabel lblSetStartingConditions = new JLabel("Set Starting Conditions");
+		lblSetStartingConditions.setFont(new Font("Dialog", Font.BOLD, 14));
+		lblSetStartingConditions.setForeground(Color.WHITE);
+		lblSetStartingConditions.setBounds(109, 189, 192, 15);
+		panel_2.add(lblSetStartingConditions);
 		
-		txtNumaxles = new JTextField();
-		txtNumaxles.setText("numAxles");
-		txtNumaxles.setBounds(316, 45, 114, 19);
-		panel_2.add(txtNumaxles);
-		txtNumaxles.setColumns(10);
+		JLabel lblPace = new JLabel("Pace");
+		lblPace.setForeground(Color.WHITE);
+		lblPace.setBounds(100, 210, 70, 15);
+		panel_2.add(lblPace);
 		
-		txtNumtongues = new JTextField();
-		txtNumtongues.setText("numTongues");
-		txtNumtongues.setBounds(316, 64, 114, 19);
-		panel_2.add(txtNumtongues);
-		txtNumtongues.setColumns(10);
+		JLabel lblRationing = new JLabel("Rations");
+		lblRationing.setForeground(Color.WHITE);
+		lblRationing.setBounds(269, 210, 70, 15);
+		panel_2.add(lblRationing);
 		
-		txtNumclothes = new JTextField();
-		txtNumclothes.setText("numClothes");
-		txtNumclothes.setBounds(316, 81, 114, 19);
-		panel_2.add(txtNumclothes);
-		txtNumclothes.setColumns(10);
+		JComboBox comboBox = new JComboBox();
+		comboBox.setBounds(62, 226, 124, 24);
+		panel_2.add(comboBox);
+		comboBox.addItem("Light");
+		comboBox.addItem("Moderate");
+		comboBox.addItem("Heavy");
+		comboBox.addItem("Grueling");
 		
-		txtNumbullets = new JTextField();
-		txtNumbullets.setText("numBullets");
-		txtNumbullets.setBounds(316, 96, 114, 19);
-		panel_2.add(txtNumbullets);
-		txtNumbullets.setColumns(10);
+		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1.setBounds(228, 226, 124, 24);
+		panel_2.add(comboBox_1);
+		comboBox_1.addItem("Bare Bones");
+		comboBox_1.addItem("Meager");
+		comboBox_1.addItem("Adequate");
+		comboBox_1.addItem("Filling");
 		
-		txtNumoxen = new JTextField();
-		txtNumoxen.setText("numOxen");
-		txtNumoxen.setBounds(316, 114, 114, 19);
-		panel_2.add(txtNumoxen);
-		txtNumoxen.setColumns(10);
-		
-		txtNumfood = new JTextField();
-		txtNumfood.setText("numFood");
-		txtNumfood.setBounds(316, 127, 114, 19);
-		panel_2.add(txtNumfood);
-		txtNumfood.setColumns(10);
+		JButton btnContinue = new JButton("Continue -->");
+		btnContinue.setBounds(430, 226, 144, 25);
+		panel_2.add(btnContinue);
 	}
 	
 	public void createGame(){

@@ -30,7 +30,7 @@ public class OregonTrail {
 		JPanel newGameFrame = new NewGameScreen(this);
 		frame.add(newGameFrame);
 		frame.pack();
-		frame.setSize(new Dimension(600, 300));
+		frame.setSize(new Dimension(600, 350));
 		frame.setVisible(true);
 	}
 	
