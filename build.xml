@@ -39,7 +39,7 @@
 	<javadoc packagenames="com.kelsonprime.oregontrail.*" sourcepath="${src}" destdir="${doc}" author="true" classpathref="build-classpath">
 </javadoc>
 </target>
-<target name="all" depends="init,prepare,compile,javadoc,jar,run">
+<target name="all" depends="init,prepare,compile,jar,run">
 </target>
 <target name="clean" description="rm -rf * stuff">
 	<delete dir="${build}"/>
