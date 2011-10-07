@@ -153,7 +153,7 @@ public class NewGameScreen extends JPanel {
 		lblRationing.setBounds(269, 210, 70, 15);
 		panel_2.add(lblRationing);
 
-		JComboBox<String> comboBox = new JComboBox<String>();
+		JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(62, 226, 124, 24);
 		panel_2.add(comboBox);
 		comboBox.addItem("Light");
@@ -161,7 +161,7 @@ public class NewGameScreen extends JPanel {
 		comboBox.addItem("Heavy");
 		comboBox.addItem("Grueling");
 
-		JComboBox<String> comboBox_1 = new JComboBox<String>();
+		JComboBox comboBox_1 = new JComboBox();
 		comboBox_1.setBounds(228, 226, 124, 24);
 		panel_2.add(comboBox_1);
 		comboBox_1.addItem("Bare Bones");
