@@ -17,4 +17,8 @@ public abstract class Occupation {
 	public int getStartingMoney(){
 		return startingMoney;
 	}
+	
+	public String getDescription(){
+		return this.description;
+	}
 }
