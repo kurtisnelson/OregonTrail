@@ -1,4 +1,6 @@
-package com.kelsonprime.oregontrail.controller;
+package com.kelsonprime.oregontrail.model;
+
+import com.kelsonprime.oregontrail.controller.Game;
 
 public class Companion {
 

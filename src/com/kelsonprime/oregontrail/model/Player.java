@@ -1,6 +1,5 @@
-package com.kelsonprime.oregontrail.controller;
+package com.kelsonprime.oregontrail.model;
 
-import com.kelsonprime.oregontrail.model.Occupation;
 
 public class Player extends Companion {
 	private Occupation occupation;
@@ -10,11 +9,11 @@ public class Player extends Companion {
 		this.occupation = occupation;
 	}
 
-	Occupation getOccupation() {
+	public Occupation getOccupation() {
 		return occupation;
 	}
 
-	int startingMoney() {
+	public int startingMoney() {
 		return occupation.getStartingMoney();
 	}
 

@@ -17,13 +17,13 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
-import com.kelsonprime.oregontrail.controller.Companion;
 import com.kelsonprime.oregontrail.controller.Game;
-import com.kelsonprime.oregontrail.controller.Player;
 import com.kelsonprime.oregontrail.model.Banker;
 import com.kelsonprime.oregontrail.model.Carpenter;
+import com.kelsonprime.oregontrail.model.Companion;
 import com.kelsonprime.oregontrail.model.Farmer;
 import com.kelsonprime.oregontrail.model.Occupation;
+import com.kelsonprime.oregontrail.model.Player;
 import com.kelsonprime.oregontrail.model.Wagon;
 
 public class NewGameScreen extends JPanel {
