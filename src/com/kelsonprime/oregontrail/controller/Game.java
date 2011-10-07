@@ -2,6 +2,7 @@ package com.kelsonprime.oregontrail.controller;
 
 import com.kelsonprime.oregontrail.gui.Listener;
 import com.kelsonprime.oregontrail.model.Part;
+import com.kelsonprime.oregontrail.model.Wagon;
 
 public class Game {
 
