@@ -2,8 +2,8 @@ package com.kelsonprime.oregontrail.logic;
 
 public abstract class Occupation {
 	
-	private int startingMoney;
-	private String name;
+	protected int startingMoney;
+	protected String name;
 	
 	public Occupation(){
 		
@@ -13,7 +13,7 @@ public abstract class Occupation {
 		return name;
 	}
 	
-	public int startingMoney(){
+	public int getStartingMoney(){
 		return startingMoney;
 	}
 }
