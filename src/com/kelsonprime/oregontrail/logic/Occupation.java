@@ -4,6 +4,7 @@ public abstract class Occupation {
 	
 	protected int startingMoney;
 	protected String name;
+	protected String description;
 	
 	public Occupation(){
 		
