@@ -1,9 +1,9 @@
 package com.kelsonprime.oregontrail.model;
 
 import com.kelsonprime.oregontrail.controller.Game;
-import com.kelsonprime.oregontrail.controller.PassDay;
+import com.kelsonprime.oregontrail.controller.PassNight;
 
-public abstract class Part implements PassDay {
+public abstract class Part implements PassNight {
 	protected int health;
 	protected final double WEARRATIO = .01;
 
@@ -15,7 +15,7 @@ public abstract class Part implements PassDay {
 	}
 
 	@Override
-	public void passDay(Game game) {
+	public void passNight(Game game) {
 		health = (int) (health - (health * .01));
 		// TODO account for pace with game.getPace()
 	}

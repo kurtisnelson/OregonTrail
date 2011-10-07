@@ -5,9 +5,9 @@ import java.util.Collection;
 import java.util.List;
 
 import com.kelsonprime.oregontrail.controller.Game;
-import com.kelsonprime.oregontrail.controller.PassDay;
+import com.kelsonprime.oregontrail.controller.PassNight;
 
-public class Wagon implements PassDay {
+public class Wagon implements PassNight {
 
 	private int oxen;
 	private int food;
@@ -47,7 +47,7 @@ public class Wagon implements PassDay {
 	 * @post food < $pre(int, food)
 	 */
 	@Override
-	public void passDay(Game game) {
+	public void passNight(Game game) {
 		// TODO method stub
 	}
 
