@@ -187,18 +187,16 @@ public class NewGameScreen extends JPanel {
 		String occString = occupationGroup.getSelection().getActionCommand();
 		Occupation newOccupation;
 		
-		if (occString.equals("Banker")){
-			newOccupation = null;
-			// TODO once the occupation classes get made, this should create and instance of Banker.
+		if (occString.equals("banker")){
+			newOccupation = new Banker();
 		}
 		else if (occString.equals("carpenter")){
-			newOccupation = null;
-			// TODO once the occupation classes get made, this should create and instance of Carpenter.
+			newOccupation = new Carpenter();
 		}
 		else {
-			newOccupation = null;
-			// TODO once the occupation classes get made, this should create and instance of Farmer.
+			newOccupation = new Farmer();
 		}
+		
 		
 		Player newPlayer = new Player(txtPlayer.getText(), newOccupation);
 		
