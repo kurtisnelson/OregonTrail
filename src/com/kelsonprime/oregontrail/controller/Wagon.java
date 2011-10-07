@@ -1,8 +1,10 @@
-package com.kelsonprime.oregontrail.logic;
+package com.kelsonprime.oregontrail.controller;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
+import com.kelsonprime.oregontrail.model.Part;
 
 public class Wagon implements PassDay{
 

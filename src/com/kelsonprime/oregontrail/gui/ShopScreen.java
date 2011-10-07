@@ -2,7 +2,8 @@ package com.kelsonprime.oregontrail.gui;
 
 import java.awt.*;
 import javax.swing.*;
-import com.kelsonprime.oregontrail.logic.*;
+
+import com.kelsonprime.oregontrail.controller.*;
 
 public class ShopScreen extends JPanel{
 	private static final long serialVersionUID = -7550296665413775236L;

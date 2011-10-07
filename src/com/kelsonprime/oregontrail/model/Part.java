@@ -1,6 +1,8 @@
-package com.kelsonprime.oregontrail.logic;
+package com.kelsonprime.oregontrail.model;
+import com.kelsonprime.oregontrail.controller.Game;
+import com.kelsonprime.oregontrail.controller.PassDay;
 
-abstract class Part implements PassDay{
+public abstract class Part implements PassDay{
 	protected int health;
 	protected final double WEARRATIO = .01; 
 

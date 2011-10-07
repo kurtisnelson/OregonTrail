@@ -1,5 +1,6 @@
-package com.kelsonprime.oregontrail.logic;
+package com.kelsonprime.oregontrail.controller;
 import com.kelsonprime.oregontrail.gui.Listener;
+import com.kelsonprime.oregontrail.model.Part;
 
 public class Game {
 

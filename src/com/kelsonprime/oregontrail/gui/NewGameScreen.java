@@ -1,6 +1,11 @@
 package com.kelsonprime.oregontrail.gui;
 
-import com.kelsonprime.oregontrail.logic.*;
+import com.kelsonprime.oregontrail.controller.*;
+import com.kelsonprime.oregontrail.model.Banker;
+import com.kelsonprime.oregontrail.model.Carpenter;
+import com.kelsonprime.oregontrail.model.Farmer;
+import com.kelsonprime.oregontrail.model.Occupation;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;

@@ -1,6 +1,7 @@
 package com.kelsonprime.oregontrail.gui;
 
-import com.kelsonprime.oregontrail.logic.Game;
+import com.kelsonprime.oregontrail.controller.Game;
+
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;

@@ -1,4 +1,4 @@
-package com.kelsonprime.oregontrail.logic;
+package com.kelsonprime.oregontrail.model;
 
 public abstract class Occupation {
 	

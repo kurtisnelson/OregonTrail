@@ -1,4 +1,6 @@
-package com.kelsonprime.oregontrail.logic;
+package com.kelsonprime.oregontrail.controller;
+
+import com.kelsonprime.oregontrail.model.Occupation;
 
 public class Player extends Companion {
 	private Occupation occupation;

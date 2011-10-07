@@ -1,4 +1,4 @@
-package com.kelsonprime.oregontrail.logic;
+package com.kelsonprime.oregontrail.controller;
 
 import java.util.List;
 
