@@ -4,12 +4,12 @@ public class Location {
 
 	private String name;
 	private int distanceToNext;
-	
-	public Location(String name){
+
+	public Location(String name) {
 		this.name = name;
 	}
-	
-	public String getName(){
+
+	public String getName() {
 		return name;
 	}
 

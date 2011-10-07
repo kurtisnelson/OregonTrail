@@ -14,8 +14,7 @@ public class MainMenuListener implements ActionListener {
 	public void actionPerformed(ActionEvent event) {
 		if (event.getActionCommand().equals("newGame")) {
 			app.newGameScreen();
-		}
-		else if (event.getActionCommand().equals("exit")){
+		} else if (event.getActionCommand().equals("exit")) {
 			app.exit();
 		}
 	}

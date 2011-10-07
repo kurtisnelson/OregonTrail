@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.kelsonprime.oregontrail.model.Part;
 
-public class Wagon implements PassDay{
+public class Wagon implements PassDay {
 
 	private int oxen;
 	private int food;
@@ -17,7 +17,7 @@ public class Wagon implements PassDay{
 	private Collection<Companion> party;
 	private int money;
 
-	public Wagon(Player player, List<Companion> companions){
+	public Wagon(Player player, List<Companion> companions) {
 		party = new ArrayList<Companion>();
 		party.add(player);
 		party.addAll(companions);
@@ -30,11 +30,12 @@ public class Wagon implements PassDay{
 		food = 0;
 		oxen = 0;
 	}
-	
+
 	/**
 	 * 
 	 * @param game
 	 */
+	@Override
 	public void passDay(Game game) {
 		// TODO method stub
 	}
@@ -48,16 +49,16 @@ public class Wagon implements PassDay{
 		return false;
 	}
 
-	public int getMoney(){
+	public int getMoney() {
 		return money;
 	}
-	
+
 	/**
 	 * 
 	 * @param moneyUsed
 	 */
 	public boolean spendMoney(int amount) {
-		if(checkMoney(amount)){
+		if (checkMoney(amount)) {
 			money -= amount;
 			return true;
 		}

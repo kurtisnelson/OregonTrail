@@ -1,5 +1,5 @@
 package com.kelsonprime.oregontrail.controller;
 
-public enum Ration{
+public enum Ration {
 	NONE, BARE, MEAGER, NORMAL, WELLFED
 }

@@ -7,10 +7,11 @@ public class Crossing extends Location {
 	private int fordCost;
 	private int floatCost;
 	private int ferryCost;
-	
-	public Crossing(String name){
+
+	public Crossing(String name) {
 		super(name);
 	}
+
 	public String ford() {
 		// TODO method stub
 		return null;

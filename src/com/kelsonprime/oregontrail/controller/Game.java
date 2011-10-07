@@ -1,4 +1,5 @@
 package com.kelsonprime.oregontrail.controller;
+
 import com.kelsonprime.oregontrail.gui.Listener;
 import com.kelsonprime.oregontrail.model.Part;
 
@@ -10,30 +11,32 @@ public class Game {
 	private Pace pace;
 	private Ration ration;
 
-	public Game(Listener reciever, Wagon wagon){
+	public Game(Listener reciever, Wagon wagon) {
 		this.reciever = reciever;
 		this.days = 0;
 		this.pace = Pace.STEADY;
 		this.ration = Ration.NORMAL;
 		this.wagon = wagon;
 	}
-	
+
 	/**
 	 * Number of days since game start
+	 * 
 	 * @return days
 	 */
 	public int getDays() {
 		return days;
 	}
-	
+
 	/**
 	 * Current pace
+	 * 
 	 * @return pace
 	 */
 	public Pace getPace() {
 		return pace;
 	}
-	
+
 	/**
 	 * 
 	 * @param item
@@ -81,6 +84,7 @@ public class Game {
 	public void passDay() {
 		// TODO method stub
 	}
+
 	public Part offerTrade(Part need, int quantity) {
 		// TODO method stub
 		return null;

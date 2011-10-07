@@ -10,39 +10,39 @@ public class Shop extends Location {
 	private int tonguePrice;
 	private int axlePrice;
 
-	public Shop(String name){
+	public Shop(String name) {
 		super(name);
 	}
-	
+
 	public void sellItem() {
 		// TODO method stub
 	}
-	
-	public int getOxenPrice(){
+
+	public int getOxenPrice() {
 		return oxenPrice;
 	}
-	
-	public int getFoodPrice(){
+
+	public int getFoodPrice() {
 		return foodPrice;
 	}
-	
-	public int getClothesPrice(){
+
+	public int getClothesPrice() {
 		return clothesPrice;
 	}
-	
-	public int getBulletPrice(){
+
+	public int getBulletPrice() {
 		return bulletPrice;
 	}
-	
-	public int getWheelPrice(){
+
+	public int getWheelPrice() {
 		return wheelPrice;
 	}
-	
-	public int getAxlePrice(){
+
+	public int getAxlePrice() {
 		return axlePrice;
 	}
-	
-	public int getTonguePrice(){
+
+	public int getTonguePrice() {
 		return tonguePrice;
 	}
 
