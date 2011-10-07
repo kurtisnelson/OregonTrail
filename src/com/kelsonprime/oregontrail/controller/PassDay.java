@@ -1,5 +1,5 @@
 package com.kelsonprime.oregontrail.controller;
 
 public interface PassDay {
-	void passDay(Game game);
+	public void passDay(Game game);
 }
