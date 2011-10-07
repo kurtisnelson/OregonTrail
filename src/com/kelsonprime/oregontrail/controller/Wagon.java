@@ -17,12 +17,19 @@ public class Wagon implements PassDay {
 	private Collection<Companion> party;
 	private int money;
 
+	/**
+	 * Create an empty wagon with fresh parts and put in companions.
+	 * @param player The driver of the wagon
+	 * @param companions All other party members.
+	 * @pre player != null
+	 * @post money == 0 && clothes == 0 && oxen == 0 && food == 0
+	 */
 	public Wagon(Player player, List<Companion> companions) {
 		party = new ArrayList<Companion>();
 		party.add(player);
 		party.addAll(companions);
 		activeParts = new ArrayList<Part>();
-		// TODO setup intial parts
+		// TODO setup initial parts
 		spareParts = new ArrayList<Part>();
 		money = player.startingMoney();
 		bullets = 0;
@@ -32,8 +39,11 @@ public class Wagon implements PassDay {
 	}
 
 	/**
-	 * 
+	 * Simulate one night passing for all wagon contents
 	 * @param game
+	 * @pre party.length() > 0 && game != null
+	 * @invariant money, bullets
+	 * @post food < $pre(int, food)
 	 */
 	@Override
 	public void passDay(Game game) {
@@ -41,28 +51,34 @@ public class Wagon implements PassDay {
 	}
 
 	/**
-	 * 
+	 * Checks if the user has enough money to spend without debt.
 	 * @param moneyNeeded
+	 * @return no debt incurred
+	 * @pre moneyNeeded >= 0
+	 * @invariant money
 	 */
 	public boolean checkMoney(int moneyNeeded) {
-		// TODO method stub
+		if(money >= moneyNeeded)
+				return true;
 		return false;
 	}
 
+	/**
+	 * Return how much money is contained in the Wagon
+	 * @return money available
+	 */
 	public int getMoney() {
 		return money;
 	}
 
 	/**
-	 * 
-	 * @param moneyUsed
+	 * Tries to change amount of money in the wagon by amount
+	 * @param amount
+	 * @pre amount != 0 && money + amount >= 0
+	 * @post money == $pre(int, money) + amount
 	 */
-	public boolean spendMoney(int amount) {
-		if (checkMoney(amount)) {
-			money -= amount;
-			return true;
-		}
-		return false;
+	public void changeMoney(int amount) {
+		money += amount;
 	}
 
 }
