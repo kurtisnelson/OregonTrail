@@ -11,7 +11,6 @@ public class ShopScreen extends LocationScreen {
 	private static final long serialVersionUID = -7550296665413775236L;
 	private static final String CURRENCY = "$";
 	private Shop shop;
-	private Wagon wagon;
 	private JTextField txtNumoxen;
 	private JTextField txtNumAxles;
 	private JTextField txtNumwheels;
@@ -21,8 +20,8 @@ public class ShopScreen extends LocationScreen {
 	private JTextField txtNumfood;
 
 	public ShopScreen(Wagon wagon, Shop shop) {
+		super(wagon);
 		this.shop = shop;
-		this.wagon = wagon;
 		setSize(new Dimension(600, 300));
 		setLayout(new BorderLayout(0, 0));
 
