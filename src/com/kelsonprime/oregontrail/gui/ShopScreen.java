@@ -7,8 +7,9 @@ import javax.swing.*;
 import com.kelsonprime.oregontrail.model.*;
 
 
-public class ShopScreen extends JPanel {
+public class ShopScreen extends LocationScreen {
 	private static final long serialVersionUID = -7550296665413775236L;
+	private static final String CURRENCY = "$";
 	private Shop shop;
 	private Wagon wagon;
 	private JTextField txtNumoxen;
@@ -115,38 +116,31 @@ public class ShopScreen extends JPanel {
 		lblFood.setBounds(340, 203, 70, 15);
 		panel_1.add(lblFood);
 
-		JLabel lblAxleprice = new JLabel("$"
-				+ Integer.toString(shop.getAxlePrice()));
+		JLabel lblAxleprice = new JLabel(CURRENCY + shop.axlePrice());
 		lblAxleprice.setBounds(506, 45, 61, 15);
 		panel_1.add(lblAxleprice);
 
-		JLabel lblWheelprice = new JLabel("$"
-				+ Integer.toString(shop.getWheelPrice()));
+		JLabel lblWheelprice = new JLabel(CURRENCY + shop.wheelPrice());
 		lblWheelprice.setBounds(505, 76, 61, 15);
 		panel_1.add(lblWheelprice);
 
-		JLabel lblOxenprice = new JLabel("$"
-				+ Integer.toString(shop.getOxenPrice()));
+		JLabel lblOxenprice = new JLabel(CURRENCY + shop.oxenPrice());
 		lblOxenprice.setBounds(506, 14, 70, 15);
 		panel_1.add(lblOxenprice);
 
-		JLabel lblTongueprice = new JLabel("$"
-				+ Integer.toString(shop.getTonguePrice()));
+		JLabel lblTongueprice = new JLabel(CURRENCY + shop.tonguePrice());
 		lblTongueprice.setBounds(506, 107, 70, 15);
 		panel_1.add(lblTongueprice);
 
-		JLabel lblClothesprice = new JLabel("$"
-				+ Integer.toString(shop.getClothesPrice()));
+		JLabel lblClothesprice = new JLabel(CURRENCY + shop.clothesPrice());
 		lblClothesprice.setBounds(506, 138, 70, 15);
 		panel_1.add(lblClothesprice);
 
-		JLabel lblBulletprice = new JLabel("$"
-				+ Integer.toString(shop.getBulletPrice()));
+		JLabel lblBulletprice = new JLabel(CURRENCY + shop.bulletPrice());
 		lblBulletprice.setBounds(506, 170, 70, 15);
 		panel_1.add(lblBulletprice);
 
-		JLabel lblFoodprice = new JLabel("$"
-				+ Integer.toString(shop.getFoodPrice()));
+		JLabel lblFoodprice = new JLabel(CURRENCY + shop.foodPrice());
 		lblFoodprice.setBounds(506, 203, 70, 15);
 		panel_1.add(lblFoodprice);
 
