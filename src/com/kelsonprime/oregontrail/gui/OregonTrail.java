@@ -56,7 +56,7 @@ public class OregonTrail {
 	public void setGame(Game game) {
 		this.game = game;
 		frame.remove(currentPanel);
-		currentPanel = new ShopScreen(new Shop("Independence Town"));
+		currentPanel = new ShopScreen(game.getWagon(), new Shop("Independence Town"));
 		frame.add(currentPanel);
 		frame.pack();
 		frame.setSize(new Dimension(600,350));

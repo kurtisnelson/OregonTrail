@@ -4,12 +4,13 @@ import java.awt.*;
 import java.awt.event.*;
 
 import javax.swing.*;
-import com.kelsonprime.oregontrail.model.Shop;
+import com.kelsonprime.oregontrail.model.*;
 
 
 public class ShopScreen extends JPanel {
 	private static final long serialVersionUID = -7550296665413775236L;
-	Shop shop;
+	private Shop shop;
+	private Wagon wagon;
 	private JTextField txtNumoxen;
 	private JTextField txtNumAxles;
 	private JTextField txtNumwheels;
@@ -18,8 +19,9 @@ public class ShopScreen extends JPanel {
 	private JTextField txtNumbullets;
 	private JTextField txtNumfood;
 
-	public ShopScreen(Shop shop) {
+	public ShopScreen(Wagon wagon, Shop shop) {
 		this.shop = shop;
+		this.wagon = wagon;
 		setSize(new Dimension(600, 300));
 		setLayout(new BorderLayout(0, 0));
 
@@ -158,7 +160,7 @@ public class ShopScreen extends JPanel {
 		panel_1.add(btnLeaveShop);
 		btnLeaveShop.setActionCommand("leave");
 
-		JLabel lblMoney = new JLabel("Money: $");
+		JLabel lblMoney = new JLabel("Money: $" + Integer.toString(wagon.getMoney()));
 		lblMoney.setBounds(12, 14, 70, 15);
 		panel_1.add(lblMoney);
 	}

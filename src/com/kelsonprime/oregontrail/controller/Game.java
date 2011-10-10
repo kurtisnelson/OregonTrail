@@ -90,5 +90,9 @@ public class Game {
 		// TODO method stub
 		return null;
 	}
+	
+	public Wagon getWagon(){
+		return wagon;
+	}
 
 }
