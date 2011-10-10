@@ -17,11 +17,12 @@ import com.kelsonprime.oregontrail.model.*;
 public class OregonTrail {
 	Game game;
 	JMenuBar mainMenu;
-	JPanel currentPanel;
+	JPanel currentPanel = new JPanel();
 
 	private static JFrame frame;
 
 	public void newGameScreen() {
+		frame.remove(currentPanel);
 		currentPanel = new NewGameScreen(this);
 		frame.add(currentPanel);
 		frame.pack();
@@ -42,6 +43,7 @@ public class OregonTrail {
 		frame.setJMenuBar(mainMenu);
 		frame.pack();
 		frame.setSize(new Dimension(600, 350));
+		frame.add(currentPanel);
 	}
 
 	public void open() {
