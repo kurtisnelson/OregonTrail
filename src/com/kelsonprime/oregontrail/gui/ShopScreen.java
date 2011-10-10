@@ -1,15 +1,9 @@
 package com.kelsonprime.oregontrail.gui;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
+import java.awt.*;
+import java.awt.event.*;
 
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.UIManager;
-
+import javax.swing.*;
 import com.kelsonprime.oregontrail.model.Shop;
 
 
@@ -157,13 +151,30 @@ public class ShopScreen extends JPanel {
 		JButton btnBuyItems = new JButton("Buy Items");
 		btnBuyItems.setBounds(320, 232, 117, 25);
 		panel_1.add(btnBuyItems);
+		btnBuyItems.setActionCommand("buy");
 
 		JButton btnLeaveShop = new JButton("Leave Shop");
 		btnLeaveShop.setBounds(450, 232, 117, 25);
 		panel_1.add(btnLeaveShop);
+		btnLeaveShop.setActionCommand("leave");
 
 		JLabel lblMoney = new JLabel("Money: $");
 		lblMoney.setBounds(12, 14, 70, 15);
 		panel_1.add(lblMoney);
+	}
+	
+	private class ButtonListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent ae) {
+			String s = ae.getActionCommand();
+			if (s == "buy"){
+				
+			}
+			else if(s == "leave"){
+				
+			}
+		}
+		
 	}
 }

@@ -1,30 +1,13 @@
 package com.kelsonprime.oregontrail.gui;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.*;
+import java.awt.event.*;
 import java.util.ArrayList;
 
-import javax.swing.ButtonGroup;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.JTextField;
-import javax.swing.UIManager;
+import javax.swing.*;
 
-import com.kelsonprime.oregontrail.controller.Game;
-import com.kelsonprime.oregontrail.model.Banker;
-import com.kelsonprime.oregontrail.model.Carpenter;
-import com.kelsonprime.oregontrail.model.Companion;
-import com.kelsonprime.oregontrail.model.Farmer;
-import com.kelsonprime.oregontrail.model.Occupation;
-import com.kelsonprime.oregontrail.model.Player;
-import com.kelsonprime.oregontrail.model.Wagon;
+import com.kelsonprime.oregontrail.controller.*;
+import com.kelsonprime.oregontrail.model.*;
 
 public class NewGameScreen extends JPanel {
 	private static final long serialVersionUID = 7996950179577943594L;

@@ -7,6 +7,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 
 import com.kelsonprime.oregontrail.controller.Game;
+import com.kelsonprime.oregontrail.model.*;
 
 /**
  * This class is going to be the main game. It is in charge of owning the parent
@@ -16,12 +17,13 @@ import com.kelsonprime.oregontrail.controller.Game;
 public class OregonTrail {
 	Game game;
 	JMenuBar mainMenu;
+	JPanel currentPanel;
 
 	private static JFrame frame;
 
 	public void newGameScreen() {
-		JPanel newGameFrame = new NewGameScreen(this);
-		frame.add(newGameFrame);
+		currentPanel = new NewGameScreen(this);
+		frame.add(currentPanel);
 		frame.pack();
 		frame.setSize(new Dimension(600, 350));
 		frame.setVisible(true);
@@ -53,5 +55,11 @@ public class OregonTrail {
 
 	public void setGame(Game game) {
 		this.game = game;
+		frame.remove(currentPanel);
+		currentPanel = new ShopScreen(new Shop("Independence Town"));
+		frame.add(currentPanel);
+		frame.pack();
+		frame.setSize(new Dimension(600,350));
+		frame.setVisible(true);
 	}
 }
