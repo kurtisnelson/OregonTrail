@@ -1,6 +1,7 @@
 package com.kelsonprime.oregontrail.controller;
 
 import com.kelsonprime.oregontrail.model.Location;
+import com.kelsonprime.oregontrail.model.Shop;
 
 public class Map {
 
@@ -9,6 +10,7 @@ public class Map {
 
 	public Map(){
 		traveled = 0;
+		start = new Shop("Independence");
 	}
 	
 	public int getTraveled() {

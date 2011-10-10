@@ -8,6 +8,7 @@ public class Game {
 
 	Listener reciever;
 	Wagon wagon;
+	Map map;
 	private int days;
 	private Pace pace;
 	private Ration ration;
@@ -18,6 +19,7 @@ public class Game {
 		this.pace = Pace.STEADY;
 		this.ration = Ration.NORMAL;
 		this.wagon = wagon;
+		this.map = new Map();
 	}
 
 	/**
