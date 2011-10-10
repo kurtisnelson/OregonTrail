@@ -9,8 +9,8 @@ public abstract class Location {
 
 	private String label;
 	private Location next;
-	private int roadX;
-	private int roadY;
+	private int roadX1;
+	private int roadY1;
 
 	public Location(String label) {
 		this.label = label;
@@ -22,8 +22,8 @@ public abstract class Location {
 	
 	void setNext(Location l, int dX, int dY){
 		next = l;
-		roadX = dX;
-		roadY = dY;
+		roadX1 = dX;
+		roadY1 = dY;
 	}
 	
 	public Location next(){
@@ -31,7 +31,7 @@ public abstract class Location {
 	}
 	
 	public int getRoadLength(){
-		return (int) Math.sqrt(Math.pow(roadX,2) + Math.pow(roadY,2));
+		return (int) Math.sqrt(Math.pow(roadX1,2) + Math.pow(roadY1,2));
 	}
 
 }
