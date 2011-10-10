@@ -10,7 +10,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
-import com.kelsonprime.oregontrail.controller.Shop;
+import com.kelsonprime.oregontrail.model.Shop;
+
 
 public class ShopScreen extends JPanel {
 	private static final long serialVersionUID = -7550296665413775236L;
@@ -35,7 +36,7 @@ public class ShopScreen extends JPanel {
 				.getColor("OptionPane.warningDialog.titlePane.foreground"));
 		add(panel, BorderLayout.NORTH);
 
-		JLabel lblWelcomeToThe = new JLabel("Welcome to the " + shop.getName()
+		JLabel lblWelcomeToThe = new JLabel("Welcome to the " + shop.label()
 				+ " Shop");
 		lblWelcomeToThe.setForeground(Color.WHITE);
 		panel.add(lblWelcomeToThe);

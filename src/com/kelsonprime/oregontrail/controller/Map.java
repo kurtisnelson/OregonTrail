@@ -1,26 +1,58 @@
 package com.kelsonprime.oregontrail.controller;
 
-import java.util.List;
+import com.kelsonprime.oregontrail.model.Location;
 
 public class Map {
 
-	private List<Location> locations;
-	private int position;
+	private Location start;
+	private int traveled;
 
-	public int getPosition() {
-		throw new UnsupportedOperationException();
+	public Map(){
+		traveled = 0;
+	}
+	
+	public int getTraveled() {
+		return traveled;
+	}
+	
+	public Location nextLocation(){
+		return lastLocation().next();
+	}
+	
+	public int distanceToNext(){
+		return distanceTo(nextLocation());
+	}
+	
+	public int distanceTo(Location l){
+		Location cur = start;
+		int processed = 0;
+		while(processed < traveled && cur.getRoadLength() + processed < traveled){
+			processed += cur.getRoadLength();
+			cur = cur.next();
+		}
+		return cur.getRoadLength() - (traveled - processed);
 	}
 
-	/**
-	 * 
-	 * @param game
-	 */
+	private Location traverse(int distance){
+		return traverse(start, distance);
+	}
+	
+	private static Location traverse(Location s, int distance){
+		int processed = 0;
+		Location cur = s;
+		while(processed < distance && cur.getRoadLength() + processed < distance){
+				processed += cur.getRoadLength();
+				cur = cur.next();
+		}
+		return cur;
+	}
+	
 	void passDay(Game game) {
-		throw new UnsupportedOperationException();
+		// TODO look at pace and # of oxen and move appropriately
 	}
 
-	public Location getCurrentLocation() {
-		throw new UnsupportedOperationException();
+	public Location lastLocation() {
+		return traverse(traveled);
 	}
 
 }

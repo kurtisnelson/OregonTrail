@@ -1,4 +1,4 @@
-package com.kelsonprime.oregontrail.controller;
+package com.kelsonprime.oregontrail.model;
 
 public class Crossing extends Location {
 
