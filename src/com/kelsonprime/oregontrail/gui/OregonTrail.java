@@ -41,7 +41,7 @@ public class OregonTrail {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setJMenuBar(mainMenu);
 		frame.pack();
-		frame.setSize(new Dimension(600, 300));
+		frame.setSize(new Dimension(600, 350));
 	}
 
 	public void open() {

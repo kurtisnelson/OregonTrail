@@ -161,7 +161,7 @@ public class ShopScreen extends JPanel {
 		btnLeaveShop.setActionCommand("leave");
 
 		JLabel lblMoney = new JLabel("Money: $" + Integer.toString(wagon.getMoney()));
-		lblMoney.setBounds(12, 14, 70, 15);
+		lblMoney.setBounds(12, 14, 154, 15);
 		panel_1.add(lblMoney);
 	}
 	
