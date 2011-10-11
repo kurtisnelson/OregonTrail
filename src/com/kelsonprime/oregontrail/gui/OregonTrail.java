@@ -5,9 +5,11 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 import com.kelsonprime.oregontrail.controller.Game;
-import com.kelsonprime.oregontrail.model.*;
+import com.kelsonprime.oregontrail.model.Shop;
 
 /**
  * This class is going to be the main game. It is in charge of owning the parent
@@ -37,6 +39,17 @@ public class OregonTrail {
 	}
 
 	public OregonTrail() {
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (UnsupportedLookAndFeelException e) {
+			e.printStackTrace();
+		}
 		this.mainMenu = new MainMenu(this);
 		frame = new JFrame("Oregon Trail");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -58,10 +71,11 @@ public class OregonTrail {
 	public void setGame(Game game) {
 		this.game = game;
 		frame.remove(currentPanel);
-		currentPanel = new ShopScreen(game.getWagon(), new Shop("Independence Town"));
+		currentPanel = new ShopScreen(game.getWagon(), new Shop(
+				"Independence Town"));
 		frame.add(currentPanel);
 		frame.pack();
-		frame.setSize(new Dimension(600,350));
+		frame.setSize(new Dimension(600, 350));
 		frame.setVisible(true);
 	}
 }
