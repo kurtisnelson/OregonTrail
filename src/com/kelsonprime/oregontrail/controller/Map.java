@@ -25,7 +25,16 @@ public class Map {
 		return distanceTo(nextLocation());
 	}
 	
-	public int distanceTo(Location l){
+	public Location travel(int d){
+		if(distanceToNext() <= d){
+			traveled += distanceToNext();
+		}else{
+			traveled += d;
+		}
+		return currentLocation();
+	}
+	
+	private int distanceTo(Location l){
 		Location cur = start;
 		int processed = 0;
 		while(processed < traveled && cur.getRoadLength() + processed < traveled){
@@ -53,6 +62,12 @@ public class Map {
 		// TODO look at pace and # of oxen and move appropriately
 	}
 
+	public Location currentLocation() {
+		if(distanceToNext() != 0)
+			return null;
+		return lastLocation();
+	}
+	
 	public Location lastLocation() {
 		return traverse(traveled);
 	}
