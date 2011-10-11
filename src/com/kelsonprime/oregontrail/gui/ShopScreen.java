@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
+import com.kelsonprime.oregontrail.controller.Game;
 import com.kelsonprime.oregontrail.model.Shop;
 import com.kelsonprime.oregontrail.model.Wagon;
 
@@ -19,6 +20,7 @@ public class ShopScreen extends LocationScreen {
 	private static final long serialVersionUID = -7550296665413775236L;
 	private static final String CURRENCY = "$";
 	private Shop shop;
+	private Wagon wagon;
 	private JTextField oxenQuantity;
 	private JTextField axleQuantity;
 	private JTextField wheelQuantity;
@@ -27,9 +29,10 @@ public class ShopScreen extends LocationScreen {
 	private JTextField bulletQuantity;
 	private JTextField foodQuantity;
 
-	public ShopScreen(Wagon wagon, Shop shop) {
-		super(wagon);
+	public ShopScreen(Game game, Shop shop) {
+		super(game);
 		this.shop = shop;
+		this.wagon = game.getWagon();
 		setSize(new Dimension(600, 300));
 		setLayout(new BorderLayout(0, 0));
 
