@@ -9,6 +9,7 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import com.kelsonprime.oregontrail.controller.Game;
+import com.kelsonprime.oregontrail.model.Location;
 import com.kelsonprime.oregontrail.model.Shop;
 
 /**
@@ -19,19 +20,32 @@ import com.kelsonprime.oregontrail.model.Shop;
 public class OregonTrail {
 	Game game;
 	JMenuBar mainMenu;
-	JPanel currentPanel = new JPanel();
-
-	private static JFrame frame;
+	JPanel mainPanel;
+	private JFrame frame;
 
 	public void newGameScreen() {
-		frame.remove(currentPanel);
-		currentPanel = new NewGameScreen(this);
-		frame.add(currentPanel);
-		frame.pack();
-		frame.setSize(new Dimension(600, 350));
-		frame.setVisible(true);
+		setPanel(new NewGameScreen(this));
 	}
 
+	private void setPanel(JPanel p){
+		new Thread(new PanelSetter(p)).run();
+	}
+	
+	private class PanelSetter implements Runnable {
+		private JPanel p;
+		public PanelSetter(JPanel p){
+			this.p = p;
+		}
+		@Override
+		public void run() {
+			frame.add(p);
+			if(mainPanel != null)
+				frame.remove(mainPanel);
+			mainPanel = p;
+			frame.setVisible(true);
+		}
+	}
+	
 	public static void main(String[] args) {
 		// TODO Thread this app creation, throw up a splash screen until done.
 		OregonTrail app = new OregonTrail();
@@ -53,29 +67,36 @@ public class OregonTrail {
 		this.mainMenu = new MainMenu(this);
 		frame = new JFrame("Oregon Trail");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setJMenuBar(mainMenu);
-		frame.pack();
-		frame.setSize(new Dimension(600, 350));
-		frame.add(currentPanel);
 	}
 
+	public JFrame getFrame(){
+		return frame;
+	}
+	
 	public void open() {
+		frame.setJMenuBar(mainMenu);
+		frame.setSize(new Dimension(600, 350));
 		frame.setVisible(true);
 	}
 
 	public void exit() {
 		frame.setVisible(false);
+		// TODO do any cleanup
 		System.exit(0);
 	}
 
-	public void setGame(Game game) {
+	public void loadGame(Game game) {
 		this.game = game;
-		frame.remove(currentPanel);
-		currentPanel = new ShopScreen(game.getWagon(), new Shop(
-				"Independence Town"));
-		frame.add(currentPanel);
-		frame.pack();
-		frame.setSize(new Dimension(600, 350));
-		frame.setVisible(true);
+		game.setOwner(this);
+		updateScreen();
+	}
+	
+	public void updateScreen(){
+		Location cur = game.currentLocation();
+		if(cur == null){
+			// TODO show screen for moving along
+		}else if(cur instanceof Shop){
+			setPanel(new ShopScreen(game, (Shop)cur));
+		}
 	}
 }

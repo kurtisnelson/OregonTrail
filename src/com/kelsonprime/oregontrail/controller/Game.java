@@ -1,25 +1,31 @@
 package com.kelsonprime.oregontrail.controller;
 
 import com.kelsonprime.oregontrail.gui.Listener;
+import com.kelsonprime.oregontrail.gui.OregonTrail;
+import com.kelsonprime.oregontrail.model.Location;
 import com.kelsonprime.oregontrail.model.Part;
 import com.kelsonprime.oregontrail.model.Wagon;
 
 public class Game {
 
-	Listener reciever;
+	public Listener reciever;
 	Wagon wagon;
 	Map map;
 	private int days;
 	private Pace pace;
 	private Ration ration;
 
-	public Game(Listener reciever, Wagon wagon) {
-		this.reciever = reciever;
+	public Game(Wagon wagon) {
+		this.reciever = new Listener();
 		this.days = 0;
 		this.pace = Pace.STEADY;
 		this.ration = Ration.NORMAL;
 		this.wagon = wagon;
 		this.map = new Map();
+	}
+	
+	public Location currentLocation(){
+		return map.currentLocation();
 	}
 
 	/**
@@ -97,4 +103,7 @@ public class Game {
 		return wagon;
 	}
 
+	public void setOwner(OregonTrail owner){
+		reciever.setOwner(owner);
+	}
 }

@@ -10,5 +10,12 @@ package com.kelsonprime.oregontrail.gui;
  * 
  */
 public class Listener {
+	OregonTrail parent;
+	public Listener(){
+		
+	}
 
+	public void setOwner(OregonTrail owner){
+		this.parent = owner;
+	}
 }
