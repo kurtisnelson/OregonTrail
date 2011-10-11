@@ -18,10 +18,9 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import com.kelsonprime.oregontrail.controller.Game;
-import com.kelsonprime.oregontrail.model.Banker;
-import com.kelsonprime.oregontrail.model.Carpenter;
+import com.kelsonprime.oregontrail.controller.ModelFactory;
+import com.kelsonprime.oregontrail.controller.UserInputException;
 import com.kelsonprime.oregontrail.model.Companion;
-import com.kelsonprime.oregontrail.model.Farmer;
 import com.kelsonprime.oregontrail.model.Occupation;
 import com.kelsonprime.oregontrail.model.Player;
 import com.kelsonprime.oregontrail.model.Wagon;
@@ -59,32 +58,32 @@ public class NewGameScreen extends JPanel {
 		body.setLayout(null);
 
 		playerName = new JTextField();
+		playerName.setText("Kurt");
 		playerName.setBounds(9, 29, 114, 19);
-		playerName.setText("Player 1");
 		body.add(playerName);
 		playerName.setColumns(10);
 
 		companionName = new JTextField();
 		companionName.setBounds(9, 64, 114, 19);
-		companionName.setText("Companion 1");
+		companionName.setText("Tan");
 		body.add(companionName);
 		companionName.setColumns(10);
 
 		companion1Name = new JTextField();
 		companion1Name.setBounds(9, 96, 114, 19);
-		companion1Name.setText("Companion 2");
+		companion1Name.setText("Victoria");
 		body.add(companion1Name);
 		companion1Name.setColumns(10);
 
 		companion2Name = new JTextField();
 		companion2Name.setBounds(9, 127, 114, 19);
-		companion2Name.setText("Companion 3");
+		companion2Name.setText("Matt");
 		body.add(companion2Name);
 		companion2Name.setColumns(10);
 
 		companion3Name = new JTextField();
 		companion3Name.setBounds(9, 158, 114, 19);
-		companion3Name.setText("Companion 4");
+		companion3Name.setText("Aman");
 		body.add(companion3Name);
 		companion3Name.setColumns(10);
 
@@ -109,6 +108,7 @@ public class NewGameScreen extends JPanel {
 		body.add(carpenterButton);
 
 		JRadioButton farmerButton = new JRadioButton("Farmer");
+		farmerButton.setSelected(true);
 		farmerButton.setBounds(385, 27, 75, 23);
 		farmerButton.setActionCommand("farmer");
 		farmerButton.addActionListener(listen);
@@ -187,39 +187,23 @@ public class NewGameScreen extends JPanel {
 	}
 
 	public void createGame() {
-
-		ArrayList<Companion> companionList = new ArrayList<Companion>(4);
-		if (companionName.getText() != null) {
-			companionList.add(new Companion(companionName.getText()));
+		
+		Occupation occupation;
+		Player newPlayer;
+		ArrayList<Companion> companionList;
+		try {
+			occupation = ModelFactory.buildOccupation(occupationGroup.getSelection().getActionCommand());
+			newPlayer = ModelFactory.buildPlayer(playerName.getText(), occupation);
+			companionList = ModelFactory.buildCompanions(companionName.getText(), companion2Name.getText());
+		} catch (UserInputException e) {
+			e.generateBox(app.getFrame());
+			return;
 		}
-		if (companion1Name.getText() != null) {
-			companionList.add(new Companion(companion1Name.getText()));
-		}
-		if (companion2Name.getText() != null) {
-			companionList.add(new Companion(companion2Name.getText()));
-		}
-		if (companion3Name.getText() != null) {
-			companionList.add(new Companion(companion3Name.getText()));
-		}
-
-		String occString = occupationGroup.getSelection().getActionCommand();
-		Occupation newOccupation;
-
-		if (occString.equals("banker")) {
-			newOccupation = new Banker();
-		} else if (occString.equals("carpenter")) {
-			newOccupation = new Carpenter();
-		} else {
-			newOccupation = new Farmer();
-		}
-
-		Player newPlayer = new Player(playerName.getText(), newOccupation);
 
 		Wagon newWagon = new Wagon(newPlayer, companionList);
+		Game newGame = new Game(newWagon);
 
-		Game newGame = new Game(new Listener(), newWagon);
-
-		app.setGame(newGame);
+		app.loadGame(newGame);
 	}
 
 	private class ButtonListener implements ActionListener {
