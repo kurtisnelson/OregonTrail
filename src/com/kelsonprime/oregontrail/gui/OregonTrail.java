@@ -11,6 +11,7 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import com.kelsonprime.oregontrail.controller.Game;
+import com.kelsonprime.oregontrail.controller.Properties;
 import com.kelsonprime.oregontrail.model.Location;
 import com.kelsonprime.oregontrail.model.Shop;
 
@@ -50,7 +51,12 @@ public class OregonTrail {
 	}
 	
 	public static void main(String[] args) {
-		LOGGER.setLevel(Level.ALL);
+		Properties p = new Properties();
+		String level = p.getProperty("LogLevel","SEVERE");
+		if(level.equals("ALL"))
+			LOGGER.setLevel(Level.ALL);
+		else if(level.equals("SEVERE"))
+			LOGGER.setLevel(Level.SEVERE);
 		// TODO Thread this app creation, throw up a splash screen until done.
 		OregonTrail app = new OregonTrail();
 		app.open();
