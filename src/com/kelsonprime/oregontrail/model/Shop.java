@@ -10,6 +10,13 @@ public class Shop extends Location {
 	private int wheelPrice;
 	private int tonguePrice;
 	private int axlePrice;
+	private int oxenQuantity;
+	private int foodQuantity;
+	private int clothesQuantity;
+	private int bulletQuantity;
+	private int wheelQuantity;
+	private int tongueQuantity;
+	private int axleQuantity; 
 
 	public Shop(String name){
 		this(name, 0);
@@ -24,6 +31,13 @@ public class Shop extends Location {
 		tonguePrice = 20;
 		axlePrice = 10;
 		scalePrices(supplyDistance);
+		oxenQuantity = 12;
+		foodQuantity = 50;
+		clothesQuantity = 20;
+		bulletQuantity = 12;
+		wheelQuantity = 8;
+		tongueQuantity = 9;
+		axleQuantity = 7;
 	}
 
 	/**
@@ -40,7 +54,8 @@ public class Shop extends Location {
 	}
 	
 	public void sellItem() {
-		// TODO method stub
+		
+		
 	}
 
 	public int oxenPrice() {
@@ -70,5 +85,27 @@ public class Shop extends Location {
 	public int tonguePrice() {
 		return tonguePrice;
 	}
+	public int oxenQuantity() {
+		return oxenQuantity;
+	}
+	public int foodQuantity() {
+		return foodQuantity;
+	}
+	public int clothesQuantity() {
+		return clothesQuantity;
+	}
+	public int bulletQuantity() {
+		return bulletQuantity;
+	}
+	public int wheelQuantity() {
+		return wheelQuantity;
+	}
+	public int axleQuantity() {
+		return axleQuantity;
+	}
+	public int tongueQuantity() {
+		return tongueQuantity;
+	}
+	
 
 }
