@@ -81,41 +81,5 @@ public class Wagon implements PassNight {
 	public void changeMoney(int amount) {
 		money += amount;
 	}
-	public void purchase(int item, Shop store){
-		
-		switch(item){
-		//oxen
-		case 1:
-			money = money - store.oxenPrice();
-			oxen = oxen + store.oxenQuantity();
-			break;
-	
-		case 2:
-			money = money - store.foodPrice();
-			oxen = oxen + store.foodQuantity();
-			break;
-		case 3:
-			money = money - store.clothesPrice();
-			oxen = oxen + store.clothesQuantity();
-			break;
-		case 4:
-			money = money - store.bulletPrice();
-			oxen = oxen + store.bulletQuantity();
-			break;
-		case 5:
-			money = money - store.wheelPrice();
-			oxen = oxen + store.wheelQuantity();
-			break;
-		case 6:
-			money = money - store.tonguePrice();
-			oxen = oxen + store.tongueQuantity();
-			break;
-		case 7:
-			money = money - store.axlePrice();
-			oxen = oxen + store.axleQuantity();
-			break;
-		}
-		
-	}
 
 }
