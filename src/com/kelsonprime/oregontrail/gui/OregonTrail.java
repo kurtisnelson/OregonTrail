@@ -1,6 +1,8 @@
 package com.kelsonprime.oregontrail.gui;
 
 import java.awt.Dimension;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
@@ -18,6 +20,7 @@ import com.kelsonprime.oregontrail.model.Shop;
  * 
  */
 public class OregonTrail {
+	private final static Logger LOGGER = Logger.getLogger(OregonTrail.class.getName());
 	Game game;
 	JMenuBar mainMenu;
 	JPanel mainPanel;
@@ -47,6 +50,7 @@ public class OregonTrail {
 	}
 	
 	public static void main(String[] args) {
+		LOGGER.setLevel(Level.ALL);
 		// TODO Thread this app creation, throw up a splash screen until done.
 		OregonTrail app = new OregonTrail();
 		app.open();
@@ -55,14 +59,10 @@ public class OregonTrail {
 	public OregonTrail() {
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
 		} catch (UnsupportedLookAndFeelException e) {
-			e.printStackTrace();
+			LOGGER.log(Level.WARNING, "Unsupported look and feel", e);
+		} catch (Exception e) {
+			LOGGER.log(Level.WARNING, "Look and feel issue",e);
 		}
 		this.mainMenu = new MainMenu(this);
 		frame = new JFrame("Oregon Trail");
