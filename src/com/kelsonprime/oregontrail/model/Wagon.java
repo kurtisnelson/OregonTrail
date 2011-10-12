@@ -13,6 +13,9 @@ public class Wagon implements PassNight {
 	private int food;
 	private int clothes;
 	private int bullets;
+	private int wheels;
+	private int tongue;
+	private int axle;
 	private Collection<Part> activeParts;
 	private Collection<Part> spareParts;
 	private Collection<Companion> party;
@@ -92,30 +95,55 @@ public class Wagon implements PassNight {
 	
 		case 2:
 			money = money - store.foodPrice();
-			oxen = oxen + store.foodQuantity();
+			food = food + store.foodQuantity();
 			break;
 		case 3:
 			money = money - store.clothesPrice();
-			oxen = oxen + store.clothesQuantity();
+			clothes = clothes + store.clothesQuantity();
 			break;
 		case 4:
 			money = money - store.bulletPrice();
-			oxen = oxen + store.bulletQuantity();
+			bullets = bullets + store.bulletQuantity();
 			break;
 		case 5:
 			money = money - store.wheelPrice();
-			oxen = oxen + store.wheelQuantity();
+			wheels = wheels + store.wheelQuantity();
 			break;
 		case 6:
 			money = money - store.tonguePrice();
-			oxen = oxen + store.tongueQuantity();
+			tongue = tongue + store.tongueQuantity();
 			break;
 		case 7:
 			money = money - store.axlePrice();
-			oxen = oxen + store.axleQuantity();
+			axle = axle + store.axleQuantity();
 			break;
 		}
 		
+	}
+	public int getOxenInven(){
+		return oxen;
+		
+		
+	}
+	public int getfoodInven(){
+		return food;
+	}
+	
+	public int getclothesInven(){
+		return clothes;
+	}
+	
+	public int getbulletsInven(){
+		return bullets;
+	}
+	public int getwheelsInven(){
+		return wheels;
+	}
+	public int gettongueInven(){
+		return tongue;
+	}
+	public int getaxleInven(){
+		return axle;
 	}
 
 }
