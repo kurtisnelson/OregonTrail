@@ -1,10 +1,11 @@
 package com.kelsonprime.oregontrail.controller;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.util.Properties;
 
-public final class Properties extends java.util.Properties {
+public final class UserProperties extends Properties {
 
-	public Properties (){
+	public UserProperties (){
 			super();
 			try{
 				this.loadFromXML(new FileInputStream("user.conf"));
@@ -15,7 +16,7 @@ public final class Properties extends java.util.Properties {
 	
 	public void savePrefs() {
 		try{
-			this.storeToXML(new FileOutputStream("user.conf"), "User");
+			this.storeToXML(new FileOutputStream("user.conf"), "User Preferences");
 		}catch(Exception e){
 			// TODO properly log this
 		}
