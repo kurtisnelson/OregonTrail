@@ -1,6 +1,7 @@
 package com.kelsonprime.oregontrail.gui;
 
 import java.awt.Dimension;
+import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
@@ -28,22 +29,11 @@ public class OregonTrail {
 	}
 
 	private void setPanel(JPanel p){
-		new Thread(new PanelSetter(p)).run();
-	}
-	
-	private class PanelSetter implements Runnable {
-		private JPanel p;
-		public PanelSetter(JPanel p){
-			this.p = p;
-		}
-		@Override
-		public void run() {
-			frame.add(p);
-			if(mainPanel != null)
-				frame.remove(mainPanel);
-			mainPanel = p;
-			frame.setVisible(true);
-		}
+		frame.add(p);
+		if(mainPanel != null)
+			frame.remove(mainPanel);
+		mainPanel = p;
+		frame.setVisible(true);
 	}
 	
 	public static void main(String[] args) {
@@ -67,6 +57,16 @@ public class OregonTrail {
 		this.mainMenu = new MainMenu(this);
 		frame = new JFrame("Oregon Trail");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(new Dimension(600, 350));
+		
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		// Determine the new location of the window
+		int w = frame.getSize().width;
+		int h = frame.getSize().height;
+		int x = (dim.width/2) - w/2;
+		int y = (dim.height/2) - h/2;
+		// Move the window
+		frame.setLocation(x, y);
 	}
 
 	public JFrame getFrame(){
@@ -75,7 +75,6 @@ public class OregonTrail {
 	
 	public void open() {
 		frame.setJMenuBar(mainMenu);
-		frame.setSize(new Dimension(600, 350));
 		frame.setVisible(true);
 	}
 
