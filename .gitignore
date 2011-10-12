@@ -3,6 +3,7 @@ forms-*.zip
 dist/
 apidoc/
 bin/
+*.conf
 *.class
 .settings
 .project

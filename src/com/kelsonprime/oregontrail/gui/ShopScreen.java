@@ -35,6 +35,8 @@ public class ShopScreen extends LocationScreen {
 		this.wagon = game.getWagon();
 		setSize(new Dimension(600, 300));
 		setLayout(new BorderLayout(0, 0));
+		
+		ButtonListener listener = new ButtonListener();
 
 		JPanel header = new JPanel();
 		header.setBackground(UIManager
@@ -159,11 +161,13 @@ public class ShopScreen extends LocationScreen {
 		buyButton.setBounds(320, 232, 117, 25);
 		body.add(buyButton);
 		buyButton.setActionCommand("buy");
+		buyButton.addActionListener(listener);
 
 		JButton leaveButton = new JButton("Leave Shop");
 		leaveButton.setBounds(450, 232, 117, 25);
 		body.add(leaveButton);
 		leaveButton.setActionCommand("leave");
+		leaveButton.addActionListener(listener);
 
 		JLabel moneyLabel = new JLabel("Money: $" + wagon.getMoney());
 		moneyLabel.setBounds(12, 14, 154, 15);
@@ -177,8 +181,20 @@ public class ShopScreen extends LocationScreen {
 			String s = ae.getActionCommand();
 			if (s.equals("buy")) {
 				// TODO mutate Wagon based on Shop
+				try{
+					Integer.valueOf(axleQuantity.getText());
+					Integer.valueOf(wheelQuantity.getText());
+					Integer.valueOf(tongueQuantity.getText());
+					Integer.valueOf(oxenQuantity.getText());
+					Integer.valueOf(clothesQuantity.getText());
+					Integer.valueOf(bulletQuantity.getText());
+					Integer.valueOf(foodQuantity.getText());
+				} catch (java.lang.NumberFormatException e){
+					
+				}
+				shop.sellItem();
 			} else if (s.equals("leave")) {
-
+				// TODO Leave store and return to town
 			}
 		}
 
