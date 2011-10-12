@@ -10,13 +10,6 @@ public class Shop extends Location {
 	private int wheelPrice;
 	private int tonguePrice;
 	private int axlePrice;
-	private int oxenQuantity;
-	private int foodQuantity;
-	private int clothesQuantity;
-	private int bulletQuantity;
-	private int wheelQuantity;
-	private int tongueQuantity;
-	private int axleQuantity; 
 
 	public Shop(String name){
 		this(name, 0);
