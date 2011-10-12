@@ -91,6 +91,7 @@ public class OregonTrail {
 	public void exit() {
 		frame.setVisible(false);
 		// TODO do any cleanup
+		userProperties.savePrefs();
 		System.exit(0);
 	}
 

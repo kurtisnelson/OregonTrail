@@ -42,6 +42,7 @@
 <target name="all" depends="init,prepare,compile,jar,run">
 </target>
 <target name="clean" description="rm -rf * stuff">
+	<delete file="user.conf"/>
 	<delete dir="${build}"/>
 	<delete dir="${dist}"/>
 	<delete dir="${doc}"/>

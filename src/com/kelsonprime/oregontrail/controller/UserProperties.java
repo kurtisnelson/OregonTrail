@@ -10,10 +10,13 @@ public final class UserProperties extends Properties {
 			try{
 				this.loadFromXML(new FileInputStream("user.conf"));
 			}catch(Exception e){
-				this.savePrefs();
+				this.initializePrefs();
 			}
 	}
-	
+	public void initializePrefs() {
+		this.setProperty("LogLevel", "severe");
+		this.savePrefs();
+	}
 	public void savePrefs() {
 		try{
 			this.storeToXML(new FileOutputStream("user.conf"), "User Preferences");
