@@ -1,5 +1,6 @@
 package com.kelsonprime.oregontrail.model;
 
+import java.util.List;
 
 public class Shop extends Location {
 	private static final double PRICE_RATIO = .001;
@@ -37,6 +38,14 @@ public class Shop extends Location {
 		wheelPrice *= multiplier;
 		tonguePrice *= multiplier;
 		axlePrice *= multiplier;
+	}
+	
+	public void sellToWagon(Wagon w, List<Part> parts){
+		//w.add(partsSold);	
+	}
+
+	public void sellToWagon(Wagon w, String item, int quantity){
+		//w.add(item, quantitySold);
 	}
 	
 	public void sellItem() {
