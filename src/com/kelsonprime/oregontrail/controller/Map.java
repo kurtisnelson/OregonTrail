@@ -42,9 +42,6 @@ public class Map {
 			cur = cur.next();
 		}
 		return cur.getRoadLength() - (traveled - processed);
-		//if(cur == l){System.out.print(You have reached )}
-			
-	
 	}
 
 	private Location traverse(int distance){
