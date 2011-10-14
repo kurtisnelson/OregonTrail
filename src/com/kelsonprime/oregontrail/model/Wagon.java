@@ -10,11 +10,15 @@ import com.kelsonprime.oregontrail.controller.Game;
 import com.kelsonprime.oregontrail.controller.PassNight;
 
 public class Wagon implements PassNight {
-
+	
+	public static final String OXEN = "oxen";
 	private int oxen;
 	private int food;
+	public static final String FOOD = "food";
 	private int clothes;
+	public static final String CLOTHES = "clothes";
 	private int bullets;
+	public static final String BULLETS = "bullets";
 	private Collection<Part> activeParts;
 	private Collection<Part> spareParts;
 	private Collection<Companion> party;
@@ -84,7 +88,24 @@ public class Wagon implements PassNight {
 		money += amount;
 	}
 	
-public void purchase(int item, Shop store){
+
+	public void add(List<Part> parts){
+		// TODO Check the wagon weight everytime we add a part
+		for(Part p : parts){
+			spareParts.add(p);
+		}
+		// TODO run repair function to move spareParts -> activeParts as appropriate
+	}
+
+	public void add(String part, int quantity){
+		// TODO Check the wagon weight everytime we add a part
+		if(part.equalsIgnoreCase(OXEN)){
+		}else if(part.equalsIgnoreCase(BULLETS)){
+		}
+		//etc
+	}
+	
+	private void purchase(int item, Shop store){
 		
 		switch(item){
 		//oxen
