@@ -15,6 +15,10 @@ public class Listener {
 		
 	}
 
+	public void traveled(){
+		parent.updateScreen();
+	}
+	
 	public void setOwner(OregonTrail owner){
 		this.parent = owner;
 	}

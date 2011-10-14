@@ -1,3 +1,5 @@
+
+
 package com.kelsonprime.oregontrail.model;
 
 import java.util.ArrayList;
@@ -13,9 +15,6 @@ public class Wagon implements PassNight {
 	private int food;
 	private int clothes;
 	private int bullets;
-	private int wheels;
-	private int tongue;
-	private int axle;
 	private Collection<Part> activeParts;
 	private Collection<Part> spareParts;
 	private Collection<Companion> party;
@@ -84,66 +83,42 @@ public class Wagon implements PassNight {
 	public void changeMoney(int amount) {
 		money += amount;
 	}
-	public void purchase(int item, Shop store){
+	
+public void purchase(int item, Shop store){
 		
 		switch(item){
 		//oxen
 		case 1:
 			money = money - store.oxenPrice();
-			oxen = oxen + store.oxenQuantity();
+			//oxen = oxen + store.oxenQuantity();
 			break;
 	
 		case 2:
 			money = money - store.foodPrice();
-			food = food + store.foodQuantity();
+			//food = food + store.foodQuantity();
 			break;
 		case 3:
 			money = money - store.clothesPrice();
-			clothes = clothes + store.clothesQuantity();
+			//clothes = clothes + store.clothesQuantity();
 			break;
 		case 4:
 			money = money - store.bulletPrice();
-			bullets = bullets + store.bulletQuantity();
+			//bullets = bullets + store.bulletQuantity();
 			break;
 		case 5:
 			money = money - store.wheelPrice();
-			wheels = wheels + store.wheelQuantity();
+			//wheels = wheels + store.wheelQuantity();
 			break;
 		case 6:
 			money = money - store.tonguePrice();
-			tongue = tongue + store.tongueQuantity();
+			//tongue = tongue + store.tongueQuantity();
 			break;
 		case 7:
 			money = money - store.axlePrice();
-			axle = axle + store.axleQuantity();
+			//axle = axle + store.axleQuantity();
 			break;
 		}
-		
-	}
-	public int getOxenInven(){
-		return oxen;
-		
-		
-	}
-	public int getfoodInven(){
-		return food;
-	}
-	
-	public int getclothesInven(){
-		return clothes;
-	}
-	
-	public int getbulletsInven(){
-		return bullets;
-	}
-	public int getwheelsInven(){
-		return wheels;
-	}
-	public int gettongueInven(){
-		return tongue;
-	}
-	public int getaxleInven(){
-		return axle;
-	}
 
 }
+}
+

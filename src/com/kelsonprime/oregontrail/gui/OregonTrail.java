@@ -1,6 +1,7 @@
 package com.kelsonprime.oregontrail.gui;
 
 import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -11,6 +12,7 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import com.kelsonprime.oregontrail.controller.Game;
+import com.kelsonprime.oregontrail.controller.UserProperties;
 import com.kelsonprime.oregontrail.model.Location;
 import com.kelsonprime.oregontrail.model.Shop;
 
@@ -20,7 +22,9 @@ import com.kelsonprime.oregontrail.model.Shop;
  * 
  */
 public class OregonTrail {
-	private final static Logger LOGGER = Logger.getLogger(OregonTrail.class.getName());
+	private final static Logger LOGGER = Logger.getLogger(OregonTrail.class
+			.getName());
+	public final static UserProperties userProperties = new UserProperties();
 	Game game;
 	JMenuBar mainMenu;
 	JPanel mainPanel;
@@ -30,27 +34,23 @@ public class OregonTrail {
 		setPanel(new NewGameScreen(this));
 	}
 
-	private void setPanel(JPanel p){
-		new Thread(new PanelSetter(p)).run();
+	private void setPanel(JPanel p) {
+		frame.add(p);
+		if (mainPanel != null)
+			frame.remove(mainPanel);
+		mainPanel = p;
+		frame.setVisible(true);
 	}
-	
-	private class PanelSetter implements Runnable {
-		private JPanel p;
-		public PanelSetter(JPanel p){
-			this.p = p;
-		}
-		@Override
-		public void run() {
-			frame.add(p);
-			if(mainPanel != null)
-				frame.remove(mainPanel);
-			mainPanel = p;
-			frame.setVisible(true);
-		}
-	}
-	
+
 	public static void main(String[] args) {
-		LOGGER.setLevel(Level.ALL);
+
+		// Load in logging prefs
+		String level = userProperties.getProperty("LogLevel", "severe");
+		if (level.equalsIgnoreCase("all"))
+			LOGGER.setLevel(Level.ALL);
+		else if (level.equalsIgnoreCase("severe"))
+			LOGGER.setLevel(Level.SEVERE);
+
 		// TODO Thread this app creation, throw up a splash screen until done.
 		OregonTrail app = new OregonTrail();
 		app.open();
@@ -62,26 +62,36 @@ public class OregonTrail {
 		} catch (UnsupportedLookAndFeelException e) {
 			LOGGER.log(Level.WARNING, "Unsupported look and feel", e);
 		} catch (Exception e) {
-			LOGGER.log(Level.WARNING, "Look and feel issue",e);
+			LOGGER.log(Level.WARNING, "Look and feel issue", e);
 		}
 		this.mainMenu = new MainMenu(this);
 		frame = new JFrame("Oregon Trail");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(new Dimension(600, 350));
+
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		// Determine the new location of the window
+		int w = frame.getSize().width;
+		int h = frame.getSize().height;
+		int x = (dim.width / 2) - w / 2;
+		int y = (dim.height / 2) - h / 2;
+		// Move the window
+		frame.setLocation(x, y);
 	}
 
-	public JFrame getFrame(){
+	public JFrame getFrame() {
 		return frame;
 	}
-	
+
 	public void open() {
 		frame.setJMenuBar(mainMenu);
-		frame.setSize(new Dimension(600, 350));
 		frame.setVisible(true);
 	}
 
 	public void exit() {
 		frame.setVisible(false);
 		// TODO do any cleanup
+		userProperties.savePrefs();
 		System.exit(0);
 	}
 
@@ -90,13 +100,13 @@ public class OregonTrail {
 		game.setOwner(this);
 		updateScreen();
 	}
-	
-	public void updateScreen(){
+
+	public void updateScreen() {
 		Location cur = game.currentLocation();
-		if(cur == null){
+		if (cur == null) {
 			// TODO show screen for moving along
-		}else if(cur instanceof Shop){
-			setPanel(new ShopScreen(game, (Shop)cur));
+		} else if (cur instanceof Shop) {
+			setPanel(new ShopScreen(game, (Shop) cur));
 		}
 	}
 }
