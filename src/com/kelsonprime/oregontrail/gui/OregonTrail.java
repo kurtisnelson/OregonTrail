@@ -2,6 +2,9 @@ package com.kelsonprime.oregontrail.gui;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.Image;
+//import java.awt.image.*;
+//import javax.swing.ImageIcon;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -66,6 +69,11 @@ public class OregonTrail {
 		}
 		this.mainMenu = new MainMenu(this);
 		frame = new JFrame("Oregon Trail");
+		frame.setDefaultLookAndFeelDecorated(true);
+//		frame.setIconImage(new ImageIcon("images/OregonTrailIcon.jpg").getImage());
+		BufferedImage icon = new BufferedImage();
+		frame.setIconImage(icon);
+		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(new Dimension(600, 350));
 
