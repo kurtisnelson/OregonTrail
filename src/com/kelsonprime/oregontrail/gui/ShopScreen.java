@@ -196,7 +196,9 @@ public class ShopScreen extends LocationScreen {
 			} else if (s.equals("leave")) {
 				// TODO Leave store and return to town
 			}
+			
 		}
+		
 
 	}
 }
