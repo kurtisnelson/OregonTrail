@@ -98,48 +98,28 @@ public class Wagon implements PassNight {
 	}
 
 	public void add(String part, int quantity){
-		// TODO Check the wagon weight everytime we add a part
+		// TODO Check the wagon weight every time we add a part
 		if(part.equalsIgnoreCase(OXEN)){
+			// TODO set limit on oxen quantity
+			oxen += quantity;
 		}else if(part.equalsIgnoreCase(BULLETS)){
+			bullets += quantity;
+		}else if(part.equalsIgnoreCase(FOOD)){
+			food += quantity;
+		}else if(part.equalsIgnoreCase(CLOTHES)){
+			clothes += quantity;
 		}
 		//etc
 	}
 	
-	private void purchase(int item, Shop store){
-		
-		switch(item){
-		//oxen
-		case 1:
-			money = money - store.oxenPrice();
-			//oxen = oxen + store.oxenQuantity();
-			break;
-	
-		case 2:
-			money = money - store.foodPrice();
-			//food = food + store.foodQuantity();
-			break;
-		case 3:
-			money = money - store.clothesPrice();
-			//clothes = clothes + store.clothesQuantity();
-			break;
-		case 4:
-			money = money - store.bulletPrice();
-			//bullets = bullets + store.bulletQuantity();
-			break;
-		case 5:
-			money = money - store.wheelPrice();
-			//wheels = wheels + store.wheelQuantity();
-			break;
-		case 6:
-			money = money - store.tonguePrice();
-			//tongue = tongue + store.tongueQuantity();
-			break;
-		case 7:
-			money = money - store.axlePrice();
-			//axle = axle + store.axleQuantity();
-			break;
-		}
+	/**
+	 * Repairs the wagon with available parts
+	 * @return Wagon fully repaired
+	 */
+	public boolean repair(){
+		//TODO if parts in activeParts are broken, try moving parts from spare.
+		return true;
+	}
 
-}
 }
 
