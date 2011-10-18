@@ -1,5 +1,6 @@
 package com.kelsonprime.oregontrail.gui;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
@@ -44,22 +45,28 @@ public class OregonTrail {
 	}
 
 	public static void main(String[] args) {
-
 		// Load in logging prefs
 		String level = userProperties.getProperty("LogLevel", "severe");
 		if (level.equalsIgnoreCase("all"))
 			LOGGER.setLevel(Level.ALL);
 		else if (level.equalsIgnoreCase("severe"))
 			LOGGER.setLevel(Level.SEVERE);
-
-		// TODO Thread this app creation, throw up a splash screen until done.
-		OregonTrail app = new OregonTrail();
-		app.open();
+		LOGGER.log(Level.INFO, "App started");
+		
+		// TODO throw splash screen?
+		 //Schedule a job for the event dispatch thread:
+        //creating and showing this application's GUI.
+        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+            	OregonTrail app = new OregonTrail();
+            	app.open();
+            }
+        });
 	}
 
 	public OregonTrail() {
 		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
 		} catch (UnsupportedLookAndFeelException e) {
 			LOGGER.log(Level.WARNING, "Unsupported look and feel", e);
 		} catch (Exception e) {
@@ -67,8 +74,10 @@ public class OregonTrail {
 		}
 		this.mainMenu = new MainMenu(this);
 		frame = new JFrame("Oregon Trail");
-		JFrame.setDefaultLookAndFeelDecorated(true);
 		frame.setIconImage(new ImageIcon("images/OregonTrailIcon.jpg").getImage());
+		frame.setBackground(Color.WHITE);
+		frame.setResizable(false);
+		frame.setUndecorated(true);
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(new Dimension(600, 350));
