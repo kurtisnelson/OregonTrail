@@ -4,6 +4,10 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
+
+import java.io.IOException;
+import java.util.logging.FileHandler;
+import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -51,6 +55,12 @@ public class OregonTrail {
 			LOGGER.setLevel(Level.ALL);
 		else if (level.equalsIgnoreCase("severe"))
 			LOGGER.setLevel(Level.SEVERE);
+		try {
+			Handler h = new FileHandler("OregonTrail.log");
+			LOGGER.addHandler(h);
+		} catch (Exception e) {
+			LOGGER.log(Level.SEVERE, "Failed to add log handler", e);
+		}
 		LOGGER.log(Level.INFO, "App started");
 		
 		// TODO throw splash screen?

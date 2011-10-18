@@ -46,6 +46,7 @@
 </target>
 <target name="clean" description="rm -rf * stuff">
 	<delete file="user.conf"/>
+	<delete file="OregonTrail.log"/>
 	<delete dir="${build}"/>
 	<delete dir="${dist}"/>
 	<delete dir="${doc}"/>
