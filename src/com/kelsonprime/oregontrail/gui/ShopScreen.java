@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -21,7 +23,7 @@ import javax.swing.border.BevelBorder;
 import java.awt.GridLayout;
 import javax.swing.ImageIcon;
 
-public class ShopScreen extends LocationScreen {
+public class ShopScreen extends LocationScreen implements KeyListener {
 	private static final long serialVersionUID = -7550296665413775236L;
 	private static final String CURRENCY = "$";
 	private Shop shop;
@@ -33,6 +35,8 @@ public class ShopScreen extends LocationScreen {
 	private JTextField clothesQuantity;
 	private JTextField bulletQuantity;
 	private JTextField foodQuantity;
+	private int moneySpent;
+	private JLabel totalPurchase, totalLeft;
 
 	public ShopScreen(Game game, Shop shop) {
 		super(game);
@@ -42,6 +46,8 @@ public class ShopScreen extends LocationScreen {
 
 		ButtonListener listener = new ButtonListener();
 		setLayout(null);
+		addKeyListener(this);
+		setFocusable(true);
 
 		JPanel header = new JPanel();
 		header.setBorder(new BevelBorder(BevelBorder.RAISED, Color.BLACK, Color.BLACK, null, null));
@@ -69,6 +75,8 @@ public class ShopScreen extends LocationScreen {
 		items.add(oxenLabel);
 		
 				oxenQuantity = new JTextField();
+				oxenQuantity.addKeyListener(this);
+				oxenQuantity.setFocusable(true);
 				oxenQuantity.setHorizontalAlignment(SwingConstants.CENTER);
 				oxenLabel.setLabelFor(oxenQuantity);
 				oxenQuantity.setText("0");
@@ -84,6 +92,8 @@ public class ShopScreen extends LocationScreen {
 				items.add(axleLabel);
 		
 				axleQuantity = new JTextField();
+				axleQuantity.addKeyListener(this);
+				axleQuantity.setFocusable(true);
 				axleQuantity.setHorizontalAlignment(SwingConstants.CENTER);
 				axleLabel.setLabelFor(axleQuantity);
 				axleQuantity.setText("0");
@@ -99,6 +109,8 @@ public class ShopScreen extends LocationScreen {
 				items.add(wheelLabel);
 		
 				wheelQuantity = new JTextField();
+				wheelQuantity.addKeyListener(this);
+				wheelQuantity.setFocusable(true);
 				wheelQuantity.setHorizontalAlignment(SwingConstants.CENTER);
 				wheelLabel.setLabelFor(wheelQuantity);
 				wheelQuantity.setText("0");
@@ -114,6 +126,8 @@ public class ShopScreen extends LocationScreen {
 				items.add(tongueLabel);
 		
 				tongueQuantity = new JTextField();
+				tongueQuantity.addKeyListener(this);
+				tongueQuantity.setFocusable(true);
 				tongueQuantity.setHorizontalAlignment(SwingConstants.CENTER);
 				tongueLabel.setLabelFor(tongueQuantity);
 				tongueQuantity.setText("0");
@@ -129,6 +143,8 @@ public class ShopScreen extends LocationScreen {
 						items.add(clothLabel);
 		
 				clothesQuantity = new JTextField();
+				clothesQuantity.addKeyListener(this);
+				clothesQuantity.setFocusable(true);
 				clothesQuantity.setHorizontalAlignment(SwingConstants.CENTER);
 				clothLabel.setLabelFor(clothesQuantity);
 				clothesQuantity.setText("0");
@@ -144,6 +160,8 @@ public class ShopScreen extends LocationScreen {
 				items.add(bulletsLabel);
 		
 				bulletQuantity = new JTextField();
+				bulletQuantity.addKeyListener(this);
+				bulletQuantity.setFocusable(true);
 				bulletQuantity.setHorizontalAlignment(SwingConstants.CENTER);
 				bulletsLabel.setLabelFor(bulletQuantity);
 				bulletQuantity.setText("0");
@@ -159,6 +177,8 @@ public class ShopScreen extends LocationScreen {
 				items.add(foodLabel);
 		
 				foodQuantity = new JTextField();
+				foodQuantity.addKeyListener(this);
+				foodQuantity.setFocusable(true);
 				foodQuantity.setHorizontalAlignment(SwingConstants.CENTER);
 				foodLabel.setLabelFor(foodQuantity);
 				foodQuantity.setText("0");
@@ -192,18 +212,75 @@ public class ShopScreen extends LocationScreen {
 				leaveButton.setActionCommand("leave");
 				leaveButton.addActionListener(listener);
 				
+				moneySpent =
+						shop.axlePrice()*Integer.valueOf(axleQuantity.getText()) +
+						shop.wheelPrice()*Integer.valueOf(wheelQuantity.getText()) +
+						shop.tonguePrice()*Integer.valueOf(tongueQuantity.getText()) +
+						shop.oxenPrice()*Integer.valueOf(oxenQuantity.getText()) +
+						shop.clothesPrice()*Integer.valueOf(clothesQuantity.getText()) +
+						shop.bulletPrice()*Integer.valueOf(bulletQuantity.getText()) +
+						shop.foodPrice()*Integer.valueOf(foodQuantity.getText());
+				
 				JPanel info = new JPanel();
 				info.setBorder(new LineBorder(new Color(0, 0, 0), 5, true));
 				info.setBackground(new Color(184, 134, 11));
-				info.setBounds(84, 72, 125, 125);
+				info.setBounds(25, 72, 175, 125);
 				add(info);
 				
-						JLabel moneyLabel = new JLabel("Money: $" + wagon.getMoney());
+						JLabel moneyLabel = new JLabel("Total Money: $" + wagon.getMoney());
 						info.add(moneyLabel);
+						
+						totalPurchase = new JLabel("Total Purchase: $" + Integer.toString(moneySpent));
+						info.add(totalPurchase);
+						
+						totalLeft = new JLabel("Money Left: $" + Integer.toString(wagon.getMoney()-moneySpent));
+						info.add(totalLeft);
+
+	}
+	
+
+	@Override
+	public void keyPressed(KeyEvent ke) {
+		System.out.println("1");
+	
 	}
 
-	private class ButtonListener implements ActionListener {
-
+	@Override
+	public void keyReleased(KeyEvent ke) {
+		update();
+		System.out.println("2");
+		
+	}
+	
+	public void update(){
+		//Thread eventually
+		try {
+			moneySpent =
+				shop.axlePrice()*Integer.valueOf(axleQuantity.getText()) +
+				shop.wheelPrice()*Integer.valueOf(wheelQuantity.getText()) +
+				shop.tonguePrice()*Integer.valueOf(tongueQuantity.getText()) +
+				shop.oxenPrice()*Integer.valueOf(oxenQuantity.getText()) +
+				shop.clothesPrice()*Integer.valueOf(clothesQuantity.getText()) +
+				shop.bulletPrice()*Integer.valueOf(bulletQuantity.getText()) +
+				shop.foodPrice()*Integer.valueOf(foodQuantity.getText());
+			totalPurchase.setText("Total Purchase: $" + Integer.toString(moneySpent));
+			totalLeft.setText("Money Left: $" + Integer.toString(wagon.getMoney()-moneySpent));
+		} catch (java.lang.NumberFormatException e) {
+			totalPurchase.setText("Total Purchase: ERROR");
+			totalLeft.setText("Money Left: ERROR");
+		}	
+			repaint();
+			
+	}
+	
+	@Override
+	public void keyTyped(KeyEvent ke) {
+		System.out.println("3");
+		
+	}
+		
+		private class ButtonListener implements ActionListener{
+			
 		@Override
 		public void actionPerformed(ActionEvent ae) {
 			String s = ae.getActionCommand();
