@@ -14,6 +14,7 @@ import javax.swing.JTextField;
 
 import com.kelsonprime.oregontrail.controller.Game;
 import com.kelsonprime.oregontrail.controller.IconFactory;
+import com.kelsonprime.oregontrail.controller.Threader;
 import com.kelsonprime.oregontrail.model.Shop;
 import com.kelsonprime.oregontrail.model.Wagon;
 import java.awt.Font;
@@ -253,6 +254,8 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 
 	public void update() {
 		// Thread eventually
+		Threader.executeNow(new Runnable() {
+			public void run(){
 		try {
 			moneySpent = shop.axlePrice()
 					* Integer.valueOf(axleQuantity.getText())
@@ -268,15 +271,13 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 					* Integer.valueOf(bulletQuantity.getText())
 					+ shop.foodPrice()
 					* Integer.valueOf(foodQuantity.getText());
-			totalPurchase.setText("Total Purchase: $"
-					+ Integer.toString(moneySpent));
-			totalLeft.setText("Money Left: $"
-					+ Integer.toString(wagon.getMoney() - moneySpent));
+			totalPurchase.setText("Total Purchase: $"+moneySpent);
+			totalLeft.setText("Money Left: $" + (wagon.getMoney() - moneySpent));
 		} catch (java.lang.NumberFormatException e) {
-			totalPurchase.setText("Total Purchase: ERROR");
-			totalLeft.setText("Money Left: ERROR");
+			//Let's just ignore their input and throw an error if they try to go through
 		}
 		repaint();
+		}});
 
 	}
 
@@ -301,7 +302,8 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 					Integer.valueOf(bulletQuantity.getText());
 					Integer.valueOf(foodQuantity.getText());
 				} catch (java.lang.NumberFormatException e) {
-
+					// TODO pop a dialog.
+					return;
 				}
 				shop.sellItem();
 			} else if (s.equals("leave")) {
