@@ -1,11 +1,9 @@
 package com.kelsonprime.oregontrail.gui;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 
-import java.io.IOException;
 import java.util.logging.FileHandler;
 import java.util.logging.Handler;
 import java.util.logging.Level;
@@ -85,7 +83,6 @@ public class OregonTrail {
 		this.mainMenu = new MainMenu(this);
 		frame = new JFrame("Oregon Trail");
 		frame.setIconImage(new ImageIcon("images/OregonTrailIcon.jpg").getImage());
-		frame.setBackground(Color.WHITE);
 		frame.setResizable(false);
 		frame.setUndecorated(true);
 		
