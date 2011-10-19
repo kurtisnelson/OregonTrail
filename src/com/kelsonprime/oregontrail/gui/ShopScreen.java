@@ -21,7 +21,6 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.border.BevelBorder;
 import java.awt.GridLayout;
-import javax.swing.ImageIcon;
 
 public class ShopScreen extends LocationScreen implements KeyListener {
 	private static final long serialVersionUID = -7550296665413775236L;
@@ -241,15 +240,12 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent ke) {
-		System.out.println("1");
-	
+
 	}
 
 	@Override
 	public void keyReleased(KeyEvent ke) {
 		update();
-		System.out.println("2");
-		
 	}
 	
 	public void update(){
@@ -275,7 +271,6 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 	
 	@Override
 	public void keyTyped(KeyEvent ke) {
-		System.out.println("3");
 		
 	}
 		
