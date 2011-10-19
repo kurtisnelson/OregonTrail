@@ -1,10 +1,30 @@
 package com.kelsonprime.oregontrail.model;
 
-public class Banker extends Occupation {
+public final class Banker extends Occupation {
+	public static String getStaticLabel(){
+		return "Banker";
+	}
+	
+	public static int getStaticMoney(){
+		return 3000;
+	}
+	
+	public static String getStaticDescription(){
+		return "Starts with extra money";
+	}
+	
+	@Override
+	public int getMoney() {
+		return getStaticMoney();
+	}
 
-	public Banker() {
-		this.startingMoney = 3000;
-		this.name = "Banker";
-		this.description = "Starts with extra cash.";
+	@Override
+	public String getDescription() {
+		return getStaticDescription();
+	}
+
+	@Override
+	public String getLabel() {
+		return getStaticLabel();
 	}
 }

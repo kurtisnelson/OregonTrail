@@ -1,11 +1,30 @@
 package com.kelsonprime.oregontrail.model;
 
-public class Farmer extends Occupation {
-
-	public Farmer() {
-		this.startingMoney = 1500;
-		this.name = "Farmer";
-		this.description = "Takes better care of oxen, and can find food along the way";
+public final class Farmer extends Occupation {
+	public static String getStaticLabel(){
+		return "Farmer";
+	}
+	
+	public static int getStaticMoney(){
+		return 1500;
+	}
+	
+	public static String getStaticDescription(){
+		return "Takes better care of oxen, and can find food along the way";
+	}
+	
+	@Override
+	public int getMoney() {
+		return getStaticMoney();
 	}
 
+	@Override
+	public String getDescription() {
+		return getStaticDescription();
+	}
+
+	@Override
+	public String getLabel() {
+		return getStaticLabel();
+	}
 }
