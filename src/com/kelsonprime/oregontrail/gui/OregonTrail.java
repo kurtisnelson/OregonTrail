@@ -85,6 +85,10 @@ public class OregonTrail {
 		frame.setIconImage(new ImageIcon("images/OregonTrailIcon.png").getImage());
 		frame.setResizable(false);
 		frame.setUndecorated(true);
+		JPanel tempPanel = new JPanel();
+		ImageIcon startScreen = new ImageIcon("images/OregonTrailStartScreen.jpg");
+		tempPanel.setImage(startScreen.getImage());
+		setPanel(tempPanel);
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(new Dimension(600, 350));
