@@ -26,8 +26,7 @@ import com.kelsonprime.oregontrail.model.Shop;
  * 
  */
 public class OregonTrail {
-	private final static Logger LOGGER = Logger.getLogger(OregonTrail.class
-			.getName());
+	private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 	public final static UserProperties userProperties = new UserProperties();
 	Game game;
 	JMenuBar mainMenu;
@@ -59,6 +58,7 @@ public class OregonTrail {
 		} catch (Exception e) {
 			LOGGER.log(Level.SEVERE, "Failed to add log handler", e);
 		}
+		LOGGER.setUseParentHandlers(false);
 		LOGGER.log(Level.INFO, "App started");
 		
 		// TODO throw splash screen?

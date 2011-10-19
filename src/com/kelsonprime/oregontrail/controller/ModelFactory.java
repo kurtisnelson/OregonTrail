@@ -1,15 +1,16 @@
 package com.kelsonprime.oregontrail.controller;
 
+import java.lang.reflect.Constructor;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-import com.kelsonprime.oregontrail.model.Banker;
-import com.kelsonprime.oregontrail.model.Carpenter;
 import com.kelsonprime.oregontrail.model.Companion;
-import com.kelsonprime.oregontrail.model.Farmer;
 import com.kelsonprime.oregontrail.model.Occupation;
 import com.kelsonprime.oregontrail.model.Player;
 
 public class ModelFactory {
+	private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 	
 	public static Player buildPlayer(String name, Occupation occupation) throws UserInputException{
 		if(name.length() < 1)
@@ -20,15 +21,24 @@ public class ModelFactory {
 	}
 	
 	public static Occupation buildOccupation(String occ) throws UserInputException{
-		Occupation newOccupation;
-		if (occ.equals("banker")) {
-			newOccupation = new Banker();
-		} else if (occ.equals("carpenter")) {
-			newOccupation = new Carpenter();
-		} else if (occ.equals("farmer")){
-			newOccupation = new Farmer();
-		} else {
-			throw new UserInputException("No occupation selected.");
+		Occupation newOccupation = null;
+		try {
+			Class<?> c = Class.forName(occ);
+			if(!Occupation.class.isAssignableFrom(c)){
+				c = Class.forName("com.kelsonprime.oregontrail.model."+occ);
+				if(!c.isInstance(Occupation.class)){
+					throw new UserInputException("Not an occupation.");
+				}
+			}
+			Constructor<?> co = c.getConstructor();
+			return (Occupation) co.newInstance();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			if(occ.length() > 0)
+				throw new UserInputException("Invalid occupation specified.");
+			throw new UserInputException("No occupation specified.");
+		} catch (Exception e) {
+			LOGGER.log(Level.SEVERE, "Occupation reflection failed", e);
 		}
 		return newOccupation;
 	}

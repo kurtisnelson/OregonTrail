@@ -7,7 +7,10 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -18,14 +21,20 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import com.kelsonprime.oregontrail.controller.Game;
+import com.kelsonprime.oregontrail.controller.IconFactory;
 import com.kelsonprime.oregontrail.controller.ModelFactory;
 import com.kelsonprime.oregontrail.controller.UserInputException;
 import com.kelsonprime.oregontrail.model.Companion;
 import com.kelsonprime.oregontrail.model.Occupation;
 import com.kelsonprime.oregontrail.model.Player;
 import com.kelsonprime.oregontrail.model.Wagon;
+import javax.swing.DefaultComboBoxModel;
+import com.kelsonprime.oregontrail.controller.Pace;
+import com.kelsonprime.oregontrail.controller.Ration;
+import java.awt.FlowLayout;
 
 public class NewGameScreen extends JPanel {
+	private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 	private static final long serialVersionUID = 7996950179577943594L;
 	OregonTrail app;
 	private JTextField playerName;
@@ -94,30 +103,41 @@ public class NewGameScreen extends JPanel {
 		body.add(occupationPickLabel);
 
 		ButtonListener listen = new ButtonListener();
-
-		JRadioButton bankerButton = new JRadioButton("Banker");
-		bankerButton.setBounds(178, 27, 75, 23);
-		bankerButton.setActionCommand("banker");
-		bankerButton.addActionListener(listen);
-		body.add(bankerButton);
-
-		JRadioButton carpenterButton = new JRadioButton("Carpenter");
-		carpenterButton.setBounds(269, 27, 97, 23);
-		carpenterButton.setActionCommand("carpenter");
-		carpenterButton.addActionListener(listen);
-		body.add(carpenterButton);
-
-		JRadioButton farmerButton = new JRadioButton("Farmer");
-		farmerButton.setSelected(true);
-		farmerButton.setBounds(385, 27, 75, 23);
-		farmerButton.setActionCommand("farmer");
-		farmerButton.addActionListener(listen);
-		body.add(farmerButton);
-
+		
+		/*
+		 * Set up the occupation area
+		 */
 		occupationGroup = new ButtonGroup();
-		occupationGroup.add(bankerButton);
-		occupationGroup.add(carpenterButton);
-		occupationGroup.add(farmerButton);
+		JPanel occPanel = new JPanel();
+		FlowLayout flowLayout = (FlowLayout) occPanel.getLayout();
+		flowLayout.setAlignment(FlowLayout.LEADING);
+		flowLayout.setVgap(0);
+		occPanel.setOpaque(false);
+		occPanel.setSize(350, 20);
+		occPanel.setLocation(175, 30);
+		body.add(occPanel);
+		
+		for(Class<?> c : Occupation.getOccupations()){
+			String occName = "";
+			// Do crazy reflection to dynamically build the GUI!
+			try{
+				Method m = c.getMethod("getStaticLabel");
+				Object ans = m.invoke(null, (Object[]) null);
+				occName = ans.toString();
+			}catch(Exception e){
+				LOGGER.log(Level.SEVERE, "Occupation reflexion failed.", e);
+			}
+			if(occName.length() > 0){
+				JRadioButton occButton = new JRadioButton(occName);
+				occButton.setForeground(Color.WHITE);
+				occButton.setBackground(Color.BLACK);
+				occButton.setBounds(178, 27, 75, 23);
+				occButton.setActionCommand(c.getCanonicalName());
+				occButton.addActionListener(listen);
+				occPanel.add(occButton);
+				occupationGroup.add(occButton);
+			}  
+		}
 
 		JLabel nameLabel = new JLabel("Party Names");
 		nameLabel.setFont(new Font("Dialog", Font.BOLD, 14));
@@ -152,23 +172,28 @@ public class NewGameScreen extends JPanel {
 		body.add(rationingLabel);
 
 		JComboBox paceBox = new JComboBox();
+		paceBox.setBackground(Color.WHITE);
+		paceBox.setModel(new DefaultComboBoxModel(Pace.values()));
+		paceBox.setSelectedIndex(2);
 		paceBox.setBounds(62, 226, 124, 24);
 		body.add(paceBox);
-		paceBox.addItem("Light");
-		paceBox.addItem("Moderate");
-		paceBox.addItem("Heavy");
-		paceBox.addItem("Grueling");
-
+		
 		JComboBox rationBox = new JComboBox();
+		rationBox.setBackground(Color.WHITE);
+		rationBox.setModel(new DefaultComboBoxModel(Ration.values()));
+		rationBox.setSelectedIndex(2);
 		rationBox.setBounds(228, 226, 124, 24);
 		body.add(rationBox);
-		rationBox.addItem("Bare Bones");
-		rationBox.addItem("Meager");
-		rationBox.addItem("Adequate");
-		rationBox.addItem("Filling");
 
-		JButton continueButton = new JButton("Continue");
-		continueButton.setBounds(430, 226, 144, 25);
+		JButton continueButton = new JButton();
+		continueButton.setLocation(454, 189);
+		continueButton.setSize(50, 22);
+		continueButton.setBackground(Color.WHITE);
+		continueButton.setOpaque(false);
+		continueButton.setBorderPainted(false);
+		continueButton.setRolloverEnabled(false);
+		continueButton.setSelectedIcon(IconFactory.arrow);
+		continueButton.setIcon(IconFactory.arrow);
 		continueButton.setActionCommand("continue");
 		continueButton.addActionListener(listen);
 		body.add(continueButton);
@@ -198,6 +223,8 @@ public class NewGameScreen extends JPanel {
 		} catch (UserInputException e) {
 			e.generateBox(app.getFrame());
 			return;
+		} catch (Exception e){
+			return;
 		}
 
 		Wagon newWagon = new Wagon(newPlayer, companionList);
@@ -209,19 +236,37 @@ public class NewGameScreen extends JPanel {
 	private class ButtonListener implements ActionListener {
 
 		@Override
-		public void actionPerformed(ActionEvent e) {
-			Object o = e.getActionCommand();
-			if (o.equals("banker")) {
-				abilityList.setText("-None-");
-				startingMoney.setText("$3000");
-			} else if (o.equals("carpenter")) {
-				abilityList.setText("Wagon Fixing");
-				startingMoney.setText("$2000");
-			} else if (o.equals("farmer")) {
-				abilityList.setText("Oxen Care | Food Scavaging");
-				startingMoney.setText("$1500");
-			} else if (o.equals("continue")) {
+		public void actionPerformed(ActionEvent ae) {
+			String ac = ae.getActionCommand();
+			if (ac.equals("continue")) {
 				createGame();
+				return;
+			}
+			Class<?> c;
+			try {
+				c = Class.forName(ac);
+			} catch (ClassNotFoundException e) {
+				LOGGER.log(Level.WARNING, "Uncaught action.", e);
+				return;
+			}
+			/*
+			 * Do crazy reflection to dynamically support new Occupations!
+			 */
+			try{
+				Method m = c.getMethod("getStaticMoney");
+				int money = (Integer) m.invoke(null, (Object[]) null);
+				startingMoney.setText("$"+money);
+			}catch(Exception e){
+				System.out.println(e);
+				LOGGER.log(Level.SEVERE, "Occupation getMoney reflexion failed.", e);
+			}
+			try{
+				Method m = c.getMethod("getStaticDescription");
+				String ability = (String) m.invoke(null, (Object[]) null);
+				abilityList.setText(ability);
+			}catch(Exception e){
+				System.out.println(e);
+				LOGGER.log(Level.SEVERE, "Occupation getDescription reflexion failed.", e);
 			}
 		}
 	}

@@ -14,7 +14,7 @@ public class Player extends Companion {
 	}
 
 	public int startingMoney() {
-		return occupation.getStartingMoney();
+		return occupation.getMoney();
 	}
 
 }

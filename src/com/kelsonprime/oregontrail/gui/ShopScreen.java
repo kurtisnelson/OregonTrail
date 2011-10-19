@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import com.kelsonprime.oregontrail.controller.Game;
+import com.kelsonprime.oregontrail.controller.IconFactory;
 import com.kelsonprime.oregontrail.model.Shop;
 import com.kelsonprime.oregontrail.model.Wagon;
 import java.awt.Font;
@@ -58,11 +59,11 @@ public class ShopScreen extends LocationScreen {
 		header.add(screenLabel);
 
 		JPanel items = new JPanel();
-		items.setBackground(new Color(222, 184, 135));
+		items.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		items.setBackground(new Color(184, 134, 11));
 		items.setBounds(268, 40, 304, 248);
-		items.setOpaque(false);
 		add(items);
-		items.setLayout(new GridLayout(0, 3, 0, 0));
+		items.setLayout(new GridLayout(0, 3, 5, 5));
 
 		JLabel oxenLabel = new JLabel("Oxen");
 		items.add(oxenLabel);
@@ -179,12 +180,13 @@ public class ShopScreen extends LocationScreen {
 				buyButton.addActionListener(listener);
 		
 				JButton leaveButton = new JButton();
+				leaveButton.setSize(50, 22);
 				leaveButton.setBackground(Color.WHITE);
 				leaveButton.setOpaque(false);
 				leaveButton.setBorderPainted(false);
 				leaveButton.setRolloverEnabled(false);
-				leaveButton.setSelectedIcon(new ImageIcon("images/arrow.png"));
-				leaveButton.setIcon(new ImageIcon("images/arrow.png"));
+				leaveButton.setSelectedIcon(IconFactory.arrow);
+				leaveButton.setIcon(IconFactory.arrow);
 				leaveButton.setMnemonic('n');
 				items.add(leaveButton);
 				leaveButton.setActionCommand("leave");
