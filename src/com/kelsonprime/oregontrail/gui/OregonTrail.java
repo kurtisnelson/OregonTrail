@@ -82,7 +82,7 @@ public class OregonTrail {
 		}
 		this.mainMenu = new MainMenu(this);
 		frame = new JFrame("Oregon Trail");
-		frame.setIconImage(new ImageIcon("images/OregonTrailIcon.jpg").getImage());
+		frame.setIconImage(new ImageIcon("images/OregonTrailIcon.png").getImage());
 		frame.setResizable(false);
 		frame.setUndecorated(true);
 		
