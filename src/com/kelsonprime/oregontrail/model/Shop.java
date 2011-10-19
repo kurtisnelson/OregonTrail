@@ -33,7 +33,7 @@ public class Shop extends Location {
 	 */
 	public void scalePrices(int supplyDistance){
 		// TODO adjust prices based on PRICE_RATIO and supplyDistance.
-		double multiplier = supplyDistance * PRICE_RATIO;
+		double multiplier = supplyDistance * PRICE_RATIO + 1;
 		bulletPrice *= multiplier;
 		wheelPrice *= multiplier;
 		tonguePrice *= multiplier;
