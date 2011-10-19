@@ -41,11 +41,13 @@ public class Shop extends Location {
 	}
 	
 	public void sellToWagon(Wagon w, List<Part> parts){
-		//w.add(partsSold);	
+		//w.add(partsSold);
+		
 	}
 
 	public void sellToWagon(Wagon w, String item, int quantity){
 		//w.add(item, quantitySold);
+		
 	}
 	
 	public void sellItem() {
