@@ -6,10 +6,11 @@ import com.kelsonprime.oregontrail.controller.PassNight;
 public abstract class Part implements PassNight {
 	protected int health;
 	protected final double WEARRATIO = .01;
-
-	/**
-	 * 
-	 */
+	
+	public Part(){
+		this.health = 100;
+	}
+	
 	public Part(int health) {
 		this.health = health;
 	}
