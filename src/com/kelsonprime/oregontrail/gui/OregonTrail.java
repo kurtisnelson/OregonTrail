@@ -84,7 +84,6 @@ public class OregonTrail {
 		frame = new JFrame("Oregon Trail");
 		frame.setIconImage(new ImageIcon("images/OregonTrailIcon.png").getImage());
 		frame.setResizable(false);
-		frame.setUndecorated(true);
 		setPanel(new SplashScreen());
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -106,6 +105,7 @@ public class OregonTrail {
 
 	public void open() {
 		frame.setJMenuBar(mainMenu);
+		frame.setSize(new Dimension(600, 350));
 		frame.setVisible(true);
 	}
 
