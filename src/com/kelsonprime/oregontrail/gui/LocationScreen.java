@@ -7,15 +7,13 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-import com.kelsonprime.oregontrail.controller.Game;
-
 public abstract class LocationScreen extends JPanel {
 	private Image background;
 	private static final long serialVersionUID = 2247264002726443781L;
-	protected Game game;
+	protected OregonTrail app;
 
-	public LocationScreen(Game game) {
-		this.game = game;
+	public LocationScreen(OregonTrail app) {
+		this.app = app;
 		background = new ImageIcon("images/dirt.jpg").getImage();
 		Dimension size = new Dimension(background.getWidth(null),
 				background.getHeight(null));

@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 import com.kelsonprime.oregontrail.controller.Game;
 import com.kelsonprime.oregontrail.controller.IconFactory;
 import com.kelsonprime.oregontrail.controller.Threader;
+import com.kelsonprime.oregontrail.controller.UserInputException;
 import com.kelsonprime.oregontrail.model.Shop;
 import com.kelsonprime.oregontrail.model.Wagon;
 import java.awt.Font;
@@ -38,10 +39,10 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 	private int moneySpent;
 	private JLabel totalPurchase, totalLeft;
 
-	public ShopScreen(Game game, Shop shop) {
-		super(game);
+	public ShopScreen(OregonTrail app, Shop shop) {
+		super(app);
 		this.shop = shop;
-		this.wagon = game.getWagon();
+		this.wagon = app.getWagon();
 		setSize(new Dimension(600, 300));
 
 		ButtonListener listener = new ButtonListener();
@@ -241,6 +242,38 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 		info.add(totalLeft);
 
 	}
+	
+	public void sellItems(){
+		int axles;
+		int wheels;
+		int tongues;
+		int oxen;
+		int clothes;
+		int bullets;
+		int food;
+		try {
+			axles = Integer.valueOf(axleQuantity.getText());
+			wheels = Integer.valueOf(wheelQuantity.getText());
+			tongues = Integer.valueOf(tongueQuantity.getText());
+			oxen = Integer.valueOf(oxenQuantity.getText());
+			clothes = Integer.valueOf(clothesQuantity.getText());
+			bullets = Integer.valueOf(bulletQuantity.getText());
+			food = Integer.valueOf(foodQuantity.getText());
+		} catch (java.lang.NumberFormatException e) {
+			// TODO pop a dialog.
+			return;
+		}
+		// TODO actually sell stuff
+		try{
+			shop.sellToWagon(wagon, axles, wheels, tongues);
+			shop.sellToWagon(wagon, Wagon.OXEN, oxen);
+			shop.sellToWagon(wagon, Wagon.CLOTHES, clothes);
+			shop.sellToWagon(wagon, Wagon.BULLETS, bullets);
+			shop.sellToWagon(wagon, Wagon.FOOD, food);
+		}catch(UserInputException e){
+			e.generateBox(app.getFrame());
+		}
+	}
 
 	@Override
 	public void keyPressed(KeyEvent ke) {
@@ -253,7 +286,6 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 	}
 
 	public void update() {
-		// Thread eventually
 		Threader.executeNow(new Runnable() {
 			public void run(){
 		try {
@@ -292,20 +324,7 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 		public void actionPerformed(ActionEvent ae) {
 			String s = ae.getActionCommand();
 			if (s.equals("buy")) {
-				// TODO mutate Wagon based on Shop
-				try {
-					Integer.valueOf(axleQuantity.getText());
-					Integer.valueOf(wheelQuantity.getText());
-					Integer.valueOf(tongueQuantity.getText());
-					Integer.valueOf(oxenQuantity.getText());
-					Integer.valueOf(clothesQuantity.getText());
-					Integer.valueOf(bulletQuantity.getText());
-					Integer.valueOf(foodQuantity.getText());
-				} catch (java.lang.NumberFormatException e) {
-					// TODO pop a dialog.
-					return;
-				}
-				shop.sellItem();
+				sellItems();
 			} else if (s.equals("leave")) {
 				// TODO Leave store and return to town
 			}

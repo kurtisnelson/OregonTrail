@@ -13,6 +13,9 @@ public abstract class Location {
 	private int roadY1;
 
 	public Location(String label) {
+		if(label == null || label.length() <= 0){
+			label = "A";
+		}
 		this.label = label;
 	}
 

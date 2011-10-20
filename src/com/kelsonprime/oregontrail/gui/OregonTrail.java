@@ -20,6 +20,7 @@ import com.kelsonprime.oregontrail.controller.Threader;
 import com.kelsonprime.oregontrail.controller.UserProperties;
 import com.kelsonprime.oregontrail.model.Location;
 import com.kelsonprime.oregontrail.model.Shop;
+import com.kelsonprime.oregontrail.model.Wagon;
 
 /**
  * This class is going to be the main game. It is in charge of owning the parent
@@ -127,7 +128,11 @@ public class OregonTrail {
 		if (cur == null) {
 			// TODO show screen for moving along
 		} else if (cur instanceof Shop) {
-			setPanel(new ShopScreen(game, (Shop) cur));
+			setPanel(new ShopScreen(this, (Shop) cur));
 		}
+	}
+
+	public Wagon getWagon() {
+		return game.getWagon();
 	}
 }
