@@ -8,6 +8,7 @@ import java.awt.Image;
 import java.awt.Dimension;
 
 public class SplashScreen extends JPanel{
+	private static final long serialVersionUID = 5914811187310733038L;
 
 	public SplashScreen(){
 		super();
