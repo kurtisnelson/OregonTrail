@@ -5,6 +5,12 @@ import java.util.List;
 
 import com.kelsonprime.oregontrail.controller.UserInputException;
 
+/**
+ * Represent a <code>Location</code> that is a Shop
+ * @author Kurt Nelson
+ * @version .1
+ * @see com.kelsonprime.oregontrail.gui.ShopScreen
+ */
 public class Shop extends Location {
 	private static final double PRICE_RATIO = .001;
 	private int oxenPrice;
@@ -16,7 +22,7 @@ public class Shop extends Location {
 	private int axlePrice;
 
 	/**
-	 * Setup a shop with default prices and no supply distance price scaling.
+	 * Class constructor with default prices and no supply distance price scaling.
 	 * @param name How to label the store in UI
 	 */
 	public Shop(String name){
@@ -24,7 +30,7 @@ public class Shop extends Location {
 	}
 	
 	/**
-	 * Setup a shop with default prices
+	 * Class constructor with default prices
 	 * @param name How to label the store in UI
 	 * @param supplyDistance How far the store is from it's "supply"
 	 * @post name != null
@@ -43,7 +49,7 @@ public class Shop extends Location {
 
 	/**
 	 * Increase the prices to make up for distance from supply.
-	 * @param supplyDistance
+	 * @param supplyDistance How far the store is from it's "supply"
 	 * @pre supplyDistance >= 1
 	 * @invariant oxenPrice
 	 * @post foodPrice >= $pre(int, foodPrice) && clothesPrice >= $pre(int, clothesPrice)
@@ -60,12 +66,13 @@ public class Shop extends Location {
 	}
 	
 	/**
-	 * Sell new Parts to Wagon.
-	 * @param w Wagon that is purchasing the items
-	 * @param axles Quantity
-	 * @param wheels Quantity
-	 * @param tongues Quantity
-	 * @throws UserInputException if the wagon will become overweight or not enough money is available.
+	 * Sell new <code>Part</code>s to <code>Wagon</code>.
+	 * @param w Purchaser
+	 * @param axles Axle quantity
+	 * @param wheels Wheel quantity
+	 * @param tongues Tongue quantity
+	 * @throws UserInputException If <code>Wagon</code> will become overweight or not enough money is available.
+	 * @post w.getMoney() < $pre(int, w.getMoney())
 	 */
 	public void sellToWagon(Wagon w, int axles, int wheels, int tongues) throws UserInputException{
 		List<Part> parts = new LinkedList<Part>();
@@ -84,40 +91,77 @@ public class Shop extends Location {
 		this.sellToWagon(w, parts);
 	}
 	
+	/**
+	 * Sell <code>Part</code>s to <code>Wagon</code>.
+	 * @param w Purchaser
+	 * @param parts Order
+	 * @throws UserInputException If <code>Wagon</code> will become overweight or not enough money is available.
+	 * @post w.getMoney() < $pre(int, w.getMoney())
+	 */
 	public void sellToWagon(Wagon w, List<Part> parts) throws UserInputException{
 		// TODO implement!
 		//w.add(partsSold);	
 	}
 
+	/**
+	 * Sell item to <code>Wagon</code>.
+	 * @param w Purchaser
+	 * @param item <code>String</code> constant in <code>Wagon</code> that should be purchased.
+	 * @param quantity Item quantity
+	 * @throws UserInputException If <code>Wagon</code> will become overweight or not enough money is available.
+	 * @pre item == Wagon.FOOD || item == Wagon.CLOTHES || item == Wagon.BULLETS || item == Wagon.OXEN
+	 * @post w.getMoney() < $pre(int, w.getMoney())
+	 */
 	public void sellToWagon(Wagon w, String item, int quantity) throws UserInputException{
 		// TODO implement!
 		//w.add(item, quantitySold);
 	}
 
+	/**
+	 * @return Price of oxen at this store
+	 */
 	public int oxenPrice() {
 		return oxenPrice;
 	}
 
+	/**
+	 * @return Price of food at this store
+	 */
 	public int foodPrice() {
 		return foodPrice;
 	}
 
+	/**
+	 * @return Price of clothes at this store
+	 */
 	public int clothesPrice() {
 		return clothesPrice;
 	}
 
+	/**
+	 * @return Price of bullets at this store
+	 */
 	public int bulletPrice() {
 		return bulletPrice;
 	}
 
+	/**
+	 * @return Price of wheels at this store
+	 */
 	public int wheelPrice() {
 		return wheelPrice;
 	}
 
+	/**
+	 * @return Price of axles at this store
+	 */
 	public int axlePrice() {
 		return axlePrice;
 	}
 
+	/**
+	 * @return Price of tongues at this store
+	 */
 	public int tonguePrice() {
 		return tonguePrice;
 	}

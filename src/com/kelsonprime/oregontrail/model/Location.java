@@ -1,9 +1,9 @@
 package com.kelsonprime.oregontrail.model;
 
 /**
- * A Location is a destination followed by vector that points to the next Location
- * @author kurt
- *
+ * Represent a destination followed by vector that points to the next <code>Location</code>
+ * @author Kurt Nelson
+ * @version .1
  */
 public abstract class Location {
 

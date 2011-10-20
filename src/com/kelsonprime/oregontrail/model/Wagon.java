@@ -9,6 +9,11 @@ import java.util.List;
 import com.kelsonprime.oregontrail.controller.Game;
 import com.kelsonprime.oregontrail.controller.PassNight;
 
+/**
+ * Represents a wagon and it's contents
+ * @author Kurt Nelson
+ * @version .1
+ */
 public class Wagon implements PassNight {
 	
 	public static final String OXEN = "oxen";
