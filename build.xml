@@ -4,7 +4,7 @@
 	</description>
 	<property name="ant.build.javac.target" value="1.6" />
 	<property name="src" location="src" />
-	<property name="build" location="build" />
+	<property name="build" location="bin" />
 	<property name="dist" location="dist" />
 	<property name="doc" location="apidoc" />
 	<property name="lib" location="lib" />
@@ -14,11 +14,9 @@
 		</fileset>
 	</path>
 		
-	<target name="init">
+	<target name="prepare">
 		<tstamp />
-	</target>
-		
-	<target name="prepare" depends="init">
+		<mkdir dir="${lib}" />
 		<mkdir dir="${build}" />
 	</target>
 	
@@ -50,23 +48,13 @@
 		</javadoc>
 	</target>
 	
-	<target name="all" depends="init,prepare,compile,jar,run">
+	<target name="all" depends="prepare,compile,jar,run">
 	</target>
 	
 	<target name="push"
 		description="Push stuff, but it better compile after clean first"
 		depends="clean,compile">
 		<git command="push" />
-	</target>
-		
-	<target name="clean" description="rm -rf * stuff">
-		<delete file="user.conf" />
-		<delete>
-			<fileset dir="." includes="*.log*" />
-		</delete>
-		<delete dir="${build}" />
-		<delete dir="${dist}" />
-		<delete dir="${doc}" />
 	</target>
 	
 	<macrodef name="git">
@@ -81,6 +69,16 @@
 			</exec>
 		</sequential>
 	</macrodef>
+		
+	<target name="clean" description="rm -rf * stuff">
+		<delete file="user.conf" />
+		<delete>
+			<fileset dir="." includes="*.log*" />
+		</delete>
+		<delete dir="${build}" />
+		<delete dir="${dist}" />
+		<delete dir="${doc}" />
+	</target>
 	
 	<target name="proguard" depends="jar">
 	<taskdef resource="proguard/ant/task.properties" classpath="/usr/java/proguard/lib/proguard.jar" />
