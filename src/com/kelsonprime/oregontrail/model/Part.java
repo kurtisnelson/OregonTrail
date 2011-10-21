@@ -30,4 +30,8 @@ public abstract class Part implements Time {
 	public int getWeight(){
 		return weight;
 	}
+
+	public int getHealth(){
+		return health;
+	}
 }
