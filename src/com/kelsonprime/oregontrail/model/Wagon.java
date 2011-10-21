@@ -207,7 +207,7 @@ public class Wagon implements Time {
 		//check if player is dead
 		for (Companion comp : party){
 			if (comp instanceof Player) {
-				if (!(comp.isAlive())){
+				if (!(comp.isReady())){
 					ready = false;
 					break;
 				}
