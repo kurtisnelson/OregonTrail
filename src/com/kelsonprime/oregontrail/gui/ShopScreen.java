@@ -268,24 +268,29 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 		}
 		// TODO actually sell stuff
 		if (sellAllowed){
-			try{
-				shop.sellToWagon(wagon, axles, wheels, tongues);
-				shop.sellToWagon(wagon, Wagon.OXEN, oxen);
-				shop.sellToWagon(wagon, Wagon.CLOTHES, clothes);
-				shop.sellToWagon(wagon, Wagon.BULLETS, bullets);
-				shop.sellToWagon(wagon, Wagon.FOOD, food);
-			}catch(UserInputException e){
-				e.generateBox(app.getFrame());
+			if ( (wagon.getMoney()-moneySpent) >= 0){
+				try{
+					shop.sellToWagon(wagon, axles, wheels, tongues);
+					shop.sellToWagon(wagon, Wagon.OXEN, oxen);
+					shop.sellToWagon(wagon, Wagon.CLOTHES, clothes);
+					shop.sellToWagon(wagon, Wagon.BULLETS, bullets);
+					shop.sellToWagon(wagon, Wagon.FOOD, food);
+				}catch(UserInputException e){
+					e.generateBox(app.getFrame());
+				}
+				
+				axleQuantity.setText("0");
+				wheelQuantity.setText("0");
+				tongueQuantity.setText("0");
+				oxenQuantity.setText("0");
+				clothesQuantity.setText("0");
+				bulletQuantity.setText("0");
+				foodQuantity.setText("0");
+				update();
 			}
-			
-			axleQuantity.setText("0");
-			wheelQuantity.setText("0");
-			tongueQuantity.setText("0");
-			oxenQuantity.setText("0");
-			clothesQuantity.setText("0");
-			bulletQuantity.setText("0");
-			foodQuantity.setText("0");
-			update();
+			else{
+				JOptionPane.showMessageDialog(app.getFrame(), "You do not have enough money to purchase!", "Not enough Money!", JOptionPane.ERROR_MESSAGE);
+			}
 		}
 	}
 

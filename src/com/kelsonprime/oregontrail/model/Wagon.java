@@ -81,6 +81,7 @@ public class Wagon implements PassNight {
 	public int getWagonWeight(){
 		return wagonWeight;
 	}
+	
 	public boolean checkMoney(int moneyNeeded) {
 		if(money >= moneyNeeded)
 				return true;
