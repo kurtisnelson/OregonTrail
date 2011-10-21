@@ -9,4 +9,8 @@ public class Wheel extends Part {
 	public Wheel() {
 		this(80);
 	}
+	
+	public String toString() {
+		return Wagon.WHEEL;
+	}
 }

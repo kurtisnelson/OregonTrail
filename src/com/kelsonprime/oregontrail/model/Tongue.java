@@ -9,5 +9,9 @@ public class Tongue extends Part {
 	public Tongue() {
 		this(125);
 	}
+	
+	public String toString() {
+		return Wagon.TONGUE;
+	}
 
 }
