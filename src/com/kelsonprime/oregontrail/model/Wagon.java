@@ -22,9 +22,9 @@ public class Wagon implements Time {
 	public static final String CLOTHES = "clothes";
 	private int bullets;
 	public static final String BULLETS = "bullets";
-	private Collection<Part> activeParts;
-	private Collection<Part> spareParts;
-	private Collection<Companion> party;
+	private List<Part> activeParts;
+	private List<Part> spareParts;
+	private List<Companion> party;
 	private int money;
 	private int wagonWeight;
 	static final int MAXWEIGHT = 100;
@@ -138,7 +138,7 @@ public class Wagon implements Time {
 		}else {
 			throw new UserInputException(part.toString() + " is too heavy for the Waogn!");
 		}
-		// TODO run repair function to move spareParts -> activeParts as appropriate
+		this.repair();
 	}
 
 	public void add(String item, int quantity) throws UserInputException{
@@ -164,7 +164,19 @@ public class Wagon implements Time {
 	 */
 	public boolean repair(){
 		
-		//TODO if parts in activeParts are broken, try moving parts from spare.
+		for (int i = 0; i < activeParts.size(); i++){
+			if (activeParts.get(i).getHealth() <= 0){
+				Part newTemp = null;
+				for (int j = 0; j < spareParts.size(); j++){
+					if (spareParts.get(j).toString().equals(activeParts.get(i).toString())){
+						newTemp = spareParts.get(j);
+						spareParts.remove(j);
+						break;
+					}
+				}
+				activeParts.set(i, newTemp);
+			}
+		}
 		return true;
 	}
 
