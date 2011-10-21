@@ -68,15 +68,14 @@ public class Wagon implements Time {
 	 * @pre moneyNeeded >= 0
 	 * @invariant money
 	 */
-	
-	public int getWeight(){
-		return wagonWeight;
-	}
-	
 	public boolean checkMoney(int moneyNeeded) {
 		if(money >= moneyNeeded)
 				return true;
 		return false;
+	}
+	
+	public int getWeight(){
+		return wagonWeight;
 	}
 
 	/**
