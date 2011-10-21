@@ -10,7 +10,7 @@ public interface Time {
 	/**
 	 * Eat, age items, adjust heath, rest, and increment the day.
 	 */
-	public void nextDay();
+	public void nextDay(Game game);
 	
 	/**
 	 * Checks to see if the object is usable

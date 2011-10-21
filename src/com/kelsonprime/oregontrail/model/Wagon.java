@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import com.kelsonprime.oregontrail.controller.Game;
 import com.kelsonprime.oregontrail.controller.Time;
 import com.kelsonprime.oregontrail.controller.UserInputException;
 
@@ -65,8 +66,17 @@ public class Wagon implements Time {
 	 * @post food < $pre(int, food)
 	 */
 	@Override
-	public void nextDay() {
+	public void nextDay(Game game) {
 		// TODO method stub
+		for (Companion person : party){
+			person.nextDay(game);
+		}
+		for (Part part : activeParts){
+			part.nextDay(game);
+		}
+		repair();
+		//food
+		
 	}
 
 	/**

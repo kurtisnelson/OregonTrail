@@ -22,7 +22,7 @@ public class Companion implements Time{
 	}
 
 	@Override
-	public void nextDay() {
+	public void nextDay(Game game) {
 		// TODO Auto-generated method stub
 		
 	}

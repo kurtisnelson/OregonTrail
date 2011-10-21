@@ -109,8 +109,8 @@ public class Game implements Time {
 	}
 
 	@Override
-	public void nextDay() {
+	public void nextDay(Game game) {
 		// TODO nextDay
-		wagon.nextDay();
+		wagon.nextDay(this);
 	}
 }

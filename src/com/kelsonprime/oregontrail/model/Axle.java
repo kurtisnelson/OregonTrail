@@ -1,5 +1,7 @@
 package com.kelsonprime.oregontrail.model;
 
+import com.kelsonprime.oregontrail.controller.Game;
+
 public class Axle extends Part {
 
 	public Axle(){
@@ -13,5 +15,4 @@ public class Axle extends Part {
 	public String toString() {
 		return "Axle";
 	}
-	
 }

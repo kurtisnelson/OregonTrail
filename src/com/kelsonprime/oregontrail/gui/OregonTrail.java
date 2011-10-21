@@ -29,7 +29,7 @@ import com.kelsonprime.oregontrail.model.Wagon;
  * JFrame, and adding the initial menu to it
  * 
  */
-public class OregonTrail implements Time{
+public class OregonTrail {
 	private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 	public final static UserProperties userProperties = new UserProperties();
 	private Game game;
@@ -151,12 +151,10 @@ public class OregonTrail implements Time{
 		return game.getMap();
 	}
 
-	@Override
 	public void nextDay() {
-		game.nextDay();
+		game.nextDay(game);
 	}
 
-	@Override
 	public boolean isReady() {
 		return game.isReady();
 	}
