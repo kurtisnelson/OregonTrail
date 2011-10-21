@@ -55,6 +55,7 @@ public class Wagon implements PassNight {
 		clothes = 0;
 		food = 0;
 		oxen = 0;
+		wagonWeight = 0;
 	}
 
 	/**
