@@ -116,27 +116,27 @@ public class Wagon implements PassNight {
 	}
 
 	public void add(String part, int quantity){
-		// TODO Check the wagon weight every time we add a part
-		if(part.equalsIgnoreCase(OXEN)){
+		// TODO Implement part weights!
+		if(part.equals(OXEN)){
 			// TODO set limit on oxen quantity
 			oxen += quantity;
 			wagonWeight += oxen;
-		}else if(part.equalsIgnoreCase(BULLETS)){
+		}else if(part.equals(BULLETS)){
 			bullets += quantity;
 			wagonWeight += bullets;
-		}else if(part.equalsIgnoreCase(FOOD)){
+		}else if(part.equals(FOOD)){
 			food += quantity;
 			wagonWeight += food;
-		}else if(part.equalsIgnoreCase(CLOTHES)){
+		}else if(part.equals(CLOTHES)){
 			clothes += quantity;
 			wagonWeight += clothes;
-		}else if(part.equalsIgnoreCase(WHEEL)){
+		}else if(part.equals(WHEEL)){
 			wheel += quantity;
 			wagonWeight += wheel;
-		}else if(part.equalsIgnoreCase(TONGUE)){
+		}else if(part.equals(TONGUE)){
 		tongue += quantity;
 		wagonWeight += tongue;
-	    }else if(part.equalsIgnoreCase(AXLE)){
+	    }else if(part.equals(AXLE)){
 			axle += quantity;
 			wagonWeight += axle;
 	    }
