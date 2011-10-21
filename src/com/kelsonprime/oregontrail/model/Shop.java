@@ -67,7 +67,7 @@ public class Shop extends Location {
 	
 
 	public void sellToWagon(Wagon w, List<Part> parts){
-		//w.add(partsSold);
+		w.add(parts);
 	}
 
 	/**
@@ -116,8 +116,8 @@ public class Shop extends Location {
 	 * @post w.getMoney() < $pre(int, w.getMoney())
 	 */
 	public void sellToWagon(Wagon w, String item, int quantity) throws UserInputException{
-		// TODO implement!
-		//w.add(item, quantitySold);
+		
+		w.add(item, quantity);
 		
 	}
 
