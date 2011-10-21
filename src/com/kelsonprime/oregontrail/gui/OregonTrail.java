@@ -16,7 +16,9 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import com.kelsonprime.oregontrail.controller.Game;
+import com.kelsonprime.oregontrail.controller.Map;
 import com.kelsonprime.oregontrail.controller.Threader;
+import com.kelsonprime.oregontrail.controller.Time;
 import com.kelsonprime.oregontrail.controller.UserProperties;
 import com.kelsonprime.oregontrail.model.Location;
 import com.kelsonprime.oregontrail.model.Shop;
@@ -27,10 +29,10 @@ import com.kelsonprime.oregontrail.model.Wagon;
  * JFrame, and adding the initial menu to it
  * 
  */
-public class OregonTrail {
+public class OregonTrail implements Time{
 	private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 	public final static UserProperties userProperties = new UserProperties();
-	Game game;
+	private Game game;
 	JMenuBar mainMenu;
 	JPanel mainPanel;
 	private JFrame frame;
@@ -110,9 +112,12 @@ public class OregonTrail {
 		frame.setVisible(true);
 	}
 
+	/**
+	 * Clean up and exit the application completely.
+	 * @author Kurt Nelson
+	 */
 	public void exit() {
 		frame.setVisible(false);
-		// TODO do any cleanup
 		userProperties.savePrefs();
 		System.exit(0);
 	}
@@ -127,12 +132,32 @@ public class OregonTrail {
 		Location cur = game.currentLocation();
 		if (cur == null) {
 			// TODO show screen for moving along
+			setPanel(null);
 		} else if (cur instanceof Shop) {
 			setPanel(new ShopScreen(this, (Shop) cur));
 		}
 	}
+	
+	public void leaveLocation() {
+		game.leaveLocation();
+		updateScreen();
+	}
 
 	public Wagon getWagon() {
 		return game.getWagon();
+	}
+	
+	public Map getMap() {
+		return game.getMap();
+	}
+
+	@Override
+	public void nextDay() {
+		game.nextDay();
+	}
+
+	@Override
+	public boolean isReady() {
+		return game.isReady();
 	}
 }
