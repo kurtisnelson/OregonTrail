@@ -41,7 +41,15 @@ public class Wagon implements Time {
 		party.add(player);
 		party.addAll(companions);
 		activeParts = new ArrayList<Part>();
-		// TODO setup initial parts
+		
+		activeParts.add(new Tongue(100));
+		activeParts.add(new Axle(100));
+		activeParts.add(new Axle(100));
+		activeParts.add(new Wheel(100));
+		activeParts.add(new Wheel(100));
+		activeParts.add(new Wheel(100));
+		activeParts.add(new Wheel(100));
+		
 		spareParts = new ArrayList<Part>();
 		money = player.startingMoney();
 		bullets = 0;
