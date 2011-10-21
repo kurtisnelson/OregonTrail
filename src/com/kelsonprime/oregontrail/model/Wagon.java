@@ -6,14 +6,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import com.kelsonprime.oregontrail.controller.PassNight;
+import com.kelsonprime.oregontrail.controller.Time;
 
 /**
  * Represents a wagon and it's contents
  * @author Kurt Nelson
  * @version .1
  */
-public class Wagon implements PassNight {
+public class Wagon implements Time {
 	
 	public static final String OXEN = "oxen";
 	private int oxen;
@@ -58,14 +58,12 @@ public class Wagon implements PassNight {
 	}
 
 	/**
-	 * Simulate one night passing for all wagon contents
-	 * @param game
 	 * @pre party.length() > 0 && game != null
 	 * @invariant money, bullets
 	 * @post food < $pre(int, food)
 	 */
 	@Override
-	public void passNight() {
+	public void nextDay() {
 		// TODO method stub
 	}
 
@@ -151,6 +149,12 @@ public class Wagon implements PassNight {
 		
 		//TODO if parts in activeParts are broken, try moving parts from spare.
 		return true;
+	}
+
+	@Override
+	public boolean isReady() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

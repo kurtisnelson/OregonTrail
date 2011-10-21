@@ -10,11 +10,7 @@ class Events {
 
 	}
 
-	/**
-	 * 
-	 * @param game
-	 */
-	void passDay() {
+	void nextDay() {
 		// TODO method stub
 	}
 

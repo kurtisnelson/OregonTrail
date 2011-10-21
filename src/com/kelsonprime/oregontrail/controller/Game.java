@@ -6,7 +6,7 @@ import com.kelsonprime.oregontrail.model.Location;
 import com.kelsonprime.oregontrail.model.Part;
 import com.kelsonprime.oregontrail.model.Wagon;
 
-public class Game implements PassNight {
+public class Game implements Time {
 
 	public Listener reciever;
 	Wagon wagon;
@@ -82,7 +82,7 @@ public class Game implements PassNight {
 		this.ration = ration;
 	}
 
-	public boolean beginDay() {
+	public boolean isReady() {
 		// TODO method stub
 		return false;
 	}
@@ -101,8 +101,8 @@ public class Game implements PassNight {
 	}
 
 	@Override
-	public void passNight() {
-		// TODO Auto-generated method stub
-		
+	public void nextDay() {
+		// TODO nextDay
+		wagon.nextDay();
 	}
 }
