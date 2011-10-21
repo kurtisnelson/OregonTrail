@@ -64,11 +64,6 @@ public class Shop extends Location {
 		tonguePrice *= multiplier;
 		axlePrice *= multiplier;
 	}
-	
-
-	public void sellToWagon(Wagon w, List<Part> parts){
-		w.add(parts);
-	}
 
 	/**
 	 * Sell new <code>Part</code>s to <code>Wagon</code>.
@@ -103,7 +98,10 @@ public class Shop extends Location {
 	 * @throws UserInputException If <code>Wagon</code> will become overweight or not enough money is available.
 	 * @post w.getMoney() < $pre(int, w.getMoney())
 	 */
-	
+	public void sellToWagon(Wagon w, List<Part> parts) throws UserInputException{
+		// TODO check and debit money
+		w.add(parts);	
+	}
 	
 
 	/**
@@ -116,9 +114,8 @@ public class Shop extends Location {
 	 * @post w.getMoney() < $pre(int, w.getMoney())
 	 */
 	public void sellToWagon(Wagon w, String item, int quantity) throws UserInputException{
-		
+		// TODO check and debit money
 		w.add(item, quantity);
-		
 	}
 
 	/**
