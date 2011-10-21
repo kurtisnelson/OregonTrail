@@ -4,7 +4,8 @@ import java.io.FileOutputStream;
 import java.util.Properties;
 
 public final class UserProperties extends Properties {
-
+	private static final long serialVersionUID = 6812054977753648712L;
+	
 	public UserProperties (){
 			super();
 			try{

@@ -13,7 +13,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import com.kelsonprime.oregontrail.controller.Game;
 import com.kelsonprime.oregontrail.controller.IconFactory;
 import com.kelsonprime.oregontrail.controller.Threader;
 import com.kelsonprime.oregontrail.controller.UserInputException;

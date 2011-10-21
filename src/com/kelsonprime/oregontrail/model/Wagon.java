@@ -1,5 +1,3 @@
-
-
 package com.kelsonprime.oregontrail.model;
 
 import java.util.ArrayList;

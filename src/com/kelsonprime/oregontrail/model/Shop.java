@@ -3,8 +3,6 @@ package com.kelsonprime.oregontrail.model;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.swing.text.html.HTMLDocument.Iterator;
-
 import com.kelsonprime.oregontrail.controller.UserInputException;
 
 /**
