@@ -9,8 +9,8 @@ import com.kelsonprime.oregontrail.model.Wagon;
 public class Game implements Time {
 
 	public Listener reciever;
-	Wagon wagon;
-	Map map;
+	private Wagon wagon;
+	private Map map;
 	private int days;
 	private Pace pace;
 	private Ration ration;
@@ -94,6 +94,14 @@ public class Game implements Time {
 	
 	public Wagon getWagon(){
 		return wagon;
+	}
+	
+	public void leaveLocation(){
+		map.travel(1);
+	}
+	
+	public Map getMap(){
+		return map;
 	}
 
 	public void setOwner(OregonTrail owner){

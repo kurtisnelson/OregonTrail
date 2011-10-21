@@ -345,7 +345,7 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 			if (s.equals("buy")) {
 				sellItems();
 			} else if (s.equals("leave")) {
-				// TODO Leave store and return to town
+				app.leaveLocation();
 			}
 
 		}
