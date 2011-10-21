@@ -54,7 +54,7 @@ public class Shop extends Location {
 	 * @invariant oxenPrice
 	 * @post foodPrice >= $pre(int, foodPrice) && clothesPrice >= $pre(int, clothesPrice)
 	 */
-	public void scalePrices(int supplyDistance){
+	private void scalePrices(int supplyDistance){
 		// TODO adjust prices based on PRICE_RATIO and supplyDistance.
 		double multiplier = (supplyDistance * PRICE_RATIO) + 1;
 		foodPrice *= multiplier;
@@ -66,7 +66,7 @@ public class Shop extends Location {
 	}
 
 	/**
-	 * Sell new <code>Part</code>s to <code>Wagon</code>.
+	 * Sell new <code>Part</code>s to <code>Wagon</code>. Puts <code>Part</code>s in a List and dumps off to helper method.
 	 * @param w Purchaser
 	 * @param axles Axle quantity
 	 * @param wheels Wheel quantity
@@ -92,7 +92,7 @@ public class Shop extends Location {
 	}
 	
 	/**
-	 * Sell <code>Part</code>s to <code>Wagon</code>.
+	 * Helper method used to sell <code>Part</code>s to <code>Wagon</code>.
 	 * @param w Purchaser
 	 * @param parts Order
 	 * @throws UserInputException If <code>Wagon</code> will become overweight or not enough money is available.
