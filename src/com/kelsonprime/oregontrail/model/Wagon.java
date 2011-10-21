@@ -27,6 +27,7 @@ public class Wagon implements Time {
 	private Collection<Companion> party;
 	private int money;
 	private int wagonWeight;
+	static final int MAXWEIGHT = 100;
 
 	/**
 	 * Create an empty wagon with fresh parts and put in companions.
@@ -96,9 +97,18 @@ public class Wagon implements Time {
 		money += amount;
 	}
 	
+	/**
+	 * Checks if added weight would overload wagon
+	 * @param weight to be added
+	 * @return true if wagon would be ok, false if overweight.
+	 */
 	public boolean checkWeight(int weight){
-		// TODO implement.
-		return false;
+		if (wagonWeight + weight > MAXWEIGHT){
+			return false;
+		}else {
+			return true;
+		}
+		
 	}
 	
 	public static int getItemWeight(String item){
