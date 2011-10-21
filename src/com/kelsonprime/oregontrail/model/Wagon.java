@@ -23,6 +23,12 @@ public class Wagon implements PassNight {
 	private int clothes;
 	public static final String CLOTHES = "clothes";
 	private int bullets;
+	public static final String WHEEL = "wheel";
+	private int wheel;
+	public static final String TONGUE = "tongue";
+	private int tongue;
+	public static final String AXLE = "axle";
+	private int axle;
 	public static final String BULLETS = "bullets";
 	private Collection<Part> activeParts;
 	private Collection<Part> spareParts;
@@ -113,7 +119,13 @@ public class Wagon implements PassNight {
 			food += quantity;
 		}else if(part.equalsIgnoreCase(CLOTHES)){
 			clothes += quantity;
-		}
+		}else if(part.equalsIgnoreCase(WHEEL)){
+			wheel += quantity;
+		}else if(part.equalsIgnoreCase(TONGUE)){
+		tongue += quantity;
+	    }else if(part.equalsIgnoreCase(AXLE)){
+			axle += quantity;
+	    }
 		//etc
 	}
 	
