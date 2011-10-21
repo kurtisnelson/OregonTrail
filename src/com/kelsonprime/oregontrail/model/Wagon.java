@@ -101,8 +101,16 @@ public class Wagon implements Time {
 		return false;
 	}
 	
-	public int getItemWeight(String item){
-		// TODO implement
+	public static int getItemWeight(String item){
+		
+		
+		if(item.equals(BULLETS)){
+			return 1;
+		}else if(item.equals(FOOD)){
+			return 5;
+		}else if(item.equals(CLOTHES)){
+			return 5;
+		}
 		return 0;
 	}
 	
