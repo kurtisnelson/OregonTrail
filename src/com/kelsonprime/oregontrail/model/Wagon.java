@@ -124,21 +124,29 @@ public class Wagon implements Time {
 	}
 	
 	public void add(Part part) throws UserInputException{
-		spareParts.add(part);
-		// TODO Check the wagon weight everytime we add a part
+		
+		if (checkWeight(part.getWeight())){
+			spareParts.add(part);
+		}else {
+			throw new UserInputException(part.toString() + " is too heavy for the Waogn!");
+		}
 		// TODO run repair function to move spareParts -> activeParts as appropriate
 	}
 
 	public void add(String item, int quantity) throws UserInputException{
-		// TODO Implement weights using getItemWeight!
-		if(item.equals(OXEN)){
-			oxen += quantity;
-		}else if(item.equals(BULLETS)){
-			bullets += quantity;
-		}else if(item.equals(FOOD)){
-			food += quantity;
-		}else if(item.equals(CLOTHES)){
-			clothes += quantity;
+
+		if (checkWeight(getItemWeight(item))){		
+			if(item.equals(OXEN)){
+				oxen += quantity;
+			}else if(item.equals(BULLETS)){
+				bullets += quantity;
+			}else if(item.equals(FOOD)){
+				food += quantity;
+			}else if(item.equals(CLOTHES)){
+				clothes += quantity;
+			}
+		}else {
+			throw new UserInputException(item.toString() + " is too heavy for the wagon!");
 		}
 	}
 	
