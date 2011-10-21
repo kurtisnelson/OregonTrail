@@ -6,14 +6,18 @@ public class Companion {
 
 	protected int health; // Percent
 	protected String name;
-	protected boolean isAlive;
+	protected boolean live;
 	protected String sickness;
 
 	public Companion(String name) {
 		this.name = name;
-		isAlive = true;
+		live = true;
 		sickness = "";
 		health = 100;
+	}
+	
+	public boolean isAlive(){
+		return live;
 	}
 
 	/**
