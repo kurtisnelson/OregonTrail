@@ -1,16 +1,28 @@
 package com.kelsonprime.oregontrail.controller;
 
+import com.kelsonprime.oregontrail.model.Destination;
 import com.kelsonprime.oregontrail.model.Location;
 import com.kelsonprime.oregontrail.model.Shop;
 
+/**
+ * Represents the game's map
+ * @author Kurt Nelson
+ * @version 1.0
+ */
 public class Map {
 
 	private Location start;
 	private int traveled;
 
+	/**
+	 * 
+	 */
 	public Map(){
 		traveled = 0;
-		start = new Shop("Independence");
+		Location indep = new Shop("Independence");
+		Location end = new Destination("The End");
+		indep.setNext(end, 50, 0);
+		start = indep;
 	}
 	
 	public int getTraveled() {
@@ -63,6 +75,8 @@ public class Map {
 	}
 
 	public Location currentLocation() {
+		if(traveled == 0)
+			return start;
 		if(distanceToNext() != 0)
 			return null;
 		return lastLocation();

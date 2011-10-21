@@ -17,6 +17,10 @@ public class Destination extends Landmark {
 		super(label, background);
 	}
 	
+	public Destination(String label){
+		this(label, null);
+	}
+
 	@Override
 	public Location next(){
 		return null;

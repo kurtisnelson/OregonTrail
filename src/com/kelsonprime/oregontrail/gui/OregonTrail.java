@@ -114,7 +114,6 @@ public class OregonTrail implements Time{
 
 	/**
 	 * Clean up and exit the application completely.
-	 * @author Kurt Nelson
 	 */
 	public void exit() {
 		frame.setVisible(false);
@@ -131,8 +130,7 @@ public class OregonTrail implements Time{
 	public void updateScreen() {
 		Location cur = game.currentLocation();
 		if (cur == null) {
-			// TODO show screen for moving along
-			setPanel(null);
+			setPanel(new TravelScreen(this));
 		} else if (cur instanceof Shop) {
 			setPanel(new ShopScreen(this, (Shop) cur));
 		}
