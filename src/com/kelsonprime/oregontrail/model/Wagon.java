@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import com.kelsonprime.oregontrail.controller.Game;
 import com.kelsonprime.oregontrail.controller.PassNight;
 
 /**
@@ -66,7 +65,7 @@ public class Wagon implements PassNight {
 	 * @post food < $pre(int, food)
 	 */
 	@Override
-	public void passNight(Game game) {
+	public void passNight() {
 		// TODO method stub
 	}
 

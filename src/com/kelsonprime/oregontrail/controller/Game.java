@@ -6,7 +6,7 @@ import com.kelsonprime.oregontrail.model.Location;
 import com.kelsonprime.oregontrail.model.Part;
 import com.kelsonprime.oregontrail.model.Wagon;
 
-public class Game {
+public class Game implements PassNight {
 
 	public Listener reciever;
 	Wagon wagon;
@@ -87,13 +87,6 @@ public class Game {
 		return false;
 	}
 
-	/**
-	 * Call pass day on EVERYTHING
-	 */
-	public void passDay() {
-		// TODO method stub
-	}
-
 	public Part offerTrade(Part need, int quantity) {
 		// TODO method stub
 		return null;
@@ -105,5 +98,11 @@ public class Game {
 
 	public void setOwner(OregonTrail owner){
 		reciever.setOwner(owner);
+	}
+
+	@Override
+	public void passNight() {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -16,7 +16,7 @@ public abstract class Part implements PassNight {
 	}
 
 	@Override
-	public void passNight(Game game) {
+	public void passNight() {
 		health = (int) (health - (health * .01));
 		// TODO account for pace with game.getPace()
 	}
