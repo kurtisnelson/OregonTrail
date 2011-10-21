@@ -23,7 +23,7 @@ public abstract class Location {
 		return label;
 	}
 	
-	void setNext(Location l, int dX, int dY){
+	public void setNext(Location l, int dX, int dY){
 		next = l;
 		roadX1 = dX;
 		roadY1 = dY;
