@@ -204,8 +204,16 @@ public class Wagon implements Time {
 			ready = false;
 		if(tongue < 1)
 			ready = false;
-		// TODO Make sure party is ready
-		return ready;
+		//check if player is dead
+		for (Companion comp : party){
+			if (comp instanceof Player) {
+				if (!(comp.isAlive())){
+					ready = false;
+					break;
+				}
+			}
+		}
+		return ready;		
 	}
 
 }
