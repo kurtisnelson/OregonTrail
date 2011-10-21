@@ -3,7 +3,7 @@ package com.kelsonprime.oregontrail.model;
 public class Wheel extends Part {
 
 	public Wheel(int health) {
-		super(health);
+		super(health, 5);
 	}
 
 	public Wheel() {
@@ -11,6 +11,6 @@ public class Wheel extends Part {
 	}
 	
 	public String toString() {
-		return Wagon.WHEEL;
+		return "Wheel";
 	}
 }

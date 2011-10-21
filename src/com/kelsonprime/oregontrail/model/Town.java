@@ -7,5 +7,9 @@ public class Town extends Location {
 	public Town(String name) {
 		super(name);
 	}
+	
+	public void addShop(Shop shop) {
+		this.shop = shop;
+	}
 
 }

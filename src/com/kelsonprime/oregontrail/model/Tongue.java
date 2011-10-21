@@ -3,7 +3,7 @@ package com.kelsonprime.oregontrail.model;
 public class Tongue extends Part {
 
 	public Tongue(int health) {
-		super(health);
+		super(health, 5);
 	}
 
 	public Tongue() {
@@ -11,7 +11,7 @@ public class Tongue extends Part {
 	}
 	
 	public String toString() {
-		return Wagon.TONGUE;
+		return "Tongue";
 	}
 
 }

@@ -7,11 +7,11 @@ public class Axle extends Part {
 	}
 	
 	public Axle(int health) {
-		super(health);
+		super(health, 5);
 	}
 	
 	public String toString() {
-		return Wagon.AXLE;
+		return "Axle";
 	}
 	
 }

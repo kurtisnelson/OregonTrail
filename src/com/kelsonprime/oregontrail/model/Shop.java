@@ -2,6 +2,8 @@ package com.kelsonprime.oregontrail.model;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.kelsonprime.oregontrail.controller.UserInputException;
 
@@ -12,6 +14,7 @@ import com.kelsonprime.oregontrail.controller.UserInputException;
  * @see com.kelsonprime.oregontrail.gui.ShopScreen
  */
 public class Shop extends Location {
+	private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 	private static final double PRICE_RATIO = .001;
 	private int oxenPrice;
 	private int foodPrice;
@@ -98,20 +101,29 @@ public class Shop extends Location {
 	 * @post w.getMoney() < $pre(int, w.getMoney())
 	 */
 	public void sellToWagon(Wagon w, List<Part> parts) throws UserInputException{
-		
-		java.util.Iterator<Part> iter = parts.iterator();
-		Part temp;
-		while (iter.hasNext()) {
-			temp = iter.next();
-			if (w.checkMoney(getPrice(temp.toString()))){
-				w.add(temp.toString(), 1);
-				w.changeMoney((-1)*getPrice(temp.toString()));
+		int weight = 0;
+		int total = 0;
+		for(Part part : parts){
+			if (w.checkWeight(weight)){
+				weight += part.getWeight();
+			}else {
+				throw new UserInputException("Not enough room to buy " + part);
 			}
-			else {
-				throw new UserInputException("Not Enough money to buy " + temp.toString());
+			if(w.checkMoney(total * -1)){
+				total += getPrice(part);
+			}else {
+				throw new UserInputException("Not enough money to buy " + part);
 			}
 		}
-		w.add(parts);
+		try{
+			for(Part part : parts){
+				w.changeMoney((-1)*getPrice(part));
+				w.add(part);
+			}
+		}catch(UserInputException e){
+			LOGGER.log(Level.SEVERE, "Game ruined.", e);
+			System.exit(0);
+		}
 	}
 	
 
@@ -125,13 +137,18 @@ public class Shop extends Location {
 	 * @post w.getMoney() < $pre(int, w.getMoney())
 	 */
 	public void sellToWagon(Wagon w, String item, int quantity) throws UserInputException{
-
-		if (w.checkMoney(getPrice(item) * quantity)) {
+		if(!w.checkWeight(quantity * w.getItemWeight(item))){
+			throw new UserInputException("Not enough space for "+quantity+" "+item);
+		}
+		if(!w.checkMoney(quantity * getPrice(item))){
+			throw new UserInputException("Not enough money for "+quantity+" "+item);
+		}
+		try{
 			w.add(item, quantity);
 			w.changeMoney(getPrice(item) * quantity * (-1));
-		}
-		else {
-			throw new UserInputException("Not enough money to buy " + item);
+		}catch(UserInputException e){
+			LOGGER.log(Level.SEVERE, "Game ruined", e);
+			System.exit(0);
 		}
 	}
 
@@ -189,12 +206,8 @@ public class Shop extends Location {
 	 * @param item thing we want the price of
 	 * @return the price of item
 	 */
-	private int getPrice (String item) {
-		
-		if (item.equals(Wagon.AXLE)){
-			return this.axlePrice();
-		}
-		else if (item.equals(Wagon.BULLETS)){
+	private int getPrice(String item) {
+		if (item.equals(Wagon.BULLETS)){
 			return this.bulletPrice();
 		}
 		else if (item.equals(Wagon.CLOTHES)){
@@ -206,11 +219,16 @@ public class Shop extends Location {
 		else if (item.equals(Wagon.OXEN)){
 			return this.oxenPrice();
 		}
-		else if (item.equals(Wagon.TONGUE)){
-			return this.tonguePrice();
-		}
-		else if (item.equals(Wagon.WHEEL)){
-			return this.wheelPrice();
+		return 0;
+	}
+	
+	private int getPrice(Part item){
+		if(item instanceof Axle){
+			return axlePrice;
+		}else if(item instanceof Tongue){
+			return tonguePrice;
+		}else if(item instanceof Wheel){
+			return wheelPrice;
 		}
 		return 0;
 	}

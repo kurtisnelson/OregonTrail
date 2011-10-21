@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.List;
 
 import com.kelsonprime.oregontrail.controller.Time;
+import com.kelsonprime.oregontrail.controller.UserInputException;
 
 /**
  * Represents a wagon and it's contents
@@ -20,12 +21,6 @@ public class Wagon implements Time {
 	private int clothes;
 	public static final String CLOTHES = "clothes";
 	private int bullets;
-	public static final String WHEEL = "wheel";
-	private int wheel;
-	public static final String TONGUE = "tongue";
-	private int tongue;
-	public static final String AXLE = "axle";
-	private int axle;
 	public static final String BULLETS = "bullets";
 	private Collection<Part> activeParts;
 	private Collection<Part> spareParts;
@@ -73,7 +68,7 @@ public class Wagon implements Time {
 	 * @invariant money
 	 */
 	
-	public int getWagonWeight(){
+	public int getWeight(){
 		return wagonWeight;
 	}
 	
@@ -101,42 +96,33 @@ public class Wagon implements Time {
 		money += amount;
 	}
 	
-
-	public void add(List<Part> parts){
+	public boolean checkWeight(int weight){
+		// TODO implement.
+		return false;
+	}
+	
+	public int getItemWeight(String item){
+		// TODO implement
+		return 0;
+	}
+	
+	public void add(Part part) throws UserInputException{
+		spareParts.add(part);
 		// TODO Check the wagon weight everytime we add a part
-		for(Part p : parts){
-			spareParts.add(p);
-		}
-		getWagonWeight();
 		// TODO run repair function to move spareParts -> activeParts as appropriate
 	}
 
-	public void add(String part, int quantity){
-		// TODO Implement part weights!
-		if(part.equals(OXEN)){
-			// TODO set limit on oxen quantity
+	public void add(String item, int quantity) throws UserInputException{
+		// TODO Implement weights using getItemWeight!
+		if(item.equals(OXEN)){
 			oxen += quantity;
-			wagonWeight += oxen;
-		}else if(part.equals(BULLETS)){
+		}else if(item.equals(BULLETS)){
 			bullets += quantity;
-			wagonWeight += bullets;
-		}else if(part.equals(FOOD)){
+		}else if(item.equals(FOOD)){
 			food += quantity;
-			wagonWeight += food;
-		}else if(part.equals(CLOTHES)){
+		}else if(item.equals(CLOTHES)){
 			clothes += quantity;
-			wagonWeight += clothes;
-		}else if(part.equals(WHEEL)){
-			wheel += quantity;
-			wagonWeight += wheel;
-		}else if(part.equals(TONGUE)){
-			tongue += quantity;
-			wagonWeight += tongue;
-	    }else if(part.equals(AXLE)){
-			axle += quantity;
-			wagonWeight += axle;
-	    }
-		//etc
+		}
 	}
 	
 	/**
