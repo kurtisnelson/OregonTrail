@@ -34,6 +34,7 @@ public class Wagon implements PassNight {
 	private Collection<Part> spareParts;
 	private Collection<Companion> party;
 	private int money;
+	private int wagonWeight;
 
 	/**
 	 * Create an empty wagon with fresh parts and put in companions.
@@ -75,6 +76,10 @@ public class Wagon implements PassNight {
 	 * @pre moneyNeeded >= 0
 	 * @invariant money
 	 */
+	
+	public int getWagonWeight(){
+		return wagonWeight;
+	}
 	public boolean checkMoney(int moneyNeeded) {
 		if(money >= moneyNeeded)
 				return true;
@@ -105,6 +110,7 @@ public class Wagon implements PassNight {
 		for(Part p : parts){
 			spareParts.add(p);
 		}
+		getWagonWeight();
 		// TODO run repair function to move spareParts -> activeParts as appropriate
 	}
 
@@ -113,18 +119,25 @@ public class Wagon implements PassNight {
 		if(part.equalsIgnoreCase(OXEN)){
 			// TODO set limit on oxen quantity
 			oxen += quantity;
+			wagonWeight += oxen;
 		}else if(part.equalsIgnoreCase(BULLETS)){
 			bullets += quantity;
+			wagonWeight += bullets;
 		}else if(part.equalsIgnoreCase(FOOD)){
 			food += quantity;
+			wagonWeight += food;
 		}else if(part.equalsIgnoreCase(CLOTHES)){
 			clothes += quantity;
+			wagonWeight += clothes;
 		}else if(part.equalsIgnoreCase(WHEEL)){
 			wheel += quantity;
+			wagonWeight += wheel;
 		}else if(part.equalsIgnoreCase(TONGUE)){
 		tongue += quantity;
+		wagonWeight += tongue;
 	    }else if(part.equalsIgnoreCase(AXLE)){
 			axle += quantity;
+			wagonWeight += axle;
 	    }
 		//etc
 	}
@@ -134,6 +147,7 @@ public class Wagon implements PassNight {
 	 * @return Wagon fully repaired
 	 */
 	public boolean repair(){
+		
 		//TODO if parts in activeParts are broken, try moving parts from spare.
 		return true;
 	}
