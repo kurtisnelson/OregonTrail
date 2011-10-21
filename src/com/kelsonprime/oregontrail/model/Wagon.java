@@ -137,8 +137,30 @@ public class Wagon implements Time {
 
 	@Override
 	public boolean isReady() {
-		// TODO Auto-generated method stub
-		return false;
+		boolean ready = true;
+		//Check parts
+		int wheel = 0;
+		int tongue = 0;
+		int axle = 0;
+		for(Part part : activeParts){
+			if(part instanceof Wheel && part.isReady()){
+				wheel++;
+			}else if(part instanceof Tongue && part.isReady()){
+				tongue++;
+			}else if(part instanceof Axle && part.isReady()){
+				axle++;
+			}
+		}
+		if(oxen < 1)
+			ready = false;
+		if(axle < 2)
+			ready = false;
+		if(wheel < 4)
+			ready = false;
+		if(tongue < 1)
+			ready = false;
+		// TODO Make sure party is ready
+		return ready;
 	}
 
 }
