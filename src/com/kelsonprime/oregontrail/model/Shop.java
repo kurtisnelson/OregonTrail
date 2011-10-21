@@ -55,7 +55,6 @@ public class Shop extends Location {
 	 * @post foodPrice >= $pre(int, foodPrice) && clothesPrice >= $pre(int, clothesPrice)
 	 */
 	private void scalePrices(int supplyDistance){
-		// TODO adjust prices based on PRICE_RATIO and supplyDistance.
 		double multiplier = (supplyDistance * PRICE_RATIO) + 1;
 		foodPrice *= multiplier;
 		clothesPrice *= multiplier;
@@ -100,6 +99,8 @@ public class Shop extends Location {
 	 */
 	public void sellToWagon(Wagon w, List<Part> parts) throws UserInputException{
 		// TODO check and debit money
+		
+		
 		w.add(parts);	
 	}
 	
@@ -114,8 +115,13 @@ public class Shop extends Location {
 	 * @post w.getMoney() < $pre(int, w.getMoney())
 	 */
 	public void sellToWagon(Wagon w, String item, int quantity) throws UserInputException{
-		// TODO check and debit money
-		w.add(item, quantity);
+
+		if (w.checkMoney(getPrice(item) * quantity)) {
+			w.add(item, quantity);
+		}
+		else {
+			throw new UserInputException("Not enough money to buy " + item);
+		}
 	}
 
 	/**
@@ -167,4 +173,13 @@ public class Shop extends Location {
 		return tonguePrice;
 	}
 
+	/**
+	 * local helper method that takes the string rep of an object and gives back the price
+	 * @param item thing we want the price of
+	 * @return the price of item
+	 */
+	private int getPrice (String item) {
+		//TODO implement
+		return 0;
+	}
 }
