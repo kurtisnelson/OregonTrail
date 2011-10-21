@@ -3,6 +3,8 @@ package com.kelsonprime.oregontrail.model;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.swing.text.html.HTMLDocument.Iterator;
+
 import com.kelsonprime.oregontrail.controller.UserInputException;
 
 /**
@@ -83,7 +85,7 @@ public class Shop extends Location {
 			parts.add(new Wheel());
 			wheels--;
 		}
-		while(axles > 0){
+		while(tongues > 0){
 			parts.add(new Tongue());
 			tongues--;
 		}
@@ -98,10 +100,18 @@ public class Shop extends Location {
 	 * @post w.getMoney() < $pre(int, w.getMoney())
 	 */
 	public void sellToWagon(Wagon w, List<Part> parts) throws UserInputException{
-		// TODO check and debit money
 		
-		
-		w.add(parts);	
+		java.util.Iterator<Part> iter = parts.iterator();
+		Part temp;
+		while (iter.hasNext()) {
+			temp = iter.next();
+			if (w.checkMoney(getPrice(temp.toString()))){
+				w.add(temp.toString(), 1);
+			}
+			else {
+				throw new UserInputException("Not Enough money to buy " + temp.toString());
+			}
+		}
 	}
 	
 
