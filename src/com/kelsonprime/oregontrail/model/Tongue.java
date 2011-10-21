@@ -6,4 +6,8 @@ public class Tongue extends Part {
 		super(health);
 	}
 
+	public Tongue() {
+		this(125);
+	}
+
 }
