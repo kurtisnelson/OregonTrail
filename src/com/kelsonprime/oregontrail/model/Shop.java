@@ -189,7 +189,28 @@ public class Shop extends Location {
 	 * @return the price of item
 	 */
 	private int getPrice (String item) {
-		//TODO implement
+		
+		if (item.equals(Wagon.AXLE)){
+			return this.axlePrice();
+		}
+		else if (item.equals(Wagon.BULLETS)){
+			return this.bulletPrice();
+		}
+		else if (item.equals(Wagon.CLOTHES)){
+			return this.clothesPrice();
+		}
+		else if (item.equals(Wagon.FOOD)){
+			return this.foodPrice();
+		}
+		else if (item.equals(Wagon.OXEN)){
+			return this.oxenPrice();
+		}
+		else if (item.equals(Wagon.TONGUE)){
+			return this.tonguePrice();
+		}
+		else if (item.equals(Wagon.WHEEL)){
+			return this.wheelPrice();
+		}
 		return 0;
 	}
 }
