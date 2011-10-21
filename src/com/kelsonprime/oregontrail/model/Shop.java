@@ -107,11 +107,13 @@ public class Shop extends Location {
 			temp = iter.next();
 			if (w.checkMoney(getPrice(temp.toString()))){
 				w.add(temp.toString(), 1);
+				w.changeMoney((-1)*getPrice(temp.toString()));
 			}
 			else {
 				throw new UserInputException("Not Enough money to buy " + temp.toString());
 			}
 		}
+		w.add(parts);
 	}
 	
 
@@ -128,6 +130,7 @@ public class Shop extends Location {
 
 		if (w.checkMoney(getPrice(item) * quantity)) {
 			w.add(item, quantity);
+			w.changeMoney(getPrice(item) * quantity * (-1));
 		}
 		else {
 			throw new UserInputException("Not enough money to buy " + item);

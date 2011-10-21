@@ -134,8 +134,8 @@ public class Wagon implements PassNight {
 			wheel += quantity;
 			wagonWeight += wheel;
 		}else if(part.equals(TONGUE)){
-		tongue += quantity;
-		wagonWeight += tongue;
+			tongue += quantity;
+			wagonWeight += tongue;
 	    }else if(part.equals(AXLE)){
 			axle += quantity;
 			wagonWeight += axle;

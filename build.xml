@@ -13,17 +13,18 @@
 			<include name="**/*.jar" />
 		</fileset>
 	</path>
-		
+
 	<target name="prepare">
 		<tstamp />
 		<mkdir dir="${lib}" />
 		<mkdir dir="${build}" />
 	</target>
-	
+
 	<target name="compile" depends="prepare" description="Compile the thing.">
-		<javac srcdir="${src}" destdir="${build}" classpathref="build-classpath" source="1.6" fork="true" includeJavaRuntime="false"
+		<javac srcdir="${src}" destdir="${build}" classpathref="build-classpath"
+			source="1.6" fork="true" includeJavaRuntime="false"
 			includeAntRuntime="false">
-			<compilerarg value="-Xbootclasspath/p:${toString:build-classpath}"/>
+			<compilerarg value="-Xbootclasspath/p:${toString:build-classpath}" />
 		</javac>
 	</target>
 
@@ -39,24 +40,24 @@
 	</target>
 
 	<target name="run" depends="jar" description="run it">
-		<java jar="${dist}/OregonTrail.jar" fork="true" spawn="true"/>
+		<java jar="${dist}/OregonTrail.jar" fork="true" spawn="true" />
 	</target>
-	
+
 	<target name="javadoc" depends="prepare" description="doc it">
 		<javadoc packagenames="com.kelsonprime.oregontrail.*"
 			sourcepath="${src}" destdir="${doc}" author="true" classpathref="build-classpath">
 		</javadoc>
 	</target>
-	
+
 	<target name="all" depends="prepare,compile,jar,run">
 	</target>
-	
+
 	<target name="push"
 		description="Push stuff, but it better compile after clean first"
 		depends="clean,compile">
 		<git command="push" />
 	</target>
-	
+
 	<macrodef name="git">
 		<attribute name="command" />
 		<attribute name="dir" default="" />
@@ -69,7 +70,7 @@
 			</exec>
 		</sequential>
 	</macrodef>
-		
+
 	<target name="clean" description="rm -rf * stuff">
 		<delete file="user.conf" />
 		<delete>
@@ -79,12 +80,12 @@
 		<delete dir="${dist}" />
 		<delete dir="${doc}" />
 	</target>
-	
+
 	<target name="proguard" depends="jar">
-	<taskdef resource="proguard/ant/task.properties" classpath="/usr/java/proguard/lib/proguard.jar" />
-	<proguard configuration="default.pro" target="1.6">
-		<outjar location="${dist}/pg-OregonTrail.jar"/>
-	</proguard>
+		<taskdef resource="proguard/ant/task.properties" classpath="/usr/java/proguard/lib/proguard.jar" />
+		<proguard configuration="default.pro" target="1.6">
+			<outjar location="${dist}/pg-OregonTrail.jar" />
+		</proguard>
 	</target>
-		
+
 </project>

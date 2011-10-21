@@ -9,6 +9,7 @@ import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -37,7 +38,7 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 	private JTextField bulletQuantity;
 	private JTextField foodQuantity;
 	private int moneySpent;
-	private JLabel totalPurchase, totalLeft;
+	private JLabel moneyLabel, totalPurchase, totalLeft;
 
 	public ShopScreen(OregonTrail app, Shop shop) {
 		super(app);
@@ -230,7 +231,7 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 		info.setBounds(25, 72, 175, 125);
 		add(info);
 
-		JLabel moneyLabel = new JLabel("Total Money: $" + wagon.getMoney());
+		moneyLabel = new JLabel("Total Money: $" + wagon.getMoney());
 		info.add(moneyLabel);
 
 		totalPurchase = new JLabel("Total Purchase: $"
@@ -251,6 +252,7 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 		int clothes;
 		int bullets;
 		int food;
+		boolean sellAllowed = true;
 		try {
 			axles = Integer.valueOf(axleQuantity.getText());
 			wheels = Integer.valueOf(wheelQuantity.getText());
@@ -260,18 +262,30 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 			bullets = Integer.valueOf(bulletQuantity.getText());
 			food = Integer.valueOf(foodQuantity.getText());
 		} catch (java.lang.NumberFormatException e) {
-			// TODO pop a dialog.
+			sellAllowed = false;
+			JOptionPane.showMessageDialog(app.getFrame(), "Non-Numerical Input has been found!", "Invalid Input", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 		// TODO actually sell stuff
-		try{
-			shop.sellToWagon(wagon, axles, wheels, tongues);
-			shop.sellToWagon(wagon, Wagon.OXEN, oxen);
-			shop.sellToWagon(wagon, Wagon.CLOTHES, clothes);
-			shop.sellToWagon(wagon, Wagon.BULLETS, bullets);
-			shop.sellToWagon(wagon, Wagon.FOOD, food);
-		}catch(UserInputException e){
-			e.generateBox(app.getFrame());
+		if (sellAllowed){
+			try{
+				shop.sellToWagon(wagon, axles, wheels, tongues);
+				shop.sellToWagon(wagon, Wagon.OXEN, oxen);
+				shop.sellToWagon(wagon, Wagon.CLOTHES, clothes);
+				shop.sellToWagon(wagon, Wagon.BULLETS, bullets);
+				shop.sellToWagon(wagon, Wagon.FOOD, food);
+			}catch(UserInputException e){
+				e.generateBox(app.getFrame());
+			}
+			
+			axleQuantity.setText("0");
+			wheelQuantity.setText("0");
+			tongueQuantity.setText("0");
+			oxenQuantity.setText("0");
+			clothesQuantity.setText("0");
+			bulletQuantity.setText("0");
+			foodQuantity.setText("0");
+			update();
 		}
 	}
 
@@ -303,6 +317,7 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 					* Integer.valueOf(bulletQuantity.getText())
 					+ shop.foodPrice()
 					* Integer.valueOf(foodQuantity.getText());
+			moneyLabel.setText("Total Money: $"+Integer.toString(wagon.getMoney()));
 			totalPurchase.setText("Total Purchase: $"+moneySpent);
 			totalLeft.setText("Money Left: $" + (wagon.getMoney() - moneySpent));
 		} catch (java.lang.NumberFormatException e) {
