@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.kelsonprime.oregontrail.controller.Game;
+import com.kelsonprime.oregontrail.controller.Ration;
 import com.kelsonprime.oregontrail.controller.Time;
 import com.kelsonprime.oregontrail.controller.UserInputException;
 
@@ -74,8 +75,18 @@ public class Wagon implements Time {
 			part.nextDay(game);
 		}
 		repair();
-		//food
 		
+		Ration ration = game.getRation();
+		switch (ration) {
+		case BARE: food -= 1;
+		case MEAGER: food -= 3;
+		case NORMAL: food -= 5;
+		case WELLFED: food -= 7;
+		}
+		if (food < 0 ){
+			food = 0;
+		}
+		//TODO whatever we decide to do with clothes, probably should do something here
 	}
 
 	/**
