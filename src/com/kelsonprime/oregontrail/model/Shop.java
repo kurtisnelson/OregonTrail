@@ -137,7 +137,7 @@ public class Shop extends Location {
 	 * @post w.getMoney() < $pre(int, w.getMoney())
 	 */
 	public void sellToWagon(Wagon w, String item, int quantity) throws UserInputException{
-		if(!w.checkWeight(quantity * w.getItemWeight(item))){
+		if(!w.checkWeight(quantity * Wagon.getItemWeight(item))){
 			throw new UserInputException("Not enough space for "+quantity+" "+item);
 		}
 		if(!w.checkMoney(quantity * getPrice(item))){

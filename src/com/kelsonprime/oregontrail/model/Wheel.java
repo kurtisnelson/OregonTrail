@@ -1,7 +1,5 @@
 package com.kelsonprime.oregontrail.model;
 
-import com.kelsonprime.oregontrail.controller.Game;
-
 public class Wheel extends Part {
 
 	public Wheel(int health) {

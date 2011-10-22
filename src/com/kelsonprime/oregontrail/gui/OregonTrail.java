@@ -18,7 +18,6 @@ import javax.swing.UnsupportedLookAndFeelException;
 import com.kelsonprime.oregontrail.controller.Game;
 import com.kelsonprime.oregontrail.controller.Map;
 import com.kelsonprime.oregontrail.controller.Threader;
-import com.kelsonprime.oregontrail.controller.Time;
 import com.kelsonprime.oregontrail.controller.UserProperties;
 import com.kelsonprime.oregontrail.model.Location;
 import com.kelsonprime.oregontrail.model.Shop;
