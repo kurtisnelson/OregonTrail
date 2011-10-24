@@ -34,6 +34,7 @@ public class Game implements Time {
 	
 	/**
 	 * Gets current location on map
+	 * @return location
 	 */
 	public Location currentLocation(){
 		return map.currentLocation();
@@ -89,6 +90,7 @@ public class Game implements Time {
 
 	/**
 	 * Gets the ration left
+	 * @return ration
 	 */
 	public Ration getRation() {
 		return ration;
@@ -109,6 +111,9 @@ public class Game implements Time {
 
 	/**
 	 * Offers a part to trade
+	 * @param part
+	 * @param quantity
+	 * @return part
 	 */
 	public Part offerTrade(Part need, int quantity) {
 		// TODO method stub
@@ -117,17 +122,22 @@ public class Game implements Time {
 	
 	/**
 	 * Gets the wagon
+	 * @return wagon
 	 */
 	public Wagon getWagon(){
 		return wagon;
 	}
 	
+	/**
+	 * Move from location
+	 */
 	public void leaveLocation(){
 		map.travel(1);
 	}
 	
 	/**
 	 * Gets the current map
+	 * @return map
 	 */
 	public Map getMap(){
 		return map;
