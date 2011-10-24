@@ -235,6 +235,10 @@ public class Wagon implements Time {
 		}
 		return ready;		
 	}
+	
+	public int getOxen(){
+		return oxen;
+	}
 
 }
 

@@ -39,8 +39,10 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 	private int moneySpent;
 	private JLabel moneyLabel, totalPurchase, totalLeft;
 
+	
+	//Need to finish creating methods for getting and adding in the GUI counts for current items.
 	public ShopScreen(OregonTrail app, Shop shop) {
-		super(app);
+		super(app); 
 		this.shop = shop;
 		this.wagon = app.getWagon();
 		setSize(new Dimension(600, 300));
@@ -71,8 +73,19 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 		items.setBackground(new Color(184, 134, 11));
 		items.setBounds(268, 40, 304, 248);
 		add(items);
-		items.setLayout(new GridLayout(0, 3, 5, 5));
-
+		items.setLayout(new GridLayout(0, 4, 5, 5));
+		
+		JLabel itemLabel = new JLabel("Item");
+		JLabel quantityLabel = new JLabel("Quantity?");
+		JLabel priceLabel = new JLabel("Price");
+		priceLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		JLabel totalLabel = new JLabel("Current");
+		totalLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		items.add(itemLabel);
+		items.add(quantityLabel);
+		items.add(priceLabel);
+		items.add(totalLabel);
+		
 		JLabel oxenLabel = new JLabel("Oxen");
 		items.add(oxenLabel);
 
@@ -89,6 +102,11 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 		oxenPrice.setFont(new Font("STIXGeneral", Font.PLAIN, 14));
 		oxenPrice.setHorizontalAlignment(SwingConstants.CENTER);
 		items.add(oxenPrice);
+		
+		JLabel oxenTotal = new JLabel(Integer.toString(app.getWagon().getOxen()));
+		oxenTotal.setFont(new Font("STIXGeneral", Font.PLAIN, 14));
+		oxenTotal.setHorizontalAlignment(SwingConstants.CENTER);
+		items.add(oxenTotal);
 
 		JLabel axleLabel = new JLabel("Axle");
 		items.add(axleLabel);
@@ -106,6 +124,12 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 		axlePrice.setFont(new Font("STIXGeneral", Font.PLAIN, 14));
 		axlePrice.setHorizontalAlignment(SwingConstants.CENTER);
 		items.add(axlePrice);
+		
+		//Create method to count # of Axles on wagon.
+//		JLabel axleTotal = new JLabel(Integer.toString(app.getWagon().getAxle()));
+//		axleTotal.setFont(new Font("STIXGeneral", Font.PLAIN, 14));
+//		axleTotal.setHorizontalAlignment(SwingConstants.CENTER);
+//		items.add(axleTotal);
 
 		JLabel wheelLabel = new JLabel("Wheels");
 		items.add(wheelLabel);

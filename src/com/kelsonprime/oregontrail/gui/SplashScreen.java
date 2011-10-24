@@ -22,6 +22,6 @@ public class SplashScreen extends JPanel{
 		ImageIcon start = new ImageIcon("images/OregonTrailStartScreen.jpg");
 		Image startImg = start.getImage();
 		
-		g.drawImage(startImg, 0, 13, this);
+		g.drawImage(startImg, 0, 0, this);
 	}
 }
