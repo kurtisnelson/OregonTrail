@@ -15,7 +15,7 @@ public class Map {
 	private int traveled;
 
 	/**
-	 * 
+	 * Contructs map
 	 */
 	public Map(){
 		traveled = 0;
@@ -25,18 +25,34 @@ public class Map {
 		start = indep;
 	}
 	
+	/**
+	 * Gets the distance traveled
+	 * @return traveled
+	 */
 	public int getTraveled() {
 		return traveled;
 	}
 	
+	/**
+	 * Returns next location in the map
+	 * @return last location
+	 */
 	public Location nextLocation(){
 		return lastLocation().next();
 	}
 	
+	/**
+	 * Returns the distance to the next location
+	 * @return distance
+	 */
 	public int distanceToNext(){
 		return distanceTo(nextLocation());
 	}
 	
+	/**
+	 * Moves by distance d
+	 * @param distance
+	 */
 	public Location travel(int d){
 		if(distanceToNext() <= d){
 			traveled += distanceToNext();
@@ -46,6 +62,9 @@ public class Map {
 		return currentLocation();
 	}
 	
+	/**
+	 * Gets the distance to a particular location
+	 */
 	private int distanceTo(Location l){
 		Location cur = start;
 		int processed = 0;
@@ -56,6 +75,10 @@ public class Map {
 		return cur.getRoadLength() - (traveled - processed);
 	}
 
+	/**
+	 * Traverses the given distance and gets the new location
+	 * @return location
+	 */
 	private Location traverse(int distance){
 		return traverse(start, distance);
 	}
@@ -74,6 +97,10 @@ public class Map {
 		// TODO look at pace and # of oxen and move appropriately
 	}
 
+	/**
+	 * Gets current location
+	 * @return location
+	 */
 	public Location currentLocation() {
 		if(traveled == 0)
 			return start;
@@ -82,6 +109,9 @@ public class Map {
 		return lastLocation();
 	}
 	
+	/**
+	 * Returns the last visited location
+	 */
 	public Location lastLocation() {
 		return traverse(traveled);
 	}
