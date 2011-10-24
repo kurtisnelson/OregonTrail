@@ -6,6 +6,11 @@ import com.kelsonprime.oregontrail.model.Location;
 import com.kelsonprime.oregontrail.model.Part;
 import com.kelsonprime.oregontrail.model.Wagon;
 
+/**
+ * This class holds information about a game. 
+ * @author Aman Jain
+ *
+ */
 public class Game implements Time {
 
 	public Listener reciever;
