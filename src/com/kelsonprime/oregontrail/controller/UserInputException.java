@@ -3,6 +3,11 @@ package com.kelsonprime.oregontrail.controller;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+/**
+ * Checks for errors in user input
+ * @author Aman
+ *
+ */
 public class UserInputException extends Exception {
 	private static final long serialVersionUID = -3133813262854243737L;
 	public UserInputException(String message){
