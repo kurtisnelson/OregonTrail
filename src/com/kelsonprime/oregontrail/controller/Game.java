@@ -20,6 +20,9 @@ public class Game implements Time {
 	private Pace pace;
 	private Ration ration;
 
+	/**
+	 * Constructs Game object and initializes all variables like map, wagon etc
+	 */
 	public Game(Wagon wagon) {
 		this.reciever = new Listener();
 		this.days = 0;
@@ -29,6 +32,9 @@ public class Game implements Time {
 		this.map = new Map();
 	}
 	
+	/**
+	 * Gets current location on map
+	 */
 	public Location currentLocation(){
 		return map.currentLocation();
 	}
@@ -52,35 +58,44 @@ public class Game implements Time {
 	}
 
 	/**
-	 * 
+	 * Accepts a trade item
 	 * @param item
 	 */
 	public void acceptTrade(Object item) {
 		// TODO method stub
 	}
 
+	/**
+	 * Does bookkeeping for hunting
+	 */
 	public void hunt() {
 		// TODO method stub
 	}
 
+	/**
+	 * Does the bookkeeping for rest
+	 */
 	public void rest() {
 		// TODO method stub
 	}
 
 	/**
-	 * 
+	 * Sets the pace of the game
 	 * @param pace
 	 */
 	public void setPace(Pace pace) {
 		this.pace = pace;
 	}
 
+	/**
+	 * Gets the ration left
+	 */
 	public Ration getRation() {
 		return ration;
 	}
 
 	/**
-	 * 
+	 * Sets the ration
 	 * @param ration
 	 */
 	public void setRation(Ration ration) {
@@ -92,11 +107,17 @@ public class Game implements Time {
 		return false;
 	}
 
+	/**
+	 * Offers a part to trade
+	 */
 	public Part offerTrade(Part need, int quantity) {
 		// TODO method stub
 		return null;
 	}
 	
+	/**
+	 * Gets the wagon
+	 */
 	public Wagon getWagon(){
 		return wagon;
 	}
@@ -105,10 +126,16 @@ public class Game implements Time {
 		map.travel(1);
 	}
 	
+	/**
+	 * Gets the current map
+	 */
 	public Map getMap(){
 		return map;
 	}
 
+	/**
+	 * Sets the owner of the game
+	 */
 	public void setOwner(OregonTrail owner){
 		reciever.setOwner(owner);
 	}
