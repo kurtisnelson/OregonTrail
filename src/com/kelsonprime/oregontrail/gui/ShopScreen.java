@@ -36,11 +36,18 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 	private JTextField clothesQuantity;
 	private JTextField bulletQuantity;
 	private JTextField foodQuantity;
+	private JLabel oxenTotal;
+	private JLabel axleTotal;
+	private JLabel wheelTotal;
+	private JLabel tongueTotal;
+	private JLabel clothesTotal;
+	private JLabel bulletsTotal;
+	private JLabel foodTotal;
 	private int moneySpent;
 	private JLabel moneyLabel, totalPurchase, totalLeft;
 
 	
-	//Need to finish creating methods for getting and adding in the GUI counts for current items.
+	//TODO Update the wagon's weight statistics on the shop GUI
 	public ShopScreen(OregonTrail app, Shop shop) {
 		super(app); 
 		this.shop = shop;
@@ -103,7 +110,7 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 		oxenPrice.setHorizontalAlignment(SwingConstants.CENTER);
 		items.add(oxenPrice);
 		
-		JLabel oxenTotal = new JLabel(Integer.toString(app.getWagon().getOxen()));
+		oxenTotal = new JLabel(Integer.toString(wagon.getOxen()));
 		oxenTotal.setFont(new Font("STIXGeneral", Font.PLAIN, 14));
 		oxenTotal.setHorizontalAlignment(SwingConstants.CENTER);
 		items.add(oxenTotal);
@@ -125,11 +132,10 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 		axlePrice.setHorizontalAlignment(SwingConstants.CENTER);
 		items.add(axlePrice);
 		
-		//Create method to count # of Axles on wagon.
-//		JLabel axleTotal = new JLabel(Integer.toString(app.getWagon().getAxle()));
-//		axleTotal.setFont(new Font("STIXGeneral", Font.PLAIN, 14));
-//		axleTotal.setHorizontalAlignment(SwingConstants.CENTER);
-//		items.add(axleTotal);
+		axleTotal = new JLabel(Integer.toString(wagon.getAxle()));
+		axleTotal.setFont(new Font("STIXGeneral", Font.PLAIN, 14));
+		axleTotal.setHorizontalAlignment(SwingConstants.CENTER);
+		items.add(axleTotal);
 
 		JLabel wheelLabel = new JLabel("Wheels");
 		items.add(wheelLabel);
@@ -147,6 +153,11 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 		wheelPrice.setFont(new Font("STIXGeneral", Font.PLAIN, 14));
 		wheelPrice.setHorizontalAlignment(SwingConstants.CENTER);
 		items.add(wheelPrice);
+		
+		wheelTotal = new JLabel(Integer.toString(wagon.getWheel()));
+		wheelTotal.setFont(new Font("STIXGeneral", Font.PLAIN, 14));
+		wheelTotal.setHorizontalAlignment(SwingConstants.CENTER);
+		items.add(wheelTotal);
 
 		JLabel tongueLabel = new JLabel("Tongues");
 		items.add(tongueLabel);
@@ -164,6 +175,11 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 		tonguePrice.setFont(new Font("STIXGeneral", Font.PLAIN, 14));
 		tonguePrice.setHorizontalAlignment(SwingConstants.CENTER);
 		items.add(tonguePrice);
+		
+		tongueTotal = new JLabel(Integer.toString(wagon.getTongue()));
+		tongueTotal.setFont(new Font("STIXGeneral", Font.PLAIN, 14));
+		tongueTotal.setHorizontalAlignment(SwingConstants.CENTER);
+		items.add(tongueTotal);
 
 		JLabel clothLabel = new JLabel("Clothes");
 		items.add(clothLabel);
@@ -181,6 +197,11 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 		clothesPrice.setFont(new Font("STIXGeneral", Font.PLAIN, 14));
 		clothesPrice.setHorizontalAlignment(SwingConstants.CENTER);
 		items.add(clothesPrice);
+		
+		clothesTotal = new JLabel(Integer.toString(wagon.getClothes()));
+		clothesTotal.setFont(new Font("STIXGeneral", Font.PLAIN, 14));
+		clothesTotal.setHorizontalAlignment(SwingConstants.CENTER);
+		items.add(clothesTotal);
 
 		JLabel bulletsLabel = new JLabel("Bullets (x10)");
 		items.add(bulletsLabel);
@@ -198,6 +219,11 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 		bulletPrice.setFont(new Font("STIXGeneral", Font.PLAIN, 14));
 		bulletPrice.setHorizontalAlignment(SwingConstants.CENTER);
 		items.add(bulletPrice);
+		
+		bulletsTotal = new JLabel(Integer.toString(wagon.getBullets()));
+		bulletsTotal.setFont(new Font("STIXGeneral", Font.PLAIN, 14));
+		bulletsTotal.setHorizontalAlignment(SwingConstants.CENTER);
+		items.add(bulletsTotal);
 
 		JLabel foodLabel = new JLabel("Food (lbs)");
 		items.add(foodLabel);
@@ -215,6 +241,11 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 		foodPrice.setFont(new Font("STIXGeneral", Font.PLAIN, 14));
 		foodPrice.setHorizontalAlignment(SwingConstants.CENTER);
 		items.add(foodPrice);
+		
+		foodTotal = new JLabel(Integer.toString(wagon.getFood()));
+		foodTotal.setFont(new Font("STIXGeneral", Font.PLAIN, 14));
+		foodTotal.setHorizontalAlignment(SwingConstants.CENTER);
+		items.add(foodTotal);
 
 		JLabel blank = new JLabel();
 		items.add(blank);
@@ -368,6 +399,13 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 			String s = ae.getActionCommand();
 			if (s.equals("buy")) {
 				sellItems();
+				oxenTotal.setText(Integer.toString(wagon.getOxen()));
+				axleTotal.setText(Integer.toString(wagon.getAxle()));
+				wheelTotal.setText(Integer.toString(wagon.getWheel()));
+				tongueTotal.setText(Integer.toString(wagon.getTongue()));
+				clothesTotal.setText(Integer.toString(wagon.getClothes()));
+				bulletsTotal.setText(Integer.toString(wagon.getBullets()));
+				foodTotal.setText(Integer.toString(wagon.getFood()));
 			} else if (s.equals("leave")) {
 				app.leaveLocation();
 			}
