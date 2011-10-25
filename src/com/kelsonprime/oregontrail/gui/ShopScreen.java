@@ -320,7 +320,12 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 			JOptionPane.showMessageDialog(app.getFrame(), "Non-Numerical Input has been found!", "Invalid Input", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
-
+		
+		if (moneySpent<0){
+			sellAllowed = false;
+			JOptionPane.showMessageDialog(app.getFrame(), "A Negative Input has been found!", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+		}
+		
 		if (sellAllowed){
 			if ( (wagon.getMoney()-moneySpent) >= 0){
 				try{
