@@ -11,16 +11,19 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 
 import com.kelsonprime.oregontrail.controller.Button;
+import com.kelsonprime.oregontrail.model.Wagon;
 
 public class TravelScreen extends JPanel {
 	private static final long serialVersionUID = -2616586129314449978L;
 	
 	OregonTrail app;
+	Wagon wagon;
 	JLabel lblTravel;
 	
 	public TravelScreen(OregonTrail app){
 		super();
 		this.app = app;
+		this.wagon = app.getWagon();
 		setSize(new Dimension(600, 300));
 		
 		lblTravel = new JLabel("TRAVEL!");
