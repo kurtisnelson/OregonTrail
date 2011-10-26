@@ -130,12 +130,7 @@ public class Wagon implements Time {
 	 * @pre weight > 0
 	 */
 	public boolean checkWeight(int weight){
-		if (wagonWeight + weight > MAXWEIGHT){
-			return false;
-		}else {
-			return true;
-		}
-		
+		return !(wagonWeight + weight > MAXWEIGHT);	
 	}
 	
 	/**
