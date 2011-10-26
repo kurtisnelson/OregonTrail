@@ -34,7 +34,7 @@ public class Wagon implements Time {
 	 * @param player The driver of the wagon
 	 * @param companions All other party members.
 	 * @pre player != null
-	 * @post money == 0 && clothes == 0 && oxen == 0 && food == 0
+	 * @post money == 0 && clothes == 0 && oxen == 0 && food == 0 && isReady() == false
 	 */
 	public Wagon(Player player, List<Companion> companions) {
 		party = new ArrayList<Companion>();
@@ -156,10 +156,12 @@ public class Wagon implements Time {
 	 * @throws UserInputException If adding the part would make it overweight
 	 */
 	public void add(Part part) throws UserInputException{
-		if (part != null && checkWeight(part.getWeight())){
+		if(part == null){
+			return;
+		}else if (checkWeight(part.getWeight())){
 			spareParts.add(part);
 		}else {
-			throw new UserInputException(part + " is too heavy for the Waogn!");
+			throw new UserInputException(part + " is too heavy for the Wagon!");
 		}
 		this.repair();
 	}
