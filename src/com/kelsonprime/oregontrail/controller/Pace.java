@@ -6,5 +6,11 @@ package com.kelsonprime.oregontrail.controller;
  *
  */
 public enum Pace {
-	STOPPED, LEISURELY, STEADY, GRUELING
+	STOPPED(0,"Stopped"), LEISURELY(1, "Leisurely"), STEADY(2, "Steady"), GRUELING(3, "Grueling");
+	int rate;
+	String name;
+	private Pace(int rate, String name){
+		this.rate = rate;
+		this.name = name;
+	}
 }
