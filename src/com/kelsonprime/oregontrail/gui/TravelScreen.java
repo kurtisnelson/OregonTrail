@@ -1,6 +1,8 @@
 package com.kelsonprime.oregontrail.gui;
 
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -23,15 +25,16 @@ public class TravelScreen extends JPanel {
 		
 		lblTravel = new JLabel("TRAVEL!");
 		
-		Button travel = new Button(new ImageIcon("images/dirt.jpg"));
+		Button travel = new Button(new ImageIcon("images/MoveAheadButton.png"));
 		travel.setPreferredSize(new Dimension(100, 50));
+		travel.setBorder(null);
 		travel.setActionCommand("travel");
 		
-		Button change = new Button(new ImageIcon("images/arrow.png"));
+		Button change = new Button(new ImageIcon("images/UpdateButton.png"));
 		change.setPreferredSize(new Dimension(100, 50));
 		change.setActionCommand("change");
 		
-		Button rest = new Button(new ImageIcon("images/OregonTrailIcon.png"));
+		Button rest = new Button(new ImageIcon("images/RestButton.png"));
 		rest.setPreferredSize(new Dimension(100, 50));
 		rest.setActionCommand("rest");
 		
@@ -44,6 +47,14 @@ public class TravelScreen extends JPanel {
 		add(travel);
 		add(change);
 		add(rest);
+	}
+	
+	public void paintComponent(Graphics g){
+		Image regBG = new ImageIcon("images/OregonTrailTravelingScreenRegular.jpg").getImage();
+		Image wagonA = new ImageIcon("images/OregonTrailIcon.png").getImage();
+		Image wagonB = new ImageIcon("images/OregonTrailIcon.png").getImage();
+		g.drawImage(regBG, 0, 0, this);
+		g.drawImage(wagonA, 400, 120, this);
 	}
 	
 	private class ButtonListener implements ActionListener{
