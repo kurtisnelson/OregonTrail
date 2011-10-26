@@ -237,11 +237,11 @@ public class Wagon implements Time {
 		return ready;		
 	}
 	
-	public int getOxen(){
+	public int countOxen(){
 		return oxen;
 	}
 	
-	public int getAxle(){
+	public int countAxles(){
 
 		int ret=0;
 		for(Part part : spareParts){
@@ -251,8 +251,7 @@ public class Wagon implements Time {
 		return ret;
 	}
 	
-	public int getWheel(){
-
+	public int countWheels(){
 		int ret=0;
 		for(Part part : spareParts){
 			if (part instanceof Wheel)
@@ -261,7 +260,7 @@ public class Wagon implements Time {
 		return ret;
 	}
 	
-	public int getTongue(){
+	public int countTongues(){
 
 		int ret=0;
 		for(Part part : spareParts){
@@ -271,15 +270,15 @@ public class Wagon implements Time {
 		return ret;
 	}
 	
-	public int getClothes(){
+	public int countClothes(){
 		return clothes;
 	}
 	
-	public int getBullets(){
+	public int countBullets(){
 		return bullets;
 	}
 	
-	public int getFood(){
+	public int countFood(){
 		return food;
 	}
 
