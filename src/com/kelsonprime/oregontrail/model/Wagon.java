@@ -27,7 +27,7 @@ public class Wagon implements Time {
 	private List<Companion> party;
 	private int money;
 	private int wagonWeight;
-	static final int MAXWEIGHT = 100;
+	static final int MAXWEIGHT = 2000;
 
 	/**
 	 * Create an empty wagon with fresh parts and put in companions.
@@ -143,11 +143,20 @@ public class Wagon implements Time {
 		if(item.equals(BULLETS)){
 			return 1;
 		}else if(item.equals(FOOD)){
-			return 5;
+			return 1;
 		}else if(item.equals(CLOTHES)){
 			return 5;
-		}
+		}else if(item.equals("Wheel"))
+			return 15;
+		else if(item.equals("Axle"))
+			return 10;
+		else if(item.equals("Tongue"))
+			return 10;
 		return 0;
+	}
+	
+	public void addWeight(int weight){
+		wagonWeight += weight;
 	}
 	
 	/**
