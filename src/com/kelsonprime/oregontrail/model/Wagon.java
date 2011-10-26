@@ -2,6 +2,7 @@ package com.kelsonprime.oregontrail.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
 import com.kelsonprime.oregontrail.controller.Game;
 import com.kelsonprime.oregontrail.controller.Ration;
@@ -238,6 +239,48 @@ public class Wagon implements Time {
 	
 	public int getOxen(){
 		return oxen;
+	}
+	
+	public int getAxle(){
+
+		int ret=0;
+		for(Part part : spareParts){
+			if (part instanceof Axle)
+				ret++;
+		}
+		return ret;
+	}
+	
+	public int getWheel(){
+
+		int ret=0;
+		for(Part part : spareParts){
+			if (part instanceof Wheel)
+				ret++;
+		}
+		return ret;
+	}
+	
+	public int getTongue(){
+
+		int ret=0;
+		for(Part part : spareParts){
+			if (part instanceof Tongue)
+				ret++;
+		}
+		return ret;
+	}
+	
+	public int getClothes(){
+		return clothes;
+	}
+	
+	public int getBullets(){
+		return bullets;
+	}
+	
+	public int getFood(){
+		return food;
 	}
 
 }
