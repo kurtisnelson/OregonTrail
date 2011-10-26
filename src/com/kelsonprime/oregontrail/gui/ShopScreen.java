@@ -110,7 +110,7 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 		oxenPrice.setHorizontalAlignment(SwingConstants.CENTER);
 		items.add(oxenPrice);
 		
-		oxenTotal = new JLabel(Integer.toString(wagon.getOxen()));
+		oxenTotal = new JLabel(Integer.toString(wagon.countOxen()));
 		oxenTotal.setFont(new Font("STIXGeneral", Font.PLAIN, 14));
 		oxenTotal.setHorizontalAlignment(SwingConstants.CENTER);
 		items.add(oxenTotal);
@@ -132,7 +132,7 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 		axlePrice.setHorizontalAlignment(SwingConstants.CENTER);
 		items.add(axlePrice);
 		
-		axleTotal = new JLabel(Integer.toString(wagon.getAxle()));
+		axleTotal = new JLabel(Integer.toString(wagon.countAxles()));
 		axleTotal.setFont(new Font("STIXGeneral", Font.PLAIN, 14));
 		axleTotal.setHorizontalAlignment(SwingConstants.CENTER);
 		items.add(axleTotal);
@@ -154,7 +154,7 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 		wheelPrice.setHorizontalAlignment(SwingConstants.CENTER);
 		items.add(wheelPrice);
 		
-		wheelTotal = new JLabel(Integer.toString(wagon.getWheel()));
+		wheelTotal = new JLabel(Integer.toString(wagon.countWheels()));
 		wheelTotal.setFont(new Font("STIXGeneral", Font.PLAIN, 14));
 		wheelTotal.setHorizontalAlignment(SwingConstants.CENTER);
 		items.add(wheelTotal);
@@ -176,7 +176,7 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 		tonguePrice.setHorizontalAlignment(SwingConstants.CENTER);
 		items.add(tonguePrice);
 		
-		tongueTotal = new JLabel(Integer.toString(wagon.getTongue()));
+		tongueTotal = new JLabel(Integer.toString(wagon.countTongues()));
 		tongueTotal.setFont(new Font("STIXGeneral", Font.PLAIN, 14));
 		tongueTotal.setHorizontalAlignment(SwingConstants.CENTER);
 		items.add(tongueTotal);
@@ -198,7 +198,7 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 		clothesPrice.setHorizontalAlignment(SwingConstants.CENTER);
 		items.add(clothesPrice);
 		
-		clothesTotal = new JLabel(Integer.toString(wagon.getClothes()));
+		clothesTotal = new JLabel(Integer.toString(wagon.countClothes()));
 		clothesTotal.setFont(new Font("STIXGeneral", Font.PLAIN, 14));
 		clothesTotal.setHorizontalAlignment(SwingConstants.CENTER);
 		items.add(clothesTotal);
@@ -220,7 +220,7 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 		bulletPrice.setHorizontalAlignment(SwingConstants.CENTER);
 		items.add(bulletPrice);
 		
-		bulletsTotal = new JLabel(Integer.toString(wagon.getBullets()));
+		bulletsTotal = new JLabel(Integer.toString(wagon.countBullets()));
 		bulletsTotal.setFont(new Font("STIXGeneral", Font.PLAIN, 14));
 		bulletsTotal.setHorizontalAlignment(SwingConstants.CENTER);
 		items.add(bulletsTotal);
@@ -242,7 +242,7 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 		foodPrice.setHorizontalAlignment(SwingConstants.CENTER);
 		items.add(foodPrice);
 		
-		foodTotal = new JLabel(Integer.toString(wagon.getFood()));
+		foodTotal = new JLabel(Integer.toString(wagon.countFood()));
 		foodTotal.setFont(new Font("STIXGeneral", Font.PLAIN, 14));
 		foodTotal.setHorizontalAlignment(SwingConstants.CENTER);
 		items.add(foodTotal);
@@ -404,13 +404,13 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 			String s = ae.getActionCommand();
 			if (s.equals("buy")) {
 				sellItems();
-				oxenTotal.setText(Integer.toString(wagon.getOxen()));
-				axleTotal.setText(Integer.toString(wagon.getAxle()));
-				wheelTotal.setText(Integer.toString(wagon.getWheel()));
-				tongueTotal.setText(Integer.toString(wagon.getTongue()));
-				clothesTotal.setText(Integer.toString(wagon.getClothes()));
-				bulletsTotal.setText(Integer.toString(wagon.getBullets()));
-				foodTotal.setText(Integer.toString(wagon.getFood()));
+				oxenTotal.setText(Integer.toString(wagon.countOxen()));
+				axleTotal.setText(Integer.toString(wagon.countAxles()));
+				wheelTotal.setText(Integer.toString(wagon.countWheels()));
+				tongueTotal.setText(Integer.toString(wagon.countTongues()));
+				clothesTotal.setText(Integer.toString(wagon.countClothes()));
+				bulletsTotal.setText(Integer.toString(wagon.countBullets()));
+				foodTotal.setText(Integer.toString(wagon.countFood()));
 			} else if (s.equals("leave")) {
 				app.leaveLocation();
 			}
