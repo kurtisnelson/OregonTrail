@@ -25,6 +25,7 @@
 			source="1.6" fork="true" includeJavaRuntime="false"
 			includeAntRuntime="false">
 			<compilerarg value="-Xbootclasspath/p:${toString:build-classpath}" />
+			<exclude name="**/test/"/>
 		</javac>
 	</target>
 
