@@ -118,7 +118,6 @@ public class Shop extends Location {
 		try{
 			for(Part part : parts){
 				w.changeMoney((-1)*total);
-				w.addWeight(weight);
 				w.add(part);
 			}
 		}catch(UserInputException e){
@@ -146,7 +145,6 @@ public class Shop extends Location {
 		}
 		try{
 			w.add(item, quantity);
-			w.addWeight(Wagon.getItemWeight(item)*quantity);
 			w.changeMoney(getPrice(item) * quantity * (-1));
 		}catch(UserInputException e){
 			LOGGER.log(Level.SEVERE, "Game ruined", e);

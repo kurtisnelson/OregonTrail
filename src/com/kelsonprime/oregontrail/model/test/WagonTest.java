@@ -3,6 +3,7 @@ package com.kelsonprime.oregontrail.model.test;
 import java.util.LinkedList;
 import java.util.List;
 import org.junit.*;
+
 import static org.junit.Assert.*;
 import com.kelsonprime.oregontrail.controller.Game;
 import com.kelsonprime.oregontrail.controller.Ration;

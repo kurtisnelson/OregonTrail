@@ -44,7 +44,8 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 	private JLabel bulletsTotal;
 	private JLabel foodTotal;
 	private int moneySpent;
-	private JLabel moneyLabel, totalPurchase, totalLeft;
+	private int weightUsed;
+	private JLabel moneyLabel, totalPurchase, totalLeft, weightLabel, totalWeightAdded, weightLeft;
 
 	
 	//TODO Update the wagon's weight statistics on the shop GUI
@@ -295,6 +296,15 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 		totalLeft = new JLabel("Money Left: $"
 				+ Integer.toString(wagon.getMoney() - moneySpent));
 		info.add(totalLeft);
+		
+		weightLabel = new JLabel("Total Capacity: " + (Wagon.MAXWEIGHT - wagon.getWeight()) + "lbs");
+		info.add(weightLabel);
+		
+		totalWeightAdded  = new JLabel("Weight Added: 0lbs");
+		info.add(totalWeightAdded);
+		
+		weightLeft = new JLabel("Capacity Left: " + (Wagon.MAXWEIGHT - wagon.getWeight()) + "lbs");
+		info.add(weightLeft);
 
 	}
 	
@@ -381,9 +391,26 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 					* Integer.valueOf(bulletQuantity.getText())
 					+ shop.foodPrice()
 					* Integer.valueOf(foodQuantity.getText());
+			weightUsed = Wagon.getItemWeight("axle")
+					* Integer.valueOf(axleQuantity.getText())
+					+ Wagon.getItemWeight("whee;")
+					* Integer.valueOf(wheelQuantity.getText())
+					+ Wagon.getItemWeight("tongue")
+					* Integer.valueOf(tongueQuantity.getText())
+					+ Wagon.getItemWeight("oxen")
+					* Integer.valueOf(oxenQuantity.getText())
+					+ Wagon.getItemWeight("clothes")
+					* Integer.valueOf(clothesQuantity.getText())
+					+ Wagon.getItemWeight("bullets")
+					* Integer.valueOf(bulletQuantity.getText())
+					+ Wagon.getItemWeight("food")
+					* Integer.valueOf(foodQuantity.getText());
 			moneyLabel.setText("Total Money: $"+Integer.toString(wagon.getMoney()));
 			totalPurchase.setText("Total Purchase: $"+moneySpent);
 			totalLeft.setText("Money Left: $" + (wagon.getMoney() - moneySpent));
+			weightLabel.setText("Total Capacity: "+Integer.toString((Wagon.MAXWEIGHT - wagon.getWeight())));
+			totalWeightAdded.setText("Weight Added: "+ weightUsed);
+			weightLeft.setText("Capacity Left: " + ((Wagon.MAXWEIGHT - wagon.getWeight()) - weightUsed));
 		} catch (java.lang.NumberFormatException e) {
 			//Let's just ignore their input and throw an error if they try to go through
 		}
