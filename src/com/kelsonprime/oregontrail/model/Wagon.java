@@ -2,8 +2,6 @@ package com.kelsonprime.oregontrail.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-
 import com.kelsonprime.oregontrail.controller.Game;
 import com.kelsonprime.oregontrail.controller.Ration;
 import com.kelsonprime.oregontrail.controller.Time;
@@ -129,6 +127,7 @@ public class Wagon implements Time {
 	 * Checks if added weight would overload wagon
 	 * @param weight to be added
 	 * @return true if wagon would be ok, false if overweight.
+	 * @pre weight > 0
 	 */
 	public boolean checkWeight(int weight){
 		if (wagonWeight + weight > MAXWEIGHT){
@@ -139,9 +138,13 @@ public class Wagon implements Time {
 		
 	}
 	
+	/**
+	 * Get how much an instance of a String backed item weighs
+	 * @param item Item string constant
+	 * @return Weight of item
+	 * @pre item == Wagon.BULLETS || item == Wagon.FOOD || item == Wagon.CLOTHES
+	 */
 	public static int getItemWeight(String item){
-		
-		
 		if(item.equals(BULLETS)){
 			return 1;
 		}else if(item.equals(FOOD)){
@@ -152,19 +155,29 @@ public class Wagon implements Time {
 		return 0;
 	}
 	
+	/**
+	 * Puts a part in the wagon
+	 * @param part Part to add to the wagon
+	 * @throws UserInputException If adding the part would make it overweight
+	 */
 	public void add(Part part) throws UserInputException{
-		
-		if (checkWeight(part.getWeight())){
+		if (part != null && checkWeight(part.getWeight())){
 			spareParts.add(part);
 		}else {
-			throw new UserInputException(part.toString() + " is too heavy for the Waogn!");
+			throw new UserInputException(part + " is too heavy for the Waogn!");
 		}
 		this.repair();
 	}
 
+	/**
+	 * Puts a quantity of a String based item in the wagon.
+	 * @param item Wagon String constant representing the item
+	 * @param quantity Number of item to add
+	 * @throws UserInputException If adding the items would make it overweight
+	 * @pre item != null && quantity >= 0
+	 */
 	public void add(String item, int quantity) throws UserInputException{
-
-		if (checkWeight(getItemWeight(item))){		
+		if (checkWeight(quantity * getItemWeight(item))){		
 			if(item.equals(OXEN)){
 				oxen += quantity;
 			}else if(item.equals(BULLETS)){
@@ -175,35 +188,37 @@ public class Wagon implements Time {
 				clothes += quantity;
 			}
 		}else {
-			throw new UserInputException(item.toString() + " is too heavy for the wagon!");
+			throw new UserInputException(item + " is too heavy for the wagon!");
 		}
 	}
 	
 	/**
 	 * Repairs the wagon with available parts
-	 * @return Wagon fully repaired
+	 * @return Wagon was fully repaired
+	 * @post brokenCount >= 0
 	 */
 	public boolean repair(){
-		
+		int brokenCount = 0;
 		for (int i = 0; i < activeParts.size(); i++){
 			if (activeParts.get(i).getHealth() <= 0){
-				Part newTemp = null;
+				Part broken = activeParts.remove(i);
+				brokenCount++;
 				for (int j = 0; j < spareParts.size(); j++){
-					if (spareParts.get(j).toString().equals(activeParts.get(i).toString())){
-						newTemp = spareParts.get(j);
-						spareParts.remove(j);
+					if (broken.getClass().equals(spareParts.get(j).getClass())){
+						activeParts.add(spareParts.remove(j));
+						brokenCount--;
 						break;
 					}
 				}
-				activeParts.set(i, newTemp);
 			}
 		}
-		return true;
+		return brokenCount == 0;
 	}
 
 	@Override
 	public boolean isReady() {
 		boolean ready = true;
+		repair();
 		//Check parts
 		int wheel = 0;
 		int tongue = 0;
@@ -217,7 +232,7 @@ public class Wagon implements Time {
 				axle++;
 			}
 		}
-		if(oxen < 1)
+		if(countOxen() < 1)
 			ready = false;
 		if(axle < 2)
 			ready = false;
@@ -228,7 +243,7 @@ public class Wagon implements Time {
 		//check if player is dead
 		for (Companion comp : party){
 			if (comp instanceof Player) {
-				if (!(comp.isReady())){
+				if (!comp.isReady()){
 					ready = false;
 					break;
 				}
@@ -237,10 +252,18 @@ public class Wagon implements Time {
 		return ready;		
 	}
 	
+	/**
+	 * Count how many oxen are attached to the Wagon
+	 * @return Count of oxen
+	 */
 	public int countOxen(){
 		return oxen;
 	}
 	
+	/**
+	 * Count how many spare axles are being carried
+	 * @return Count of spare axles
+	 */
 	public int countAxles(){
 
 		int ret=0;
@@ -251,6 +274,10 @@ public class Wagon implements Time {
 		return ret;
 	}
 	
+	/**
+	 * Count how many spare wheels are being carried
+	 * @return Count of spare wheels
+	 */
 	public int countWheels(){
 		int ret=0;
 		for(Part part : spareParts){
@@ -260,6 +287,10 @@ public class Wagon implements Time {
 		return ret;
 	}
 	
+	/**
+	 * Count how many spare tongues are being carried
+	 * @return Count of spare tongues
+	 */
 	public int countTongues(){
 
 		int ret=0;
@@ -270,14 +301,26 @@ public class Wagon implements Time {
 		return ret;
 	}
 	
+	/**
+	 * Count how many clothes are in the wagon
+	 * @return Count of clothes
+	 */
 	public int countClothes(){
 		return clothes;
 	}
 	
+	/**
+	 * Count how many bullets are in the wagon
+	 * @return Count of bullets
+	 */
 	public int countBullets(){
 		return bullets;
 	}
 	
+	/**
+	 * Count how much food is in the wagon
+	 * @return Count of food
+	 */
 	public int countFood(){
 		return food;
 	}

@@ -11,7 +11,17 @@ public class Tongue extends Part {
 	}
 	
 	public String toString() {
-		return "Tongue";
+		return "Tongue at "+health;
 	}
 
+	@Override
+	public int compareTo(Object o) {
+		if(o instanceof Tongue){
+			Tongue ot = (Tongue) o;
+			return ot.health - this.health;
+		}
+		return this.toString().compareTo(o.toString());
+	}
+
+	
 }

@@ -1,7 +1,5 @@
 package com.kelsonprime.oregontrail.model;
 
-import com.kelsonprime.oregontrail.controller.Game;
-
 /**
  * Represents an Axle. Inherits from Part
  * @author Aman
@@ -28,5 +26,14 @@ public class Axle extends Part {
 	 */
 	public String toString() {
 		return "Axle";
+	}
+	
+	@Override
+	public int compareTo(Object o) {
+		if(o instanceof Axle){
+			Axle ot = (Axle) o;
+			return ot.health - this.health;
+		}
+		return this.toString().compareTo(o.toString());
 	}
 }

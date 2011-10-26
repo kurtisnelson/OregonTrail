@@ -13,4 +13,13 @@ public class Wheel extends Part {
 	public String toString() {
 		return "Wheel";
 	}
+
+	@Override
+	public int compareTo(Object o) {
+		if(o instanceof Wheel){
+			Wheel ot = (Wheel) o;
+			return ot.health - this.health;
+		}
+		return this.toString().compareTo(o.toString());
+	}
 }

@@ -3,7 +3,7 @@ package com.kelsonprime.oregontrail.model;
 import com.kelsonprime.oregontrail.controller.Game;
 import com.kelsonprime.oregontrail.controller.Time;
 
-public abstract class Part implements Time {
+public abstract class Part implements Time, Comparable<Object> {
 	protected int health;
 	protected int weight;
 	protected final double WEARRATIO = .01;
