@@ -35,10 +35,12 @@ public class TravelScreen extends JPanel {
 		
 		Button change = new Button(new ImageIcon("images/UpdateButton.png"));
 		change.setPreferredSize(new Dimension(100, 50));
+		change.setBorder(null);
 		change.setActionCommand("change");
 		
 		Button rest = new Button(new ImageIcon("images/RestButton.png"));
 		rest.setPreferredSize(new Dimension(100, 50));
+		rest.setBorder(null);
 		rest.setActionCommand("rest");
 		
 		ButtonListener listen = new ButtonListener();
