@@ -27,7 +27,7 @@ public class Wagon implements Time {
 	private List<Companion> party;
 	private int money;
 	private int wagonWeight;
-	static final int MAXWEIGHT = 2000;
+	public static final int MAXWEIGHT = 2000;
 
 	/**
 	 * Create an empty wagon with fresh parts and put in companions.
@@ -172,6 +172,7 @@ public class Wagon implements Time {
 		}else {
 			throw new UserInputException(part + " is too heavy for the Wagon!");
 		}
+		addWeight(Wagon.getItemWeight(part.toString()));
 		this.repair();
 	}
 
@@ -193,6 +194,7 @@ public class Wagon implements Time {
 			}else if(item.equals(CLOTHES)){
 				clothes += quantity;
 			}
+			addWeight(Wagon.getItemWeight(item)*quantity);
 		}else {
 			throw new UserInputException(item + " is too heavy for the wagon!");
 		}
