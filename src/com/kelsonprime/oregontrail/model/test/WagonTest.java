@@ -157,8 +157,24 @@ public class WagonTest {
 		int quantity = 1;
 
 		fixture.add(item, quantity);
-
-		// add additional test code here
+		assertEquals(0, fixture.getWeight());
+		assertEquals(0, fixture.countAxles());
+		assertEquals(0, fixture.countBullets());
+		fixture.add("clothes", 1);
+		assertEquals(1, fixture.countClothes());
+		fixture.add(Wagon.CLOTHES, 5);
+		assertEquals(6, fixture.countClothes());
+		fixture.add(Wagon.BULLETS, 100);
+		assertEquals(100, fixture.countBullets());
+		fixture.add(Wagon.OXEN, 2);
+		fixture.add(Wagon.FOOD, 879);
+		assertEquals(2, fixture.countOxen());
+		assertEquals(879, fixture.countFood());
+		assertEquals(0, fixture.countAxles());
+		fixture.add("INVALID", 500);
+		assertEquals(2, fixture.countOxen());
+		assertEquals(879, fixture.countFood());
+		assertEquals(0, fixture.countAxles());
 	}
 
 	/**
@@ -174,10 +190,21 @@ public class WagonTest {
 		Wagon fixture = WagonFactory.createWagon2();
 		String item = "clothes";
 		int quantity = 1;
-
 		fixture.add(item, quantity);
-
-		// add additional test code here
+		assertEquals(1, fixture.countClothes());
+		fixture.add(Wagon.CLOTHES, 5);
+		assertEquals(6, fixture.countClothes());
+		fixture.add(Wagon.BULLETS, 100);
+		assertEquals(100, fixture.countBullets());
+		fixture.add(Wagon.OXEN, 2);
+		fixture.add(Wagon.FOOD, 879);
+		assertEquals(2, fixture.countOxen());
+		assertEquals(879, fixture.countFood());
+		assertEquals(0, fixture.countAxles());
+		fixture.add("INVALID", 500);
+		assertEquals(2, fixture.countOxen());
+		assertEquals(879, fixture.countFood());
+		assertEquals(0, fixture.countAxles());
 	}
 
 	/**
