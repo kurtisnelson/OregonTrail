@@ -50,7 +50,7 @@
 		</javadoc>
 	</target>
 
-	<target name="all" depends="prepare,compile,jar,run">
+	<target name="all" depends="prepare,compile">
 	</target>
 
 	<target name="push"
