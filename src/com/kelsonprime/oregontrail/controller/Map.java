@@ -3,13 +3,14 @@ package com.kelsonprime.oregontrail.controller;
 import com.kelsonprime.oregontrail.model.Destination;
 import com.kelsonprime.oregontrail.model.Location;
 import com.kelsonprime.oregontrail.model.Shop;
+import com.kelsonprime.oregontrail.model.Wagon;
 
 /**
  * Represents the game's map
  * @author Kurt Nelson
  * @version 1.0
  */
-public class Map {
+public class Map implements Time{
 
 	private Location start;
 	private int traveled;
@@ -92,10 +93,6 @@ public class Map {
 		}
 		return cur;
 	}
-	
-	void passDay(Game game) {
-		// TODO look at pace and # of oxen and move appropriately
-	}
 
 	/**
 	 * Gets current location
@@ -116,4 +113,16 @@ public class Map {
 		return traverse(traveled);
 	}
 
+	@Override
+	public boolean isReady() {
+		return true;
+	}
+	
+	@Override
+	public void nextDay(Game game) {
+		//look at pace and # of oxen and move appropriately
+		Wagon w = game.getWagon();
+		Pace p = game.getPace();
+		this.travel(p.getRate() * w.countOxen());
+	}
 }

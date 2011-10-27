@@ -59,13 +59,13 @@ public class Wagon implements Time {
 	}
 
 	/**
+	 * Progress a day in time
 	 * @pre party.length() > 0 && game != null
 	 * @invariant money, bullets
 	 * @post food < $pre(int, food)
 	 */
 	@Override
 	public void nextDay(Game game) {
-		// TODO method stub
 		for (Companion person : party) {
 			person.nextDay(game);
 		}
@@ -76,13 +76,17 @@ public class Wagon implements Time {
 
 		switch (game.getRation()) {
 		case BARE:
-			food -= 1;
+			food -= 1 * party.size();
+			break;
 		case MEAGER:
-			food -= 3;
+			food -= 3 * party.size();
+			break;
 		case NORMAL:
-			food -= 5;
+			food -= 5 * party.size();
+			break;
 		case WELLFED:
-			food -= 7;
+			food -= 7 * party.size();
+			break;
 		}
 
 		if (food < 0) {
