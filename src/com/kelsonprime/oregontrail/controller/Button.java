@@ -17,6 +17,8 @@ public class Button extends JButton {
 		buttonImage = img;
 		setPreferredSize(new Dimension(100, 50));
 		setBackground(new Color(0,0,0,0));
+		setOpaque(false);
+		setContentAreaFilled(false);
 	}
 	
 	public void paintComponent(Graphics g){
