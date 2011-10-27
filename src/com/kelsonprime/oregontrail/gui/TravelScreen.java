@@ -57,7 +57,6 @@ public class TravelScreen extends JPanel {
 	public void paintComponent(Graphics g){
 		Image regBG = new ImageIcon("images/OregonTrailTravelingScreenRegular.jpg").getImage();
 		Image wagonA = new ImageIcon("images/OregonTrailIcon.png").getImage();
-		Image wagonB = new ImageIcon("images/OregonTrailIcon.png").getImage();
 		g.drawImage(regBG, 0, 0, this);
 		g.drawImage(wagonA, 400, 120, this);
 	}
