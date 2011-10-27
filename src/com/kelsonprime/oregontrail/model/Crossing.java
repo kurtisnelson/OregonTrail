@@ -4,26 +4,40 @@ public class Crossing extends Location {
 
 	private int depth;
 	private int width;
-	private int fordCost;
-	private int floatCost;
 	private int ferryCost;
 
-	public Crossing(String name) {
+	public Crossing(String name, int depth, int width) {
 		super(name);
+		this.depth = depth;
+		this.width = width;
+		ferryCost = 0;
 	}
 
+	public String describe(){
+		StringBuilder ret = new StringBuilder();
+		ret.append("This crossing is "+depth+" deep and "+width+" wide.\n");
+		if(isFerry())
+			ret.append("There is a ferry that costs "+ferryCost+".\n");
+		else
+			ret.append("There is no ferry.\n");
+		return ret.toString();
+	}
+	
 	public String ford() {
-		// TODO method stub
 		return null;
 	}
 
 	public String caulk() {
-		// TODO method stub
 		return null;
 	}
 
+	public boolean isFerry(){
+		return ferryCost > 0;
+	}
+
 	public String ferry() {
-		// TODO method stub
+		if(ferryCost <= 0)
+			return "There is no ferry here.";
 		return null;
 	}
 
