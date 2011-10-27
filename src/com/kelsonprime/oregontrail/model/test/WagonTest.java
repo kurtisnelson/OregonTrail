@@ -7,9 +7,11 @@ import org.junit.*;
 import static org.junit.Assert.*;
 import com.kelsonprime.oregontrail.controller.Game;
 import com.kelsonprime.oregontrail.controller.Ration;
+import com.kelsonprime.oregontrail.controller.UserInputException;
 import com.kelsonprime.oregontrail.model.Axle;
 import com.kelsonprime.oregontrail.model.Banker;
 import com.kelsonprime.oregontrail.model.Companion;
+import com.kelsonprime.oregontrail.model.Item;
 import com.kelsonprime.oregontrail.model.Part;
 import com.kelsonprime.oregontrail.model.Player;
 import com.kelsonprime.oregontrail.model.Tongue;
@@ -81,7 +83,7 @@ public class WagonTest {
 		assertEquals(0, fixture.countAxles());
 		assertEquals(1, fixture.countTongues());
 		assertEquals(1, fixture.countWheels());
-		assertEquals(part2.getWeight() + part3.getWeight(), fixture.getWeight());
+		assertEquals(Part.getWeight(part2) + Part.getWeight(part3), fixture.getWeight());
 	}
 
 	/**
@@ -110,7 +112,7 @@ public class WagonTest {
 		assertEquals(1, fixture.countAxles());
 		assertEquals(1, fixture.countTongues());
 		assertEquals(1, fixture.countWheels());
-		assertEquals(part.getWeight() + part2.getWeight() + part3.getWeight(), fixture.getWeight());
+		assertEquals(Part.getWeight(part) + Part.getWeight(part2) + Part.getWeight(part3), fixture.getWeight());
 	}
 
 	/**
@@ -139,149 +141,71 @@ public class WagonTest {
 		assertEquals(1, fixture.countAxles());
 		assertEquals(1, fixture.countTongues());
 		assertEquals(1, fixture.countWheels());
-		assertEquals(part.getWeight() + part2.getWeight() + part3.getWeight(), fixture.getWeight());
+		assertEquals(Part.getWeight(part) + Part.getWeight(part2) + Part.getWeight(part3), fixture.getWeight());
 		// add additional test code here
 	}
 
 	/**
-	 * Run the void add(String,int) method test.
-	 *
+	 * Run the void add(String,int) method tests.
 	 * @throws Exception
-	 *
-	 * @generatedBy CodePro at 10/26/11 1:23 AM
 	 */
 	@Test
-	public void testAdd_4()
+	public void testAdd()
 		throws Exception {
 		Wagon fixture = WagonFactory.createWagon();
-		String item = "";
+		testAdd(fixture);
+		fixture = WagonFactory.createWagon2();
+		testAdd(fixture);
+	}
+	
+	public void testAdd(Wagon fixture) throws Exception{
 		int quantity = 1;
-
-		fixture.add(item, quantity);
-		assertEquals(0, fixture.getWeight());
+		fixture.add(Item.BULLETS, quantity);
+		assertEquals(Item.BULLETS.getWeight()*quantity, fixture.getWeight());
 		assertEquals(0, fixture.countAxles());
-		assertEquals(0, fixture.countBullets());
-		fixture.add("clothes", 1);
+		assertEquals(1, fixture.countBullets());
+		fixture.add(Item.CLOTHES, 1);
 		assertEquals(1, fixture.countClothes());
-		fixture.add(Wagon.CLOTHES, 5);
+		fixture.add(Item.CLOTHES, 5);
 		assertEquals(6, fixture.countClothes());
-		fixture.add(Wagon.BULLETS, 100);
-		assertEquals(100, fixture.countBullets());
-		fixture.add(Wagon.OXEN, 2);
-		fixture.add(Wagon.FOOD, 879);
+		fixture.add(Item.BULLETS, 100);
+		assertEquals(101, fixture.countBullets());
+		fixture.add(Item.OXEN, 2);
+		fixture.add(Item.FOOD, 879);
 		assertEquals(2, fixture.countOxen());
 		assertEquals(879, fixture.countFood());
 		assertEquals(0, fixture.countAxles());
-		fixture.add("INVALID", 500);
-		assertEquals(2, fixture.countOxen());
-		assertEquals(879, fixture.countFood());
-		assertEquals(0, fixture.countAxles());
+		
+		boolean thrown = false;
+		try{
+			int weight = fixture.getWeight();
+			int count = (weight + 1)/Item.BULLETS.getWeight();
+			fixture.add(Item.BULLETS, 2000);
+		}catch(UserInputException e){
+			thrown = true;
+		}
+		assertTrue("Wagon overweight exception not thrown", thrown);
 	}
 
 	/**
-	 * Run the void add(String,int) method test.
+	 * Run the void add(null,int) method test.
 	 *
 	 * @throws Exception
 	 *
 	 * @generatedBy CodePro at 10/26/11 1:23 AM
 	 */
 	@Test
-	public void testAdd_5()
+	public void nullAdd()
 		throws Exception {
 		Wagon fixture = WagonFactory.createWagon2();
-		String item = "clothes";
 		int quantity = 1;
-		fixture.add(item, quantity);
-		assertEquals(1, fixture.countClothes());
-		fixture.add(Wagon.CLOTHES, 5);
-		assertEquals(6, fixture.countClothes());
-		fixture.add(Wagon.BULLETS, 100);
-		assertEquals(100, fixture.countBullets());
-		fixture.add(Wagon.OXEN, 2);
-		fixture.add(Wagon.FOOD, 879);
-		assertEquals(2, fixture.countOxen());
-		assertEquals(879, fixture.countFood());
-		assertEquals(0, fixture.countAxles());
-		fixture.add("INVALID", 500);
-		assertEquals(2, fixture.countOxen());
-		assertEquals(879, fixture.countFood());
-		assertEquals(0, fixture.countAxles());
-	}
-
-	/**
-	 * Run the void add(String,int) method test.
-	 *
-	 * @throws Exception
-	 *
-	 * @generatedBy CodePro at 10/26/11 1:23 AM
-	 */
-	@Test
-	public void testAdd_6()
-		throws Exception {
-		Wagon fixture = WagonFactory.createWagon();
-		String item = "";
-		int quantity = 1;
-
-		fixture.add(item, quantity);
-
-		// add additional test code here
-	}
-
-	/**
-	 * Run the void add(String,int) method test.
-	 *
-	 * @throws Exception
-	 *
-	 * @generatedBy CodePro at 10/26/11 1:23 AM
-	 */
-	@Test
-	public void testAdd_7()
-		throws Exception {
-		Wagon fixture = WagonFactory.createWagon2();
-		String item = "food";
-		int quantity = 1;
-
-		fixture.add(item, quantity);
-
-		// add additional test code here
-	}
-
-	/**
-	 * Run the void add(String,int) method test.
-	 *
-	 * @throws Exception
-	 *
-	 * @generatedBy CodePro at 10/26/11 1:23 AM
-	 */
-	@Test
-	public void testAdd_8()
-		throws Exception {
-		Wagon fixture = WagonFactory.createWagon();
-		String item = "bullets";
-		int quantity = 1;
-
-		fixture.add(item, quantity);
-
-		// add additional test code here
-	}
-
-	/**
-	 * Run the void add(String,int) method test.
-	 *
-	 * @throws Exception
-	 *
-	 * @generatedBy CodePro at 10/26/11 1:23 AM
-	 */
-	@Test
-	public void testAdd_9()
-		throws Exception {
-		Wagon fixture = WagonFactory.createWagon2();
-		String item = "oxen";
-		int quantity = 1;
-
-		fixture.add(item, quantity);
-
-		// add additional test code here
+		boolean thrown = false;
+		try{
+		fixture.add(null, quantity);
+		}catch(NullPointerException e){
+			thrown = true;
+		}
+		assertTrue("Add method did not fail on invalid Item", thrown);
 	}
 
 	/**
@@ -612,77 +536,6 @@ public class WagonTest {
 		assertEquals(0, result);
 	}
 
-	/**
-	 * Run the int getItemWeight(String) method test.
-	 *
-	 * @throws Exception
-	 *
-	 * @generatedBy CodePro at 10/26/11 1:23 AM
-	 */
-	@Test
-	public void testGetItemWeight_1()
-		throws Exception {
-		String item = "bullets";
-
-		int result = Wagon.getItemWeight(item);
-
-		// add additional test code here
-		assertEquals(1, result);
-	}
-
-	/**
-	 * Run the int getItemWeight(String) method test.
-	 *
-	 * @throws Exception
-	 *
-	 * @generatedBy CodePro at 10/26/11 1:23 AM
-	 */
-	@Test
-	public void testGetItemWeight_2()
-		throws Exception {
-		String item = "food";
-
-		int result = Wagon.getItemWeight(item);
-
-		// add additional test code here
-		assertEquals(5, result);
-	}
-
-	/**
-	 * Run the int getItemWeight(String) method test.
-	 *
-	 * @throws Exception
-	 *
-	 * @generatedBy CodePro at 10/26/11 1:23 AM
-	 */
-	@Test
-	public void testGetItemWeight_3()
-		throws Exception {
-		String item = "clothes";
-
-		int result = Wagon.getItemWeight(item);
-
-		// add additional test code here
-		assertEquals(5, result);
-	}
-
-	/**
-	 * Run the int getItemWeight(String) method test.
-	 *
-	 * @throws Exception
-	 *
-	 * @generatedBy CodePro at 10/26/11 1:23 AM
-	 */
-	@Test
-	public void testGetItemWeight_4()
-		throws Exception {
-		String item = "";
-
-		int result = Wagon.getItemWeight(item);
-
-		// add additional test code here
-		assertEquals(0, result);
-	}
 
 	/**
 	 * Run the int getMoney() method test.

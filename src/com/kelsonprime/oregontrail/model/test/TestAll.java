@@ -9,7 +9,7 @@ import org.junit.runners.Suite;
  * of the tests within its package as well as within any subpackages of its
  * package.
  *
- * @generatedBy CodePro at 10/26/11 1:32 AM
+ * @generatedBy CodePro at 10/26/11 11:24 PM
  * @author kurt
  * @version $Revision: 1.0 $
  */
@@ -24,7 +24,7 @@ public class TestAll {
 	 *
 	 * @param args the command line arguments
 	 *
-	 * @generatedBy CodePro at 10/26/11 1:32 AM
+	 * @generatedBy CodePro at 10/26/11 11:24 PM
 	 */
 	public static void main(String[] args) {
 		JUnitCore.runClasses(new Class[] { TestAll.class });

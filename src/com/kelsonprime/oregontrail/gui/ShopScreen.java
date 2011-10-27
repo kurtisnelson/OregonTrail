@@ -16,8 +16,13 @@ import javax.swing.JTextField;
 import com.kelsonprime.oregontrail.controller.IconFactory;
 import com.kelsonprime.oregontrail.controller.Threader;
 import com.kelsonprime.oregontrail.controller.UserInputException;
+import com.kelsonprime.oregontrail.model.Axle;
+import com.kelsonprime.oregontrail.model.Item;
 import com.kelsonprime.oregontrail.model.Shop;
+import com.kelsonprime.oregontrail.model.Tongue;
 import com.kelsonprime.oregontrail.model.Wagon;
+import com.kelsonprime.oregontrail.model.Wheel;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
@@ -45,12 +50,12 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 	private JLabel foodTotal;
 	private int moneySpent;
 	private int weightUsed;
-	private JLabel moneyLabel, totalPurchase, totalLeft, weightLabel, totalWeightAdded, weightLeft;
+	private JLabel moneyLabel, totalPurchase, totalLeft, weightLabel,
+			totalWeightAdded, weightLeft;
 
-	
-	//TODO Update the wagon's weight statistics on the shop GUI
+	// TODO Update the wagon's weight statistics on the shop GUI
 	public ShopScreen(OregonTrail app, Shop shop) {
-		super(app); 
+		super(app);
 		this.shop = shop;
 		this.wagon = app.getWagon();
 		setSize(new Dimension(600, 300));
@@ -82,7 +87,7 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 		items.setBounds(268, 40, 304, 248);
 		add(items);
 		items.setLayout(new GridLayout(0, 4, 5, 5));
-		
+
 		JLabel itemLabel = new JLabel("Item");
 		JLabel quantityLabel = new JLabel("Quantity?");
 		JLabel priceLabel = new JLabel("Price");
@@ -93,7 +98,7 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 		items.add(quantityLabel);
 		items.add(priceLabel);
 		items.add(totalLabel);
-		
+
 		JLabel oxenLabel = new JLabel("Oxen");
 		items.add(oxenLabel);
 
@@ -110,7 +115,7 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 		oxenPrice.setFont(new Font("STIXGeneral", Font.PLAIN, 14));
 		oxenPrice.setHorizontalAlignment(SwingConstants.CENTER);
 		items.add(oxenPrice);
-		
+
 		oxenTotal = new JLabel(Integer.toString(wagon.countOxen()));
 		oxenTotal.setFont(new Font("STIXGeneral", Font.PLAIN, 14));
 		oxenTotal.setHorizontalAlignment(SwingConstants.CENTER);
@@ -132,7 +137,7 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 		axlePrice.setFont(new Font("STIXGeneral", Font.PLAIN, 14));
 		axlePrice.setHorizontalAlignment(SwingConstants.CENTER);
 		items.add(axlePrice);
-		
+
 		axleTotal = new JLabel(Integer.toString(wagon.countAxles()));
 		axleTotal.setFont(new Font("STIXGeneral", Font.PLAIN, 14));
 		axleTotal.setHorizontalAlignment(SwingConstants.CENTER);
@@ -154,7 +159,7 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 		wheelPrice.setFont(new Font("STIXGeneral", Font.PLAIN, 14));
 		wheelPrice.setHorizontalAlignment(SwingConstants.CENTER);
 		items.add(wheelPrice);
-		
+
 		wheelTotal = new JLabel(Integer.toString(wagon.countWheels()));
 		wheelTotal.setFont(new Font("STIXGeneral", Font.PLAIN, 14));
 		wheelTotal.setHorizontalAlignment(SwingConstants.CENTER);
@@ -176,7 +181,7 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 		tonguePrice.setFont(new Font("STIXGeneral", Font.PLAIN, 14));
 		tonguePrice.setHorizontalAlignment(SwingConstants.CENTER);
 		items.add(tonguePrice);
-		
+
 		tongueTotal = new JLabel(Integer.toString(wagon.countTongues()));
 		tongueTotal.setFont(new Font("STIXGeneral", Font.PLAIN, 14));
 		tongueTotal.setHorizontalAlignment(SwingConstants.CENTER);
@@ -198,7 +203,7 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 		clothesPrice.setFont(new Font("STIXGeneral", Font.PLAIN, 14));
 		clothesPrice.setHorizontalAlignment(SwingConstants.CENTER);
 		items.add(clothesPrice);
-		
+
 		clothesTotal = new JLabel(Integer.toString(wagon.countClothes()));
 		clothesTotal.setFont(new Font("STIXGeneral", Font.PLAIN, 14));
 		clothesTotal.setHorizontalAlignment(SwingConstants.CENTER);
@@ -220,7 +225,7 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 		bulletPrice.setFont(new Font("STIXGeneral", Font.PLAIN, 14));
 		bulletPrice.setHorizontalAlignment(SwingConstants.CENTER);
 		items.add(bulletPrice);
-		
+
 		bulletsTotal = new JLabel(Integer.toString(wagon.countBullets()));
 		bulletsTotal.setFont(new Font("STIXGeneral", Font.PLAIN, 14));
 		bulletsTotal.setHorizontalAlignment(SwingConstants.CENTER);
@@ -242,7 +247,7 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 		foodPrice.setFont(new Font("STIXGeneral", Font.PLAIN, 14));
 		foodPrice.setHorizontalAlignment(SwingConstants.CENTER);
 		items.add(foodPrice);
-		
+
 		foodTotal = new JLabel(Integer.toString(wagon.countFood()));
 		foodTotal.setFont(new Font("STIXGeneral", Font.PLAIN, 14));
 		foodTotal.setHorizontalAlignment(SwingConstants.CENTER);
@@ -296,19 +301,21 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 		totalLeft = new JLabel("Money Left: $"
 				+ Integer.toString(wagon.getMoney() - moneySpent));
 		info.add(totalLeft);
-		
-		weightLabel = new JLabel("Total Capacity: " + (Wagon.MAXWEIGHT - wagon.getWeight()) + "lbs");
+
+		weightLabel = new JLabel("Total Capacity: "
+				+ (Wagon.MAXWEIGHT - wagon.getWeight()) + "lbs");
 		info.add(weightLabel);
-		
-		totalWeightAdded  = new JLabel("Weight Added: 0lbs");
+
+		totalWeightAdded = new JLabel("Weight Added: 0lbs");
 		info.add(totalWeightAdded);
-		
-		weightLeft = new JLabel("Capacity Left: " + (Wagon.MAXWEIGHT - wagon.getWeight()) + "lbs");
+
+		weightLeft = new JLabel("Capacity Left: "
+				+ (Wagon.MAXWEIGHT - wagon.getWeight()) + "lbs");
 		info.add(weightLeft);
 
 	}
-	
-	public void sellItems(){
+
+	public void sellItems() {
 		int axles;
 		int wheels;
 		int tongues;
@@ -327,27 +334,31 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 			food = Integer.valueOf(foodQuantity.getText());
 		} catch (java.lang.NumberFormatException e) {
 			sellAllowed = false;
-			JOptionPane.showMessageDialog(app.getFrame(), "Non-Numerical Input has been found!", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(app.getFrame(),
+					"Non-Numerical Input has been found!", "Invalid Input",
+					JOptionPane.ERROR_MESSAGE);
 			return;
 		}
-		
-		if (moneySpent<0){
+
+		if (moneySpent < 0) {
 			sellAllowed = false;
-			JOptionPane.showMessageDialog(app.getFrame(), "A Negative Input has been found!", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(app.getFrame(),
+					"A Negative Input has been found!", "Invalid Input",
+					JOptionPane.ERROR_MESSAGE);
 		}
-		
-		if (sellAllowed){
-			if ( (wagon.getMoney()-moneySpent) >= 0){
-				try{
+
+		if (sellAllowed) {
+			if ((wagon.getMoney() - moneySpent) >= 0) {
+				try {
 					shop.sellToWagon(wagon, axles, wheels, tongues);
-					shop.sellToWagon(wagon, Wagon.OXEN, oxen);
-					shop.sellToWagon(wagon, Wagon.CLOTHES, clothes);
-					shop.sellToWagon(wagon, Wagon.BULLETS, bullets);
-					shop.sellToWagon(wagon, Wagon.FOOD, food);
-				}catch(UserInputException e){
+					shop.sellToWagon(wagon, Item.OXEN, oxen);
+					shop.sellToWagon(wagon, Item.CLOTHES, clothes);
+					shop.sellToWagon(wagon, Item.BULLETS, bullets);
+					shop.sellToWagon(wagon, Item.FOOD, food);
+				} catch (UserInputException e) {
 					e.generateBox(app.getFrame());
 				}
-				
+
 				axleQuantity.setText("0");
 				wheelQuantity.setText("0");
 				tongueQuantity.setText("0");
@@ -356,9 +367,10 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 				bulletQuantity.setText("0");
 				foodQuantity.setText("0");
 				update();
-			}
-			else{
-				JOptionPane.showMessageDialog(app.getFrame(), "You do not have enough money to purchase!", "Not enough Money!", JOptionPane.ERROR_MESSAGE);
+			} else {
+				JOptionPane.showMessageDialog(app.getFrame(),
+						"You do not have enough money to purchase!",
+						"Not enough Money!", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 	}
@@ -375,47 +387,54 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 
 	public void update() {
 		Threader.executeNow(new Runnable() {
-			public void run(){
-		try {
-			moneySpent = shop.axlePrice()
-					* Integer.valueOf(axleQuantity.getText())
-					+ shop.wheelPrice()
-					* Integer.valueOf(wheelQuantity.getText())
-					+ shop.tonguePrice()
-					* Integer.valueOf(tongueQuantity.getText())
-					+ shop.oxenPrice()
-					* Integer.valueOf(oxenQuantity.getText())
-					+ shop.clothesPrice()
-					* Integer.valueOf(clothesQuantity.getText())
-					+ shop.bulletPrice()
-					* Integer.valueOf(bulletQuantity.getText())
-					+ shop.foodPrice()
-					* Integer.valueOf(foodQuantity.getText());
-			weightUsed = Wagon.getItemWeight("axle")
-					* Integer.valueOf(axleQuantity.getText())
-					+ Wagon.getItemWeight("whee;")
-					* Integer.valueOf(wheelQuantity.getText())
-					+ Wagon.getItemWeight("tongue")
-					* Integer.valueOf(tongueQuantity.getText())
-					+ Wagon.getItemWeight("oxen")
-					* Integer.valueOf(oxenQuantity.getText())
-					+ Wagon.getItemWeight("clothes")
-					* Integer.valueOf(clothesQuantity.getText())
-					+ Wagon.getItemWeight("bullets")
-					* Integer.valueOf(bulletQuantity.getText())
-					+ Wagon.getItemWeight("food")
-					* Integer.valueOf(foodQuantity.getText());
-			moneyLabel.setText("Total Money: $"+Integer.toString(wagon.getMoney()));
-			totalPurchase.setText("Total Purchase: $"+moneySpent);
-			totalLeft.setText("Money Left: $" + (wagon.getMoney() - moneySpent));
-			weightLabel.setText("Total Capacity: "+Integer.toString((Wagon.MAXWEIGHT - wagon.getWeight())));
-			totalWeightAdded.setText("Weight Added: "+ weightUsed);
-			weightLeft.setText("Capacity Left: " + ((Wagon.MAXWEIGHT - wagon.getWeight()) - weightUsed));
-		} catch (java.lang.NumberFormatException e) {
-			//Let's just ignore their input and throw an error if they try to go through
-		}
-		repaint();
-		}});
+			public void run() {
+				try {
+					moneySpent = shop.axlePrice()
+							* Integer.valueOf(axleQuantity.getText())
+							+ shop.wheelPrice()
+							* Integer.valueOf(wheelQuantity.getText())
+							+ shop.tonguePrice()
+							* Integer.valueOf(tongueQuantity.getText())
+							+ shop.oxenPrice()
+							* Integer.valueOf(oxenQuantity.getText())
+							+ shop.clothesPrice()
+							* Integer.valueOf(clothesQuantity.getText())
+							+ shop.bulletPrice()
+							* Integer.valueOf(bulletQuantity.getText())
+							+ shop.foodPrice()
+							* Integer.valueOf(foodQuantity.getText());
+					weightUsed = Axle.getWeight()
+							* Integer.valueOf(axleQuantity.getText())
+							+ Wheel.getWeight()
+							* Integer.valueOf(wheelQuantity.getText())
+							+ Tongue.getWeight()
+							* Integer.valueOf(tongueQuantity.getText())
+							+ Item.OXEN.getWeight()
+							* Integer.valueOf(oxenQuantity.getText())
+							+ Item.CLOTHES.getWeight()
+							* Integer.valueOf(clothesQuantity.getText())
+							+ Item.BULLETS.getWeight()
+							* Integer.valueOf(bulletQuantity.getText())
+							+ Item.FOOD.getWeight()
+							* Integer.valueOf(foodQuantity.getText());
+					moneyLabel.setText("Total Money: $"
+							+ Integer.toString(wagon.getMoney()));
+					totalPurchase.setText("Total Purchase: $" + moneySpent);
+					totalLeft.setText("Money Left: $"
+							+ (wagon.getMoney() - moneySpent));
+					weightLabel.setText("Total Capacity: "
+							+ Integer.toString((Wagon.MAXWEIGHT - wagon
+									.getWeight())));
+					totalWeightAdded.setText("Weight Added: " + weightUsed);
+					weightLeft.setText("Capacity Left: "
+							+ ((Wagon.MAXWEIGHT - wagon.getWeight()) - weightUsed));
+				} catch (java.lang.NumberFormatException e) {
+					// Let's just ignore their input and throw an error if they
+					// try to go through
+				}
+				repaint();
+			}
+		});
 
 	}
 

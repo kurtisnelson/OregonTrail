@@ -18,7 +18,7 @@ public class Axle extends Part {
 	 * Constructor with health given
 	 */
 	public Axle(int health) {
-		super(health, 5);
+		super(health);
 	}
 	
 	/**
@@ -26,6 +26,10 @@ public class Axle extends Part {
 	 */
 	public String toString() {
 		return "Axle";
+	}
+	
+	public static int getWeight(){
+		return 5;
 	}
 	
 	@Override

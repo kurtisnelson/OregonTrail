@@ -3,11 +3,15 @@ package com.kelsonprime.oregontrail.model;
 public class Tongue extends Part {
 
 	public Tongue(int health) {
-		super(health, 5);
+		super(health);
 	}
 
 	public Tongue() {
 		this(125);
+	}
+	
+	public static int getWeight(){
+		return 5;
 	}
 	
 	public String toString() {

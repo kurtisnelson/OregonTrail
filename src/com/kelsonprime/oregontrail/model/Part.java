@@ -5,17 +5,14 @@ import com.kelsonprime.oregontrail.controller.Time;
 
 public abstract class Part implements Time, Comparable<Object> {
 	protected int health;
-	protected int weight;
 	protected final double WEARRATIO = .01;
 	
 	public Part(){
 		this.health = 100;
-		this.weight = 1;
 	}
 	
-	public Part(int health, int weight) {
+	public Part(int health) {
 		this.health = health;
-		this.weight = weight;
 	}
 
 	public void nextDay(Game game) {
@@ -23,13 +20,20 @@ public abstract class Part implements Time, Comparable<Object> {
 		// TODO account for pace with game.getPace()
 	}
 	
+	public static int getWeight(Part p){
+		if(p instanceof Wheel){
+			return Wheel.getWeight();
+		}else if(p instanceof Tongue){
+			return Tongue.getWeight();
+		}else if(p instanceof Axle){
+			return Axle.getWeight();
+		}
+		return 0;
+	}
+	
 	@Override
 	public boolean isReady() {
 		return health > 0;
-	}
-	
-	public int getWeight(){
-		return weight;
 	}
 
 	public int getHealth(){

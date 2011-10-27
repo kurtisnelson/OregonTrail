@@ -9,12 +9,14 @@ import com.kelsonprime.oregontrail.controller.UserInputException;
 
 /**
  * Represent a <code>Location</code> that is a Shop
+ * 
  * @author Kurt Nelson
  * @version .1
  * @see com.kelsonprime.oregontrail.gui.ShopScreen
  */
 public class Shop extends Location {
-	private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+	private final static Logger LOGGER = Logger
+			.getLogger(Logger.GLOBAL_LOGGER_NAME);
 	private static final double PRICE_RATIO = .001;
 	private int oxenPrice;
 	private int foodPrice;
@@ -25,17 +27,23 @@ public class Shop extends Location {
 	private int axlePrice;
 
 	/**
-	 * Class constructor with default prices and no supply distance price scaling.
-	 * @param name How to label the store in UI
+	 * Class constructor with default prices and no supply distance price
+	 * scaling.
+	 * 
+	 * @param name
+	 *            How to label the store in UI
 	 */
-	public Shop(String name){
+	public Shop(String name) {
 		this(name, 0);
 	}
-	
+
 	/**
 	 * Class constructor with default prices
-	 * @param name How to label the store in UI
-	 * @param supplyDistance How far the store is from it's "supply"
+	 * 
+	 * @param name
+	 *            How to label the store in UI
+	 * @param supplyDistance
+	 *            How far the store is from it's "supply"
 	 * @post name != null
 	 */
 	public Shop(String name, int supplyDistance) {
@@ -52,12 +60,15 @@ public class Shop extends Location {
 
 	/**
 	 * Increase the prices to make up for distance from supply.
-	 * @param supplyDistance How far the store is from it's "supply"
+	 * 
+	 * @param supplyDistance
+	 *            How far the store is from it's "supply"
 	 * @pre supplyDistance >= 1
 	 * @invariant oxenPrice
-	 * @post foodPrice >= $pre(int, foodPrice) && clothesPrice >= $pre(int, clothesPrice)
+	 * @post foodPrice >= $pre(int, foodPrice) && clothesPrice >= $pre(int,
+	 *       clothesPrice)
 	 */
-	private void scalePrices(int supplyDistance){
+	private void scalePrices(int supplyDistance) {
 		double multiplier = (supplyDistance * PRICE_RATIO) + 1;
 		foodPrice *= multiplier;
 		clothesPrice *= multiplier;
@@ -68,85 +79,107 @@ public class Shop extends Location {
 	}
 
 	/**
-	 * Sell new <code>Part</code>s to <code>Wagon</code>. Puts <code>Part</code>s in a List and dumps off to helper method.
-	 * @param w Purchaser
-	 * @param axles Axle quantity
-	 * @param wheels Wheel quantity
-	 * @param tongues Tongue quantity
-	 * @throws UserInputException If <code>Wagon</code> will become overweight or not enough money is available.
+	 * Sell new <code>Part</code>s to <code>Wagon</code>. Puts <code>Part</code>
+	 * s in a List and dumps off to helper method.
+	 * 
+	 * @param w
+	 *            Purchaser
+	 * @param axles
+	 *            Axle quantity
+	 * @param wheels
+	 *            Wheel quantity
+	 * @param tongues
+	 *            Tongue quantity
+	 * @throws UserInputException
+	 *             If <code>Wagon</code> will become overweight or not enough
+	 *             money is available.
 	 * @post w.getMoney() < $pre(int, w.getMoney())
 	 */
-	public void sellToWagon(Wagon w, int axles, int wheels, int tongues) throws UserInputException{
+	public void sellToWagon(Wagon w, int axles, int wheels, int tongues)
+			throws UserInputException {
 		List<Part> parts = new LinkedList<Part>();
-		while(axles > 0){
+		while (axles > 0) {
 			parts.add(new Axle());
 			axles--;
 		}
-		while(wheels > 0){
+		while (wheels > 0) {
 			parts.add(new Wheel());
 			wheels--;
 		}
-		while(tongues > 0){
+		while (tongues > 0) {
 			parts.add(new Tongue());
 			tongues--;
 		}
 		this.sellToWagon(w, parts);
 	}
-	
+
 	/**
 	 * Helper method used to sell <code>Part</code>s to <code>Wagon</code>.
-	 * @param w Purchaser
-	 * @param parts Order
-	 * @throws UserInputException If <code>Wagon</code> will become overweight or not enough money is available.
+	 * 
+	 * @param w
+	 *            Purchaser
+	 * @param parts
+	 *            Order
+	 * @throws UserInputException
+	 *             If <code>Wagon</code> will become overweight or not enough
+	 *             money is available.
 	 * @post w.getMoney() < $pre(int, w.getMoney())
 	 */
-	public void sellToWagon(Wagon w, List<Part> parts) throws UserInputException{
+	public void sellToWagon(Wagon w, List<Part> parts)
+			throws UserInputException {
 		int weight = 0;
 		int total = 0;
-		for(Part part : parts){
-			if (w.checkWeight(weight)){
-				weight += part.getWeight();
-			}else {
+		for (Part part : parts) {
+			if (w.checkWeight(weight)) {
+				weight += Part.getWeight(part);
+			} else {
 				throw new UserInputException("Not enough room to buy " + part);
 			}
-			if(w.checkMoney(total * -1)){
+			if (w.checkMoney(total * -1)) {
 				total += getPrice(part);
-			}else {
+			} else {
 				throw new UserInputException("Not enough money to buy " + part);
 			}
 		}
-		try{
-			for(Part part : parts){
-				w.changeMoney((-1)*total);
+		try {
+			for (Part part : parts) {
+				w.changeMoney((-1) * total);
 				w.add(part);
 			}
-		}catch(UserInputException e){
+		} catch (UserInputException e) {
 			LOGGER.log(Level.SEVERE, "Game ruined.", e);
 			System.exit(0);
 		}
 	}
-	
 
 	/**
-	 * Sell item to <code>Wagon</code>.
-	 * @param w Purchaser
-	 * @param item <code>String</code> constant in <code>Wagon</code> that should be purchased.
-	 * @param quantity Item quantity
-	 * @throws UserInputException If <code>Wagon</code> will become overweight or not enough money is available.
-	 * @pre item == Wagon.FOOD || item == Wagon.CLOTHES || item == Wagon.BULLETS || item == Wagon.OXEN
+	 * Sell Item to <code>Wagon</code>.
+	 * 
+	 * @param w
+	 *            Purchaser
+	 * @param item
+	 *            <code>Item</code> that should be purchased.
+	 * @param quantity
+	 *            Item quantity
+	 * @throws UserInputException
+	 *             If <code>Wagon</code> will become overweight or not enough
+	 *             money is available.
 	 * @post w.getMoney() < $pre(int, w.getMoney())
 	 */
-	public void sellToWagon(Wagon w, String item, int quantity) throws UserInputException{
-		if(!w.checkWeight(quantity * Wagon.getItemWeight(item))){
-			throw new UserInputException("Not enough space for "+quantity+" "+item);
+	public void sellToWagon(Wagon w, Item item, int quantity)
+			throws UserInputException {
+		if (!w.checkWeight(quantity * item.getWeight())) {
+			throw new UserInputException("Not enough space for " + quantity
+					+ " " + item);
 		}
-		if(!w.checkMoney(quantity * getPrice(item))){
-			throw new UserInputException("Not enough money for "+quantity+" "+item);
+		if (!w.checkMoney(quantity * getPrice(item))) {
+			throw new UserInputException("Not enough money for " + quantity
+					+ " " + item);
 		}
-		try{
+		try {
 			w.add(item, quantity);
 			w.changeMoney(getPrice(item) * quantity * (-1));
-		}catch(UserInputException e){
+		} catch (UserInputException e) {
 			LOGGER.log(Level.SEVERE, "Game ruined", e);
 			System.exit(0);
 		}
@@ -202,32 +235,32 @@ public class Shop extends Location {
 	}
 
 	/**
-	 * local helper method that takes the string rep of an object and gives back the price
-	 * @param item thing we want the price of
-	 * @return the price of item
+	 * Gets the price of an <code>Item</code> at this store.
+	 * 
+	 * @param item
+	 *            Item we want the price of
+	 * @return the price of Item
 	 */
-	private int getPrice(String item) {
-		if (item.equals(Wagon.BULLETS)){
+	private int getPrice(Item item) {
+		switch (item) {
+		case BULLETS:
 			return this.bulletPrice();
-		}
-		else if (item.equals(Wagon.CLOTHES)){
+		case CLOTHES:
 			return this.clothesPrice();
-		}
-		else if (item.equals(Wagon.FOOD)){
+		case FOOD:
 			return this.foodPrice();
-		}
-		else if (item.equals(Wagon.OXEN)){
+		case OXEN:
 			return this.oxenPrice();
 		}
 		return 0;
 	}
-	
-	private int getPrice(Part item){
-		if(item instanceof Axle){
+
+	private int getPrice(Part item) {
+		if (item instanceof Axle) {
 			return axlePrice;
-		}else if(item instanceof Tongue){
+		} else if (item instanceof Tongue) {
 			return tonguePrice;
-		}else if(item instanceof Wheel){
+		} else if (item instanceof Wheel) {
 			return wheelPrice;
 		}
 		return 0;

@@ -3,11 +3,15 @@ package com.kelsonprime.oregontrail.model;
 public class Wheel extends Part {
 
 	public Wheel(int health) {
-		super(health, 5);
+		super(health);
 	}
 
 	public Wheel() {
 		this(80);
+	}
+	
+	public static int getWeight(){
+		return 5;
 	}
 	
 	public String toString() {
