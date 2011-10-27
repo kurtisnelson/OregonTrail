@@ -33,8 +33,8 @@ public class Shop extends Location {
 	 * @param name
 	 *            How to label the store in UI
 	 */
-	public Shop(String name) {
-		this(name, 0);
+	public Shop(String name, int position) {
+		this(name, position, 0);
 	}
 
 	/**
@@ -46,8 +46,8 @@ public class Shop extends Location {
 	 *            How far the store is from it's "supply"
 	 * @post name != null
 	 */
-	public Shop(String name, int supplyDistance) {
-		super(name);
+	public Shop(String name, int position, int supplyDistance) {
+		super(name, position);
 		oxenPrice = 20;
 		foodPrice = 4;
 		clothesPrice = 1;

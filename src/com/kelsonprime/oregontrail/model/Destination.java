@@ -13,12 +13,12 @@ public class Destination extends Landmark {
 	 * @param label What to call this in the UI
 	 * @param background A picture to display in the UI
 	 */
-	public Destination(String label, ImageIcon background){
-		super(label, background);
+	public Destination(String label, int position, ImageIcon background){
+		super(label, position, background);
 	}
 	
-	public Destination(String label){
-		this(label, null);
+	public Destination(String label, int position){
+		this(label, position, null);
 	}
 
 	@Override

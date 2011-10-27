@@ -8,14 +8,14 @@ import javax.swing.ImageIcon;
  * @version .1
  */
 public class Landmark extends Location {
-	ImageIcon background;
+	private ImageIcon background;
 	/**
 	 * Class constructor
 	 * @param label What to call this in the UI
 	 * @param background A picture to display in the UI
 	 */
-	public Landmark(String label, ImageIcon background){
-		super(label);
+	public Landmark(String label, int position, ImageIcon background){
+		super(label, position);
 		this.background = background;
 	}
 }

@@ -73,7 +73,7 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 		add(header);
 		header.setLayout(null);
 
-		JLabel screenLabel = new JLabel(shop.label() + " Shop");
+		JLabel screenLabel = new JLabel(shop + " Shop");
 		screenLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		screenLabel.setBounds(0, 5, 350, 20);
 		screenLabel.setFont(new Font("Century Schoolbook L", Font.BOLD, 16));

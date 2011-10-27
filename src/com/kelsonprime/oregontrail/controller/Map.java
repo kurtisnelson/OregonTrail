@@ -20,8 +20,8 @@ public class Map implements Time{
 	 */
 	public Map(){
 		traveled = 0;
-		Location indep = new Shop("Independence");
-		Location end = new Destination("The End");
+		Location indep = new Shop("Independence", 0);
+		Location end = new Destination("The End", 75);
 		indep.setNext(end, 50, 0);
 		start = indep;
 	}
@@ -39,7 +39,10 @@ public class Map implements Time{
 	 * @return last location
 	 */
 	public Location nextLocation(){
-		return lastLocation().next();
+		Location loc = start;
+		while(loc.next().getPosition() < traveled)
+			loc = loc.next();
+		return loc.next();
 	}
 	
 	/**
@@ -50,15 +53,21 @@ public class Map implements Time{
 		return distanceTo(nextLocation());
 	}
 	
+	public static int distanceBetween(Location start, Location end){
+		if(start == null || end == null)
+			return 0;
+		return end.getPosition() - start.getPosition();
+	}
+	
 	/**
-	 * Moves by distance d
+	 * Moves up to distance
 	 * @param distance
 	 */
-	public Location travel(int d){
-		if(distanceToNext() <= d){
+	public Location travel(int distance){
+		if(distanceToNext() <= distance){
 			traveled += distanceToNext();
 		}else{
-			traveled += d;
+			traveled += distance;
 		}
 		return currentLocation();
 	}
@@ -67,31 +76,31 @@ public class Map implements Time{
 	 * Gets the distance to a particular location
 	 */
 	private int distanceTo(Location l){
-		Location cur = start;
-		int processed = 0;
-		while(processed < traveled && cur.getRoadLength() + processed < traveled){
-			processed += cur.getRoadLength();
-			cur = cur.next();
-		}
-		return cur.getRoadLength() - (traveled - processed);
+		if(l == null)
+			return 0;
+		return l.getPosition() - traveled;
 	}
 
 	/**
-	 * Traverses the given distance and gets the new location
+	 * Traverses the given distance from start
 	 * @return location
 	 */
 	private Location traverse(int distance){
 		return traverse(start, distance);
 	}
 	
-	private static Location traverse(Location s, int distance){
-		int processed = 0;
-		Location cur = s;
-		while(processed < distance && cur.getRoadLength() + processed < distance){
-				processed += cur.getRoadLength();
-				cur = cur.next();
-		}
-		return cur;
+	/**
+	 * Traverse a distance from a Location
+	 * @param loc Location to start at
+	 * @param distance Distance to travel
+	 * @return Location at distance from start, or null if between locations
+	 */
+	private static Location traverse(Location loc, int distance){
+		if(distance == 0)
+			return loc;
+		if(distanceBetween(loc, loc.next()) <= distance)
+			return traverse(loc.next(), distance - distanceBetween(loc, loc.next()));
+		return null;
 	}
 
 	/**
@@ -99,17 +108,6 @@ public class Map implements Time{
 	 * @return location
 	 */
 	public Location currentLocation() {
-		if(traveled == 0)
-			return start;
-		if(distanceToNext() != 0)
-			return null;
-		return lastLocation();
-	}
-	
-	/**
-	 * Returns the last visited location
-	 */
-	public Location lastLocation() {
 		return traverse(traveled);
 	}
 

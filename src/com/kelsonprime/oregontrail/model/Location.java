@@ -11,15 +11,17 @@ public abstract class Location {
 	private Location next;
 	private int roadX1;
 	private int roadY1;
+	private int position;
 
-	public Location(String label) {
+	public Location(String label, int position) {
 		if(label == null || label.length() <= 0){
 			label = "A";
 		}
+		this.position = position;
 		this.label = label;
 	}
 
-	public String label() {
+	public String toString() {
 		return label;
 	}
 	
@@ -31,6 +33,10 @@ public abstract class Location {
 	
 	public Location next(){
 		return next;
+	}
+	
+	public int getPosition(){
+		return position;
 	}
 	
 	public int getRoadLength(){

@@ -6,8 +6,8 @@ public class Crossing extends Location {
 	private int width;
 	private int ferryCost;
 
-	public Crossing(String name, int depth, int width) {
-		super(name);
+	public Crossing(String name, int position, int depth, int width) {
+		super(name, position);
 		this.depth = depth;
 		this.width = width;
 		ferryCost = 0;

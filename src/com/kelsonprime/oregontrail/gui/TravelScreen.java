@@ -23,7 +23,7 @@ public class TravelScreen extends JPanel {
 	OregonTrail app;
 	Wagon wagon;
 	JLabel lblTravel;
-	private JTextField distanceToNext;
+	JLabel nextLocation;
 
 	public TravelScreen(OregonTrail app) {
 		super();
@@ -70,14 +70,9 @@ public class TravelScreen extends JPanel {
 		JLabel lblStatPanel = new JLabel("State");
 		wagonStats.add(lblStatPanel);
 		
-		JLabel lblDistance = new JLabel("Distance to");
-		wagonStats.add(lblDistance);
-		
-		distanceToNext = new JTextField();
-		lblDistance.setLabelFor(distanceToNext);
-		distanceToNext.setEditable(false);
-		wagonStats.add(distanceToNext);
-		distanceToNext.setColumns(10);
+		nextLocation = new JLabel("Next: ");
+		wagonStats.add(nextLocation);
+
 		
 		updateStats();
 	}
@@ -125,7 +120,7 @@ public class TravelScreen extends JPanel {
 	 * Update on screen stats about the wagon.
 	 */
 	private void updateStats(){
-		distanceToNext.setText(Integer.toString(app.getMap().distanceToNext()));
+		nextLocation.setText(app.getMap().nextLocation()+ " is "+app.getMap().distanceToNext() + " away.");
 	}
 
 	private class ButtonListener implements ActionListener {
