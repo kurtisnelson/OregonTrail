@@ -26,9 +26,6 @@ public class TravelScreen extends JPanel {
 		this.wagon = app.getWagon();
 		setSize(new Dimension(600, 300));
 		
-		
-		
-		
 		lblTravel = new JLabel("TRAVEL!");
 		
 		Button travel = new Button(new ImageIcon("images/MoveAheadButton.png"));
@@ -55,11 +52,9 @@ public class TravelScreen extends JPanel {
 		add(travel);
 		add(change);
 		add(rest);
-		
 	}
 	
 	public void paintComponent(Graphics g){
-		Image backgroundimage = new ImageIcon("usa-map.jpg").getImage();
 		Image regBG = new ImageIcon("images/OregonTrailTravelingScreenRegular.jpg").getImage();
 		Image wagonA = new ImageIcon("images/OregonTrailIcon.png").getImage();
 		Image wagonB = new ImageIcon("images/OregonTrailIcon.png").getImage();
