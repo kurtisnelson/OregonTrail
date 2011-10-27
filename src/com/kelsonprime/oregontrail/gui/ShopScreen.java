@@ -288,7 +288,7 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 		JPanel info = new JPanel();
 		info.setBorder(new LineBorder(new Color(0, 0, 0), 5, true));
 		info.setBackground(new Color(184, 134, 11));
-		info.setBounds(25, 72, 175, 125);
+		info.setBounds(25, 72, 175, 150);
 		add(info);
 
 		moneyLabel = new JLabel("Total Money: $" + wagon.getMoney());
