@@ -12,25 +12,20 @@ import com.kelsonprime.oregontrail.model.Wagon;
 /**
  * The class <code>WagonFactory</code> implements static methods that return instances of the class <code>{@link Wagon}</code>.
  *
- * @generatedBy CodePro at 10/26/11 1:19 AM
- * @author kurt
+ * @author Kurt Nelson
  * @version $Revision: 1.0 $
  */
 public class WagonFactory
  {
 	/**
 	 * Prevent creation of instances of this class.
-	 *
-	 * @generatedBy CodePro at 10/26/11 1:19 AM
 	 */
 	private WagonFactory() {
 	}
 
 
 	/**
-	 * Create an instance of the class <code>{@link Wagon}</code>.
-	 *
-	 * @generatedBy CodePro at 10/26/11 1:19 AM
+	 * Create an instance of the class <code>{@link Wagon}</code> with the <code>Player</code> as a <code>Banker</code>
 	 */
 	public static Wagon createWagon() {
 		ArrayList<Companion> list = new ArrayList<Companion>();
@@ -40,9 +35,7 @@ public class WagonFactory
 
 
 	/**
-	 * Create an instance of the class <code>{@link Wagon}</code>.
-	 *
-	 * @generatedBy CodePro at 10/26/11 1:19 AM
+	 * Create an instance of the class <code>{@link Wagon}</code> with the <code>Player</code> as a <code>Carpenter</code>
 	 */
 	public static Wagon createWagon2() {
 		LinkedList<Companion> list = new LinkedList<Companion>();

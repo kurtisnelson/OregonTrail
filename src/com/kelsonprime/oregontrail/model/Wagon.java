@@ -120,10 +120,9 @@ public class Wagon implements Time {
 	}
 
 	/**
-	 * Tries to change amount of money in the wagon by amount
+	 * Changes amount of money in the wagon
 	 * 
 	 * @param amount
-	 * @pre amount != 0 && money + amount >= 0
 	 * @post money == $pre(int, money) + amount
 	 */
 	public void changeMoney(int amount) {
