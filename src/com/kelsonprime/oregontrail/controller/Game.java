@@ -57,6 +57,14 @@ public class Game implements Time {
 	public Pace getPace() {
 		return pace;
 	}
+	
+	/**
+	 * Sets the pace of the game
+	 * @param pace
+	 */
+	public void setPace(Pace pace) {
+		this.pace = pace;
+	}
 
 	/**
 	 * Accepts a trade item
@@ -78,14 +86,6 @@ public class Game implements Time {
 	 */
 	public void rest() {
 		// TODO method stub
-	}
-
-	/**
-	 * Sets the pace of the game
-	 * @param pace
-	 */
-	public void setPace(Pace pace) {
-		this.pace = pace;
 	}
 
 	/**

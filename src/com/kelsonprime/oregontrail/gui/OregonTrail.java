@@ -147,9 +147,14 @@ public class OregonTrail {
 	public Map getMap() {
 		return game.getMap();
 	}
+	
+	public Game getGame() {
+		return game;
+	}
 
 	public void nextDay() {
 		game.nextDay(game);
+		this.updateScreen();
 	}
 
 	public boolean isReady() {

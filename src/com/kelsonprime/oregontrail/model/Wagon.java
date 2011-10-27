@@ -74,20 +74,8 @@ public class Wagon implements Time {
 		}
 		repair();
 
-		switch (game.getRation()) {
-		case BARE:
-			food -= 1 * party.size();
-			break;
-		case MEAGER:
-			food -= 3 * party.size();
-			break;
-		case NORMAL:
-			food -= 5 * party.size();
-			break;
-		case WELLFED:
-			food -= 7 * party.size();
-			break;
-		}
+		//Eat some food.
+		food -= game.getRation().getPortion() * party.size();
 
 		if (food < 0) {
 			food = 0;
