@@ -8,9 +8,11 @@
 	<property name="dist" location="dist" />
 	<property name="doc" location="apidoc" />
 	<property name="lib" location="lib" />
-	<path id="build-classpath">
+	<property name="resource" location="resources" />
+	<path id="main-classpath">
+		<pathelement location="${build}" />
 		<fileset dir="${lib}">
-			<include name="**/*.jar" />
+			<include name="**/*.jar"/>
 		</fileset>
 	</path>
 
@@ -21,32 +23,37 @@
 	</target>
 
 	<target name="compile" depends="prepare" description="Compile the thing.">
-		<javac srcdir="${src}" destdir="${build}" classpathref="build-classpath"
+		<javac srcdir="${src}" destdir="${build}" classpathref="main-classpath"
 			source="1.6" fork="true" includeJavaRuntime="false"
 			includeAntRuntime="false">
-			<compilerarg value="-Xbootclasspath/p:${toString:build-classpath}" />
+			<compilerarg value="-Xbootclasspath/p:${toString:main-classpath}" />
 			<exclude name="**/test/"/>
 		</javac>
 	</target>
 
-	<target name="jar" depends="compile" description="Make the jar">
+	<target name="jar" depends="compile,resources" description="Make the jar">
 		<mkdir dir="${dist}" />
 		<jar jarfile="${dist}/OregonTrail.jar" basedir="${build}">
+<zipfileset includes="**" src="${lib}/resources.jar"/>
 			<manifest>
 				<attribute name="Main-Class"
 					value="com.kelsonprime.oregontrail.gui.OregonTrail" />
-				<!--<attribute name="Class-Path" value="${lib}/resources.jar"/> -->
+				<attribute name="Class-Path" value="${toString:main-classpath}" />
 			</manifest>
 		</jar>
 	</target>
+	<target name="resources" depends="prepare" description="Make resource jar">
+		<jar jarfile="${lib}/resources.jar" basedir="resources">
+		</jar>
+	</target>
 
-	<target name="run" depends="jar" description="run it">
-		<java jar="${dist}/OregonTrail.jar" fork="true" spawn="true" />
+	<target name="run" depends="compile,resources" description="run it">
+		<java classname="com.kelsonprime.oregontrail.gui.OregonTrail" fork="true" classpathref="main-classpath"/>
 	</target>
 
 	<target name="javadoc" depends="prepare" description="doc it">
 		<javadoc packagenames="com.kelsonprime.oregontrail.*"
-			sourcepath="${src}" destdir="${doc}" author="true" classpathref="build-classpath">
+			sourcepath="${src}" destdir="${doc}" author="true" classpathref="main-classpath">
 		</javadoc>
 	</target>
 
@@ -76,6 +83,7 @@
 		<delete file="user.conf" />
 		<delete>
 			<fileset dir="." includes="*.log*" />
+			<fileset dir="${lib}" includes="resources.jar" />
 		</delete>
 		<delete dir="${build}" />
 		<delete dir="${dist}" />

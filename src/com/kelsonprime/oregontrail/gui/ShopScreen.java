@@ -28,6 +28,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.border.BevelBorder;
 import java.awt.GridLayout;
+import javax.swing.ImageIcon;
 
 public class ShopScreen extends LocationScreen implements KeyListener {
 	private static final long serialVersionUID = -7550296665413775236L;
@@ -56,6 +57,7 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 	// TODO Update the wagon's weight statistics on the shop GUI
 	public ShopScreen(OregonTrail app, Shop shop) {
 		super(app);
+		setBackground(Color.BLACK);
 		this.shop = shop;
 		this.wagon = app.getWagon();
 		setSize(new Dimension(600, 300));
@@ -269,7 +271,7 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 		leaveButton.setBorderPainted(false);
 		leaveButton.setRolloverEnabled(false);
 		leaveButton.setSelectedIcon(IconFactory.arrow);
-		leaveButton.setIcon(IconFactory.arrow);
+		leaveButton.setIcon(new ImageIcon(ShopScreen.class.getResource("/resources/images/arrow.png")));
 		leaveButton.setMnemonic('n');
 		items.add(leaveButton);
 		leaveButton.setActionCommand("leave");

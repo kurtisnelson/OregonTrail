@@ -1,15 +1,21 @@
 package com.kelsonprime.oregontrail.gui;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import java.awt.Graphics;
-import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Dimension;
+import java.io.IOException;
+import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class SplashScreen extends JPanel{
 	private static final long serialVersionUID = 5914811187310733038L;
-
+	private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+	private static URL splashImage = SplashScreen.class.getResource("/images/OregonTrailStartScreen.jpg");
+	
 	public SplashScreen(){
 		super();
 		repaint();
@@ -19,9 +25,14 @@ public class SplashScreen extends JPanel{
 	
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
-		ImageIcon start = new ImageIcon("images/OregonTrailStartScreen.jpg");
-		Image startImg = start.getImage();
-		
-		g.drawImage(startImg, 0, 0, this);
+		Image startImg;
+		try {
+			startImg = ImageIO.read(splashImage);
+			g.drawImage(startImg, 0, 0, this);
+		} catch (IOException e) {
+			LOGGER.log(Level.WARNING, "Could not load start screen image", e);
+		} catch (Exception e) {
+			LOGGER.log(Level.SEVERE, "Splash screen draw failed", e);
+		}
 	}
 }

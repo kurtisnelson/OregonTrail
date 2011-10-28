@@ -32,6 +32,7 @@ import javax.swing.DefaultComboBoxModel;
 import com.kelsonprime.oregontrail.controller.Pace;
 import com.kelsonprime.oregontrail.controller.Ration;
 import java.awt.FlowLayout;
+import javax.swing.ImageIcon;
 
 public class NewGameScreen extends JPanel {
 	private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
@@ -193,7 +194,7 @@ public class NewGameScreen extends JPanel {
 		continueButton.setBorderPainted(false);
 		continueButton.setRolloverEnabled(false);
 		continueButton.setSelectedIcon(IconFactory.arrow);
-		continueButton.setIcon(IconFactory.arrow);
+		continueButton.setIcon(new ImageIcon(NewGameScreen.class.getResource("/images/arrow.png")));
 		continueButton.setActionCommand("continue");
 		continueButton.addActionListener(listen);
 		body.add(continueButton);
