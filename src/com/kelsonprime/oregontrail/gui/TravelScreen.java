@@ -14,7 +14,6 @@ import com.kelsonprime.oregontrail.controller.Game;
 import com.kelsonprime.oregontrail.controller.Pace;
 import com.kelsonprime.oregontrail.controller.Threader;
 import com.kelsonprime.oregontrail.model.Wagon;
-import javax.swing.JTextField;
 
 public class TravelScreen extends JPanel {
 	private static final long serialVersionUID = -2616586129314449978L;

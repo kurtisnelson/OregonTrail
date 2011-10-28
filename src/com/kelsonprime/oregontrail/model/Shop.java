@@ -143,9 +143,9 @@ public class Shop extends Location {
 		}
 		try {
 			for (Part part : parts) {
-				w.changeMoney((-1) * total);
 				w.add(part);
 			}
+			w.changeMoney((-1) * total);
 		} catch (UserInputException e) {
 			LOGGER.log(Level.SEVERE, "Game ruined.", e);
 			System.exit(0);
