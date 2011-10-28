@@ -10,7 +10,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 
-import com.kelsonprime.oregontrail.controller.Button;
 import com.kelsonprime.oregontrail.controller.Game;
 import com.kelsonprime.oregontrail.controller.Pace;
 import com.kelsonprime.oregontrail.controller.Threader;

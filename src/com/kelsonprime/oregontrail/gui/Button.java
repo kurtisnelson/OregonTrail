@@ -1,4 +1,4 @@
-package com.kelsonprime.oregontrail.controller;
+package com.kelsonprime.oregontrail.gui;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -8,8 +8,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 public class Button extends JButton {
-	
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -7346008466805143017L;
 	private ImageIcon buttonImage;
 	
 	public Button(ImageIcon img){
