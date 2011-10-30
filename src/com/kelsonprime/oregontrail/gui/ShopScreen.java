@@ -271,7 +271,7 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 		leaveButton.setBorderPainted(false);
 		leaveButton.setRolloverEnabled(false);
 		leaveButton.setSelectedIcon(IconFactory.arrow);
-		leaveButton.setIcon(new ImageIcon(ShopScreen.class.getResource("/resources/images/arrow.png")));
+		leaveButton.setIcon(new ImageIcon(ShopScreen.class.getResource("/images/arrow.png")));
 		leaveButton.setMnemonic('n');
 		items.add(leaveButton);
 		leaveButton.setActionCommand("leave");
