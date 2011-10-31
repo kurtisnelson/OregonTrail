@@ -14,6 +14,7 @@ import com.kelsonprime.oregontrail.controller.Game;
 import com.kelsonprime.oregontrail.controller.Pace;
 import com.kelsonprime.oregontrail.controller.Threader;
 import com.kelsonprime.oregontrail.model.Wagon;
+import javax.swing.Timer;
 
 public class TravelScreen extends JPanel {
 	private static final long serialVersionUID = -2616586129314449978L;
@@ -22,11 +23,13 @@ public class TravelScreen extends JPanel {
 	Wagon wagon;
 	JLabel lblTravel;
 	JLabel nextLocation;
+	int xDist, previous, current;
 
 	public TravelScreen(OregonTrail app) {
 		super();
 		this.app = app;
 		this.wagon = app.getWagon();
+		xDist = 0;
 		setSize(new Dimension(600, 300));
 
 		lblTravel = new JLabel("TRAVEL!");
@@ -70,6 +73,9 @@ public class TravelScreen extends JPanel {
 		
 		nextLocation = new JLabel("Next: ");
 		wagonStats.add(nextLocation);
+		
+		Timer updateImage = new Timer(100, listen);
+		updateImage.setActionCommand("image");
 
 		
 		updateStats();
@@ -79,9 +85,15 @@ public class TravelScreen extends JPanel {
 		Image regBG = new ImageIcon(
 				"images/OregonTrailTravelingScreenRegular.jpg").getImage();
 		Image wagonA = new ImageIcon("images/OregonTrailIcon.png").getImage();
-		g.drawImage(regBG, 0, 0, this);
+		g.drawImage(regBG, -1500 + xDist, 0, this);
 		g.drawImage(wagonA, 400, 120, this);
 	}
+	
+	public void backgroundMove(){
+		
+	}
+	
+	
 
 	/**
 	 * Travel one day
@@ -118,7 +130,7 @@ public class TravelScreen extends JPanel {
 	 * Update on screen stats about the wagon.
 	 */
 	private void updateStats(){
-		nextLocation.setText(app.getMap().nextLocation()+ " is "+app.getMap().distanceToNext() + " away.");
+		nextLocation.setText(app.getMap().nextLocation()+ " is " + app.getMap().distanceToNext() + " away.");
 	}
 
 	private class ButtonListener implements ActionListener {
@@ -145,6 +157,13 @@ public class TravelScreen extends JPanel {
 					@Override
 					public void run() {
 						rest();
+					}
+				});
+			} else if (s.equalsIgnoreCase("image")) {
+				Threader.executeEventually(new Runnable(){
+					public void run(){
+						backgroundMove();
+						repaint();
 					}
 				});
 			}
