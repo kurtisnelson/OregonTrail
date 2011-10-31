@@ -35,19 +35,19 @@ public class TravelScreen extends JPanel {
 		lblTravel = new JLabel("TRAVEL!");
 		lblTravel.setBounds(114, 22, 56, 15);
 
-		Button travel = new Button(new ImageIcon("images/MoveAheadButton.png"));
+		Button travel = new Button(new ImageIcon(TravelScreen.class.getResource("/images/MoveAheadButton.png")));
 		travel.setBounds(175, 5, 100, 50);
 		travel.setPreferredSize(new Dimension(100, 50));
 		travel.setBorder(null);
 		travel.setActionCommand("travel");
 
-		Button change = new Button(new ImageIcon("images/UpdateButton.png"));
+		Button change = new Button(new ImageIcon(TravelScreen.class.getResource("/images/UpdateButton.png")));
 		change.setBounds(280, 5, 100, 50);
 		change.setPreferredSize(new Dimension(100, 50));
 		change.setBorder(null);
 		change.setActionCommand("change");
 
-		Button rest = new Button(new ImageIcon("images/RestButton.png"));
+		Button rest = new Button(new ImageIcon(TravelScreen.class.getResource("/images/RestButton.png")));
 		rest.setBounds(385, 5, 100, 50);
 		rest.setPreferredSize(new Dimension(100, 50));
 		rest.setBorder(null);
@@ -82,10 +82,17 @@ public class TravelScreen extends JPanel {
 	}
 
 	public void paintComponent(Graphics g) {
+<<<<<<< HEAD
 		Image regBG = new ImageIcon(
 				"images/OregonTrailTravelingScreenRegular.jpg").getImage();
 		Image wagonA = new ImageIcon("images/OregonTrailIcon.png").getImage();
 		g.drawImage(regBG, -1500 + xDist, 0, this);
+=======
+		Image regBG = new ImageIcon(TravelScreen.class.getResource(
+				"/images/OregonTrailTravelingScreenRegular.jpg")).getImage();
+		Image wagonA = new ImageIcon(TravelScreen.class.getResource("/images/OregonTrailIcon.png")).getImage();
+		g.drawImage(regBG, 0, 0, this);
+>>>>>>> branch 'master' of git@github.com:kurtisnelson/OregonTrail.git
 		g.drawImage(wagonA, 400, 120, this);
 	}
 	
