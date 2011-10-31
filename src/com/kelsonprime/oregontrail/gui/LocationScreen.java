@@ -14,7 +14,7 @@ public abstract class LocationScreen extends JPanel {
 
 	public LocationScreen(OregonTrail app) {
 		this.app = app;
-		background = new ImageIcon("images/dirt.jpg").getImage();
+		background = new ImageIcon(LocationScreen.class.getResource("/images/dirt.jpg")).getImage();
 		Dimension size = new Dimension(background.getWidth(null),
 				background.getHeight(null));
 		setPreferredSize(size);
