@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 
 import com.kelsonprime.oregontrail.controller.Game;
+import com.kelsonprime.oregontrail.controller.Map;
 import com.kelsonprime.oregontrail.controller.Pace;
 import com.kelsonprime.oregontrail.controller.Threader;
 import com.kelsonprime.oregontrail.model.Wagon;
@@ -23,18 +24,32 @@ public class TravelScreen extends JPanel {
 	Wagon wagon;
 	JLabel lblTravel;
 	JLabel nextLocation;
-	int xDist, previous, current;
+	int xDist, previous, current, end;
+	Timer updateImage;
+	JPanel options, options2;
+	boolean moving;
 
 	public TravelScreen(OregonTrail app) {
 		super();
 		this.app = app;
 		this.wagon = app.getWagon();
+		current = app.getMap().distanceToNext();
+		previous = end = current;
 		xDist = 0;
 		setSize(new Dimension(600, 300));
 
 		lblTravel = new JLabel("TRAVEL!");
 		lblTravel.setBounds(114, 22, 56, 15);
-
+		
+		options = new JPanel();
+		options.setPreferredSize(new Dimension(600, 50));
+		options.setBounds(0, 0, 600, 50);
+		add(options);
+		
+		options2 = new JPanel();
+		options2.setPreferredSize(new Dimension(600, 50));
+		options2.setBounds(0, 0, 600, 50);
+		
 		Button travel = new Button(new ImageIcon(TravelScreen.class.getResource("/images/MoveAheadButton.png")));
 		travel.setBounds(175, 5, 100, 50);
 		travel.setPreferredSize(new Dimension(100, 50));
@@ -52,6 +67,12 @@ public class TravelScreen extends JPanel {
 		rest.setPreferredSize(new Dimension(100, 50));
 		rest.setBorder(null);
 		rest.setActionCommand("rest");
+		
+		Button stop = new Button(new ImageIcon(TravelScreen.class.getResource("/images/MoveAheadButton.png")));
+		stop.setBounds(175, 5, 100, 50);
+		stop.setPreferredSize(new Dimension(100, 500));
+		stop.setBorder(null);
+		stop.setActionCommand("stop");
 
 		ButtonListener listen = new ButtonListener();
 		travel.addActionListener(listen);
@@ -59,10 +80,11 @@ public class TravelScreen extends JPanel {
 		rest.addActionListener(listen);
 		setLayout(null);
 
-		add(lblTravel);
-		add(travel);
-		add(change);
-		add(rest);
+		options.add(lblTravel);
+		options.add(travel);
+		options.add(change);
+		options.add(rest);
+		options2.add(stop);
 		
 		JPanel wagonStats = new JPanel();
 		wagonStats.setBounds(66, 175, 200, 50);
@@ -74,30 +96,28 @@ public class TravelScreen extends JPanel {
 		nextLocation = new JLabel("Next: ");
 		wagonStats.add(nextLocation);
 		
-		Timer updateImage = new Timer(100, listen);
+		updateImage = new Timer(500, listen);
 		updateImage.setActionCommand("image");
 
-		
 		updateStats();
+		moving=false;
 	}
 
 	public void paintComponent(Graphics g) {
-<<<<<<< HEAD
-		Image regBG = new ImageIcon(
-				"images/OregonTrailTravelingScreenRegular.jpg").getImage();
-		Image wagonA = new ImageIcon("images/OregonTrailIcon.png").getImage();
-		g.drawImage(regBG, -1500 + xDist, 0, this);
-=======
 		Image regBG = new ImageIcon(TravelScreen.class.getResource(
 				"/images/OregonTrailTravelingScreenRegular.jpg")).getImage();
 		Image wagonA = new ImageIcon(TravelScreen.class.getResource("/images/OregonTrailIcon.png")).getImage();
-		g.drawImage(regBG, 0, 0, this);
->>>>>>> branch 'master' of git@github.com:kurtisnelson/OregonTrail.git
+		g.drawImage(regBG, -1500-(current*5), 0, this);
 		g.drawImage(wagonA, 400, 120, this);
 	}
 	
 	public void backgroundMove(){
-		
+		if (current!=end){
+			moving = true;
+			current--;
+		}
+		else
+			moving = false;
 	}
 	
 	
@@ -106,8 +126,12 @@ public class TravelScreen extends JPanel {
 	 * Travel one day
 	 */
 	private void travel() {
+		Map map = app.getMap();
 		lblTravel.setText("Traveling a day");
+		previous = map.distanceToNext();
+		current = previous;
 		app.nextDay();
+		end = map.distanceToNext();
 		updateStats();
 	}
 
@@ -137,7 +161,7 @@ public class TravelScreen extends JPanel {
 	 * Update on screen stats about the wagon.
 	 */
 	private void updateStats(){
-		nextLocation.setText(app.getMap().nextLocation()+ " is " + app.getMap().distanceToNext() + " away.");
+		nextLocation.setText(app.getMap().nextLocation()+ " is " + Integer.toString(current) + " away.");
 	}
 
 	private class ButtonListener implements ActionListener {
@@ -146,12 +170,15 @@ public class TravelScreen extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			String s = e.getActionCommand();
 			if (s.equalsIgnoreCase("travel")) {
-				Threader.executeNow(new Runnable(){
-					@Override
-					public void run() {
-						travel();
-					}
-				});
+//				Threader.executeNow(new Runnable(){
+//					@Override
+//					public void run() {
+//						travel();
+//					}
+//				});
+				remove(options);
+				add(options2);
+				updateImage.start();
 			} else if (s.equalsIgnoreCase("change")) {
 				Threader.executeNow(new Runnable(){
 					@Override
@@ -169,10 +196,17 @@ public class TravelScreen extends JPanel {
 			} else if (s.equalsIgnoreCase("image")) {
 				Threader.executeEventually(new Runnable(){
 					public void run(){
+						if(!moving){
+							travel();
+						}
 						backgroundMove();
 						repaint();
 					}
 				});
+			} else if (s.equalsIgnoreCase("stop")){
+				remove(options2);
+				add(options);
+				updateImage.stop();
 			}
 		}
 	}
