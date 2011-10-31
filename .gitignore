@@ -3,7 +3,7 @@ forms-*.zip
 dist/
 apidoc/
 bin/
-*.log
+*.log*
 *.conf
 *.class
 .settings
