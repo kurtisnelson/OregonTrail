@@ -26,4 +26,14 @@ public class Wheel extends Part {
 		}
 		return this.toString().compareTo(o.toString());
 	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if(o instanceof Wheel){
+			Wheel a = (Wheel) o;
+			if(a.getHealth() == this.getHealth())
+				return true;
+		}
+		return false;
+	}	
 }

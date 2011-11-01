@@ -10,7 +10,7 @@ public class Landmark extends Location {
 	/**
 	 * Class constructor
 	 * @param label What to call this in the UI
-	 * @param background A picture to display in the UI
+	 * @param position How far along the map this is
 	 */
 	public Landmark(String label, int position){
 		super(label, position);

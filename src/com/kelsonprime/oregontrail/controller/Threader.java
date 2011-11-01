@@ -5,25 +5,35 @@ import java.util.concurrent.Executors;
 
 /**
  * Splits functions into threads
+ * 
  * @author Aman
- *
+ * 
  */
 public class Threader {
 	private static ExecutorService cachedPool = Executors.newCachedThreadPool();
-	private static ExecutorService singlePool = Executors.newSingleThreadExecutor();
-	
+	private static ExecutorService singlePool = Executors
+			.newSingleThreadExecutor();
+
 	/**
-	 * Executes now
-	 * @param runnable
+	 * Executes now efficiently
+	 * 
+	 * Instead of just executing a Runnable directly elsewhere, this method
+	 * should be used to try and use existing thread processes when possible.
+	 * 
+	 * @param r
+	 *            Task to execute
 	 */
-	public static void executeNow(Runnable r){
+	public static void executeNow(Runnable r) {
 		cachedPool.execute(r);
 	}
 
 	/**
-	 * Executes afterwards
+	 * Executes using a queue
+	 * 
+	 * @param r
+	 *            Task to enqueue
 	 */
-	public static void executeEventually(Runnable r){
+	public static void executeEventually(Runnable r) {
 		singlePool.execute(r);
 	}
 }

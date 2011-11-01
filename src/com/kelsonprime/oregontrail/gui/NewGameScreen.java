@@ -46,6 +46,7 @@ public class NewGameScreen extends JPanel {
 	private ButtonGroup occupationGroup;
 	private JLabel abilityList;
 	private JLabel startingMoney;
+	private JComboBox paceBox, rationBox;
 
 	public NewGameScreen(OregonTrail app) {
 		super();
@@ -172,14 +173,14 @@ public class NewGameScreen extends JPanel {
 		rationingLabel.setBounds(269, 210, 70, 15);
 		body.add(rationingLabel);
 
-		JComboBox paceBox = new JComboBox();
+		paceBox = new JComboBox();
 		paceBox.setBackground(Color.WHITE);
 		paceBox.setModel(new DefaultComboBoxModel(Pace.values()));
 		paceBox.setSelectedIndex(2);
 		paceBox.setBounds(62, 226, 124, 24);
 		body.add(paceBox);
 		
-		JComboBox rationBox = new JComboBox();
+		rationBox = new JComboBox();
 		rationBox.setBackground(Color.WHITE);
 		rationBox.setModel(new DefaultComboBoxModel(Ration.values()));
 		rationBox.setSelectedIndex(2);
@@ -224,13 +225,12 @@ public class NewGameScreen extends JPanel {
 		} catch (UserInputException e) {
 			e.generateBox(app.getFrame());
 			return;
-		} catch (Exception e){
-			return;
 		}
 
 		Wagon newWagon = new Wagon(newPlayer, companionList);
 		Game newGame = new Game(newWagon);
-
+		newGame.setRation((Ration) rationBox.getSelectedItem());
+		newGame.setPace((Pace) paceBox.getSelectedItem());
 		app.loadGame(newGame);
 	}
 
@@ -243,6 +243,10 @@ public class NewGameScreen extends JPanel {
 				createGame();
 				return;
 			}
+			/* 
+			 * Assume the occupation triggered
+			 * Do crazy reflection to dynamically support new Occupations!
+			 */
 			Class<?> c;
 			try {
 				c = Class.forName(ac);
@@ -250,24 +254,19 @@ public class NewGameScreen extends JPanel {
 				LOGGER.log(Level.WARNING, "Uncaught action.", e);
 				return;
 			}
-			/*
-			 * Do crazy reflection to dynamically support new Occupations!
-			 */
 			try{
 				Method m = c.getMethod("getStaticMoney");
 				int money = (Integer) m.invoke(null, (Object[]) null);
 				startingMoney.setText("$"+money);
 			}catch(Exception e){
-				System.out.println(e);
-				LOGGER.log(Level.SEVERE, "Occupation getMoney reflexion failed.", e);
+				LOGGER.log(Level.SEVERE, "Occupation getMoney reflection failed.", e);
 			}
 			try{
 				Method m = c.getMethod("getStaticDescription");
 				String ability = (String) m.invoke(null, (Object[]) null);
 				abilityList.setText(ability);
 			}catch(Exception e){
-				System.out.println(e);
-				LOGGER.log(Level.SEVERE, "Occupation getDescription reflexion failed.", e);
+				LOGGER.log(Level.SEVERE, "Occupation getDescription reflection failed.", e);
 			}
 		}
 	}
