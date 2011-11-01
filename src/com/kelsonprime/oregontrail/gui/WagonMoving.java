@@ -16,6 +16,7 @@ import java.awt.Panel;
 public class WagonMoving {
 	OregonTrail app;
 	JPanel screen1;
+	JPanel screen2;
 	private JTextField txtOregonTrail;
 	private JLabel lblNewLabel;
 	public WagonMoving(OregonTrail app){
@@ -45,6 +46,7 @@ public class WagonMoving {
 		//lblNewLabel.add(label);
 		
 		panel.add(lblNewLabel);
+		screen2 = new JPanel();
 	}
 
 }
