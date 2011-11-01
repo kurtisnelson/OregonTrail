@@ -11,11 +11,11 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 
 import com.kelsonprime.oregontrail.controller.Game;
-import com.kelsonprime.oregontrail.controller.Map;
 import com.kelsonprime.oregontrail.controller.Pace;
 import com.kelsonprime.oregontrail.controller.Threader;
 import com.kelsonprime.oregontrail.model.Wagon;
-import javax.swing.Timer;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class TravelScreen extends JPanel {
 	private static final long serialVersionUID = -2616586129314449978L;
@@ -24,37 +24,30 @@ public class TravelScreen extends JPanel {
 	Wagon wagon;
 	JLabel lblTravel;
 	JLabel nextLocation;
-	int xDist, previous, current, end;
-	Timer updateImage;
+	int current; //Distance to next location
 	JPanel options, options2;
-	boolean moving;
+	private int counter; //Used to see when stuff should redraw
+	Timer traveler;
+	ButtonListener listener;
+	Button travel;
 
 	public TravelScreen(OregonTrail app) {
 		super();
 		this.app = app;
 		this.wagon = app.getWagon();
+		this.listener = new ButtonListener();
 		current = app.getMap().distanceToNext();
-		previous = end = current;
-		xDist = 0;
+		
 		setSize(new Dimension(600, 300));
 
-		lblTravel = new JLabel("TRAVEL!");
+		lblTravel = new JLabel("Stopped.");
 		lblTravel.setBounds(114, 22, 56, 15);
 		
-		options = new JPanel();
-		options.setPreferredSize(new Dimension(600, 50));
-		options.setBounds(0, 0, 600, 50);
-		add(options);
-		
-		options2 = new JPanel();
-		options2.setPreferredSize(new Dimension(600, 50));
-		options2.setBounds(0, 0, 600, 50);
-		
-		Button travel = new Button(new ImageIcon(TravelScreen.class.getResource("/images/MoveAheadButton.png")));
+		travel = new Button(new ImageIcon(TravelScreen.class.getResource("/images/MoveAheadButton.png")));
 		travel.setBounds(175, 5, 100, 50);
 		travel.setPreferredSize(new Dimension(100, 50));
 		travel.setBorder(null);
-		travel.setActionCommand("travel");
+		travel.setActionCommand("start");
 
 		Button change = new Button(new ImageIcon(TravelScreen.class.getResource("/images/UpdateButton.png")));
 		change.setBounds(280, 5, 100, 50);
@@ -67,24 +60,23 @@ public class TravelScreen extends JPanel {
 		rest.setPreferredSize(new Dimension(100, 50));
 		rest.setBorder(null);
 		rest.setActionCommand("rest");
+		rest.addActionListener(listener);
 		
-		Button stop = new Button(new ImageIcon(TravelScreen.class.getResource("/images/MoveAheadButton.png")));
-		stop.setBounds(175, 5, 100, 50);
-		stop.setPreferredSize(new Dimension(100, 500));
-		stop.setBorder(null);
-		stop.setActionCommand("stop");
-
-		ButtonListener listen = new ButtonListener();
-		travel.addActionListener(listen);
-		change.addActionListener(listen);
-		rest.addActionListener(listen);
+		travel.addActionListener(listener);
+		change.addActionListener(listener);
+		rest.addActionListener(listener);
 		setLayout(null);
 
+		//Setup options area.
+		options = new JPanel();
+		options.setPreferredSize(new Dimension(600, 50));
+		options.setBounds(0, 0, 600, 50);
 		options.add(lblTravel);
 		options.add(travel);
 		options.add(change);
 		options.add(rest);
-		options2.add(stop);
+		
+		this.add(options);
 		
 		JPanel wagonStats = new JPanel();
 		wagonStats.setBounds(66, 175, 200, 50);
@@ -95,44 +87,48 @@ public class TravelScreen extends JPanel {
 		
 		nextLocation = new JLabel("Next: ");
 		wagonStats.add(nextLocation);
-		
-		updateImage = new Timer(500, listen);
-		updateImage.setActionCommand("image");
 
 		updateStats();
-		moving=false;
+		//Setup animation magic
+		counter = 0;
 	}
 
 	public void paintComponent(Graphics g) {
 		Image regBG = new ImageIcon(TravelScreen.class.getResource(
 				"/images/OregonTrailTravelingScreenRegular.jpg")).getImage();
 		Image wagonA = new ImageIcon(TravelScreen.class.getResource("/images/OregonTrailIcon.png")).getImage();
-		g.drawImage(regBG, -1500-(current*5), 0, this);
+		g.drawImage(regBG, 5*(counter%5), 0, this);
 		g.drawImage(wagonA, 400, 120, this);
 	}
 	
-	public void backgroundMove(){
-		if (current!=end){
-			moving = true;
-			current--;
-		}
-		else
-			moving = false;
+	/**
+	 * Stop automatic traveling
+	 */
+	private void stopTravel(){
+		traveler.cancel();
+		travel.setActionCommand("start");
+		lblTravel.setText("Stopped");
+		updateStats();
 	}
 	
+	/**
+	 * Start traveling every 2 seconds
+	 */
+	private void startTravel(){
+		travel.setActionCommand("stop");
+		traveler = new Timer("Traveler");
+		traveler.scheduleAtFixedRate(new TimerTraveler(), 1, 500);
+	}
 	
-
 	/**
 	 * Travel one day
 	 */
 	private void travel() {
-		Map map = app.getMap();
-		lblTravel.setText("Traveling a day");
-		previous = map.distanceToNext();
-		current = previous;
+		lblTravel.setText("Traveling");
 		app.nextDay();
-		end = map.distanceToNext();
+		current = app.getMap().distanceToNext();
 		updateStats();
+		repaint();
 	}
 
 	/**
@@ -164,21 +160,37 @@ public class TravelScreen extends JPanel {
 		nextLocation.setText(app.getMap().nextLocation()+ " is " + Integer.toString(current) + " away.");
 	}
 
+	private class TimerTraveler extends TimerTask {
+		@Override
+		public void run() {
+			counter++;
+			if(counter % 2 == 0)
+				travel();
+			else
+				repaint();
+		}
+		
+	}
+	
 	private class ButtonListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			String s = e.getActionCommand();
-			if (s.equalsIgnoreCase("travel")) {
-//				Threader.executeNow(new Runnable(){
-//					@Override
-//					public void run() {
-//						travel();
-//					}
-//				});
-				remove(options);
-				add(options2);
-				updateImage.start();
+			if (s.equalsIgnoreCase("start")) {
+				Threader.executeNow(new Runnable(){
+					@Override
+					public void run() {
+						startTravel();
+					}
+				});
+			} else if (s.equalsIgnoreCase("stop")) {
+				Threader.executeNow(new Runnable(){
+					@Override
+					public void run() {
+						stopTravel();
+					}
+				});
 			} else if (s.equalsIgnoreCase("change")) {
 				Threader.executeNow(new Runnable(){
 					@Override
@@ -193,20 +205,6 @@ public class TravelScreen extends JPanel {
 						rest();
 					}
 				});
-			} else if (s.equalsIgnoreCase("image")) {
-				Threader.executeEventually(new Runnable(){
-					public void run(){
-						if(!moving){
-							travel();
-						}
-						backgroundMove();
-						repaint();
-					}
-				});
-			} else if (s.equalsIgnoreCase("stop")){
-				remove(options2);
-				add(options);
-				updateImage.stop();
 			}
 		}
 	}
