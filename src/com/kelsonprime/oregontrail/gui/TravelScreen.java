@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 
@@ -136,7 +137,12 @@ public class TravelScreen extends JPanel {
 	 */
 	private void changeSettings() {
 		lblTravel.setText("You updated your Conditions!");
-		// TODO pop window
+		
+		JFrame optionFrame = new JFrame("Options");
+		optionFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		optionFrame.getContentPane().add(new OptionsScreen(app));
+		optionFrame.setSize(600, 350);
+		optionFrame.setVisible(true);
 		updateStats();
 	}
 
