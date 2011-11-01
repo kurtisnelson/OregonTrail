@@ -83,7 +83,6 @@
 		<delete file="user.conf" />
 		<delete>
 			<fileset dir="." includes="*.log*" />
-			<fileset dir="${lib}" includes="resources.jar" />
 		</delete>
 		<delete dir="${build}" />
 		<delete dir="${dist}" />
