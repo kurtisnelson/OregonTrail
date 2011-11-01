@@ -27,5 +27,13 @@ public class Tongue extends Part {
 		return this.toString().compareTo(o.toString());
 	}
 
-	
+	@Override
+	public boolean equals(Object o) {
+		if(o instanceof Tongue){
+			Tongue a = (Tongue) o;
+			if(a.getHealth() == this.getHealth())
+				return true;
+		}
+		return false;
+	}	
 }
