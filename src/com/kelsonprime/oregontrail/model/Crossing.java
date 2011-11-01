@@ -17,7 +17,7 @@ public class Crossing extends Location {
 		super(name, position);
 		this.depth = depth;
 		this.width = width;
-		ferryCost = 10;
+		ferryCost = 0;
 	}
 
 	public String describe(){
