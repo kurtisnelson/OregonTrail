@@ -49,6 +49,14 @@ public class Crossing extends Location {
 	}
 
 	/**
+	 * Add a ferry to this crossing
+	 * @param price Price of the ferry
+	 */
+	public void addFerry(int price){
+		this.ferryCost = price;
+	}
+	
+	/**
 	 * Check if a ferry is available.
 	 * @return is there a ferry
 	 */
