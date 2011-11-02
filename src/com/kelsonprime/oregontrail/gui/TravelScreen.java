@@ -104,6 +104,7 @@ public class TravelScreen extends JPanel {
 	}
 
 	public void paintComponent(Graphics g) {
+		super.paintComponents(g);
 		Image regBG = new ImageIcon(TravelScreen.class.getResource(
 				"/images/OregonTrailTravelingScreenRegular.jpg")).getImage();
 		Image wagonA = new ImageIcon(TravelScreen.class.getResource("/images/OregonTrailIcon.png")).getImage();
@@ -112,9 +113,9 @@ public class TravelScreen extends JPanel {
 	}
 	
 	public void backgroundMove(){
+		current--;
 		if (current!=end){
 			moving = true;
-			current--;
 		}
 		else
 			moving = false;
@@ -178,6 +179,7 @@ public class TravelScreen extends JPanel {
 //				});
 				remove(options);
 				add(options2);
+				repaint();
 				updateImage.start();
 			} else if (s.equalsIgnoreCase("change")) {
 				Threader.executeNow(new Runnable(){
@@ -194,15 +196,16 @@ public class TravelScreen extends JPanel {
 					}
 				});
 			} else if (s.equalsIgnoreCase("image")) {
-				Threader.executeEventually(new Runnable(){
-					public void run(){
+		//		Threader.executeEventually(new Runnable(){
+			//		public void run(){
 						if(!moving){
 							travel();
 						}
 						backgroundMove();
+						updateStats();
 						repaint();
-					}
-				});
+			//		}
+			//	});
 			} else if (s.equalsIgnoreCase("stop")){
 				remove(options2);
 				add(options);
