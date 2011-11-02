@@ -56,37 +56,37 @@ public class OptionsScreen extends JFrame {
 		startingConditionLabel = new JLabel("Set Conditions");
 		startingConditionLabel.setFont(new Font("Dialog", Font.BOLD, 14));
 		startingConditionLabel.setForeground(Color.BLACK);
-		startingConditionLabel.setBounds(109, 189, 192, 15);
+		startingConditionLabel.setBounds(40, 10, 192, 15);
 		body.add(startingConditionLabel);
 
 		paceLabel = new JLabel("Pace");
 		paceLabel.setForeground(Color.BLACK);
-		paceLabel.setBounds(100, 210, 70, 15);
+		paceLabel.setBounds(20, 25, 70, 15);
 		body.add(paceLabel);
 
 		paceBox = new JComboBox();
 		paceBox.setBackground(Color.WHITE);
 		paceBox.setModel(new DefaultComboBoxModel(Pace.values()));
 		paceBox.setSelectedIndex(2);
-		paceBox.setBounds(62, 226, 124, 24);
+		paceBox.setBounds(20, 75, 124, 24);
 		body.add(paceBox);
 		
 		rationingLabel = new JLabel("Rations");
 		rationingLabel.setForeground(Color.BLACK);
-		rationingLabel.setBounds(269, 210, 70, 15);
+		rationingLabel.setBounds(150, 25, 70, 15);
 		body.add(rationingLabel);
 		
 		rationBox = new JComboBox();
 		rationBox.setBackground(Color.WHITE);
 		rationBox.setModel(new DefaultComboBoxModel(Ration.values()));
 		rationBox.setSelectedIndex(2);
-		rationBox.setBounds(228, 226, 124, 24);
+		rationBox.setBounds(150, 75, 124, 24);
 		body.add(rationBox);
 		
 		listen = new ButtonListener();
 		
 		continueButton = new JButton();
-		continueButton.setLocation(454, 189);
+		continueButton.setLocation(450, 225);
 		continueButton.setSize(50, 22);
 		continueButton.setBackground(Color.WHITE);
 		continueButton.setSelectedIcon(IconFactory.arrow);
