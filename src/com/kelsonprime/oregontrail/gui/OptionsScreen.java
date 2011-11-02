@@ -20,6 +20,11 @@ import com.kelsonprime.oregontrail.controller.IconFactory;
 import com.kelsonprime.oregontrail.controller.Pace;
 import com.kelsonprime.oregontrail.controller.Ration;
 
+/**
+ * a JFrame that allows the user to see game stats and change ration/pace
+ * @author Matthew
+ *
+ */
 public class OptionsScreen extends JFrame {
 	private static final long serialVersionUID = 6544540456115310106L;
 	OregonTrail app;
@@ -29,6 +34,10 @@ public class OptionsScreen extends JFrame {
 	ButtonListener listen;
 	JButton continueButton;
 	
+	/**
+	 * constructor pops up new frame
+	 * @param app in which to change ration/pace
+	 */
 	public OptionsScreen(OregonTrail app) {
 		super();
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -101,12 +110,20 @@ public class OptionsScreen extends JFrame {
 		
 	}
 	
+	/**
+	 * Gets user selection from combo boxes and changes Ration/Pace, then closes the frame.
+	 */
 	private void updateApp() {
 		app.getGame().setRation((Ration) rationBox.getSelectedItem());
 		app.getGame().setPace((Pace) paceBox.getSelectedItem());
 		this.dispose();
 	}
 	
+	/**
+	 * An ActionListener for the contine button in the options screen.
+	 * @author Matthew
+	 *
+	 */
 	private class ButtonListener implements ActionListener {
 
 		@Override
