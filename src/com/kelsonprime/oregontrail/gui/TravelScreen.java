@@ -44,32 +44,34 @@ public class TravelScreen extends JPanel {
 		options = new JPanel();
 		options.setPreferredSize(new Dimension(600, 50));
 		options.setBounds(0, 0, 600, 50);
+		options.setOpaque(false);
 		add(options);
 		
 		options2 = new JPanel();
 		options2.setPreferredSize(new Dimension(600, 50));
 		options2.setBounds(0, 0, 600, 50);
+		options.setOpaque(false);
 		
 		Button travel = new Button(new ImageIcon(TravelScreen.class.getResource("/images/MoveAheadButton.png")));
-		travel.setBounds(175, 5, 100, 50);
+		travel.setBounds(175, 0, 100, 50);
 		travel.setPreferredSize(new Dimension(100, 50));
 		travel.setBorder(null);
 		travel.setActionCommand("travel");
 
 		Button change = new Button(new ImageIcon(TravelScreen.class.getResource("/images/UpdateButton.png")));
-		change.setBounds(280, 5, 100, 50);
+		change.setBounds(280, 0, 100, 50);
 		change.setPreferredSize(new Dimension(100, 50));
 		change.setBorder(null);
 		change.setActionCommand("change");
 
 		Button rest = new Button(new ImageIcon(TravelScreen.class.getResource("/images/RestButton.png")));
-		rest.setBounds(385, 5, 100, 50);
+		rest.setBounds(385, 0, 100, 50);
 		rest.setPreferredSize(new Dimension(100, 50));
 		rest.setBorder(null);
 		rest.setActionCommand("rest");
 		
 		Button stop = new Button(new ImageIcon(TravelScreen.class.getResource("/images/MoveAheadButton.png")));
-		stop.setBounds(175, 5, 100, 50);
+		stop.setBounds(175, 0, 100, 50);
 		stop.setPreferredSize(new Dimension(100, 500));
 		stop.setBorder(null);
 		stop.setActionCommand("stop");
