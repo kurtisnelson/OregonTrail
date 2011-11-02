@@ -52,8 +52,11 @@
 	</target>
 
 	<target name="javadoc" depends="prepare" description="doc it">
-		<javadoc packagenames="com.kelsonprime.oregontrail.*"
+		<javadoc packagenames="com.kelsonprime.oregontrail.*" excludepackagenames="com.kelsonprime.oregontrail.model.test"
 			sourcepath="${src}" destdir="${doc}" author="true" classpathref="main-classpath">
+			<tag name="pre" enabled="no" scope="methods"/>
+			<tag name="post" enabled="no" scope="methods"/>
+			<tag name="invariant" enabled="no" scope="methods"/>
 		</javadoc>
 	</target>
 
@@ -83,7 +86,6 @@
 		<delete file="user.conf" />
 		<delete>
 			<fileset dir="." includes="*.log*" />
-			<fileset dir="${lib}" includes="resources.jar" />
 		</delete>
 		<delete dir="${build}" />
 		<delete dir="${dist}" />
