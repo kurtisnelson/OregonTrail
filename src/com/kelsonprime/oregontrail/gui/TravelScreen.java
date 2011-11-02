@@ -26,7 +26,8 @@ public class TravelScreen extends JPanel {
 	JLabel nextLocation;
 	int xDist, previous, current, end;
 	Timer updateImage;
-	JPanel options, options2;
+	JPanel options;
+	Button stop, change, travel, rest;
 	boolean moving;
 
 	public TravelScreen(OregonTrail app) {
@@ -47,30 +48,26 @@ public class TravelScreen extends JPanel {
 		options.setOpaque(false);
 		add(options);
 		
-		options2 = new JPanel();
-		options2.setPreferredSize(new Dimension(600, 50));
-		options2.setBounds(0, 0, 600, 50);
-		options.setOpaque(false);
 		
-		Button travel = new Button(new ImageIcon(TravelScreen.class.getResource("/images/MoveAheadButton.png")));
+		travel = new Button(new ImageIcon(TravelScreen.class.getResource("/images/MoveAheadButton.png")));
 		travel.setBounds(175, 0, 100, 50);
 		travel.setPreferredSize(new Dimension(100, 50));
 		travel.setBorder(null);
 		travel.setActionCommand("travel");
 
-		Button change = new Button(new ImageIcon(TravelScreen.class.getResource("/images/UpdateButton.png")));
+		change = new Button(new ImageIcon(TravelScreen.class.getResource("/images/UpdateButton.png")));
 		change.setBounds(280, 0, 100, 50);
 		change.setPreferredSize(new Dimension(100, 50));
 		change.setBorder(null);
 		change.setActionCommand("change");
 
-		Button rest = new Button(new ImageIcon(TravelScreen.class.getResource("/images/RestButton.png")));
+		rest = new Button(new ImageIcon(TravelScreen.class.getResource("/images/RestButton.png")));
 		rest.setBounds(385, 0, 100, 50);
 		rest.setPreferredSize(new Dimension(100, 50));
 		rest.setBorder(null);
 		rest.setActionCommand("rest");
 		
-		Button stop = new Button(new ImageIcon(TravelScreen.class.getResource("/images/MoveAheadButton.png")));
+		stop = new Button(new ImageIcon(TravelScreen.class.getResource("/images/MoveAheadButton.png")));
 		stop.setBounds(175, 0, 100, 50);
 		stop.setPreferredSize(new Dimension(100, 500));
 		stop.setBorder(null);
@@ -86,7 +83,6 @@ public class TravelScreen extends JPanel {
 		options.add(travel);
 		options.add(change);
 		options.add(rest);
-		options2.add(stop);
 		
 		JPanel wagonStats = new JPanel();
 		wagonStats.setBounds(66, 175, 200, 50);
@@ -179,8 +175,10 @@ public class TravelScreen extends JPanel {
 //						travel();
 //					}
 //				});
-				remove(options);
-				add(options2);
+				options.remove(travel);
+				options.remove(change);
+				options.remove(rest);
+				options.add(stop);
 				repaint();
 				updateImage.start();
 			} else if (s.equalsIgnoreCase("change")) {
@@ -209,8 +207,10 @@ public class TravelScreen extends JPanel {
 			//		}
 			//	});
 			} else if (s.equalsIgnoreCase("stop")){
-				remove(options2);
-				add(options);
+				options.add(travel);
+				options.add(change);
+				options.add(rest);
+				options.remove(stop);
 				updateImage.stop();
 			}
 		}
