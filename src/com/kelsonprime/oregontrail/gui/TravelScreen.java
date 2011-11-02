@@ -151,9 +151,9 @@ public class TravelScreen extends JPanel {
 	private void changeSettings() {
 		lblTravel.setText("You updated your Conditions!");
 		
-		JFrame optionFrame = new JFrame("Options");
+		JFrame optionFrame = new OptionsScreen(app);
 		optionFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		optionFrame.getContentPane().add(new OptionsScreen(app));
+		//optionFrame.getContentPane().add(new OptionsScreen(app));
 		optionFrame.setSize(600, 350);
 		optionFrame.setVisible(true);
 		updateStats();

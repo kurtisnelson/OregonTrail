@@ -11,6 +11,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -19,7 +20,7 @@ import com.kelsonprime.oregontrail.controller.IconFactory;
 import com.kelsonprime.oregontrail.controller.Pace;
 import com.kelsonprime.oregontrail.controller.Ration;
 
-public class OptionsScreen extends JPanel {
+public class OptionsScreen extends JFrame {
 	private static final long serialVersionUID = 6544540456115310106L;
 	OregonTrail app;
 	JPanel header, body;
@@ -30,6 +31,9 @@ public class OptionsScreen extends JPanel {
 	
 	public OptionsScreen(OregonTrail app) {
 		super();
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		this.setSize(600, 350);
+		this.setVisible(true);
 		
 		this.app = app;
 		this.setBackground(Color.WHITE);
@@ -100,6 +104,7 @@ public class OptionsScreen extends JPanel {
 	private void updateApp() {
 		app.getGame().setRation((Ration) rationBox.getSelectedItem());
 		app.getGame().setPace((Pace) paceBox.getSelectedItem());
+		this.dispose();
 	}
 	
 	private class ButtonListener implements ActionListener {
@@ -109,6 +114,7 @@ public class OptionsScreen extends JPanel {
 			
 			if(e.getActionCommand().equals("continue")){
 				updateApp();
+				
 			}			
 		}		
 	}
