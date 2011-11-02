@@ -1,5 +1,7 @@
 package com.kelsonprime.oregontrail.controller;
 
+import java.util.List;
+
 import com.kelsonprime.oregontrail.gui.Listener;
 import com.kelsonprime.oregontrail.gui.OregonTrail;
 import com.kelsonprime.oregontrail.model.Location;
@@ -111,11 +113,11 @@ public class Game implements Time {
 
 	/**
 	 * Offers a part to trade
-	 * @param part
-	 * @param quantity
-	 * @return part
+	 * @param need What <code>Part</code> the player needs
+	 * @param quantity How many of need
+	 * @return part A list of parts they would give to get need
 	 */
-	public Part offerTrade(Part need, int quantity) {
+	public List<Part> offerTrade(Part need, int quantity) {
 		// TODO method stub
 		return null;
 	}

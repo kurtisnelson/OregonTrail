@@ -37,18 +37,6 @@ public class OregonTrail {
 	JPanel mainPanel;
 	private JFrame frame;
 
-	public void newGameScreen() {
-		setPanel(new NewGameScreen(this));
-	}
-
-	private void setPanel(JPanel p) {
-		frame.add(p);
-		if (mainPanel != null)
-			frame.remove(mainPanel);
-		mainPanel = p;
-		frame.setVisible(true);
-	}
-
 	public static void main(String[] args) {
 		// Load in logging prefs
 		String level = userProperties.getProperty("LogLevel", "severe");
@@ -130,12 +118,27 @@ public class OregonTrail {
 	public void updateScreen() {
 		Location cur = game.currentLocation();
 		if (cur == null) {
-			setPanel(new TravelScreen(this));
+			if(mainPanel instanceof TravelScreen)
+				return;
+			else
+				setPanel(new TravelScreen(this));
 		} else if (cur instanceof Shop) {
 			setPanel(new ShopScreen(this, (Shop) cur));
 		} else if (cur instanceof Landmark) {
 			setPanel(new LandmarkScreen(this, (Landmark) cur));
 		}
+	}
+	
+	public void newGameScreen() {
+		setPanel(new NewGameScreen(this));
+	}
+
+	private void setPanel(JPanel p) {
+		frame.add(p);
+		if (mainPanel != null)
+			frame.remove(mainPanel);
+		mainPanel = p;
+		frame.setVisible(true);
 	}
 	
 	public void leaveLocation() {

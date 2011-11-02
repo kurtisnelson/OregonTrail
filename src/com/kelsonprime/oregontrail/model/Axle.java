@@ -40,4 +40,14 @@ public class Axle extends Part {
 		}
 		return this.toString().compareTo(o.toString());
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		if(o instanceof Axle){
+			Axle a = (Axle) o;
+			if(a.getHealth() == this.getHealth())
+				return true;
+		}
+		return false;
+	}
 }

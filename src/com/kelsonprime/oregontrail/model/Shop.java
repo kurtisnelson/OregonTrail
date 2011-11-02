@@ -148,7 +148,7 @@ public class Shop extends Location {
 			w.changeMoney((-1) * total);
 		} catch (UserInputException e) {
 			LOGGER.log(Level.SEVERE, "Game ruined.", e);
-			System.exit(0);
+			throw new RuntimeException("Current game state trashed");
 		}
 	}
 
@@ -181,7 +181,7 @@ public class Shop extends Location {
 			w.changeMoney(getPrice(item) * quantity * (-1));
 		} catch (UserInputException e) {
 			LOGGER.log(Level.SEVERE, "Game ruined", e);
-			System.exit(0);
+			throw new RuntimeException("Current game state trashed");
 		}
 	}
 
