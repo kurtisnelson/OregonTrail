@@ -49,7 +49,7 @@ public class TravelScreen extends JPanel {
 		lblTravel.setBounds(114, 22, 56, 15);
 		
 		travel = new Button(moveAheadIcon);
-		travel.setBounds(175, 5, 100, 50);
+		travel.setBounds(175, 0, 100, 50);
 		travel.setPreferredSize(new Dimension(100, 50));
 		travel.setBorder(null);
 		travel.setActionCommand("start");
@@ -57,7 +57,7 @@ public class TravelScreen extends JPanel {
 
 		change = new Button(new ImageIcon(TravelScreen.class.getResource("/images/UpdateButton.png")));
 		change.setDisabledIcon(TravelScreen.disabledIcon);
-		change.setBounds(280, 5, 100, 50);
+		change.setBounds(280, 0, 100, 50);
 		change.setPreferredSize(new Dimension(100, 50));
 		change.setBorder(null);
 		change.setActionCommand("change");
@@ -65,7 +65,7 @@ public class TravelScreen extends JPanel {
 
 		rest = new Button(new ImageIcon(TravelScreen.class.getResource("/images/RestButton.png")));
 		rest.setDisabledIcon(TravelScreen.disabledIcon);
-		rest.setBounds(385, 5, 100, 50);
+		rest.setBounds(385, 0, 100, 50);
 		rest.setPreferredSize(new Dimension(100, 50));
 		rest.setBorder(null);
 		rest.setActionCommand("rest");
