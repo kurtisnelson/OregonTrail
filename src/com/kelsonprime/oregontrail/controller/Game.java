@@ -34,6 +34,10 @@ public class Game implements Time {
 		this.map = new Map();
 	}
 	
+	public Listener getListener(){
+		return this.reciever;
+	}
+	
 	/**
 	 * Gets current location on map
 	 * @return location
