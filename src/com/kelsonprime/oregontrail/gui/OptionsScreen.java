@@ -146,6 +146,7 @@ public class OptionsScreen extends JFrame implements Updatable {
 		app.getGame().setRation((Ration) rationBox.getSelectedItem());
 		app.getGame().setPace((Pace) paceBox.getSelectedItem());
 		this.dispose();
+		app.getListener().dispatchUpdate();
 	}
 	
 	/**

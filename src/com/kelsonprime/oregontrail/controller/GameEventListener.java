@@ -6,19 +6,17 @@ import java.util.List;
 import com.kelsonprime.oregontrail.gui.OregonTrail;
 
 /**
+ * This object allows other classes to register for event notifications from it. Events are dispatched from here to all registered objects.
  * 
- * this class is the go between for the logic and the gui. When something
- * changes in the logic, it tells the Listener (by calling some method in the
- * listener) The Listener then updates the gui (in whatever manner we implement)
- * 
- * @author Matt
+ * @author Kurt Nelson
+ * @version 1
  * 
  */
-public class Listener {
+public class GameEventListener {
 	OregonTrail parent;
 	List<Updatable> updatables;
 	
-	public Listener(){
+	public GameEventListener(){
 		updatables = new LinkedList<Updatable>();
 	}
 
@@ -31,7 +29,7 @@ public class Listener {
 			updatables.add(f);
 	}
 	
-	public void update(){
+	public void dispatchUpdate(){
 		for(Updatable u : updatables)
 			u.update();
 	}

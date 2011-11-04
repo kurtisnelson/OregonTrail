@@ -16,7 +16,7 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import com.kelsonprime.oregontrail.controller.Game;
-import com.kelsonprime.oregontrail.controller.Listener;
+import com.kelsonprime.oregontrail.controller.GameEventListener;
 import com.kelsonprime.oregontrail.controller.Map;
 import com.kelsonprime.oregontrail.controller.Threader;
 import com.kelsonprime.oregontrail.controller.UserProperties;
@@ -147,7 +147,7 @@ public class OregonTrail {
 		updateScreen();
 	}
 	
-	public Listener getListener(){
+	public GameEventListener getListener(){
 		return game.getListener();
 	}
 

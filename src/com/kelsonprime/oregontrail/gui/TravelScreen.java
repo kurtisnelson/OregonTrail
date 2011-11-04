@@ -95,7 +95,7 @@ public class TravelScreen extends JPanel implements Updatable{
 		nextLocation = new JLabel("Next: ");
 		wagonStats.add(nextLocation);
 
-		app.getListener().update();
+		app.getListener().dispatchUpdate();
 		//Setup animation magic
 		counter = 0;
 	}
@@ -121,7 +121,7 @@ public class TravelScreen extends JPanel implements Updatable{
 		travel.setIcon(TravelScreen.moveAheadIcon);
 		travel.setActionCommand("start");
 		lblTravel.setText("Stopped");
-		app.getListener().update();
+		app.getListener().dispatchUpdate();
 	}
 	
 	/**
@@ -142,7 +142,7 @@ public class TravelScreen extends JPanel implements Updatable{
 		lblTravel.setText("Traveling");
 		app.nextDay();
 		current = app.getMap().distanceToNext();
-		app.getListener().update();
+		app.getListener().dispatchUpdate();
 		repaint();
 	}
 
@@ -157,7 +157,7 @@ public class TravelScreen extends JPanel implements Updatable{
 		//optionFrame.getContentPane().add(new OptionsScreen(app));
 		optionFrame.setSize(600, 350);
 		optionFrame.setVisible(true);
-		app.getListener().update();
+		app.getListener().dispatchUpdate();
 	}
 
 	/**
@@ -171,7 +171,7 @@ public class TravelScreen extends JPanel implements Updatable{
 		app.nextDay();
 		g.setPace(oldPace);
 		lblTravel.setText("Rested a day");
-		app.getListener().update();
+		app.getListener().dispatchUpdate();
 	}
 	
 	/**

@@ -14,7 +14,7 @@ import com.kelsonprime.oregontrail.model.Wagon;
  */
 public class Game implements Time {
 
-	public Listener reciever;
+	public GameEventListener reciever;
 	private Wagon wagon;
 	private Map map;
 	private int days;
@@ -25,7 +25,7 @@ public class Game implements Time {
 	 * Constructs Game object and initializes all variables like map, wagon etc
 	 */
 	public Game(Wagon wagon) {
-		this.reciever = new Listener();
+		this.reciever = new GameEventListener();
 		this.days = 0;
 		this.pace = Pace.STEADY;
 		this.ration = Ration.NORMAL;
@@ -33,7 +33,7 @@ public class Game implements Time {
 		this.map = new Map();
 	}
 	
-	public Listener getListener(){
+	public GameEventListener getListener(){
 		return this.reciever;
 	}
 	
