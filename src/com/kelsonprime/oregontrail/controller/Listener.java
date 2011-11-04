@@ -1,4 +1,9 @@
-package com.kelsonprime.oregontrail.gui;
+package com.kelsonprime.oregontrail.controller;
+
+import java.util.LinkedList;
+import java.util.List;
+
+import com.kelsonprime.oregontrail.gui.OregonTrail;
 
 /**
  * 
@@ -11,12 +16,24 @@ package com.kelsonprime.oregontrail.gui;
  */
 public class Listener {
 	OregonTrail parent;
+	List<Updatable> updatables;
+	
 	public Listener(){
-		
+		updatables = new LinkedList<Updatable>();
 	}
 
 	public void traveled(){
 		parent.updateScreen();
+	}
+	
+	public void registerUpdatable(Updatable f){
+		if(!updatables.contains(f))
+			updatables.add(f);
+	}
+	
+	public void update(){
+		for(Updatable u : updatables)
+			u.update();
 	}
 	
 	public void setOwner(OregonTrail owner){

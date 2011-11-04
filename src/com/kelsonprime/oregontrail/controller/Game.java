@@ -2,7 +2,6 @@ package com.kelsonprime.oregontrail.controller;
 
 import java.util.List;
 
-import com.kelsonprime.oregontrail.gui.Listener;
 import com.kelsonprime.oregontrail.gui.OregonTrail;
 import com.kelsonprime.oregontrail.model.Location;
 import com.kelsonprime.oregontrail.model.Part;
