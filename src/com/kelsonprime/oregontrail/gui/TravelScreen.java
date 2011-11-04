@@ -14,11 +14,12 @@ import javax.swing.JLabel;
 import com.kelsonprime.oregontrail.controller.Game;
 import com.kelsonprime.oregontrail.controller.Pace;
 import com.kelsonprime.oregontrail.controller.Threader;
+import com.kelsonprime.oregontrail.controller.Updatable;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class TravelScreen extends JPanel {
+public class TravelScreen extends JPanel implements Updatable{
 	private static final long serialVersionUID = -2616586129314449978L;
 
 	private OregonTrail app;
@@ -39,7 +40,7 @@ public class TravelScreen extends JPanel {
 	public TravelScreen(OregonTrail app) {
 		super();
 		this.app = app;
-		
+		this.app.getListener().registerUpdatable(this);
 		this.listener = new ButtonListener();
 		current = app.getMap().distanceToNext();
 		
@@ -94,7 +95,7 @@ public class TravelScreen extends JPanel {
 		nextLocation = new JLabel("Next: ");
 		wagonStats.add(nextLocation);
 
-		updateStats();
+		app.getListener().update();
 		//Setup animation magic
 		counter = 0;
 	}
@@ -120,7 +121,7 @@ public class TravelScreen extends JPanel {
 		travel.setIcon(TravelScreen.moveAheadIcon);
 		travel.setActionCommand("start");
 		lblTravel.setText("Stopped");
-		updateStats();
+		app.getListener().update();
 	}
 	
 	/**
@@ -141,7 +142,7 @@ public class TravelScreen extends JPanel {
 		lblTravel.setText("Traveling");
 		app.nextDay();
 		current = app.getMap().distanceToNext();
-		updateStats();
+		app.getListener().update();
 		repaint();
 	}
 
@@ -156,7 +157,7 @@ public class TravelScreen extends JPanel {
 		//optionFrame.getContentPane().add(new OptionsScreen(app));
 		optionFrame.setSize(600, 350);
 		optionFrame.setVisible(true);
-		updateStats();
+		app.getListener().update();
 	}
 
 	/**
@@ -170,13 +171,13 @@ public class TravelScreen extends JPanel {
 		app.nextDay();
 		g.setPace(oldPace);
 		lblTravel.setText("Rested a day");
-		updateStats();
+		app.getListener().update();
 	}
 	
 	/**
 	 * Update on screen stats about the wagon.
 	 */
-	private void updateStats(){
+	public void update(){
 		nextLocation.setText(app.getMap().nextLocation()+ " is " + Integer.toString(current) + " away.");
 	}
 	
