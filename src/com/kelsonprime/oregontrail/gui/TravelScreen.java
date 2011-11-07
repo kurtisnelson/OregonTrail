@@ -94,6 +94,7 @@ public class TravelScreen extends JPanel implements Updatable{
 		
 		nextLocation = new JLabel("Next: ");
 		wagonStats.add(nextLocation);
+		update();
 
 
 		//Setup animation magic
@@ -142,6 +143,7 @@ public class TravelScreen extends JPanel implements Updatable{
 		lblTravel.setText("Traveling");
 		app.nextDay();
 		current = app.getMap().distanceToNext();
+		update();
 
 		repaint();
 	}
