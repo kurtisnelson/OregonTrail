@@ -1,3 +1,4 @@
+
 package com.kelsonprime.oregontrail.controller;
 
 import java.util.concurrent.ExecutorService;
@@ -37,3 +38,4 @@ public class Threader {
 		singlePool.execute(r);
 	}
 }
+

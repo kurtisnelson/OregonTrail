@@ -1,9 +1,10 @@
+
 package com.kelsonprime.oregontrail.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -11,78 +12,94 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import com.kelsonprime.oregontrail.controller.Game;
 import com.kelsonprime.oregontrail.controller.IconFactory;
 import com.kelsonprime.oregontrail.controller.Pace;
 import com.kelsonprime.oregontrail.controller.Ration;
+import com.kelsonprime.oregontrail.controller.Updatable;
+import com.kelsonprime.oregontrail.model.Wagon;
 
-public class OptionsScreen extends JPanel {
+import javax.swing.JTextField;
+
+/**
+ * a JFrame that allows the user to see game stats and change ration/pace
+ * @author Matthew
+ *
+ */
+public class OptionsScreen extends JFrame implements Updatable {
 	private static final long serialVersionUID = 6544540456115310106L;
-	OregonTrail app;
-	JPanel header, body;
-	JLabel headerLabel, startingConditionLabel, paceLabel, rationingLabel;
-	JComboBox paceBox, rationBox;
-	ButtonListener listen;
+	private OregonTrail app;
+	private JPanel header, body;
+	private JLabel paceLabel, rationingLabel;
+	private JComboBox paceBox, rationBox;
+	private ButtonListener listen;
 	JButton continueButton;
+	private JTextField foodField;
 	
+	/**
+	 * constructor pops up new frame
+	 * @param app in which to change ration/pace
+	 */
 	public OptionsScreen(OregonTrail app) {
 		super();
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		this.setSize(400, 400);
+		this.setVisible(true);
+		
+		centerFrame();
 		
 		this.app = app;
+		this.app.getGame().getListener().registerUpdatable(this);
 		this.setBackground(Color.WHITE);
-		setLayout(new BorderLayout(0, 0));
-		setSize(new Dimension(600, 300));
+		getContentPane().setLayout(new BorderLayout(0, 0));
+		setSize(new Dimension(400, 200));
 		
 		header = new JPanel();
 		header.setBackground(Color.white);
-		add(header, BorderLayout.NORTH);
+		getContentPane().add(header, BorderLayout.NORTH);
 
-		JLabel headerLabel = new JLabel("What would you like to do?");
+		JLabel headerLabel = new JLabel("Your current wagon state");
 		header.add(headerLabel);
 		
 		body = new JPanel();
 		body.setForeground(Color.WHITE);
 		body.setBackground(Color.WHITE);
-		add(body, BorderLayout.CENTER);
+		getContentPane().add(body, BorderLayout.CENTER);
 		body.setLayout(null);
-		
-		startingConditionLabel = new JLabel("Set Conditions");
-		startingConditionLabel.setFont(new Font("Dialog", Font.BOLD, 14));
-		startingConditionLabel.setForeground(Color.BLACK);
-		startingConditionLabel.setBounds(109, 189, 192, 15);
-		body.add(startingConditionLabel);
 
 		paceLabel = new JLabel("Pace");
 		paceLabel.setForeground(Color.BLACK);
-		paceLabel.setBounds(100, 210, 70, 15);
+		paceLabel.setBounds(14, 99, 70, 15);
 		body.add(paceLabel);
 
 		paceBox = new JComboBox();
+		paceLabel.setLabelFor(paceBox);
 		paceBox.setBackground(Color.WHITE);
 		paceBox.setModel(new DefaultComboBoxModel(Pace.values()));
 		paceBox.setSelectedIndex(2);
-		paceBox.setBounds(62, 226, 124, 24);
+		paceBox.setBounds(14, 115, 124, 24);
 		body.add(paceBox);
 		
 		rationingLabel = new JLabel("Rations");
 		rationingLabel.setForeground(Color.BLACK);
-		rationingLabel.setBounds(269, 210, 70, 15);
+		rationingLabel.setBounds(150, 99, 70, 15);
 		body.add(rationingLabel);
 		
 		rationBox = new JComboBox();
+		rationingLabel.setLabelFor(rationBox);
 		rationBox.setBackground(Color.WHITE);
 		rationBox.setModel(new DefaultComboBoxModel(Ration.values()));
 		rationBox.setSelectedIndex(2);
-		rationBox.setBounds(228, 226, 124, 24);
+		rationBox.setBounds(150, 115, 124, 24);
 		body.add(rationBox);
 		
 		listen = new ButtonListener();
 		
 		continueButton = new JButton();
-		continueButton.setLocation(454, 189);
+		continueButton.setLocation(332, 115);
 		continueButton.setSize(50, 22);
 		continueButton.setBackground(Color.WHITE);
 		continueButton.setSelectedIcon(IconFactory.arrow);
@@ -94,23 +111,61 @@ public class OptionsScreen extends JPanel {
 		continueButton.setActionCommand("continue");
 		body.add(continueButton);
 		
+		JLabel foodLbl = new JLabel("Food:");
+		foodLbl.setBounds(14, 12, 40, 15);
+		body.add(foodLbl);
 		
+		foodField = new JTextField();
+		foodField.setEditable(false);
+		foodField.setBounds(61, 10, 40, 19);
+		body.add(foodField);
+		foodField.setColumns(10);
+		
+		update();
 	}
 	
-	private void updateApp() {
+	public void update(){
+		Wagon w = app.getWagon();
+		foodField.setText(Integer.toString(w.countFood()));
+	}
+	
+	public void centerFrame(){
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		// Determine the new location of the window
+		int w = this.getSize().width;
+		int h = this.getSize().height;
+		int x = (dim.width / 2) - w / 2;
+		int y = (dim.height / 2) - h / 2;
+		// Move the window
+		this.setLocation(x, y);
+	}
+	
+	/**
+	 * Gets user selection from combo boxes and changes Ration/Pace, then closes the frame.
+	 */
+	private void saveAndClose() {
 		app.getGame().setRation((Ration) rationBox.getSelectedItem());
 		app.getGame().setPace((Pace) paceBox.getSelectedItem());
+		this.dispose();
+		app.getListener().dispatchUpdate();
 	}
 	
+	/**
+	 * An ActionListener for the contine button in the options screen.
+	 * @author Matthew
+	 *
+	 */
 	private class ButtonListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			
 			if(e.getActionCommand().equals("continue")){
-				updateApp();
+				saveAndClose();
+				
 			}			
 		}		
 	}
 }
+
 

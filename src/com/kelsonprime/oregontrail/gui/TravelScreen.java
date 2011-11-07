@@ -14,11 +14,12 @@ import javax.swing.JLabel;
 import com.kelsonprime.oregontrail.controller.Game;
 import com.kelsonprime.oregontrail.controller.Pace;
 import com.kelsonprime.oregontrail.controller.Threader;
+import com.kelsonprime.oregontrail.controller.Updatable;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class TravelScreen extends JPanel {
+public class TravelScreen extends JPanel implements Updatable{
 	private static final long serialVersionUID = -2616586129314449978L;
 
 	private OregonTrail app;
@@ -39,8 +40,7 @@ public class TravelScreen extends JPanel {
 	public TravelScreen(OregonTrail app) {
 		super();
 		this.app = app;
-		
-		this.listener = new ButtonListener();
+	    this.listener = new ButtonListener();
 		current = app.getMap().distanceToNext();
 		
 		setSize(new Dimension(600, 300));
@@ -49,15 +49,15 @@ public class TravelScreen extends JPanel {
 		lblTravel.setBounds(114, 22, 56, 15);
 		
 		travel = new Button(moveAheadIcon);
-		travel.setBounds(175, 5, 100, 50);
-		travel.setPreferredSize(new Dimension(100, 50));
+
+        travel.setPreferredSize(new Dimension(100, 50));
 		travel.setBorder(null);
 		travel.setActionCommand("start");
 		travel.addActionListener(listener);
 
 		change = new Button(new ImageIcon(TravelScreen.class.getResource("/images/UpdateButton.png")));
 		change.setDisabledIcon(TravelScreen.disabledIcon);
-		change.setBounds(280, 5, 100, 50);
+
 		change.setPreferredSize(new Dimension(100, 50));
 		change.setBorder(null);
 		change.setActionCommand("change");
@@ -65,7 +65,7 @@ public class TravelScreen extends JPanel {
 
 		rest = new Button(new ImageIcon(TravelScreen.class.getResource("/images/RestButton.png")));
 		rest.setDisabledIcon(TravelScreen.disabledIcon);
-		rest.setBounds(385, 5, 100, 50);
+
 		rest.setPreferredSize(new Dimension(100, 50));
 		rest.setBorder(null);
 		rest.setActionCommand("rest");
@@ -94,7 +94,7 @@ public class TravelScreen extends JPanel {
 		nextLocation = new JLabel("Next: ");
 		wagonStats.add(nextLocation);
 
-		updateStats();
+
 		//Setup animation magic
 		counter = 0;
 	}
@@ -120,7 +120,7 @@ public class TravelScreen extends JPanel {
 		travel.setIcon(TravelScreen.moveAheadIcon);
 		travel.setActionCommand("start");
 		lblTravel.setText("Stopped");
-		updateStats();
+
 	}
 	
 	/**
@@ -141,7 +141,7 @@ public class TravelScreen extends JPanel {
 		lblTravel.setText("Traveling");
 		app.nextDay();
 		current = app.getMap().distanceToNext();
-		updateStats();
+
 		repaint();
 	}
 
@@ -151,12 +151,14 @@ public class TravelScreen extends JPanel {
 	private void changeSettings() {
 		lblTravel.setText("You updated your Conditions!");
 		
-		JFrame optionFrame = new JFrame("Options");
+
+		JFrame optionFrame = new OptionsScreen(app);
 		optionFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		optionFrame.getContentPane().add(new OptionsScreen(app));
+		//optionFrame.getContentPane().add(new OptionsScreen(app));
 		optionFrame.setSize(600, 350);
 		optionFrame.setVisible(true);
-		updateStats();
+		app.getListener().dispatchUpdate();
+
 	}
 
 	/**
@@ -170,13 +172,13 @@ public class TravelScreen extends JPanel {
 		app.nextDay();
 		g.setPace(oldPace);
 		lblTravel.setText("Rested a day");
-		updateStats();
+
 	}
 	
 	/**
 	 * Update on screen stats about the wagon.
 	 */
-	private void updateStats(){
+	public void update(){
 		nextLocation.setText(app.getMap().nextLocation()+ " is " + Integer.toString(current) + " away.");
 	}
 	

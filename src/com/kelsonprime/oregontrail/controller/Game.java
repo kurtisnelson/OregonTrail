@@ -1,8 +1,12 @@
+
+
+
+
+
 package com.kelsonprime.oregontrail.controller;
 
 import java.util.List;
 
-import com.kelsonprime.oregontrail.gui.Listener;
 import com.kelsonprime.oregontrail.gui.OregonTrail;
 import com.kelsonprime.oregontrail.model.Location;
 import com.kelsonprime.oregontrail.model.Part;
@@ -15,7 +19,7 @@ import com.kelsonprime.oregontrail.model.Wagon;
  */
 public class Game implements Time {
 
-	public Listener reciever;
+	public GameEventListener reciever;
 	private Wagon wagon;
 	private Map map;
 	private int days;
@@ -26,12 +30,16 @@ public class Game implements Time {
 	 * Constructs Game object and initializes all variables like map, wagon etc
 	 */
 	public Game(Wagon wagon) {
-		this.reciever = new Listener();
+		this.reciever = new GameEventListener();
 		this.days = 0;
 		this.pace = Pace.STEADY;
 		this.ration = Ration.NORMAL;
 		this.wagon = wagon;
 		this.map = new Map();
+	}
+	
+	public GameEventListener getListener(){
+		return this.reciever;
 	}
 	
 	/**
@@ -158,4 +166,7 @@ public class Game implements Time {
 		map.nextDay(this);
 		days++;
 	}
+	{
+}
+
 }
