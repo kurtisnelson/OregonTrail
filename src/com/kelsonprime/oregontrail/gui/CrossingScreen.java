@@ -8,17 +8,16 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JPanel;
 import com.kelsonprime.oregontrail.model.Wagon;
 
-public class CrossingScreen extends JPanel {
+public class CrossingScreen extends LocationScreen {
 	private static final long serialVersionUID = -2616586129314449978L;
 
 	OregonTrail app;
 	Wagon wagon;
 
 	public CrossingScreen(OregonTrail app) {
-		super();
+		super(app);
 		this.app = app;
 		this.wagon = app.getWagon();
 		
