@@ -72,7 +72,7 @@ public class Crossing extends Location {
 	public String ferry() {
 		if(ferryCost <= 0)
 			return "There is no ferry here.";
-		return null;
+		return Integer.toString(ferryCost);
 	}
 
 }
