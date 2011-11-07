@@ -77,6 +77,7 @@ public class TravelScreen extends JPanel implements Updatable{
 		options = new JPanel();
 		options.setPreferredSize(new Dimension(600, 50));
 		options.setBounds(0, 0, 600, 50);
+		options.setOpaque(false);
 		options.add(lblTravel);
 		options.add(travel);
 		options.add(change);
