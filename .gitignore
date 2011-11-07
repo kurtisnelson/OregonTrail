@@ -3,6 +3,7 @@ forms-*.zip
 dist/
 apidoc/
 bin/
+lib/resources.jar
 *.log*
 *.conf
 *.class
