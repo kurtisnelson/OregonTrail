@@ -22,7 +22,10 @@ public class Map implements Time{
 		traveled = 0;
 		Location indep = new Shop("Independence", 0);
 		Location end = new Destination("The End", 75);
-		indep.setNext(end, 50, 0);
+		Location rest = new Destination("Rest Stop", 100);
+		Location 
+		//indep.setNext(end, 50, 0);
+		//end.setNext(rest,0,75);
 		start = indep;
 	}
 	
