@@ -92,13 +92,6 @@ public class Game implements Time {
 	}
 
 	/**
-	 * Does the bookkeeping for rest
-	 */
-	public void rest() {
-		// TODO method stub
-	}
-
-	/**
 	 * Gets the ration left
 	 * @return ration
 	 */
@@ -146,6 +139,15 @@ public class Game implements Time {
 	}
 	
 	/**
+	 * Rest for a day
+	 */
+	public void rest(){
+		Pace oldPace = this.getPace();
+		this.setPace(Pace.STOPPED);
+		nextDay();
+		this.setPace(oldPace);
+	}
+	/**
 	 * Gets the current map
 	 * @return map
 	 */
@@ -160,13 +162,15 @@ public class Game implements Time {
 		reciever.setOwner(owner);
 	}
 
-	@Override
-	public void nextDay(Game game) {
+	public void nextDay(){
 		wagon.nextDay(this);
 		map.nextDay(this);
 		days++;
 	}
-	{
-}
+	
+	@Override
+	public void nextDay(Game game) {
+		nextDay();
+	}
 
 }
