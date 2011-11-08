@@ -49,10 +49,10 @@ public class TownScreen extends LocationScreen {
 			String s = ae.getActionCommand();
 			
 			if (s.equalsIgnoreCase("shop")){
-				ShopScreen theShop = new ShopScreen(app, town.getShop());
+				ShopScreen theShop = new ShopScreen(getApp(), town.getShop());
 				//TODO launch shop screen, but return here when done.
 			}else if (s.equalsIgnoreCase("inn")){
-				app.getGame().rest();
+				getApp().getGame().rest();
 				//TODO Rest (in town)
 			}
 		}

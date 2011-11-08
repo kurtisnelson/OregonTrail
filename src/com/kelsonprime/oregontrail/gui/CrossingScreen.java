@@ -2,7 +2,6 @@ package com.kelsonprime.oregontrail.gui;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,20 +12,30 @@ import com.kelsonprime.oregontrail.model.Crossing;
 import com.kelsonprime.oregontrail.model.Wagon;
 
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CrossingScreen extends LocationScreen {
+	private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 	private static final long serialVersionUID = -2616586129314449978L;
 
-	OregonTrail app;
 	Wagon wagon;
 	Crossing crossing;
 	Random rand = new Random();
 
 	public CrossingScreen(OregonTrail app, Crossing crossing) {
 		super(app);
-		this.app = app;
 		this.wagon = app.getWagon();
 		this.crossing = crossing;
+		
+		try{
+		background = new ImageIcon(
+				CrossingScreen.class.getResource("/images/CrossingScreen.jpg"))
+				.getImage();
+	}catch(NullPointerException e){
+		LOGGER.log(Level.FINE, "Missing resource CrossingScreen.jpg");
+		throw new RuntimeException("Missing resource CrossingScreen.jpg");
+	}
 
 		ButtonListener listener = new ButtonListener();
 
@@ -36,11 +45,15 @@ public class CrossingScreen extends LocationScreen {
 		ferry.addActionListener(listener);
 
 		JButton caulk = new JButton("Caulk your Wagon");
+		caulk.setLocation(0, 0);
+		caulk.setSize(222, 22);
 		caulk.setPreferredSize(new Dimension(100, 50));
 		caulk.setActionCommand("caulk");
 		caulk.addActionListener(listener);
 
 		JButton wade = new JButton("Wade over the River");
+		wade.setLocation(0, 22);
+		wade.setSize(222, 22);
 		wade.setPreferredSize(new Dimension(100, 50));
 		wade.setActionCommand("wade");
 		wade.addActionListener(listener);
@@ -52,14 +65,16 @@ public class CrossingScreen extends LocationScreen {
 	}
 
 	public void paintComponent(Graphics g) {
-		Image regBG = new ImageIcon(
-				CrossingScreen.class.getResource("/images/CrossingScreen.jpg"))
-				.getImage();
-		g.drawImage(regBG, 0, 0, this);
+		super.paintComponent(g);
+		try{
 		g.drawImage(
 				new ImageIcon(CrossingScreen.class
 						.getResource("/images/OregonTrailIcon.jpg")).getImage(),
 				400, 100, this);
+		}catch(NullPointerException e){
+			LOGGER.log(Level.FINE, "Missing resource OregonTrailIcon");
+			throw new RuntimeException("Missing resource OregonTrailIcon");
+		}
 	}
 
 	private class ButtonListener implements ActionListener {
@@ -79,7 +94,7 @@ public class CrossingScreen extends LocationScreen {
 				if (success <= wagon.getWeight())
 					;// TODO Bad Stuff Happens
 			}
-			app.leaveLocation();
+			getApp().leaveLocation();
 		}
 	}
 }

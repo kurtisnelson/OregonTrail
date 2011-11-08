@@ -8,20 +8,23 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 public abstract class LocationScreen extends JPanel {
-	private Image background;
+	protected Image background;
 	private static final long serialVersionUID = 2247264002726443781L;
-	protected OregonTrail app;
+	private OregonTrail app;
 
 	public LocationScreen(OregonTrail app) {
 		this.app = app;
 		background = new ImageIcon(LocationScreen.class.getResource("/images/dirt.jpg")).getImage();
-		Dimension size = new Dimension(background.getWidth(null),
-				background.getHeight(null));
+		Dimension size = new Dimension(OregonTrail.WIDTH, OregonTrail.HEIGHT);
 		setPreferredSize(size);
 		setMinimumSize(size);
 		setMaximumSize(size);
 		setSize(size);
 		setLayout(null);
+	}
+	
+	protected OregonTrail getApp(){
+		return app;
 	}
 
 	public void paintComponent(Graphics g) {

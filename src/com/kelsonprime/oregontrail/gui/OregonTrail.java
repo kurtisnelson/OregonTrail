@@ -35,6 +35,8 @@ import com.kelsonprime.oregontrail.model.Wagon;
 public class OregonTrail {
 	private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 	public final static UserProperties userProperties = new UserProperties();
+	public final static int WIDTH = 600;
+	public final static int HEIGHT = 350;
 	private Game game;
 	JMenuBar mainMenu;
 	JPanel mainPanel;
@@ -81,14 +83,12 @@ public class OregonTrail {
 		setPanel(new SplashScreen());
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(new Dimension(600, 350));
+		frame.setSize(new Dimension(WIDTH, HEIGHT));
 
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		// Determine the new location of the window
-		int w = frame.getSize().width;
-		int h = frame.getSize().height;
-		int x = (dim.width / 2) - w / 2;
-		int y = (dim.height / 2) - h / 2;
+		int x = (dim.width / 2) - WIDTH / 2;
+		int y = (dim.height / 2) - HEIGHT / 2;
 		// Move the window
 		frame.setLocation(x, y);
 	}
@@ -99,7 +99,7 @@ public class OregonTrail {
 
 	public void open() {
 		frame.setJMenuBar(mainMenu);
-		frame.setSize(new Dimension(600, 350));
+		frame.setSize(new Dimension(WIDTH, HEIGHT));
 		frame.setVisible(true);
 	}
 

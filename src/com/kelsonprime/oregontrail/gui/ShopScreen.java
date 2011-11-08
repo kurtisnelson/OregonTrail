@@ -57,7 +57,6 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 	// TODO Update the wagon's weight statistics on the shop GUI
 	public ShopScreen(OregonTrail app, Shop shop) {
 		super(app);
-		setBackground(Color.BLACK);
 		this.shop = shop;
 		this.wagon = app.getWagon();
 		setSize(new Dimension(600, 300));
@@ -336,7 +335,7 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 			food = Integer.valueOf(foodQuantity.getText());
 		} catch (java.lang.NumberFormatException e) {
 			sellAllowed = false;
-			JOptionPane.showMessageDialog(app.getFrame(),
+			JOptionPane.showMessageDialog(getApp().getFrame(),
 					"Non-Numerical Input has been found!", "Invalid Input",
 					JOptionPane.ERROR_MESSAGE);
 			return;
@@ -344,7 +343,7 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 
 		if (moneySpent < 0) {
 			sellAllowed = false;
-			JOptionPane.showMessageDialog(app.getFrame(),
+			JOptionPane.showMessageDialog(getApp().getFrame(),
 					"A Negative Input has been found!", "Invalid Input",
 					JOptionPane.ERROR_MESSAGE);
 		}
@@ -358,7 +357,7 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 					shop.sellToWagon(wagon, Item.BULLETS, bullets);
 					shop.sellToWagon(wagon, Item.FOOD, food);
 				} catch (UserInputException e) {
-					e.generateBox(app.getFrame());
+					e.generateBox(getApp().getFrame());
 				}
 
 				axleQuantity.setText("0");
@@ -370,7 +369,7 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 				foodQuantity.setText("0");
 				update();
 			} else {
-				JOptionPane.showMessageDialog(app.getFrame(),
+				JOptionPane.showMessageDialog(getApp().getFrame(),
 						"You do not have enough money to purchase!",
 						"Not enough Money!", JOptionPane.ERROR_MESSAGE);
 			}
@@ -460,7 +459,7 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 				bulletsTotal.setText(Integer.toString(wagon.countBullets()));
 				foodTotal.setText(Integer.toString(wagon.countFood()));
 			} else if (s.equals("leave")) {
-				app.leaveLocation();
+				getApp().leaveLocation();
 			}
 
 		}
