@@ -20,9 +20,11 @@ import com.kelsonprime.oregontrail.controller.GameEventListener;
 import com.kelsonprime.oregontrail.controller.Map;
 import com.kelsonprime.oregontrail.controller.Threader;
 import com.kelsonprime.oregontrail.controller.UserProperties;
+import com.kelsonprime.oregontrail.model.Crossing;
 import com.kelsonprime.oregontrail.model.Landmark;
 import com.kelsonprime.oregontrail.model.Location;
 import com.kelsonprime.oregontrail.model.Shop;
+import com.kelsonprime.oregontrail.model.Town;
 import com.kelsonprime.oregontrail.model.Wagon;
 
 /**
@@ -127,6 +129,10 @@ public class OregonTrail {
 			setPanel(new ShopScreen(this, (Shop) cur));
 		} else if (cur instanceof Landmark) {
 			setPanel(new LandmarkScreen(this, (Landmark) cur));
+		} else if (cur instanceof Town){
+			setPanel(new TownScreen(this, (Town) cur));
+		} else if(cur instanceof Crossing){
+			setPanel(new CrossingScreen(this, (Crossing) cur));
 		}
 	}
 	
