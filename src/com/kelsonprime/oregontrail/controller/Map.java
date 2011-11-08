@@ -1,8 +1,11 @@
 package com.kelsonprime.oregontrail.controller;
 
+import com.kelsonprime.oregontrail.model.Crossing;
 import com.kelsonprime.oregontrail.model.Destination;
+import com.kelsonprime.oregontrail.model.Landmark;
 import com.kelsonprime.oregontrail.model.Location;
 import com.kelsonprime.oregontrail.model.Shop;
+import com.kelsonprime.oregontrail.model.Town;
 import com.kelsonprime.oregontrail.model.Wagon;
 
 /**
@@ -14,29 +17,24 @@ public class Map implements Time{
 
 	private Location start;
 	private int traveled;
-	private Location end;
 
 	/** 
-	 * Contructs map
+	 * Creates the standard game map.
 	 */
 	public Map(){
 		traveled = 0;
 		Location indep = new Shop("Independence", 0);
-		Location oregon = new Destination("The End", 75);
-		Location rest = new Destination("Rest Stop", 100);
-		Location fort = new Shop("Fort Hall", 100);
-		Location kane = new Destination("Kanesville", 200);
-		Location kans= new Shop("Kansas City", 150);
-		
-		indep.setNext(rest, 50, 0);
-		
-		rest.setNext(fort,200,0);
-		kane.setNext(kane, 250, 0);
-		kans.setNext(end, 120, 0);
-		
-		
 		start = indep;
-		end = oregon;
+		Location river1 = new Crossing("River", 10, 5, 10);
+		indep.setNext(river1, 10, 0);
+		Location rock = new Landmark("The Big Rock", 20);
+		river1.setNext(rock, 10, 0);
+		Location town = new Town("A town", 30);
+		rock.setNext(town, 0, 10);
+		Location shop = new Shop("A shop", 40);
+		town.setNext(shop, 10, 0);
+		Location end = new Destination("The End", 50);
+		shop.setNext(end, 10, 10);
 	}
 	
 	/**

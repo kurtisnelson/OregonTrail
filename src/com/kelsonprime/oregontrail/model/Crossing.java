@@ -10,8 +10,8 @@ public class Crossing extends Location {
 	 * Initialize a crossing on the map
 	 * @param name
 	 * @param position Distance from map start
-	 * @param depth
-	 * @param width
+	 * @param depth How deep is the river
+	 * @param width How wide is the river
 	 */
 	public Crossing(String name, int position, int depth, int width) {
 		super(name, position);

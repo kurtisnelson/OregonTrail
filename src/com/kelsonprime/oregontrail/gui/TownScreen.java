@@ -8,20 +8,16 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 
-import com.kelsonprime.oregontrail.model.Shop;
+import com.kelsonprime.oregontrail.model.Town;
 
 public class TownScreen extends LocationScreen {
 
 	private static final long serialVersionUID = 2954231432340769351L;
 	Image img = new ImageIcon(TownScreen.class.getResource("images/tempTown.jpg")).getImage();
-	Shop shop;
+	Town town;
 	
-	public TownScreen(OregonTrail app, Shop shop) {
+	public TownScreen(OregonTrail app, Town town) {
 		super(app);
-		
-		if (shop != null){
-			this.shop = shop;
-		}
 		
 		Image shopBtn = new ImageIcon(TownScreen.class.getResource("images/tempShop.jpg")).getImage();
 		Image innBtn = new ImageIcon(TownScreen.class.getResource("images/tempInn.jpg")).getImage();
@@ -35,7 +31,7 @@ public class TownScreen extends LocationScreen {
 		innB.setPreferredSize(new Dimension(100, 100));
 		innB.setActionCommand("inn");
 		
-		if (shop != null)
+		if (town.getShop() != null)
 			add(shopB);
 		add(innB);
 
@@ -53,8 +49,10 @@ public class TownScreen extends LocationScreen {
 			String s = ae.getActionCommand();
 			
 			if (s.equalsIgnoreCase("shop")){
-				//TODO Go to shop
-			} else if (s.equalsIgnoreCase("inn")){
+				ShopScreen theShop = new ShopScreen(app, town.getShop());
+				//TODO launch shop screen, but return here when done.
+			}else if (s.equalsIgnoreCase("inn")){
+				app.getGame().rest();
 				//TODO Rest (in town)
 			}
 		}
