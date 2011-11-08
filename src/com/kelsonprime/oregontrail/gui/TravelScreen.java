@@ -12,7 +12,6 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 
 import com.kelsonprime.oregontrail.controller.Game;
-import com.kelsonprime.oregontrail.controller.Pace;
 import com.kelsonprime.oregontrail.controller.Threader;
 import com.kelsonprime.oregontrail.controller.Updatable;
 
@@ -170,10 +169,7 @@ public class TravelScreen extends JPanel implements Updatable{
 	private void rest() {
 		stopTravel(); //Make sure if we were moving we stop.
 		Game g = app.getGame();
-		Pace oldPace = g.getPace();
-		g.setPace(Pace.STOPPED);
-		app.nextDay();
-		g.setPace(oldPace);
+		g.rest();
 		lblTravel.setText("Rested a day");
 
 	}
