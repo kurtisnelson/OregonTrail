@@ -66,6 +66,7 @@ public class Wagon implements Time {
 	 */
 	@Override
 	public void nextDay(Game game) {
+		//TODO take current location into account.
 		for (Companion person : party) {
 			person.nextDay(game);
 		}
