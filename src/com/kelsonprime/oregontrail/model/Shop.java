@@ -15,6 +15,7 @@ import com.kelsonprime.oregontrail.controller.UserInputException;
  * @see com.kelsonprime.oregontrail.gui.ShopScreen
  */
 public class Shop extends Location {
+	private static final long serialVersionUID = 2474893524066364591L;
 	private final static Logger LOGGER = Logger
 			.getLogger(Logger.GLOBAL_LOGGER_NAME);
 	private static final double PRICE_RATIO = .001;

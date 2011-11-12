@@ -6,6 +6,7 @@ package com.kelsonprime.oregontrail.model;
  * @version .1
  */
 public class Landmark extends Location {
+	private static final long serialVersionUID = 6878086078798787862L;
 
 	/**
 	 * Class constructor

@@ -1,12 +1,14 @@
 package com.kelsonprime.oregontrail.model;
 
+import java.io.Serializable;
+
 /**
  * Represents the game's map
  * @author Kurt Nelson
  * @version 1.0
  */
-public class Map implements Time{
-
+public class Map implements Time, Serializable{
+	private static final long serialVersionUID = -2179958740456509406L;
 	private Location start;
 	private int traveled;
 

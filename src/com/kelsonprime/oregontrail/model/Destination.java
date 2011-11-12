@@ -6,6 +6,8 @@ package com.kelsonprime.oregontrail.model;
  * @version .1
  */
 public class Destination extends Landmark {
+	private static final long serialVersionUID = -5276025153428684728L;
+
 	/**
 	 * Class constructor
 	 * @param label What to call this in the UI

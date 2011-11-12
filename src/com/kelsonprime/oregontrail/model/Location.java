@@ -1,12 +1,14 @@
 package com.kelsonprime.oregontrail.model;
 
+import java.io.Serializable;
+
 /**
  * Represent a destination followed by vector that points to the next <code>Location</code>
  * @author Kurt Nelson
  * @version .1
  */
-public abstract class Location {
-
+public abstract class Location implements Serializable{
+	private static final long serialVersionUID = 4027729795704277442L;
 	private String label;
 	private Location next;
 	private int roadX1;

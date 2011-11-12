@@ -1,5 +1,6 @@
 package com.kelsonprime.oregontrail.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import com.kelsonprime.oregontrail.controller.UserInputException;
@@ -10,7 +11,8 @@ import com.kelsonprime.oregontrail.controller.UserInputException;
  * @author Kurt Nelson
  * @version .1
  */
-public class Wagon implements Time {
+public class Wagon implements Time, Serializable {
+	private static final long serialVersionUID = 5643405898536801840L;
 	private int oxen;
 	private int food;
 	private int clothes;
