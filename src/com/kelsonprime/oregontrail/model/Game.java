@@ -15,7 +15,7 @@ import com.kelsonprime.oregontrail.gui.OregonTrail;
 public class Game implements Time, Serializable {
 	private static final long serialVersionUID = -1328327188493685888L;
 
-	public transient GameEventListener reciever;
+	private transient GameEventListener reciever;
 	private Wagon wagon;
 	private Map map;
 	private int days;
@@ -166,6 +166,8 @@ public class Game implements Time, Serializable {
 	 * Sets the owner of the game
 	 */
 	public void setOwner(OregonTrail owner) {
+		if(reciever == null)
+			reciever = new GameEventListener();
 		reciever.setOwner(owner);
 	}
 
