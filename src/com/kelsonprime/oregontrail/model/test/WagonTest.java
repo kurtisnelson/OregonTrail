@@ -5,15 +5,15 @@ import java.util.List;
 import org.junit.*;
 
 import static org.junit.Assert.*;
-import com.kelsonprime.oregontrail.controller.Game;
-import com.kelsonprime.oregontrail.controller.Ration;
 import com.kelsonprime.oregontrail.controller.UserInputException;
 import com.kelsonprime.oregontrail.model.Axle;
 import com.kelsonprime.oregontrail.model.Banker;
 import com.kelsonprime.oregontrail.model.Companion;
+import com.kelsonprime.oregontrail.model.Game;
 import com.kelsonprime.oregontrail.model.Item;
 import com.kelsonprime.oregontrail.model.Part;
 import com.kelsonprime.oregontrail.model.Player;
+import com.kelsonprime.oregontrail.model.Ration;
 import com.kelsonprime.oregontrail.model.Tongue;
 import com.kelsonprime.oregontrail.model.Wagon;
 import com.kelsonprime.oregontrail.model.Wheel;
