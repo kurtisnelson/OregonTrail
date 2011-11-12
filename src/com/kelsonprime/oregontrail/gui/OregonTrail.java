@@ -2,6 +2,12 @@ package com.kelsonprime.oregontrail.gui;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 import javax.swing.ImageIcon;
 
 import java.util.logging.FileHandler;
@@ -17,6 +23,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 import com.kelsonprime.oregontrail.controller.GameEventListener;
 import com.kelsonprime.oregontrail.controller.Threader;
+import com.kelsonprime.oregontrail.controller.UserInputException;
 import com.kelsonprime.oregontrail.controller.UserProperties;
 import com.kelsonprime.oregontrail.model.Crossing;
 import com.kelsonprime.oregontrail.model.Game;
@@ -112,6 +119,46 @@ public class OregonTrail {
 		System.exit(0);
 	}
 
+	/**
+	 * Save game with serialization
+	 * @throws UserInputException 
+	 */
+	public void saveGame() throws UserInputException {
+		FileOutputStream fos = null;
+		ObjectOutputStream out = null;
+		try {
+			fos = new FileOutputStream("savedGame");
+			out = new ObjectOutputStream(fos);
+			out.writeObject(game);
+			out.close();
+		} catch (IOException ex) {
+			LOGGER.log(Level.WARNING, "Save failed.", ex);
+			throw new UserInputException("Save failed");
+		}
+	}
+	
+	/**
+	 * Load game using serialization
+	 * @throws UserInputException 
+	 */
+	public void loadGame() throws UserInputException {
+		Game loadedGame = null;
+		FileInputStream fis = null;
+		ObjectInputStream in = null;
+		try {
+			fis = new FileInputStream("savedGame");
+			in = new ObjectInputStream(fis);
+			loadedGame = (Game) in.readObject();
+			in.close();
+		} catch (IOException ex) {
+			throw new UserInputException("Invalid load game file");
+		} catch (ClassNotFoundException ex) {
+			throw new UserInputException("Invalid load game file");
+		}
+		if(loadedGame != null)
+			loadGame(loadedGame);
+	}
+	
 	public void loadGame(Game game) {
 		this.game = game;
 		game.setOwner(this);
@@ -140,7 +187,7 @@ public class OregonTrail {
 		setPanel(new NewGameScreen(this));
 	}
 
-	private void setPanel(JPanel p) {
+	void setPanel(JPanel p) {
 		frame.add(p);
 		if (mainPanel != null)
 			frame.remove(mainPanel);

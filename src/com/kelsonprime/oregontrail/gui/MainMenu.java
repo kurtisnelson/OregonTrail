@@ -20,12 +20,23 @@ public class MainMenu extends JMenuBar {
 
 		JMenuItem newGame = new JMenuItem("New Game");
 		newGame.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, InputEvent.CTRL_MASK));
-		JMenuItem exit = new JMenuItem("Exit");
-		fileMenu.add(newGame);
-		fileMenu.add(exit);
 		newGame.addActionListener(menuListen);
 		newGame.setActionCommand("newGame");
+		fileMenu.add(newGame);
+		
+		JMenuItem saveGame = new JMenuItem("Save Game");
+		saveGame.addActionListener(menuListen);
+		saveGame.setActionCommand("saveGame");
+		fileMenu.add(saveGame);
+		
+		JMenuItem loadGame = new JMenuItem("Load Game");
+		loadGame.addActionListener(menuListen);
+		loadGame.setActionCommand("loadGame");
+		fileMenu.add(loadGame);
+		
+		JMenuItem exit = new JMenuItem("Exit");
 		exit.addActionListener(menuListen);
 		exit.setActionCommand("exit");
+		fileMenu.add(exit);
 	}
 }

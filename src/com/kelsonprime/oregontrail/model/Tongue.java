@@ -1,6 +1,7 @@
 package com.kelsonprime.oregontrail.model;
 
 public class Tongue extends Part {
+	private static final long serialVersionUID = 8766537377409751997L;
 
 	public Tongue(int health) {
 		super(health);

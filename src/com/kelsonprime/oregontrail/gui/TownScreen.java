@@ -8,7 +8,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 
-import com.kelsonprime.oregontrail.model.Game;
 import com.kelsonprime.oregontrail.model.Town;
 
 public class TownScreen extends LocationScreen {
@@ -55,6 +54,7 @@ public class TownScreen extends LocationScreen {
 			
 			if (s.equalsIgnoreCase("shop")){
 				ShopScreen theShop = new ShopScreen(getApp(), town.getShop());
+				getApp().setPanel(theShop);
 				//TODO launch shop screen, but return here when done.
 			}else if (s.equalsIgnoreCase("inn")){
 				getApp().getGame().rest();

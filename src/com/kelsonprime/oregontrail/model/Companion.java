@@ -1,7 +1,9 @@
 package com.kelsonprime.oregontrail.model;
 
-public class Companion implements Time{
+import java.io.Serializable;
 
+public class Companion implements Time, Serializable{
+	private static final long serialVersionUID = -7906565976511200668L;
 	protected int health; // Percent
 	protected String name;
 	protected boolean isAlive;

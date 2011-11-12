@@ -1,6 +1,8 @@
 package com.kelsonprime.oregontrail.model;
 
 public final class Farmer extends Occupation {
+	private static final long serialVersionUID = -4579907147578377999L;
+
 	public static String getStaticLabel(){
 		return "Farmer";
 	}

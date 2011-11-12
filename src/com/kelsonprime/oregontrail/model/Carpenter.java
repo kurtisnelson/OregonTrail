@@ -1,6 +1,8 @@
 package com.kelsonprime.oregontrail.model;
 
 public final class Carpenter extends Occupation {
+	private static final long serialVersionUID = -8843042214187651692L;
+
 	public static String getStaticLabel(){
 		return "Carpenter";
 	}

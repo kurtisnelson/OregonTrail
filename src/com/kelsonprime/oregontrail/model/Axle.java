@@ -6,6 +6,7 @@ package com.kelsonprime.oregontrail.model;
  *
  */
 public class Axle extends Part {
+	private static final long serialVersionUID = 3548664315971140887L;
 
 	/**
 	 * Constructor without arguments

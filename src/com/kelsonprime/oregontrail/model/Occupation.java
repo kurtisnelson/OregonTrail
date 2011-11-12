@@ -1,6 +1,9 @@
 package com.kelsonprime.oregontrail.model;
 
-public abstract class Occupation {
+import java.io.Serializable;
+
+public abstract class Occupation implements Serializable {
+	private static final long serialVersionUID = -6040773823566650272L;
 	
 	public static Class<?>[] getOccupations(){
 		Class<?>[] occs = new Class[3];

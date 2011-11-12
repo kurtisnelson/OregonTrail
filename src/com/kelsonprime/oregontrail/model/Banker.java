@@ -1,6 +1,8 @@
 package com.kelsonprime.oregontrail.model;
 
 public final class Banker extends Occupation {
+	private static final long serialVersionUID = 7567352191869501069L;
+
 	public static String getStaticLabel(){
 		return "Banker";
 	}

@@ -1,6 +1,7 @@
 package com.kelsonprime.oregontrail.model;
 
 public class Wheel extends Part {
+	private static final long serialVersionUID = 6617454331985073863L;
 
 	public Wheel(int health) {
 		super(health);

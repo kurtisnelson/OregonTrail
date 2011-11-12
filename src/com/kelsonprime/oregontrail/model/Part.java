@@ -1,11 +1,15 @@
 package com.kelsonprime.oregontrail.model;
 
+import java.io.Serializable;
+
 /**
  * Represent a Part of the wagon
  * @author Kurt Nelson
  * @version 1
  */
-public abstract class Part implements Time, Comparable<Object> {
+public abstract class Part implements Time, Comparable<Object>, Serializable {
+	private static final long serialVersionUID = 735490215309106832L;
+	
 	/**
 	 * Health of a part
 	 */
