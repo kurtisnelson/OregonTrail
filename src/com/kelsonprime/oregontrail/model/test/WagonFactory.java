@@ -15,7 +15,7 @@ import com.kelsonprime.oregontrail.model.Wagon;
  * @author Kurt Nelson
  * @version $Revision: 1.0 $
  */
-public class WagonFactory
+class WagonFactory
  {
 	/**
 	 * Prevent creation of instances of this class.
