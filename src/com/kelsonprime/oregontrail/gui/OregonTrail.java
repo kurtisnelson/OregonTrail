@@ -15,14 +15,14 @@ import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import com.kelsonprime.oregontrail.controller.Game;
 import com.kelsonprime.oregontrail.controller.GameEventListener;
-import com.kelsonprime.oregontrail.controller.Map;
 import com.kelsonprime.oregontrail.controller.Threader;
 import com.kelsonprime.oregontrail.controller.UserProperties;
 import com.kelsonprime.oregontrail.model.Crossing;
+import com.kelsonprime.oregontrail.model.Game;
 import com.kelsonprime.oregontrail.model.Landmark;
 import com.kelsonprime.oregontrail.model.Location;
+import com.kelsonprime.oregontrail.model.Map;
 import com.kelsonprime.oregontrail.model.Shop;
 import com.kelsonprime.oregontrail.model.Town;
 import com.kelsonprime.oregontrail.model.Wagon;

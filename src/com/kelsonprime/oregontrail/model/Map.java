@@ -1,12 +1,4 @@
-package com.kelsonprime.oregontrail.controller;
-
-import com.kelsonprime.oregontrail.model.Crossing;
-import com.kelsonprime.oregontrail.model.Destination;
-import com.kelsonprime.oregontrail.model.Landmark;
-import com.kelsonprime.oregontrail.model.Location;
-import com.kelsonprime.oregontrail.model.Shop;
-import com.kelsonprime.oregontrail.model.Town;
-import com.kelsonprime.oregontrail.model.Wagon;
+package com.kelsonprime.oregontrail.model;
 
 /**
  * Represents the game's map

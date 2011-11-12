@@ -1,13 +1,11 @@
-package com.kelsonprime.oregontrail.controller;
+package com.kelsonprime.oregontrail.model;
 
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import com.kelsonprime.oregontrail.model.Companion;
-import com.kelsonprime.oregontrail.model.Occupation;
-import com.kelsonprime.oregontrail.model.Player;
+import com.kelsonprime.oregontrail.controller.UserInputException;
 
 public class ModelFactory {
 	private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);

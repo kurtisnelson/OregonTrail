@@ -1,11 +1,9 @@
-
-
 package com.kelsonprime.oregontrail.gui;
-
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,6 +13,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.swing.ButtonGroup;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -22,22 +22,20 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-import com.kelsonprime.oregontrail.controller.Game;
 import com.kelsonprime.oregontrail.controller.IconFactory;
-import com.kelsonprime.oregontrail.controller.ModelFactory;
 import com.kelsonprime.oregontrail.controller.UserInputException;
 import com.kelsonprime.oregontrail.model.Companion;
+import com.kelsonprime.oregontrail.model.Game;
+import com.kelsonprime.oregontrail.model.ModelFactory;
 import com.kelsonprime.oregontrail.model.Occupation;
+import com.kelsonprime.oregontrail.model.Pace;
 import com.kelsonprime.oregontrail.model.Player;
+import com.kelsonprime.oregontrail.model.Ration;
 import com.kelsonprime.oregontrail.model.Wagon;
-import javax.swing.DefaultComboBoxModel;
-import com.kelsonprime.oregontrail.controller.Pace;
-import com.kelsonprime.oregontrail.controller.Ration;
-import java.awt.FlowLayout;
-import javax.swing.ImageIcon;
 
 public class NewGameScreen extends JPanel {
-	private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+	private final static Logger LOGGER = Logger
+			.getLogger(Logger.GLOBAL_LOGGER_NAME);
 	private static final long serialVersionUID = 7996950179577943594L;
 	OregonTrail app;
 	private JTextField playerName;
@@ -107,7 +105,7 @@ public class NewGameScreen extends JPanel {
 		body.add(occupationPickLabel);
 
 		ButtonListener listen = new ButtonListener();
-		
+
 		/*
 		 * Set up the occupation area
 		 */
@@ -120,18 +118,18 @@ public class NewGameScreen extends JPanel {
 		occPanel.setSize(350, 20);
 		occPanel.setLocation(175, 30);
 		body.add(occPanel);
-		
-		for(Class<?> c : Occupation.getOccupations()){
+
+		for (Class<?> c : Occupation.getOccupations()) {
 			String occName = "";
 			// Do crazy reflection to dynamically build the GUI!
-			try{
+			try {
 				Method m = c.getMethod("getStaticLabel");
 				Object ans = m.invoke(null, (Object[]) null);
 				occName = ans.toString();
-			}catch(Exception e){
+			} catch (Exception e) {
 				LOGGER.log(Level.SEVERE, "Occupation reflexion failed.", e);
 			}
-			if(occName.length() > 0){
+			if (occName.length() > 0) {
 				JRadioButton occButton = new JRadioButton(occName);
 				occButton.setForeground(Color.WHITE);
 				occButton.setBackground(Color.BLACK);
@@ -140,7 +138,7 @@ public class NewGameScreen extends JPanel {
 				occButton.addActionListener(listen);
 				occPanel.add(occButton);
 				occupationGroup.add(occButton);
-			}  
+			}
 		}
 
 		JLabel nameLabel = new JLabel("Party Names");
@@ -181,7 +179,7 @@ public class NewGameScreen extends JPanel {
 		paceBox.setSelectedIndex(2);
 		paceBox.setBounds(62, 226, 124, 24);
 		body.add(paceBox);
-		
+
 		rationBox = new JComboBox();
 		rationBox.setBackground(Color.WHITE);
 		rationBox.setModel(new DefaultComboBoxModel(Ration.values()));
@@ -197,7 +195,8 @@ public class NewGameScreen extends JPanel {
 		continueButton.setBorderPainted(false);
 		continueButton.setRolloverEnabled(false);
 		continueButton.setSelectedIcon(IconFactory.arrow);
-		continueButton.setIcon(new ImageIcon(NewGameScreen.class.getResource("/images/arrow.png")));
+		continueButton.setIcon(new ImageIcon(NewGameScreen.class
+				.getResource("/images/arrow.png")));
 		continueButton.setActionCommand("continue");
 		continueButton.addActionListener(listen);
 		body.add(continueButton);
@@ -216,14 +215,17 @@ public class NewGameScreen extends JPanel {
 	}
 
 	public void createGame() {
-		
+
 		Occupation occupation;
 		Player newPlayer;
 		ArrayList<Companion> companionList;
 		try {
-			occupation = ModelFactory.buildOccupation(occupationGroup.getSelection().getActionCommand());
-			newPlayer = ModelFactory.buildPlayer(playerName.getText(), occupation);
-			companionList = ModelFactory.buildCompanions(companionName.getText(), companion2Name.getText());
+			occupation = ModelFactory.buildOccupation(occupationGroup
+					.getSelection().getActionCommand());
+			newPlayer = ModelFactory.buildPlayer(playerName.getText(),
+					occupation);
+			companionList = ModelFactory.buildCompanions(
+					companionName.getText(), companion2Name.getText());
 		} catch (UserInputException e) {
 			e.generateBox(app.getFrame());
 			return;
@@ -245,9 +247,9 @@ public class NewGameScreen extends JPanel {
 				createGame();
 				return;
 			}
-			/* 
-			 * Assume the occupation triggered
-			 * Do crazy reflection to dynamically support new Occupations!
+			/*
+			 * Assume the occupation triggered Do crazy reflection to
+			 * dynamically support new Occupations!
 			 */
 			Class<?> c;
 			try {
@@ -256,21 +258,22 @@ public class NewGameScreen extends JPanel {
 				LOGGER.log(Level.WARNING, "Uncaught action.", e);
 				return;
 			}
-			try{
+			try {
 				Method m = c.getMethod("getStaticMoney");
 				int money = (Integer) m.invoke(null, (Object[]) null);
-				startingMoney.setText("$"+money);
-			}catch(Exception e){
-				LOGGER.log(Level.SEVERE, "Occupation getMoney reflection failed.", e);
+				startingMoney.setText("$" + money);
+			} catch (Exception e) {
+				LOGGER.log(Level.SEVERE,
+						"Occupation getMoney reflection failed.", e);
 			}
-			try{
+			try {
 				Method m = c.getMethod("getStaticDescription");
 				String ability = (String) m.invoke(null, (Object[]) null);
 				abilityList.setText(ability);
-			}catch(Exception e){
-				LOGGER.log(Level.SEVERE, "Occupation getDescription reflection failed.", e);
+			} catch (Exception e) {
+				LOGGER.log(Level.SEVERE,
+						"Occupation getDescription reflection failed.", e);
 			}
 		}
 	}
 }
-

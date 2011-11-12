@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 
+import com.kelsonprime.oregontrail.model.Game;
 import com.kelsonprime.oregontrail.model.Town;
 
 public class TownScreen extends LocationScreen {
@@ -22,13 +23,17 @@ public class TownScreen extends LocationScreen {
 		Image shopBtn = new ImageIcon(TownScreen.class.getResource("images/tempShop.jpg")).getImage();
 		Image innBtn = new ImageIcon(TownScreen.class.getResource("images/tempInn.jpg")).getImage();
 		
+		ButtonListener bl = new ButtonListener();
+		
 		Button shopB = new Button(new ImageIcon(shopBtn));
+		shopB.addActionListener(bl);
 		shopB.setPreferredSize(new Dimension(100, 100));
 		shopB.setActionCommand("shop");
 		
 		
 		Button innB = new Button(new ImageIcon(innBtn));
 		innB.setPreferredSize(new Dimension(100, 100));
+		innB.addActionListener(bl);
 		innB.setActionCommand("inn");
 		
 		if (town.getShop() != null)
@@ -42,7 +47,7 @@ public class TownScreen extends LocationScreen {
 		g.drawImage(img, 0, 0, this);
 	}
 	
-	public class ButtonListener implements ActionListener {
+	private class ButtonListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent ae) {

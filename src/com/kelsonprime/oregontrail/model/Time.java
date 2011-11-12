@@ -1,7 +1,7 @@
-package com.kelsonprime.oregontrail.controller;
+package com.kelsonprime.oregontrail.model;
 
 /**
- * Allow objects to change and mutate with time.
+ * Allow models to change and mutate with time.
  * @author Kurt Nelson
  * @version 1.0
  */

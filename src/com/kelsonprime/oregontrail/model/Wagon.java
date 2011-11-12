@@ -2,8 +2,6 @@ package com.kelsonprime.oregontrail.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.kelsonprime.oregontrail.controller.Game;
-import com.kelsonprime.oregontrail.controller.Time;
 import com.kelsonprime.oregontrail.controller.UserInputException;
 
 /**

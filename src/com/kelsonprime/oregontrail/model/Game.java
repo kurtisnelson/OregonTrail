@@ -1,16 +1,9 @@
-
-
-
-
-
-package com.kelsonprime.oregontrail.controller;
+package com.kelsonprime.oregontrail.model;
 
 import java.util.List;
 
+import com.kelsonprime.oregontrail.controller.GameEventListener;
 import com.kelsonprime.oregontrail.gui.OregonTrail;
-import com.kelsonprime.oregontrail.model.Location;
-import com.kelsonprime.oregontrail.model.Part;
-import com.kelsonprime.oregontrail.model.Wagon;
 
 /**
  * This class holds information about a game. 

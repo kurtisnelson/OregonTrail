@@ -17,10 +17,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import com.kelsonprime.oregontrail.controller.IconFactory;
-import com.kelsonprime.oregontrail.controller.Pace;
-import com.kelsonprime.oregontrail.controller.Ration;
 import com.kelsonprime.oregontrail.controller.Updatable;
 import com.kelsonprime.oregontrail.model.Wagon;
+import com.kelsonprime.oregontrail.model.Pace;
+import com.kelsonprime.oregontrail.model.Ration;
 
 import javax.swing.JTextField;
 

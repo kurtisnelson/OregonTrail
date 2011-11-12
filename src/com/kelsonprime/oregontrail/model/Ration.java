@@ -1,8 +1,8 @@
-package com.kelsonprime.oregontrail.controller;
+package com.kelsonprime.oregontrail.model;
 
 /**
- * Enumarates the ration
- * @author Aman
+ * Ration model
+ * @author Kurt
  *
  */
 public enum Ration {

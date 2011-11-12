@@ -1,8 +1,5 @@
 package com.kelsonprime.oregontrail.model;
 
-import com.kelsonprime.oregontrail.controller.Game;
-import com.kelsonprime.oregontrail.controller.Time;
-
 public class Companion implements Time{
 
 	protected int health; // Percent
