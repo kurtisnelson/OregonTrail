@@ -16,11 +16,13 @@ import javax.swing.JPanel;
 import com.kelsonprime.oregontrail.controller.Threader;
 import com.kelsonprime.oregontrail.controller.Updatable;
 import com.kelsonprime.oregontrail.model.Game;
+import com.kelsonprime.oregontrail.model.Wagon;
 
 public class TravelScreen extends JPanel implements Updatable {
 	private static final long serialVersionUID = -2616586129314449978L;
 
 	private OregonTrail app;
+	private Wagon wagon;
 	private JLabel lblTravel;
 	private JLabel nextLocation;
 	private int current; // Distance to next location
@@ -39,6 +41,7 @@ public class TravelScreen extends JPanel implements Updatable {
 	public TravelScreen(OregonTrail app) {
 		super();
 		this.app = app;
+		this.wagon = app.getWagon();
 		this.listener = new ButtonListener();
 		current = app.getMap().distanceToNext();
 
@@ -109,7 +112,7 @@ public class TravelScreen extends JPanel implements Updatable {
 		Image wagonA = new ImageIcon(
 				TravelScreen.class.getResource("/images/OregonTrailIcon.png"))
 				.getImage();
-		g.drawImage(regBG, -1500 + (5 * (counter % 4)) + (5 * current), 0, this);
+		g.drawImage(regBG, -1500 + (5 * (counter % 4) * wagon.countOxen()) + (5 * current), 0, this);
 		g.drawImage(wagonA, 400, 120, this);
 	}
 
