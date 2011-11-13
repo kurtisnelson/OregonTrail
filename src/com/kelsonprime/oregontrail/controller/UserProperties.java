@@ -18,7 +18,7 @@ public final class UserProperties extends Properties {
 			try{
 				this.loadFromXML(new FileInputStream("user.conf"));
 			}catch(Exception e){
-				LOGGER.log(Level.INFO, "Creating new user.conf preferences file");
+				LOGGER.log(Level.FINE, "Creating new user.conf preferences file");
 				this.initializePrefs();
 			}
 	}
