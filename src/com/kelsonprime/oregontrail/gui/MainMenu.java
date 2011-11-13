@@ -31,11 +31,13 @@ public class MainMenu extends JMenuBar {
 		fileMenu.add(newGame);
 		
 		JMenuItem saveGame = new JMenuItem("Save Game");
+		saveGame.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_MASK));
 		saveGame.addActionListener(menuListen);
 		saveGame.setActionCommand("saveGame");
 		fileMenu.add(saveGame);
 		
 		JMenuItem loadGame = new JMenuItem("Load Game");
+		loadGame.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, InputEvent.CTRL_MASK));
 		loadGame.addActionListener(menuListen);
 		loadGame.setActionCommand("loadGame");
 		fileMenu.add(loadGame);
