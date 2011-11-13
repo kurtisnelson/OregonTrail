@@ -13,15 +13,39 @@ import com.kelsonprime.oregontrail.controller.UserInputException;
  */
 public class Wagon implements Time, Serializable {
 	private static final long serialVersionUID = 5643405898536801840L;
+	/**
+	 * @serial Number of oxen
+	 */
 	private int oxen;
+	/**
+	 * @serial Amount of food
+	 */
 	private int food;
+	/**
+	 * @serial Amount of clothes
+	 */
 	private int clothes;
+	/**
+	 * @serial Number of bullets
+	 */
 	private int bullets;
+	/**
+	 * @serial Parts being used to move
+	 */
 	private List<Part> activeParts;
+	/**
+	 * @serial Parts kept as spares
+	 */
 	private List<Part> spareParts;
+	/**
+	 * @serial People in the wagon
+	 */
 	private List<Companion> party;
 	private int money;
 	private int wagonWeight;
+	/**
+	 * Maximum weight capacity of a wagon
+	 */
 	public static final int MAXWEIGHT = 2000;
 
 	/**
