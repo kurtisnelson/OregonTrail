@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import com.kelsonprime.oregontrail.controller.Threader;
 import com.kelsonprime.oregontrail.controller.Updatable;
 import com.kelsonprime.oregontrail.model.Game;
+import com.kelsonprime.oregontrail.model.Location;
 import com.kelsonprime.oregontrail.model.Wagon;
 
 /**
@@ -161,7 +162,7 @@ public class TravelScreen extends JPanel implements Updatable {
 		update();
 
 		repaint();
-		if(current <= 0)
+		if(current <= 0 || app.getMap().currentLocation() != null)
 			return true;
 		return false;
 	}
