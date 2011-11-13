@@ -7,7 +7,10 @@ import javax.swing.JOptionPane;
 import java.util.Random;
 
 import com.kelsonprime.oregontrail.model.Companion;
+import com.kelsonprime.oregontrail.model.Farmer;
 import com.kelsonprime.oregontrail.model.Game;
+import com.kelsonprime.oregontrail.model.Item;
+import com.kelsonprime.oregontrail.model.Player;
 import com.kelsonprime.oregontrail.model.Wagon;
 
 /**
@@ -47,6 +50,8 @@ public class Events {
 	 */
 	public static void nextDay(Game game) {
 		int event = rand.nextInt(200);
+		Wagon wagon = game.getWagon();
+		Player player = wagon.getPlayer();
 		if (event < 4)
 			;//Catch Sickness
 		else if (event < 6)
@@ -55,12 +60,22 @@ public class Events {
 			;//Random Party member Death
 		else if (event < 8)
 			;//Random Oxen Death
-		else if (event < 11)
-			;//Theft
+		else if (event < 11){
+			//TODO: Theft
+			JOptionPane.showMessageDialog(null, "1 " + wagon.removeRandomItem() + " has been stolen from you!");
+		}
 		else if (event < 12)
 			;//Attacked
-		else if (event < 17)
-			;//Find Food (only farmer)
+		else if (event < 17){
+			if (player.getOccupation() instanceof Farmer)
+				try {
+					int gained = rand.nextInt(25)+25;
+					wagon.add(Item.FOOD, gained);
+					JOptionPane.showMessageDialog(null, "You find " + Integer.valueOf(gained) + "lbs of food!");
+				} catch (UserInputException e) {
+					e.printStackTrace();
+				}
+		}
 		else if (event < 18)
 			;//Find Wagon of free stuff
 		else if (event < 20)

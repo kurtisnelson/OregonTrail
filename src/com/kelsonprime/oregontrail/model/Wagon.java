@@ -351,5 +351,13 @@ public class Wagon implements Time, Serializable {
 	public void removeCompanion(Companion companion){
 		party.remove(companion);
 	}
+	
+	public Player getPlayer(){
+		for (int i=0; i<5; i++){
+			if (party.get(i) instanceof Player)
+				return (Player) party.get(i);
+		}
+		return null;
+	}
 
 }
