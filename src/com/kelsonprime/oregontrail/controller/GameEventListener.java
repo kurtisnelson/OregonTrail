@@ -1,7 +1,7 @@
 package com.kelsonprime.oregontrail.controller;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 import com.kelsonprime.oregontrail.gui.OregonTrail;
 
@@ -14,19 +14,22 @@ import com.kelsonprime.oregontrail.gui.OregonTrail;
  */
 public class GameEventListener {
 	OregonTrail parent;
-	List<Updatable> updatables;
+	Set<Updatable> updatables;
 	
 	public GameEventListener(){
-		updatables = new LinkedList<Updatable>();
+		updatables = new LinkedHashSet<Updatable>();
 	}
 
 	public void traveled(){
 		parent.updateScreen();
 	}
 	
-	public void registerUpdatable(Updatable f){
-		if(!updatables.contains(f))
-			updatables.add(f);
+	/**
+	 * Register an object to be notified of updates
+	 * @param obj <code>Updatable</code>
+	 */
+	public void registerUpdatable(Updatable obj){
+		updatables.add(obj);
 	}
 	
 	public void dispatchUpdate(){
@@ -34,6 +37,10 @@ public class GameEventListener {
 			u.update();
 	}
 	
+	/**
+	 * Select the app that owns this
+	 * @param owner OregonTrail
+	 */
 	public void setOwner(OregonTrail owner){
 		this.parent = owner;
 	}

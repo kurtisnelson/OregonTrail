@@ -8,5 +8,10 @@ import javax.swing.ImageIcon;
  *
  */
 public final class IconFactory {
-	public static final ImageIcon arrow = new ImageIcon("images/arrow.png");
+	private static ImageIcon arrow;
+	public static final ImageIcon arrow(){
+		if(arrow == null)
+			arrow = new ImageIcon("images/arrow.png");
+		return arrow;
+	}
 }
