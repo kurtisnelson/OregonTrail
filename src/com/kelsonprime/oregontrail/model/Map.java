@@ -15,12 +15,15 @@ public class Map implements Time, Serializable{
 	/** 
 	 * Creates the standard game map.
 	 */
-	public Map(){
-		traveled = 0;
-		Location indep = new Shop("Independence", 0);
-		start = indep;
+	public Map(Location start){
+		traveled = 0;;
+		this.start = start;
+	}
+	
+	public static Map mapFactory(){
+		Map m = new Map(new Shop("Independence", 0));
 		Location river1 = new Crossing("River", 10, 5, 10);
-		indep.setNext(river1, 10, 0);
+		m.start.setNext(river1, 10, 0);
 		Location rock = new Landmark("The Big Rock", 20);
 		river1.setNext(rock, 10, 0);
 		Location town = new Town("A town", 30);
@@ -29,6 +32,7 @@ public class Map implements Time, Serializable{
 		town.setNext(shop, 10, 0);
 		Location end = new Destination("The End", 50);
 		shop.setNext(end, 10, 10);
+		return m;
 	}
 	
 	/**
@@ -45,7 +49,7 @@ public class Map implements Time, Serializable{
 	 */
 	public Location nextLocation(){
 		Location loc = start;
-		while(loc.next().getPosition() < traveled)
+		while(loc.next().getPosition() <= traveled)
 			loc = loc.next();
 		return loc.next();
 	}
@@ -58,6 +62,12 @@ public class Map implements Time, Serializable{
 		return distanceTo(nextLocation());
 	}
 	
+	/**
+	 * Get the distance between two locations
+	 * @param start Location A
+	 * @param end Location B
+	 * @return Distance from A to B
+	 */
 	public static int distanceBetween(Location start, Location end){
 		if(start == null || end == null)
 			return 0;
