@@ -65,7 +65,9 @@ public class Events {
 		//	;//Random Oxen Death
 		else if (event < 11){
 			//Theft
-			JOptionPane.showMessageDialog(null, "1 " + wagon.removeRandomItem() + " has been stolen from you!");
+			String item = wagon.removeRandomItem();
+			if (item != null)
+				JOptionPane.showMessageDialog(null, "1 " + item + " has been stolen from you!");
 		}
 		else if (event < 12)
 			;//Attacked
