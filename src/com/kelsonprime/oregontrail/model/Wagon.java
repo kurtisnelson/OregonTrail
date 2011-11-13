@@ -3,7 +3,7 @@ package com.kelsonprime.oregontrail.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Random;
 import com.kelsonprime.oregontrail.controller.Events;
 import com.kelsonprime.oregontrail.controller.UserInputException;
 
@@ -233,7 +233,30 @@ public class Wagon implements Time, Serializable {
 	 * @return String what was removed
 	 */
 	public String removeRandomItem(){
-		return null;
+		
+		int itemCt = countItems();
+		int foodRatio = (int)(food / itemCt);
+		int clothesRatio = foodRatio + (int)(clothes / itemCt);
+		int bulletRatio = clothesRatio + (int)(bullets / itemCt);
+		
+		Random rand = new Random();
+		int i = rand.nextInt(itemCt);
+		if (i < foodRatio){
+			food -= 1;
+			return "food";
+		}
+		else if (i < clothesRatio){
+			clothes -= 1;
+			return "clothes";
+		}
+		else if (i < bulletRatio){
+			bullets -= 1;
+			return "bullet";
+		}
+		else {
+			spareParts.remove(i % spareParts.size());
+			return "spare";
+		}
 	}
 
 	/**
