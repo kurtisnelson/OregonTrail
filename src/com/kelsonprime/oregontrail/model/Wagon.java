@@ -193,9 +193,10 @@ public class Wagon implements Time, Serializable {
 	
 	/**
 	 * removes one random item from the wagon
+	 * @return String what was removed
 	 */
-	public void removeRandomItem(){
-		
+	public String removeRandomItem(){
+		return null;
 	}
 
 	/**
