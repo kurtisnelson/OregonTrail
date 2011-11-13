@@ -64,7 +64,7 @@ public class Events {
 		else if (event < 8)
 			;//Random Oxen Death
 		else if (event < 11){
-			//TODO: Theft
+			//Theft
 			JOptionPane.showMessageDialog(null, "1 " + wagon.removeRandomItem() + " has been stolen from you!");
 		}
 		else if (event < 12)
