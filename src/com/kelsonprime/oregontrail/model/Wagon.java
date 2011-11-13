@@ -3,6 +3,8 @@ package com.kelsonprime.oregontrail.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.kelsonprime.oregontrail.controller.Events;
 import com.kelsonprime.oregontrail.controller.UserInputException;
 
 /**
@@ -85,6 +87,7 @@ public class Wagon implements Time, Serializable {
 		}
 		// TODO whatever we decide to do with clothes, probably should do
 		// something here
+		Events.nextDay(game);
 	}
 
 	/**
