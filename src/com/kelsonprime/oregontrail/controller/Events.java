@@ -52,17 +52,17 @@ public class Events {
 	 * Generates next day
 	 */
 	public static void nextDay(Game game) {
-		int event = rand.nextInt(200);
+		int event = rand.nextInt(25);
 		Wagon wagon = game.getWagon();
 		Player player = wagon.getPlayer();
 		if (event < 4)
 			;// Catch Sickness
-		else if (event < 6)
-			;// Random Part Breakdown
-		else if (event < 7)
-			;// Random Party member Death
-		else if (event < 8)
-			;//Random Oxen Death
+		//else if (event < 6)
+		//	;// Random Part Breakdown
+		//else if (event < 7)
+		//	;// Random Party member Death
+		//else if (event < 8)
+		//	;//Random Oxen Death
 		else if (event < 11){
 			//Theft
 			JOptionPane.showMessageDialog(null, "1 " + wagon.removeRandomItem() + " has been stolen from you!");

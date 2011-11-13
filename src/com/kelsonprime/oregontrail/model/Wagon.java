@@ -235,9 +235,9 @@ public class Wagon implements Time, Serializable {
 	public String removeRandomItem(){
 		
 		int itemCt = countItems();
-		int foodRatio = (int)(food / itemCt);
-		int clothesRatio = foodRatio + (int)(clothes / itemCt);
-		int bulletRatio = clothesRatio + (int)(bullets / itemCt);
+		int foodRatio = food;
+		int clothesRatio = foodRatio + clothes;
+		int bulletRatio = clothesRatio + bullets;
 		
 		Random rand = new Random();
 		int i = rand.nextInt(itemCt);
@@ -253,10 +253,11 @@ public class Wagon implements Time, Serializable {
 			bullets -= 1;
 			return "bullet";
 		}
-		else {
+		else if (!spareParts.isEmpty()) {
 			spareParts.remove(i % spareParts.size());
 			return "spare";
 		}
+		return null;
 	}
 
 	/**
