@@ -5,6 +5,7 @@ import javax.swing.JOptionPane;
 import java.util.Random;
 
 import com.kelsonprime.oregontrail.model.Companion;
+import com.kelsonprime.oregontrail.model.Game;
 import com.kelsonprime.oregontrail.model.Wagon;
 
 /**
@@ -31,7 +32,7 @@ public class Events {
 	/**
 	 * Generates next day
 	 */
-	public static void nextDay() {
+	public static void nextDay(Game game) {
 		int event = rand.nextInt(200);
 		if (event < 4)
 			;//Catch Sickness
