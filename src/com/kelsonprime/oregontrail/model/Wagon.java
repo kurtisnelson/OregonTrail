@@ -239,7 +239,7 @@ public class Wagon implements Time, Serializable {
 		int clothesRatio = foodRatio + clothes;
 		int bulletRatio = clothesRatio + bullets;
 		
-		if (itemCt >0){
+		if (itemCt > 0){
 			Random rand = new Random();
 			int i = rand.nextInt(itemCt);
 			if (i < foodRatio){

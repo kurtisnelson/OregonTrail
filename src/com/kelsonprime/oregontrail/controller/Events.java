@@ -65,7 +65,9 @@ public class Events {
 		//	;//Random Oxen Death
 		else if (event < 11){
 			//Theft
-			JOptionPane.showMessageDialog(null, "1 " + wagon.removeRandomItem() + " has been stolen from you!");
+			String item = wagon.removeRandomItem();
+			if (item != null)
+				JOptionPane.showMessageDialog(null, "1 " + item + " has been stolen from you!");
 		}
 		else if (event < 12)
 			;//Attacked
@@ -95,11 +97,25 @@ public class Events {
 	 * @param percent Percent of weight to lose
 	 */
 	public static void loseItems(Wagon wagon, double percent){
+		
+		int foodCt, clothesCt, partCt, bulletCt, spareCt;
+		foodCt = clothesCt = partCt = bulletCt = spareCt = 0;
+		String cur;
 		int loseCt = (int) (wagon.countItems() * percent);
 		
 		for (int i = 0; i < loseCt; i++) {
-			wagon.removeRandomItem();		
+			cur = wagon.removeRandomItem();
+			if (cur == null){
+				break;
+			} else if (cur.equals("food")){
+				foodCt += 1;
+			} else if (cur.equals("clothes")){
+				clothesCt += 1;
+			} else if (cur.equals("bullet")){
+				bulletCt += 1;
+			} else if (cur.equals("spare"))
+				spareCt += 1;
+			}
+		
 		}
 	}
-
-}
