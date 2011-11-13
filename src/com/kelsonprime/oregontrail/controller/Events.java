@@ -92,8 +92,6 @@ public class Events {
 	 * @param percent Percent of weight to lose
 	 */
 	public static void loseItems(Wagon wagon, double percent){
-		
-		Random rand = new Random();
 		int loseCt = (int) (wagon.countItems() * percent);
 		
 		
