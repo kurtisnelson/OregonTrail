@@ -31,7 +31,7 @@ public class Game implements Time, Serializable {
 		this.pace = Pace.STEADY;
 		this.ration = Ration.NORMAL;
 		this.wagon = wagon;
-		this.map = new Map();
+		this.map = Map.mapFactory();
 	}
 
 	public GameEventListener getListener() {
