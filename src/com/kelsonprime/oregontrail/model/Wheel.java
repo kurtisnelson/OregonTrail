@@ -37,4 +37,8 @@ public class Wheel extends Part {
 		}
 		return false;
 	}	
+	
+	public int hashCode(){
+		return super.hashCode();
+	}
 }

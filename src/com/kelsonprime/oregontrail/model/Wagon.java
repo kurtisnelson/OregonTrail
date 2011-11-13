@@ -331,5 +331,9 @@ public class Wagon implements Time, Serializable {
 	public int countFood() {
 		return food;
 	}
+	
+	public void removeCompanion(Companion companion){
+		party.remove(companion);
+	}
 
 }

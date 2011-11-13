@@ -36,5 +36,9 @@ public class Tongue extends Part {
 				return true;
 		}
 		return false;
-	}	
+	}
+	
+	public int hashCode(){
+		return super.hashCode();
+	}
 }

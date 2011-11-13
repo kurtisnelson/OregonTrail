@@ -15,7 +15,7 @@ public class MainMenuListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		if (event.getActionCommand().equals("newGame")) {
-			app.newGameScreen();
+			app.newGame();
 		} else if (event.getActionCommand().equals("saveGame")){
 			try {
 				app.saveGame();

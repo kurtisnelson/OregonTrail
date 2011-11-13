@@ -1,5 +1,8 @@
 package com.kelsonprime.oregontrail.controller;
 
+import javax.swing.JOptionPane;
+
+import com.kelsonprime.oregontrail.model.Companion;
 import com.kelsonprime.oregontrail.model.Wagon;
 
 /**
@@ -10,8 +13,9 @@ public class Events {
 	/**
 	 * Generated death
 	 */
-	public static void death() {
-		// TODO method stub
+	public static void death(Wagon wagon, Companion companion) {
+		JOptionPane.showMessageDialog(null, companion + "has died");
+		wagon.removeCompanion(companion);
 	}
 
 	/**
