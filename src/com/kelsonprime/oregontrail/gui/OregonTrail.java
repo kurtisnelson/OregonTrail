@@ -35,9 +35,7 @@ import com.kelsonprime.oregontrail.model.Town;
 import com.kelsonprime.oregontrail.model.Wagon;
 
 /**
- * This class is going to be the main game. It is in charge of owning the parent
- * JFrame, and adding the initial menu to it
- * 
+ * Main class for the Application. Tracks all other objects and performs setup and tear down.
  */
 public class OregonTrail {
 	private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
@@ -75,6 +73,9 @@ public class OregonTrail {
         });
 	}
 
+	/**
+	 * Create in memory a new instance of the application
+	 */
 	public OregonTrail() {
 		try {
 			UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
@@ -100,10 +101,17 @@ public class OregonTrail {
 		frame.setLocation(x, y);
 	}
 
+	/**
+	 * Get app's main JFrame
+	 * @return main JFrame
+	 */
 	public JFrame getFrame() {
 		return frame;
 	}
 
+	/**
+	 * Make the app visible
+	 */
 	public void open() {
 		frame.setJMenuBar(mainMenu);
 		frame.setSize(new Dimension(WIDTH, HEIGHT));
@@ -159,12 +167,19 @@ public class OregonTrail {
 			loadGame(loadedGame);
 	}
 	
+	/**
+	 * Load a game
+	 * @param game Game to make active
+	 */
 	public void loadGame(Game game) {
 		this.game = game;
 		game.setOwner(this);
 		updateScreen();
 	}
 
+	/**
+	 * Change the current screen to match the location on the map.
+	 */
 	public void updateScreen() {
 		Location cur = game.currentLocation();
 		if (cur == null) {
@@ -183,11 +198,18 @@ public class OregonTrail {
 		}
 	}
 	
-	public void newGameScreen() {
+	/**
+	 * Clears the game state and goes to the new game screen
+	 */
+	public void newGame() {
 		game = null;
 		setPanel(new NewGameScreen(this));
 	}
 
+	/**
+	 * Set the main app panel
+	 * @param p JPanel to set as primary
+	 */
 	void setPanel(JPanel p) {
 		frame.add(p);
 		if (mainPanel != null)
@@ -196,32 +218,58 @@ public class OregonTrail {
 		frame.setVisible(true);
 	}
 	
+	/**
+	 * Leaves the current location on the map and updates the game screen
+	 */
 	public void leaveLocation() {
 		game.leaveLocation();
 		updateScreen();
 	}
 	
+	/**
+	 * Get the game's current event listener
+	 * @return GameEventListener to register with
+	 */
 	public GameEventListener getListener(){
 		return game.getListener();
 	}
 
+	/**
+	 * Get the current game's wagon
+	 * @return game wagon
+	 */
 	public Wagon getWagon() {
 		return game.getWagon();
 	}
 	
+	/**
+	 * Get the current game's map
+	 * @return game map
+	 */
 	public Map getMap() {
 		return game.getMap();
 	}
 	
-	public Game getGame() {
+	/**
+	 * Get the current game
+	 * @return game
+	 */
+	Game getGame() {
 		return game;
 	}
 
+	/**
+	 * Make the nextDay happen for the entire app and update the screen
+	 */
 	public void nextDay() {
 		game.nextDay(game);
 		this.updateScreen();
 	}
 
+	/**
+	 * Check if the app is ready to continue
+	 * @return Is the app ready?
+	 */
 	public boolean isReady() {
 		return game.isReady();
 	}

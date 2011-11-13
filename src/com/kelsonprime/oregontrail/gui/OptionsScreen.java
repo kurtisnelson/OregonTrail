@@ -52,7 +52,7 @@ public class OptionsScreen extends JFrame implements Updatable {
 		centerFrame();
 		
 		this.app = app;
-		this.app.getGame().getListener().registerUpdatable(this);
+		this.app.getListener().registerUpdatable(this);
 		this.setBackground(Color.WHITE);
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		setSize(new Dimension(400, 200));
