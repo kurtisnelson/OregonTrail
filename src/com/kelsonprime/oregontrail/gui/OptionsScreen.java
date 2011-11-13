@@ -9,7 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -102,8 +101,8 @@ public class OptionsScreen extends JFrame implements Updatable {
 		continueButton.setLocation(332, 115);
 		continueButton.setSize(50, 22);
 		continueButton.setBackground(Color.WHITE);
-		continueButton.setSelectedIcon(IconFactory.arrow);
-		continueButton.setIcon(new ImageIcon(NewGameScreen.class.getResource("/images/arrow.png")));
+		continueButton.setSelectedIcon(IconFactory.arrow());
+		continueButton.setIcon(IconFactory.arrow());
 		continueButton.setOpaque(false);
 		continueButton.setBorderPainted(false);
 		continueButton.setRolloverEnabled(false);

@@ -14,7 +14,6 @@ import java.util.logging.Logger;
 
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -194,9 +193,8 @@ public class NewGameScreen extends JPanel {
 		continueButton.setOpaque(false);
 		continueButton.setBorderPainted(false);
 		continueButton.setRolloverEnabled(false);
-		continueButton.setSelectedIcon(IconFactory.arrow);
-		continueButton.setIcon(new ImageIcon(NewGameScreen.class
-				.getResource("/images/arrow.png")));
+		continueButton.setSelectedIcon(IconFactory.arrow());
+		continueButton.setIcon(IconFactory.arrow());
 		continueButton.setActionCommand("continue");
 		continueButton.addActionListener(listen);
 		body.add(continueButton);

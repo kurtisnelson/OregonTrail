@@ -190,6 +190,13 @@ public class Wagon implements Time, Serializable {
 			throw new UserInputException(item + " is too heavy for the wagon!");
 		}
 	}
+	
+	/**
+	 * removes one random item from the wagon
+	 */
+	public void removeRandomItem(){
+		
+	}
 
 	/**
 	 * Repairs the wagon with available parts
@@ -252,6 +259,14 @@ public class Wagon implements Time, Serializable {
 		return ready;
 	}
 
+	/**
+	 * count how many items are in the wagon
+	 * @return number of items in the wagon
+	 */
+	public int countItems(){
+		return food + clothes + bullets + spareParts.size();
+	}
+	
 	/**
 	 * Count how many oxen are attached to the Wagon
 	 * 

@@ -36,6 +36,8 @@ import com.kelsonprime.oregontrail.model.Wagon;
 
 /**
  * Main class for the Application. Tracks all other objects and performs setup and tear down.
+ * @author kurt
+ * @version $Revision: 1.0 $
  */
 public class OregonTrail {
 	private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
@@ -47,6 +49,10 @@ public class OregonTrail {
 	JPanel mainPanel;
 	private JFrame frame;
 
+	/**
+	 * Method main.
+	 * @param args String[]
+	 */
 	public static void main(String[] args) {
 		// Load in logging prefs
 		String level = userProperties.getProperty("LogLevel", "severe");
@@ -103,8 +109,8 @@ public class OregonTrail {
 
 	/**
 	 * Get app's main JFrame
-	 * @return main JFrame
-	 */
+	
+	 * @return main JFrame */
 	public JFrame getFrame() {
 		return frame;
 	}
@@ -129,8 +135,8 @@ public class OregonTrail {
 
 	/**
 	 * Save game with serialization
-	 * @throws UserInputException 
-	 */
+	
+	 * @throws UserInputException  */
 	public void saveGame() throws UserInputException {
 		FileOutputStream fos = null;
 		ObjectOutputStream out = null;
@@ -147,8 +153,8 @@ public class OregonTrail {
 	
 	/**
 	 * Load game using serialization
-	 * @throws UserInputException 
-	 */
+	
+	 * @throws UserInputException  */
 	public void loadGame() throws UserInputException {
 		Game loadedGame = null;
 		FileInputStream fis = null;
@@ -228,32 +234,32 @@ public class OregonTrail {
 	
 	/**
 	 * Get the game's current event listener
-	 * @return GameEventListener to register with
-	 */
+	
+	 * @return GameEventListener to register with */
 	public GameEventListener getListener(){
 		return game.getListener();
 	}
 
 	/**
 	 * Get the current game's wagon
-	 * @return game wagon
-	 */
+	
+	 * @return game wagon */
 	public Wagon getWagon() {
 		return game.getWagon();
 	}
 	
 	/**
 	 * Get the current game's map
-	 * @return game map
-	 */
+	
+	 * @return game map */
 	public Map getMap() {
 		return game.getMap();
 	}
 	
 	/**
 	 * Get the current game
-	 * @return game
-	 */
+	
+	 * @return game */
 	Game getGame() {
 		return game;
 	}
@@ -268,8 +274,8 @@ public class OregonTrail {
 
 	/**
 	 * Check if the app is ready to continue
-	 * @return Is the app ready?
-	 */
+	
+	 * @return Is the app ready? */
 	public boolean isReady() {
 		return game.isReady();
 	}

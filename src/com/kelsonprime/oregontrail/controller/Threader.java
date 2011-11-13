@@ -16,6 +16,13 @@ public class Threader {
 			.newSingleThreadExecutor();
 
 	/**
+	 * Prevent instantiations of this class
+	 */
+	private Threader(){
+		
+	}
+	
+	/**
 	 * Executes now efficiently
 	 * 
 	 * Instead of just executing a Runnable directly elsewhere, this method
