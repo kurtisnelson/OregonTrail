@@ -39,8 +39,12 @@ public abstract class Part implements Time, Comparable<Object>, Serializable {
 	 * @param game Game to get pace from
 	 */
 	public void nextDay(Game game) {
-		health = (int) (health - (health * .01));
-		// TODO account for pace with game.getPace()
+		double multiplier = .01;
+		if(game.getPace().equals(Pace.STOPPED))
+			multiplier = 0;
+		else if(game.getPace().equals(Pace.GRUELING))
+			multiplier = .02;
+		health = (int) (health - (health * multiplier));
 	}
 	
 	/**
