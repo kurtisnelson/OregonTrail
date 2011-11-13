@@ -16,7 +16,6 @@ import javax.swing.JPanel;
 import com.kelsonprime.oregontrail.controller.Threader;
 import com.kelsonprime.oregontrail.controller.Updatable;
 import com.kelsonprime.oregontrail.model.Game;
-import com.kelsonprime.oregontrail.model.Location;
 import com.kelsonprime.oregontrail.model.Wagon;
 
 /**
