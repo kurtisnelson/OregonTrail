@@ -253,6 +253,14 @@ public class Wagon implements Time, Serializable {
 	}
 
 	/**
+	 * count how many items are in the wagon
+	 * @return number of items in the wagon
+	 */
+	public int countItems(){
+		return food + clothes + bullets + spareParts.size();
+	}
+	
+	/**
 	 * Count how many oxen are attached to the Wagon
 	 * 
 	 * @return Count of oxen
