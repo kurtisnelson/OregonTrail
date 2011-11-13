@@ -14,10 +14,6 @@ public abstract class Part implements Time, Comparable<Object>, Serializable {
 	 * Health of a part
 	 */
 	protected int health;
-	/**
-	 * Percentage of health lost by any part every day
-	 */
-	protected final double WEAR_RATIO = .01;
 	
 	/**
 	 * Initialize Part with 100 health
@@ -39,12 +35,7 @@ public abstract class Part implements Time, Comparable<Object>, Serializable {
 	 * @param game Game to get pace from
 	 */
 	public void nextDay(Game game) {
-		double multiplier = .01;
-		if(game.getPace().equals(Pace.STOPPED))
-			multiplier = 0;
-		else if(game.getPace().equals(Pace.GRUELING))
-			multiplier = .02;
-		health = (int) (health - (health * multiplier));
+		health = (health - game.getPace().getRate());
 	}
 	
 	/**
