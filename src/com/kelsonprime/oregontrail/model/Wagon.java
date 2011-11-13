@@ -3,6 +3,8 @@ package com.kelsonprime.oregontrail.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.kelsonprime.oregontrail.controller.Events;
 import com.kelsonprime.oregontrail.controller.UserInputException;
 
 /**
@@ -109,6 +111,7 @@ public class Wagon implements Time, Serializable {
 		}
 		// TODO whatever we decide to do with clothes, probably should do
 		// something here
+		Events.nextDay(game);
 	}
 
 	/**
@@ -393,6 +396,14 @@ public class Wagon implements Time, Serializable {
 	 */
 	public void removeCompanion(Companion companion){
 		party.remove(companion);
+	}
+	
+	public Player getPlayer(){
+		for (int i=0; i<5; i++){
+			if (party.get(i) instanceof Player)
+				return (Player) party.get(i);
+		}
+		return null;
 	}
 
 }
