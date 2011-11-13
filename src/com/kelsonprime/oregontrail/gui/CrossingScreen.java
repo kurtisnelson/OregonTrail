@@ -10,6 +10,8 @@ import javax.swing.JButton;
 
 import com.kelsonprime.oregontrail.model.Crossing;
 import com.kelsonprime.oregontrail.model.Wagon;
+import com.kelsonprime.oregontrail.controller.Events;
+
 
 import java.util.Random;
 import java.util.logging.Level;
@@ -87,12 +89,14 @@ public class CrossingScreen extends LocationScreen {
 				wagon.changeMoney((-1) * Integer.valueOf(crossing.ferry())); // 100% Chance Success
 			} else if (s.equalsIgnoreCase("caulk")) {
 				int success = rand.nextInt(Wagon.MAXWEIGHT);
-				if (success <= (wagon.getWeight() * 2 / 3))
-					;// TODO Bad Stuff Happens
+				if (success <= (wagon.getWeight() * 2 / 3)){
+					Events.loseItems(wagon, .25);
+				}					
 			} else if (s.equalsIgnoreCase("wade")) {
 				int success = rand.nextInt(Wagon.MAXWEIGHT);
-				if (success <= wagon.getWeight())
-					;// TODO Bad Stuff Happens
+				if (success <= wagon.getWeight()){
+					Events.loseItems(wagon, .5);
+				}					
 			}
 			getApp().leaveLocation();
 		}
