@@ -1,5 +1,7 @@
 package com.kelsonprime.oregontrail.controller;
 
+import com.kelsonprime.oregontrail.model.Wagon;
+
 /**
  * Generates random events for the game
  */
@@ -8,22 +10,26 @@ class Events {
 	/**
 	 * Generated death
 	 */
-	void death() {
+	public static void death() {
 		// TODO method stub
 	}
 
 	/**
 	 * Randomly calculate an event
 	 */
-	void calculateRandomEvent() {
+	public static void calculateRandomEvent() {
 
 	}
 
 	/**
 	 * Generates next day
 	 */
-	void nextDay() {
+	public static void nextDay() {
 		// TODO method stub
+	}
+	
+	public static void loseItems(Wagon wagon, double percent){
+		
 	}
 
 }
