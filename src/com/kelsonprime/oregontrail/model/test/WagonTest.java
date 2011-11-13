@@ -1,3 +1,4 @@
+// $codepro.audit.disable
 package com.kelsonprime.oregontrail.model.test;
 
 import java.util.LinkedList;

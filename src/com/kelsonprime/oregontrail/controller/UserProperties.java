@@ -2,8 +2,11 @@ package com.kelsonprime.oregontrail.controller;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public final class UserProperties extends Properties {
+	private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 	private static final long serialVersionUID = 6812054977753648712L;
 	
 	public UserProperties (){
@@ -11,6 +14,7 @@ public final class UserProperties extends Properties {
 			try{
 				this.loadFromXML(new FileInputStream("user.conf"));
 			}catch(Exception e){
+				LOGGER.log(Level.INFO, "Creating new user.conf preferences file");
 				this.initializePrefs();
 			}
 	}
@@ -22,7 +26,7 @@ public final class UserProperties extends Properties {
 		try{
 			this.storeToXML(new FileOutputStream("user.conf"), "User Preferences");
 		}catch(Exception e){
-			// TODO properly log this
+			LOGGER.log(Level.FINE, "Did not save updated preferences");
 		}
 	}
 }
