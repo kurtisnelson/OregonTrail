@@ -184,6 +184,7 @@ public class OregonTrail {
 	}
 	
 	public void newGameScreen() {
+		game = null;
 		setPanel(new NewGameScreen(this));
 	}
 

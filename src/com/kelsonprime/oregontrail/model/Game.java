@@ -172,6 +172,7 @@ public class Game implements Time, Serializable {
 	}
 
 	public void nextDay() {
+		//TODO hit Events.
 		wagon.nextDay(this);
 		map.nextDay(this);
 		days++;

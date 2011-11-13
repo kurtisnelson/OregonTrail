@@ -145,14 +145,18 @@ public class TravelScreen extends JPanel implements Updatable {
 
 	/**
 	 * Travel one day
+	 * @return Arrived at a location
 	 */
-	private void travel() {
+	private boolean travel() {
 		lblTravel.setText("Traveling");
 		app.nextDay();
 		current = app.getMap().distanceToNext();
 		update();
 
 		repaint();
+		if(current <= 0)
+			return true;
+		return false;
 	}
 
 	/**
@@ -213,9 +217,16 @@ public class TravelScreen extends JPanel implements Updatable {
 
 			@Override
 			public void run() {
+				if(!wagon.isReady())
+					this.cancel();
 				counter++;
 				if (counter % 4 == 0)
-					travel();
+					try{
+						if(travel())
+							this.cancel();
+					}catch(NullPointerException e){
+						this.cancel();
+					}
 				else
 					repaint();
 			}
