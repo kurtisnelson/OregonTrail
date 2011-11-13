@@ -4,10 +4,19 @@ import com.kelsonprime.oregontrail.model.Landmark;
 import javax.swing.JLabel;
 import java.awt.Color;
 
+/**
+ * GUI for a <code>Landmark</code>
+ * @see com.kelsonprime.oregontrail.model.Landmark
+ */
 public class LandmarkScreen extends LocationScreen {
 	private static final long serialVersionUID = 6338930312894045281L;
 	
 	private Landmark landmark;
+	/**
+	 * Create GUI for landmark
+	 * @param app OregonTrail
+	 * @param landmark Landmark
+	 */
 	public LandmarkScreen(OregonTrail app, Landmark landmark) {
 		super(app);
 		this.landmark = landmark;

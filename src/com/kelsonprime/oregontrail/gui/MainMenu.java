@@ -7,11 +7,17 @@ import javax.swing.KeyStroke;
 import java.awt.event.KeyEvent;
 import java.awt.event.InputEvent;
 
+/**
+ * Application's main menu
+ */
 public class MainMenu extends JMenuBar {
 	private static final long serialVersionUID = 4131897710803488227L;
-
 	private MainMenuListener menuListen;
 
+	/**
+	 * Create main menu
+	 * @param app OregonTrail
+	 */
 	public MainMenu(OregonTrail app) {
 		menuListen = new MainMenuListener(app);
 		JMenu fileMenu = new JMenu("File");

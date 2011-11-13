@@ -2,9 +2,15 @@ package com.kelsonprime.oregontrail.model;
 
 import java.io.Serializable;
 
+/**
+ */
 public abstract class Occupation implements Serializable {
 	private static final long serialVersionUID = -6040773823566650272L;
 	
+	/**
+	 * Method getOccupations.
+	 * @return Class<?>[]
+	 */
 	public static Class<?>[] getOccupations(){
 		Class<?>[] occs = new Class[3];
 		occs[0] = Banker.class;
@@ -17,7 +23,19 @@ public abstract class Occupation implements Serializable {
 		
 	}
 	
+	/**
+	 * Method getMoney.
+	 * @return int
+	 */
 	public abstract int getMoney();
+	/**
+	 * Method getDescription.
+	 * @return String
+	 */
 	public abstract String getDescription();
+	/**
+	 * Method getLabel.
+	 * @return String
+	 */
 	public abstract String getLabel();
 }
