@@ -9,12 +9,13 @@ public interface Time {
 	
 	/**
 	 * Eat, age items, adjust heath, rest, and increment the day.
+	 * @param game Game
 	 */
 	public void nextDay(Game game);
 	
 	/**
 	 * Checks to see if the object is usable
-	 * @return true if it is ready
-	 */
+	
+	 * @return true if it is ready */
 	public boolean isReady();
 }

@@ -27,6 +27,7 @@ import javax.swing.JTextField;
  * a JFrame that allows the user to see game stats and change ration/pace
  * @author Matthew
  *
+ * @version $Revision: 1.0 $
  */
 public class OptionsScreen extends JFrame implements Updatable {
 	private static final long serialVersionUID = 6544540456115310106L;
@@ -123,6 +124,10 @@ public class OptionsScreen extends JFrame implements Updatable {
 		update();
 	}
 	
+	/**
+	 * Method update.
+	 * @see com.kelsonprime.oregontrail.controller.Updatable#update()
+	 */
 	public void update(){
 		Wagon w = app.getWagon();
 		foodField.setText(Integer.toString(w.countFood()));
@@ -153,9 +158,15 @@ public class OptionsScreen extends JFrame implements Updatable {
 	 * An ActionListener for the contine button in the options screen.
 	 * @author Matthew
 	 *
+	 * @version $Revision: 1.0 $
 	 */
 	private class ButtonListener implements ActionListener {
 
+		/**
+		 * Method actionPerformed.
+		 * @param e ActionEvent
+		 * @see java.awt.event.ActionListener#actionPerformed(ActionEvent)
+		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			

@@ -4,6 +4,7 @@ package com.kelsonprime.oregontrail.model;
  * Represents an Axle. Inherits from Part
  * @author Aman
  *
+ * @version $Revision: 1.0 $
  */
 public class Axle extends Part {
 	private static final long serialVersionUID = 3548664315971140887L;
@@ -17,6 +18,7 @@ public class Axle extends Part {
 	
 	/**
 	 * Constructor with health given
+	 * @param health int
 	 */
 	public Axle(int health) {
 		super(health);
@@ -24,11 +26,16 @@ public class Axle extends Part {
 	
 	/**
 	 * Gets the name of the part in string form
+	 * @return String
 	 */
 	public String toString() {
 		return "Axle";
 	}
 	
+	/**
+	 * Get the weight of the part
+	 * @return int Part weight
+	 */
 	public static int getWeight(){
 		return 5;
 	}
@@ -52,6 +59,7 @@ public class Axle extends Part {
 		return false;
 	}
 	
+	@Override
 	public int hashCode(){
 		return super.hashCode();
 	}

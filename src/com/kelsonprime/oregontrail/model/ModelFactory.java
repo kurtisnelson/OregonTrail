@@ -7,9 +7,18 @@ import java.util.logging.Logger;
 
 import com.kelsonprime.oregontrail.controller.UserInputException;
 
+/**
+ */
 public class ModelFactory {
 	private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 	
+	/**
+	 * Method buildPlayer.
+	 * @param name String
+	 * @param occupation Occupation
+	 * @return Player
+	 * @throws UserInputException
+	 */
 	public static Player buildPlayer(String name, Occupation occupation) throws UserInputException{
 		if(name.length() < 1)
 			throw new UserInputException("Invalid name");
@@ -18,6 +27,12 @@ public class ModelFactory {
 		return new Player(name, occupation);
 	}
 	
+	/**
+	 * Method buildOccupation.
+	 * @param occ String
+	 * @return Occupation
+	 * @throws UserInputException
+	 */
 	public static Occupation buildOccupation(String occ) throws UserInputException{
 		Occupation newOccupation = null;
 		try {
@@ -41,6 +56,12 @@ public class ModelFactory {
 		return newOccupation;
 	}
 	
+	/**
+	 * Method buildCompanions.
+	 * @param companions String[]
+	 * @return ArrayList<Companion>
+	 * @throws UserInputException
+	 */
 	public static ArrayList<Companion> buildCompanions(String... companions) throws UserInputException{
 		ArrayList<Companion> companionList = new ArrayList<Companion>(4);
 		for(String n : companions){
@@ -51,6 +72,11 @@ public class ModelFactory {
 		return companionList;
 	}
 	
+	/**
+	 * Method validateText.
+	 * @param text String
+	 * @return boolean
+	 */
 	public static boolean validateText(String text){
 		for(char c : text.toCharArray()){
 			if(c >= 'A' && c <= 'Z')

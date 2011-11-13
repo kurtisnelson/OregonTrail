@@ -1,5 +1,7 @@
 package com.kelsonprime.oregontrail.model;
 
+/**
+ */
 public class Crossing extends Location {
 	private static final long serialVersionUID = 4849948143004178802L;
 	private int depth;
@@ -20,6 +22,10 @@ public class Crossing extends Location {
 		ferryCost = 0;
 	}
 
+	/**
+	 * Method describe.
+	 * @return String
+	 */
 	public String describe(){
 		StringBuilder ret = new StringBuilder();
 		ret.append("This crossing is "+depth+" deep and "+width+" wide.\n");
@@ -32,18 +38,18 @@ public class Crossing extends Location {
 	
 	/**
 	 * Ford this crossing
-	 * @return Description of what happened
+	
 	 * @post Wagon has been updated with anything bad that happened.
-	 */
+	 * @return Description of what happened */
 	public String ford() {
 		return null;
 	}
 
 	/**
 	 * Caulk and float at this crossing
-	 * @return Description of what happened
+	
 	 * @post Wagon has been updated with anything bad that happened.
-	 */
+	 * @return Description of what happened */
 	public String caulk() {
 		return null;
 	}
@@ -58,17 +64,17 @@ public class Crossing extends Location {
 	
 	/**
 	 * Check if a ferry is available.
-	 * @return is there a ferry
-	 */
+	
+	 * @return is there a ferry */
 	public boolean isFerry(){
 		return ferryCost > 0;
 	}
 
 	/**
 	 * Take the ferry
-	 * @return Description of what happened
+	
 	 * @post Wagon has been updated with anything bad that happened and cost spent
-	 */
+	 * @return Description of what happened */
 	public String ferry() {
 		if(ferryCost <= 0)
 			return "There is no ferry here.";

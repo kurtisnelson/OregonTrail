@@ -7,10 +7,18 @@ import java.awt.Graphics;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+/**
+ * Make JButton prettier
+ * @author Tan
+ */
 public class Button extends JButton {
 	private static final long serialVersionUID = -7346008466805143017L;
 	private ImageIcon buttonImage;
 	
+	/**
+	 * Construct a pretty button
+	 * @param img ImageIcon
+	 */
 	public Button(ImageIcon img){
 		super();
 		buttonImage = img;
@@ -20,6 +28,7 @@ public class Button extends JButton {
 		setContentAreaFilled(false);
 	}
 	
+	@Override
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		g.drawImage(buttonImage.getImage(), 0, 0, this);

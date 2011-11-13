@@ -14,12 +14,17 @@ public class Map implements Time, Serializable{
 
 	/** 
 	 * Creates the standard game map.
+	 * @param start Location
 	 */
 	public Map(Location start){
 		traveled = 0;;
 		this.start = start;
 	}
 	
+	/**
+	 * Method mapFactory.
+	 * @return Map
+	 */
 	public static Map mapFactory(){
 		Map m = new Map(new Shop("Independence", 0));
 		Location river1 = new Crossing("River", 10, 5, 10);
@@ -37,16 +42,16 @@ public class Map implements Time, Serializable{
 	
 	/**
 	 * Gets the distance traveled
-	 * @return traveled
-	 */
+	
+	 * @return traveled */
 	public int getTraveled() {
 		return traveled;
 	}
 	
 	/**
 	 * Returns next location in the map
-	 * @return last location
-	 */
+	
+	 * @return last location */
 	public Location nextLocation(){
 		Location loc = start;
 		while(loc.next().getPosition() <= traveled)
@@ -56,8 +61,8 @@ public class Map implements Time, Serializable{
 	
 	/**
 	 * Returns the distance to the next location
-	 * @return distance
-	 */
+	
+	 * @return distance */
 	public int distanceToNext(){
 		return distanceTo(nextLocation());
 	}
@@ -66,8 +71,8 @@ public class Map implements Time, Serializable{
 	 * Get the distance between two locations
 	 * @param start Location A
 	 * @param end Location B
-	 * @return Distance from A to B
-	 */
+	
+	 * @return Distance from A to B */
 	public static int distanceBetween(Location start, Location end){
 		if(start == null || end == null)
 			return 0;
@@ -77,6 +82,7 @@ public class Map implements Time, Serializable{
 	/**
 	 * Moves up to distance
 	 * @param distance
+	 * @return Location
 	 */
 	public Location travel(int distance){
 		if(distanceToNext() <= distance){
@@ -89,6 +95,8 @@ public class Map implements Time, Serializable{
 	
 	/**
 	 * Gets the distance to a particular location
+	 * @param l Location
+	 * @return int
 	 */
 	private int distanceTo(Location l){
 		if(l == null)
@@ -98,8 +106,9 @@ public class Map implements Time, Serializable{
 
 	/**
 	 * Traverses the given distance from start
-	 * @return location
-	 */
+	
+	 * @param distance int
+	 * @return location */
 	private Location traverse(int distance){
 		return traverse(start, distance);
 	}
@@ -108,8 +117,8 @@ public class Map implements Time, Serializable{
 	 * Traverse a distance from a Location
 	 * @param loc Location to start at
 	 * @param distance Distance to travel
-	 * @return Location at distance from start, or null if between locations
-	 */
+	
+	 * @return Location at distance from start, or null if between locations */
 	private static Location traverse(Location loc, int distance){
 		if(distance == 0)
 			return loc;
@@ -120,17 +129,27 @@ public class Map implements Time, Serializable{
 
 	/**
 	 * Gets current location
-	 * @return location
-	 */
+	
+	 * @return location */
 	public Location currentLocation() {
 		return traverse(traveled);
 	}
 
+	/**
+	 * Method isReady.
+	 * @return boolean
+	 * @see com.kelsonprime.oregontrail.model.Time#isReady()
+	 */
 	@Override
 	public boolean isReady() {
 		return true;
 	}
 	
+	/**
+	 * Method nextDay.
+	 * @param game Game
+	 * @see com.kelsonprime.oregontrail.model.Time#nextDay(Game)
+	 */
 	@Override
 	public void nextDay(Game game) {
 		//look at pace and # of oxen and move appropriately

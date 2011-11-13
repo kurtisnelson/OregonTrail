@@ -19,10 +19,10 @@ public class MapTest {
 	/**
 	 * Run the Map(Location) constructor test.
 	 *
-	 * @throws Exception
+	
 	 *
 	 * @generatedBy CodePro at 11/13/11 3:16 PM
-	 */
+	 * @throws Exception */
 	@Test
 	public void testMap_1()
 		throws Exception {
@@ -39,10 +39,10 @@ public class MapTest {
 	/**
 	 * Run the Location currentLocation() method test.
 	 *
-	 * @throws Exception
+	
 	 *
 	 * @generatedBy CodePro at 11/13/11 3:16 PM
-	 */
+	 * @throws Exception */
 	@Test
 	public void testCurrentLocation_1()
 		throws Exception {
@@ -61,10 +61,10 @@ public class MapTest {
 	/**
 	 * Run the int distanceBetween(Location,Location) method test.
 	 *
-	 * @throws Exception
+	
 	 *
 	 * @generatedBy CodePro at 11/13/11 3:16 PM
-	 */
+	 * @throws Exception */
 	@Test
 	public void testDistanceBetween_1()
 		throws Exception {
@@ -80,10 +80,10 @@ public class MapTest {
 	/**
 	 * Run the int distanceBetween(Location,Location) method test.
 	 *
-	 * @throws Exception
+	
 	 *
 	 * @generatedBy CodePro at 11/13/11 3:16 PM
-	 */
+	 * @throws Exception */
 	@Test
 	public void testDistanceBetween_2()
 		throws Exception {
@@ -99,10 +99,10 @@ public class MapTest {
 	/**
 	 * Run the int distanceBetween(Location,Location) method test.
 	 *
-	 * @throws Exception
+	
 	 *
 	 * @generatedBy CodePro at 11/13/11 3:16 PM
-	 */
+	 * @throws Exception */
 	@Test
 	public void testDistanceBetween_3()
 		throws Exception {
@@ -118,10 +118,10 @@ public class MapTest {
 	/**
 	 * Run the int distanceToNext() method test.
 	 *
-	 * @throws Exception
+	
 	 *
 	 * @generatedBy CodePro at 11/13/11 3:16 PM
-	 */
+	 * @throws Exception */
 	@Test
 	public void testDistanceToNext_1()
 		throws Exception {
@@ -136,10 +136,10 @@ public class MapTest {
 	/**
 	 * Run the int getTraveled() method test.
 	 *
-	 * @throws Exception
+	
 	 *
 	 * @generatedBy CodePro at 11/13/11 3:16 PM
-	 */
+	 * @throws Exception */
 	@Test
 	public void testGetTraveled_1()
 		throws Exception {
@@ -154,10 +154,10 @@ public class MapTest {
 	/**
 	 * Run the boolean isReady() method test.
 	 *
-	 * @throws Exception
+	
 	 *
 	 * @generatedBy CodePro at 11/13/11 3:16 PM
-	 */
+	 * @throws Exception */
 	@Test
 	public void testIsReady_1()
 		throws Exception {
@@ -172,10 +172,10 @@ public class MapTest {
 	/**
 	 * Run the Map mapFactory() method test.
 	 *
-	 * @throws Exception
+	
 	 *
 	 * @generatedBy CodePro at 11/13/11 3:16 PM
-	 */
+	 * @throws Exception */
 	@Test
 	public void testMapFactory_1()
 		throws Exception {
@@ -192,10 +192,10 @@ public class MapTest {
 	/**
 	 * Run the void nextDay(Game) method test.
 	 *
-	 * @throws Exception
+	
 	 *
 	 * @generatedBy CodePro at 11/13/11 3:16 PM
-	 */
+	 * @throws Exception */
 	@Test
 	public void testNextDay_1()
 		throws Exception {
@@ -217,10 +217,10 @@ public class MapTest {
 	/**
 	 * Run the Location nextLocation() method test.
 	 *
-	 * @throws Exception
+	
 	 *
 	 * @generatedBy CodePro at 11/13/11 3:16 PM
-	 */
+	 * @throws Exception */
 	@Test
 	public void testNextLocation_1()
 		throws Exception {
@@ -239,10 +239,10 @@ public class MapTest {
 	/**
 	 * Run the Location nextLocation() method test.
 	 *
-	 * @throws Exception
+	
 	 *
 	 * @generatedBy CodePro at 11/13/11 3:16 PM
-	 */
+	 * @throws Exception */
 	@Test
 	public void testNextLocation_2()
 		throws Exception {
@@ -260,10 +260,10 @@ public class MapTest {
 	/**
 	 * Run the Location travel(int) method test.
 	 *
-	 * @throws Exception
+	
 	 *
 	 * @generatedBy CodePro at 11/13/11 3:16 PM
-	 */
+	 * @throws Exception */
 	@Test
 	public void testTravel_1()
 		throws Exception {
@@ -277,10 +277,10 @@ public class MapTest {
 	/**
 	 * Run the Location travel(int) method test.
 	 *
-	 * @throws Exception
+	
 	 *
 	 * @generatedBy CodePro at 11/13/11 3:16 PM
-	 */
+	 * @throws Exception */
 	@Test
 	public void testTravel_2()
 		throws Exception {
@@ -296,11 +296,11 @@ public class MapTest {
 	/**
 	 * Perform pre-test initialization.
 	 *
-	 * @throws Exception
-	 *         if the initialization fails for some reason
+	
 	 *
 	 * @generatedBy CodePro at 11/13/11 3:16 PM
-	 */
+	 * @throws Exception
+	 *         if the initialization fails for some reason */
 	@Before
 	public void setUp()
 		throws Exception {
@@ -310,11 +310,11 @@ public class MapTest {
 	/**
 	 * Perform post-test clean-up.
 	 *
-	 * @throws Exception
-	 *         if the clean-up fails for some reason
+	
 	 *
 	 * @generatedBy CodePro at 11/13/11 3:16 PM
-	 */
+	 * @throws Exception
+	 *         if the clean-up fails for some reason */
 	@After
 	public void tearDown()
 		throws Exception {

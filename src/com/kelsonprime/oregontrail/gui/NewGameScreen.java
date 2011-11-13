@@ -32,6 +32,9 @@ import com.kelsonprime.oregontrail.model.Player;
 import com.kelsonprime.oregontrail.model.Ration;
 import com.kelsonprime.oregontrail.model.Wagon;
 
+/**
+ * GUI for creating a new game
+ */
 public class NewGameScreen extends JPanel {
 	private final static Logger LOGGER = Logger
 			.getLogger(Logger.GLOBAL_LOGGER_NAME);
@@ -47,6 +50,10 @@ public class NewGameScreen extends JPanel {
 	private JLabel startingMoney;
 	private JComboBox paceBox, rationBox;
 
+	/**
+	 * Create the GUI
+	 * @param app OregonTrail
+	 */
 	public NewGameScreen(OregonTrail app) {
 		super();
 		this.app = app;
@@ -212,6 +219,9 @@ public class NewGameScreen extends JPanel {
 		body.add(startingMoney);
 	}
 
+	/**
+	 * Create the game using parameters from GUI
+	 */
 	public void createGame() {
 
 		Occupation occupation;
@@ -236,8 +246,16 @@ public class NewGameScreen extends JPanel {
 		app.loadGame(newGame);
 	}
 
+	/**
+	 * Listen for changes
+	 */
 	private class ButtonListener implements ActionListener {
 
+		/**
+		 * Method actionPerformed.
+		 * @param ae ActionEvent
+		 * @see java.awt.event.ActionListener#actionPerformed(ActionEvent)
+		 */
 		@Override
 		public void actionPerformed(ActionEvent ae) {
 			String ac = ae.getActionCommand();
