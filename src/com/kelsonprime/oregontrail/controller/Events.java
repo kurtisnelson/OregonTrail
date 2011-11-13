@@ -81,9 +81,9 @@ public class Events {
 		Random rand = new Random();
 		int loseCt = (int) (wagon.countItems() * percent);
 		
-		
 		for(int i = 0; i < loseCt; i++){
 			wagon.removeRandomItem();
+		
 		}
 	}
 
