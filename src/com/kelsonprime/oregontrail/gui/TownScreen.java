@@ -10,12 +10,21 @@ import javax.swing.ImageIcon;
 
 import com.kelsonprime.oregontrail.model.Town;
 
+/**
+ * GUI for a <code>Town</code>
+ * @see com.kelsonprime.oregontrail.model.Town
+ */
 public class TownScreen extends LocationScreen {
 
 	private static final long serialVersionUID = 2954231432340769351L;
 	Image img = new ImageIcon(TownScreen.class.getResource("images/tempTown.jpg")).getImage();
 	Town town;
 	
+	/**
+	 * Constructor for TownScreen.
+	 * @param app OregonTrail
+	 * @param town Town
+	 */
 	public TownScreen(OregonTrail app, Town town) {
 		super(app);
 		
@@ -41,13 +50,24 @@ public class TownScreen extends LocationScreen {
 
 	}
 
+	/**
+	 * Method paintComponent.
+	 * @param g Graphics
+	 */
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		g.drawImage(img, 0, 0, this);
 	}
 	
+	/**
+	 */
 	private class ButtonListener implements ActionListener {
 
+		/**
+		 * Method actionPerformed.
+		 * @param ae ActionEvent
+		 * @see java.awt.event.ActionListener#actionPerformed(ActionEvent)
+		 */
 		@Override
 		public void actionPerformed(ActionEvent ae) {
 			String s = ae.getActionCommand();

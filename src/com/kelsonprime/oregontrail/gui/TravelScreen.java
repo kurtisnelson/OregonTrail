@@ -18,6 +18,9 @@ import com.kelsonprime.oregontrail.controller.Updatable;
 import com.kelsonprime.oregontrail.model.Game;
 import com.kelsonprime.oregontrail.model.Wagon;
 
+/**
+ * GUI while not at a location
+ */
 public class TravelScreen extends JPanel implements Updatable {
 	private static final long serialVersionUID = -2616586129314449978L;
 
@@ -38,6 +41,10 @@ public class TravelScreen extends JPanel implements Updatable {
 	private static final ImageIcon moveAheadIcon = new ImageIcon(
 			TravelScreen.class.getResource("/images/MoveAheadButton.png"));
 
+	/**
+	 * Constructor for TravelScreen.
+	 * @param app OregonTrail
+	 */
 	public TravelScreen(OregonTrail app) {
 		super();
 		this.app = app;
@@ -104,6 +111,10 @@ public class TravelScreen extends JPanel implements Updatable {
 		counter = 0;
 	}
 
+	/**
+	 * Method paintComponent.
+	 * @param g Graphics
+	 */
 	public void paintComponent(Graphics g) {
 		Image regBG = new ImageIcon(
 				TravelScreen.class
@@ -141,8 +152,8 @@ public class TravelScreen extends JPanel implements Updatable {
 
 	/**
 	 * Travel one day
-	 * @return Arrived at a location
-	 */
+	
+	 * @return Arrived at a location */
 	private boolean travel() {
 		lblTravel.setText("Traveling");
 		app.nextDay();
@@ -183,6 +194,7 @@ public class TravelScreen extends JPanel implements Updatable {
 
 	/**
 	 * Update on screen stats about the wagon.
+	 * @see com.kelsonprime.oregontrail.controller.Updatable#update()
 	 */
 	public void update() {
 		nextLocation.setText(app.getMap().nextLocation() + " is "
@@ -211,6 +223,10 @@ public class TravelScreen extends JPanel implements Updatable {
 		 */
 		private class TravelerTimerTask extends TimerTask {
 
+			/**
+			 * Method run.
+			 * @see java.lang.Runnable#run()
+			 */
 			@Override
 			public void run() {
 				if(!wagon.isReady())
@@ -239,6 +255,11 @@ public class TravelScreen extends JPanel implements Updatable {
 	 */
 	private class ButtonListener implements ActionListener {
 
+		/**
+		 * Method actionPerformed.
+		 * @param e ActionEvent
+		 * @see java.awt.event.ActionListener#actionPerformed(ActionEvent)
+		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			String s = e.getActionCommand();

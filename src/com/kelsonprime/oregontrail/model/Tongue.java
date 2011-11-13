@@ -1,20 +1,35 @@
 package com.kelsonprime.oregontrail.model;
 
+/**
+ * Represent a wagon tongue
+ */
 public class Tongue extends Part {
 	private static final long serialVersionUID = 8766537377409751997L;
 
+	/**
+	 * Create a tongue with specified health
+	 * @param health int
+	 */
 	public Tongue(int health) {
 		super(health);
 	}
 
+	/**
+	 * Create a tongue with full health
+	 */
 	public Tongue() {
 		this(125);
 	}
 	
+	/**
+	 * Get weight of a tongue
+	 * @return int
+	 */
 	public static int getWeight(){
 		return 5;
 	}
 	
+	@Override
 	public String toString() {
 		return "Tongue at "+health;
 	}
@@ -38,6 +53,7 @@ public class Tongue extends Part {
 		return false;
 	}
 	
+	@Override
 	public int hashCode(){
 		return super.hashCode();
 	}

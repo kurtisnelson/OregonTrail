@@ -30,6 +30,10 @@ import javax.swing.border.BevelBorder;
 import java.awt.GridLayout;
 import javax.swing.ImageIcon;
 
+/**
+ * GUI for a <code>Shop</code>
+ * @see com.kelsonprime.oregontrail.model.Shop
+ */
 public class ShopScreen extends LocationScreen implements KeyListener {
 	private static final long serialVersionUID = -7550296665413775236L;
 	private static final String CURRENCY = "$";
@@ -55,6 +59,11 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 			totalWeightAdded, weightLeft;
 
 	// TODO Update the wagon's weight statistics on the shop GUI
+	/**
+	 * Constructor for ShopScreen.
+	 * @param app OregonTrail
+	 * @param shop Shop
+	 */
 	public ShopScreen(OregonTrail app, Shop shop) {
 		super(app);
 		this.shop = shop;
@@ -316,6 +325,9 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 
 	}
 
+	/**
+	 * Sell items to the Wagon based on the selected quantities
+	 */
 	public void sellItems() {
 		int axles;
 		int wheels;
@@ -376,16 +388,29 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 		}
 	}
 
+	/**
+	 * Method keyPressed.
+	 * @param ke KeyEvent
+	 * @see java.awt.event.KeyListener#keyPressed(KeyEvent)
+	 */
 	@Override
 	public void keyPressed(KeyEvent ke) {
 
 	}
 
+	/**
+	 * Method keyReleased.
+	 * @param ke KeyEvent
+	 * @see java.awt.event.KeyListener#keyReleased(KeyEvent)
+	 */
 	@Override
 	public void keyReleased(KeyEvent ke) {
 		update();
 	}
 
+	/**
+	 * Update the wagon statistics
+	 */
 	public void update() {
 		Threader.executeNow(new Runnable() {
 			public void run() {
@@ -439,13 +464,26 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 
 	}
 
+	/**
+	 * Method keyTyped.
+	 * @param ke KeyEvent
+	 * @see java.awt.event.KeyListener#keyTyped(KeyEvent)
+	 */
 	@Override
 	public void keyTyped(KeyEvent ke) {
 
 	}
 
+	/**
+	 * Listen for buttons
+	 */
 	private class ButtonListener implements ActionListener {
 
+		/**
+		 * Method actionPerformed.
+		 * @param ae ActionEvent
+		 * @see java.awt.event.ActionListener#actionPerformed(ActionEvent)
+		 */
 		@Override
 		public void actionPerformed(ActionEvent ae) {
 			String s = ae.getActionCommand();

@@ -26,6 +26,7 @@ class WagonFactory
 
 	/**
 	 * Create an instance of the class <code>{@link Wagon}</code> with the <code>Player</code> as a <code>Banker</code>
+	 * @return Wagon
 	 */
 	public static Wagon createWagon() {
 		ArrayList<Companion> list = new ArrayList<Companion>();
@@ -36,6 +37,7 @@ class WagonFactory
 
 	/**
 	 * Create an instance of the class <code>{@link Wagon}</code> with the <code>Player</code> as a <code>Carpenter</code>
+	 * @return Wagon
 	 */
 	public static Wagon createWagon2() {
 		LinkedList<Companion> list = new LinkedList<Companion>();

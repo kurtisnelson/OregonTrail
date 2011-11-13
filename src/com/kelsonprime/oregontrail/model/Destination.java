@@ -17,6 +17,10 @@ public class Destination extends Landmark {
 		super(label, position);
 	}
 
+	/**
+	 * Method next.
+	 * @return Location
+	 */
 	@Override
 	public Location next(){
 		return null;

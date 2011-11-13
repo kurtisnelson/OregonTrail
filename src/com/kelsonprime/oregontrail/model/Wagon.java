@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
+import com.kelsonprime.oregontrail.controller.Events;
 import com.kelsonprime.oregontrail.controller.UserInputException;
 
 /**
@@ -15,15 +15,39 @@ import com.kelsonprime.oregontrail.controller.UserInputException;
  */
 public class Wagon implements Time, Serializable {
 	private static final long serialVersionUID = 5643405898536801840L;
+	/**
+	 * @serial Number of oxen
+	 */
 	private int oxen;
+	/**
+	 * @serial Amount of food
+	 */
 	private int food;
+	/**
+	 * @serial Amount of clothes
+	 */
 	private int clothes;
+	/**
+	 * @serial Number of bullets
+	 */
 	private int bullets;
+	/**
+	 * @serial Parts being used to move
+	 */
 	private List<Part> activeParts;
+	/**
+	 * @serial Parts kept as spares
+	 */
 	private List<Part> spareParts;
+	/**
+	 * @serial People in the wagon
+	 */
 	private List<Companion> party;
 	private int money;
 	private int wagonWeight;
+	/**
+	 * Maximum weight capacity of a wagon
+	 */
 	public static final int MAXWEIGHT = 2000;
 
 	/**
@@ -63,8 +87,10 @@ public class Wagon implements Time, Serializable {
 	/**
 	 * Progress a day in time
 	 * @pre party.length() > 0 && game != null
-	 * @invariant money, bullets
+	
 	 * @post food < $pre(int, food)
+	 * @param game Game
+	 * @see com.kelsonprime.oregontrail.model.Time#nextDay(Game)
 	 */
 	@Override
 	public void nextDay(Game game) {
@@ -85,22 +111,27 @@ public class Wagon implements Time, Serializable {
 		}
 		// TODO whatever we decide to do with clothes, probably should do
 		// something here
+		Events.nextDay(game);
 	}
 
 	/**
 	 * Checks if the user has enough money to spend without debt.
 	 * 
 	 * @param moneyNeeded
-	 * @return no debt incurred
+	
 	 * @pre moneyNeeded >= 0
-	 * @invariant money
-	 */
+	
+	 * @return no debt incurred */
 	public boolean checkMoney(int moneyNeeded) {
 		if (money >= moneyNeeded)
 			return true;
 		return false;
 	}
 
+	/**
+	 * Method getWeight.
+	 * @return int
+	 */
 	public int getWeight() {
 		return wagonWeight;
 	}
@@ -108,8 +139,8 @@ public class Wagon implements Time, Serializable {
 	/**
 	 * Return how much money is contained in the Wagon
 	 * 
-	 * @return money available
-	 */
+	
+	 * @return money available */
 	public int getMoney() {
 		return money;
 	}
@@ -129,13 +160,17 @@ public class Wagon implements Time, Serializable {
 	 * 
 	 * @param weight
 	 *            to be added
-	 * @return true if wagon would be ok, false if overweight.
+	
 	 * @pre weight > 0
-	 */
+	 * @return true if wagon would be ok, false if overweight. */
 	public boolean checkWeight(int weight) {
 		return !(wagonWeight + weight > MAXWEIGHT);
 	}
 
+	/**
+	 * Method addWeight.
+	 * @param weight int
+	 */
 	public void addWeight(int weight) {
 		wagonWeight += weight;
 	}
@@ -145,9 +180,9 @@ public class Wagon implements Time, Serializable {
 	 * 
 	 * @param part
 	 *            Part to add to the wagon
+	
 	 * @throws UserInputException
-	 *             If adding the part would make it overweight
-	 */
+	 *             If adding the part would make it overweight */
 	public void add(Part part) throws UserInputException {
 		if (part == null) {
 			return;
@@ -167,10 +202,10 @@ public class Wagon implements Time, Serializable {
 	 *            Item type
 	 * @param quantity
 	 *            Number of item to add
-	 * @throws UserInputException
-	 *             If adding the items would make it overweight
+	
 	 * @pre item != null && quantity >= 0
-	 */
+	 * @throws UserInputException
+	 *             If adding the items would make it overweight */
 	public void add(Item item, int quantity) throws UserInputException {
 		if (checkWeight(quantity * item.getWeight())) {
 			switch (item) {
@@ -227,9 +262,9 @@ public class Wagon implements Time, Serializable {
 	/**
 	 * Repairs the wagon with available parts
 	 * 
-	 * @return Wagon was fully repaired
+	
 	 * @post brokenCount >= 0
-	 */
+	 * @return Wagon was fully repaired */
 	public boolean repair() {
 		int brokenCount = 0;
 		for (int i = 0; i < activeParts.size(); i++) {
@@ -248,6 +283,11 @@ public class Wagon implements Time, Serializable {
 		return brokenCount == 0;
 	}
 
+	/**
+	 * Method isReady.
+	 * @return boolean
+	 * @see com.kelsonprime.oregontrail.model.Time#isReady()
+	 */
 	@Override
 	public boolean isReady() {
 		boolean ready = true;
@@ -296,8 +336,8 @@ public class Wagon implements Time, Serializable {
 	/**
 	 * Count how many oxen are attached to the Wagon
 	 * 
-	 * @return Count of oxen
-	 */
+	
+	 * @return Count of oxen */
 	public int countOxen() {
 		return oxen;
 	}
@@ -305,8 +345,8 @@ public class Wagon implements Time, Serializable {
 	/**
 	 * Count how many spare axles are being carried
 	 * 
-	 * @return Count of spare axles
-	 */
+	
+	 * @return Count of spare axles */
 	public int countAxles() {
 
 		int ret = 0;
@@ -320,8 +360,8 @@ public class Wagon implements Time, Serializable {
 	/**
 	 * Count how many spare wheels are being carried
 	 * 
-	 * @return Count of spare wheels
-	 */
+	
+	 * @return Count of spare wheels */
 	public int countWheels() {
 		int ret = 0;
 		for (Part part : spareParts) {
@@ -334,8 +374,8 @@ public class Wagon implements Time, Serializable {
 	/**
 	 * Count how many spare tongues are being carried
 	 * 
-	 * @return Count of spare tongues
-	 */
+	
+	 * @return Count of spare tongues */
 	public int countTongues() {
 
 		int ret = 0;
@@ -349,8 +389,8 @@ public class Wagon implements Time, Serializable {
 	/**
 	 * Count how many clothes are in the wagon
 	 * 
-	 * @return Count of clothes
-	 */
+	
+	 * @return Count of clothes */
 	public int countClothes() {
 		return clothes;
 	}
@@ -358,8 +398,8 @@ public class Wagon implements Time, Serializable {
 	/**
 	 * Count how many bullets are in the wagon
 	 * 
-	 * @return Count of bullets
-	 */
+	
+	 * @return Count of bullets */
 	public int countBullets() {
 		return bullets;
 	}
@@ -367,14 +407,26 @@ public class Wagon implements Time, Serializable {
 	/**
 	 * Count how much food is in the wagon
 	 * 
-	 * @return Count of food
-	 */
+	
+	 * @return Count of food */
 	public int countFood() {
 		return food;
 	}
 	
+	/**
+	 * Method removeCompanion.
+	 * @param companion Companion
+	 */
 	public void removeCompanion(Companion companion){
 		party.remove(companion);
+	}
+	
+	public Player getPlayer(){
+		for (int i=0; i<5; i++){
+			if (party.get(i) instanceof Player)
+				return (Player) party.get(i);
+		}
+		return null;
 	}
 
 }

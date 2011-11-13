@@ -27,11 +27,16 @@ public class MapFactory
 	 * Create an instance of the class <code>{@link Map}</code>.
 	 *
 	 * @generatedBy CodePro at 11/13/11 2:58 PM
+	 * @return Map
 	 */
 	public static Map createEmptyMap() {
 		return new Map(new Shop("Start", 0));
 	}
 	
+	/**
+	 * Method createShortMap.
+	 * @return Map
+	 */
 	public static Map createShortMap() {
 		Shop inde = new Shop("Starting Shop", 0);
 		Map result = new Map(inde);

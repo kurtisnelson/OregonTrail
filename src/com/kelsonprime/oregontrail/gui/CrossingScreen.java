@@ -17,6 +17,10 @@ import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * GUI for a <code>Crossing</code>
+ * @see com.kelsonprime.oregontrail.model.Crossing
+ */
 public class CrossingScreen extends LocationScreen {
 	private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 	private static final long serialVersionUID = -2616586129314449978L;
@@ -25,6 +29,11 @@ public class CrossingScreen extends LocationScreen {
 	Crossing crossing;
 	Random rand = new Random();
 
+	/**
+	 * Create a new screen
+	 * @param app OregonTrail
+	 * @param crossing Crossing to cross
+	 */
 	public CrossingScreen(OregonTrail app, Crossing crossing) {
 		super(app);
 		this.wagon = app.getWagon();
@@ -66,6 +75,7 @@ public class CrossingScreen extends LocationScreen {
 		add(wade);
 	}
 
+	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		try{
@@ -79,8 +89,16 @@ public class CrossingScreen extends LocationScreen {
 		}
 	}
 
+	/**
+	 * Select method to cross
+	 */
 	private class ButtonListener implements ActionListener {
 
+		/**
+		 * Method actionPerformed.
+		 * @param e ActionEvent
+		 * @see java.awt.event.ActionListener#actionPerformed(ActionEvent)
+		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			String s = e.getActionCommand();

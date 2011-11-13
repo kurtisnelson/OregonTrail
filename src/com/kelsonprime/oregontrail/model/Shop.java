@@ -33,6 +33,8 @@ public class Shop extends Location {
 	 * 
 	 * @param name
 	 *            How to label the store in UI
+	 * @param position
+	 *            int
 	 */
 	public Shop(String name, int position) {
 		this(name, position, 0);
@@ -46,6 +48,8 @@ public class Shop extends Location {
 	 * @param supplyDistance
 	 *            How far the store is from it's "supply"
 	 * @post name != null
+	 * @param position
+	 *            int
 	 */
 	public Shop(String name, int position, int supplyDistance) {
 		super(name, position);
@@ -65,7 +69,7 @@ public class Shop extends Location {
 	 * @param supplyDistance
 	 *            How far the store is from it's "supply"
 	 * @pre supplyDistance >= 1
-	 * @invariant oxenPrice
+	 * 
 	 * @post foodPrice >= $pre(int, foodPrice) && clothesPrice >= $pre(int,
 	 *       clothesPrice)
 	 */
@@ -91,10 +95,11 @@ public class Shop extends Location {
 	 *            Wheel quantity
 	 * @param tongues
 	 *            Tongue quantity
+	 * 
+	 * @post w.getMoney() < $pre(int, w.getMoney())
 	 * @throws UserInputException
 	 *             If <code>Wagon</code> will become overweight or not enough
 	 *             money is available.
-	 * @post w.getMoney() < $pre(int, w.getMoney())
 	 */
 	public void sellToWagon(Wagon w, int axles, int wheels, int tongues)
 			throws UserInputException {
@@ -121,10 +126,11 @@ public class Shop extends Location {
 	 *            Purchaser
 	 * @param parts
 	 *            Order
+	 * 
+	 * @post w.getMoney() < $pre(int, w.getMoney())
 	 * @throws UserInputException
 	 *             If <code>Wagon</code> will become overweight or not enough
 	 *             money is available.
-	 * @post w.getMoney() < $pre(int, w.getMoney())
 	 */
 	public void sellToWagon(Wagon w, List<Part> parts)
 			throws UserInputException {
@@ -162,10 +168,11 @@ public class Shop extends Location {
 	 *            <code>Item</code> that should be purchased.
 	 * @param quantity
 	 *            Item quantity
+	 * 
+	 * @post w.getMoney() < $pre(int, w.getMoney())
 	 * @throws UserInputException
 	 *             If <code>Wagon</code> will become overweight or not enough
 	 *             money is available.
-	 * @post w.getMoney() < $pre(int, w.getMoney())
 	 */
 	public void sellToWagon(Wagon w, Item item, int quantity)
 			throws UserInputException {
@@ -238,8 +245,7 @@ public class Shop extends Location {
 	/**
 	 * Gets the price of an <code>Item</code> at this store.
 	 * 
-	 * @param item
-	 *            Item we want the price of
+	 * @param item Item we want the price of
 	 * @return the price of Item
 	 */
 	private int getPrice(Item item) {
@@ -256,6 +262,12 @@ public class Shop extends Location {
 		return 0;
 	}
 
+	/**
+	 * Get the price of a part at this store
+	 * 
+	 * @param item Part
+	 * @return int
+	 */
 	private int getPrice(Part item) {
 		if (item instanceof Axle) {
 			return axlePrice;

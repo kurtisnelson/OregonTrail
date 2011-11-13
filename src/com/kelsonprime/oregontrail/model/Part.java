@@ -33,6 +33,7 @@ public abstract class Part implements Time, Comparable<Object>, Serializable {
 	/**
 	 * Apply wear of a day
 	 * @param game Game to get pace from
+	 * @see com.kelsonprime.oregontrail.model.Time#nextDay(Game)
 	 */
 	public void nextDay(Game game) {
 		health = (health - game.getPace().getRate());
@@ -41,8 +42,8 @@ public abstract class Part implements Time, Comparable<Object>, Serializable {
 	/**
 	 * Get how much a type of part weighs
 	 * @param p Type of <code>Part</code>
-	 * @return Weight
-	 */
+	
+	 * @return Weight */
 	public static int getWeight(Part p){
 		if(p instanceof Wheel){
 			return Wheel.getWeight();
@@ -54,6 +55,11 @@ public abstract class Part implements Time, Comparable<Object>, Serializable {
 		return 0;
 	}
 	
+	/**
+	 * Method isReady.
+	 * @return boolean
+	 * @see com.kelsonprime.oregontrail.model.Time#isReady()
+	 */
 	@Override
 	public boolean isReady() {
 		return health > 0;
@@ -61,15 +67,24 @@ public abstract class Part implements Time, Comparable<Object>, Serializable {
 
 	/**
 	 * Get health of this part
-	 * @return health of part
-	 */
+	
+	 * @return health of part */
 	public int getHealth(){
 		return health;
 	}
 	
+	/**
+	 * Method equals.
+	 * @param o Object
+	 * @return boolean
+	 */
 	@Override
 	public abstract boolean equals(Object o);
 	
+	/**
+	 * Method hashCode.
+	 * @return int
+	 */
 	@Override
 	public int hashCode(){
 		return this.toString().hashCode() ^ getHealth();

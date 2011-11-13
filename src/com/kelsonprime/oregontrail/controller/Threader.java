@@ -5,10 +5,11 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * Splits functions into threads
+ * Provides thread pools for general use
  * 
- * @author Aman
+ * @author Kurt Nelson
  * 
+ * @version $Revision: 1.0 $
  */
 public class Threader {
 	private static ExecutorService cachedPool = Executors.newCachedThreadPool();
