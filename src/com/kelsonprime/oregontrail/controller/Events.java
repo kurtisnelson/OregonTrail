@@ -5,7 +5,7 @@ import com.kelsonprime.oregontrail.model.Wagon;
 /**
  * Generates random events for the game
  */
-class Events {
+public class Events {
 
 	/**
 	 * Generated death
