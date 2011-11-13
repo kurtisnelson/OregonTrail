@@ -333,7 +333,7 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 			clothes = Integer.valueOf(clothesQuantity.getText());
 			bullets = Integer.valueOf(bulletQuantity.getText());
 			food = Integer.valueOf(foodQuantity.getText());
-		} catch (java.lang.NumberFormatException e) {
+		} catch (NumberFormatException e) { // $codepro.audit.disable logExceptions
 			sellAllowed = false;
 			JOptionPane.showMessageDialog(getApp().getFrame(),
 					"Non-Numerical Input has been found!", "Invalid Input",
@@ -429,7 +429,7 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 					totalWeightAdded.setText("Weight Added: " + weightUsed);
 					weightLeft.setText("Capacity Left: "
 							+ ((Wagon.MAXWEIGHT - wagon.getWeight()) - weightUsed));
-				} catch (java.lang.NumberFormatException e) {
+				} catch (NumberFormatException e) { // $codepro.audit.disable emptyCatchClause
 					// Let's just ignore their input and throw an error if they
 					// try to go through
 				}

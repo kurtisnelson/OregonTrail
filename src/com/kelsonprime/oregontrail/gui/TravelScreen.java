@@ -120,11 +120,7 @@ public class TravelScreen extends JPanel implements Updatable {
 	 * Stop automatic traveling
 	 */
 	private void stopTravel() {
-		try {
-			traveler.cancel();
-		} catch (Exception e) {
-			// harmless, we've already cancelled it somewhere else
-		}
+		traveler.cancel();
 		change.setEnabled(true);
 		travel.setIcon(TravelScreen.moveAheadIcon);
 		travel.setActionCommand("start");
@@ -224,7 +220,7 @@ public class TravelScreen extends JPanel implements Updatable {
 					try{
 						if(travel())
 							this.cancel();
-					}catch(NullPointerException e){
+					}catch(NullPointerException e){ // $codepro.audit.disable logExceptions
 						this.cancel();
 					}
 				else
