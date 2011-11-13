@@ -11,6 +11,13 @@ import com.kelsonprime.oregontrail.model.Wagon;
 public class Events {
 
 	/**
+	 * Prevent instantiations of this class
+	 */
+	private Events(){
+		
+	}
+	
+	/**
 	 * Generated death
 	 */
 	public static void death(Wagon wagon, Companion companion) {
