@@ -217,6 +217,8 @@ public class TravelScreen extends JPanel implements Updatable {
 
 			@Override
 			public void run() {
+				if(!wagon.isReady())
+					this.cancel();
 				counter++;
 				if (counter % 4 == 0)
 					try{
