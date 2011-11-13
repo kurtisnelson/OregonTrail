@@ -190,6 +190,13 @@ public class Wagon implements Time, Serializable {
 			throw new UserInputException(item + " is too heavy for the wagon!");
 		}
 	}
+	
+	/**
+	 * removes one random item from the wagon
+	 */
+	public void removeRandomItem(){
+		
+	}
 
 	/**
 	 * Repairs the wagon with available parts

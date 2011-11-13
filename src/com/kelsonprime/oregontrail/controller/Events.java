@@ -1,5 +1,7 @@
 package com.kelsonprime.oregontrail.controller;
 
+import java.util.Random;
+
 import javax.swing.JOptionPane;
 
 import com.kelsonprime.oregontrail.model.Companion;
@@ -34,6 +36,13 @@ public class Events {
 	
 	public static void loseItems(Wagon wagon, double percent){
 		
+		Random rand = new Random();
+		int loseCt = (int) (wagon.countItems() * percent);
+		
+		
+		for(int i = 0; i < loseCt; i++){
+			wagon.removeRandomItem();
+		}
 	}
 
 }
