@@ -233,7 +233,7 @@ public class NewGameScreen extends JPanel {
 			newPlayer = ModelFactory.buildPlayer(playerName.getText(),
 					occupation);
 			companionList = ModelFactory.buildCompanions(
-					companionName.getText(), companion2Name.getText());
+					companionName.getText(), companion1Name.getText(), companion2Name.getText(), companion3Name.getText());
 		} catch (UserInputException e) {
 			e.generateBox(app.getFrame());
 			return;

@@ -37,7 +37,7 @@ public class Events {
 	 *            Companion
 	 */
 	public static void death(Wagon wagon, Companion companion) {
-		JOptionPane.showMessageDialog(null, companion.getName() + " has died");
+		JOptionPane.showMessageDialog(null, companion.getName() + " has suddenly died :(");
 		wagon.removeCompanion(companion);
 	}
 
