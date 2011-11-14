@@ -238,6 +238,8 @@ public class Wagon implements Time, Serializable {
 		int foodRatio = food;
 		int clothesRatio = foodRatio + clothes;
 		int bulletRatio = clothesRatio + bullets;
+		int wheelRatio = bulletRatio + countWheels();
+		int AxleRatio = wheelRatio + countAxles();
 		
 		if (itemCt > 0){
 			Random rand = new Random();
@@ -254,9 +256,17 @@ public class Wagon implements Time, Serializable {
 				bullets -= 1;
 				return "bullet";
 			}
-			else if (!spareParts.isEmpty()) {
-				spareParts.remove(i % spareParts.size());
-				return "spare";
+			else if (i < wheelRatio) {
+				spareParts.remove(Wheel.class);
+				return "wheel";
+			}
+			else if (i < AxleRatio) {
+				spareParts.remove(Axle.class);
+				return "axle";
+			}
+			else if (spareParts.contains(Tongue.class)){
+				spareParts.remove(Tongue.class);
+				return "tongue";
 			}
 		}
 		return null;

@@ -98,24 +98,28 @@ public class Events {
 	 */
 	public static void loseItems(Wagon wagon, double percent){
 		
-		int foodCt, clothesCt, partCt, bulletCt, spareCt;
-		foodCt = clothesCt = partCt = bulletCt = spareCt = 0;
+		int foodCt, clothesCt, partCt, bulletCt, axleCt, wheelCt, tongueCt;
+		foodCt = clothesCt = partCt = bulletCt = axleCt = wheelCt = tongueCt = 0;
 		String cur;
 		int loseCt = (int) (wagon.countItems() * percent);
 		
 		for (int i = 0; i < loseCt; i++) {
 			cur = wagon.removeRandomItem();
-			if (cur == null){
+			if (cur == null)
 				break;
-			} else if (cur.equals("food")){
-				foodCt += 1;
-			} else if (cur.equals("clothes")){
-				clothesCt += 1;
-			} else if (cur.equals("bullet")){
-				bulletCt += 1;
-			} else if (cur.equals("spare"))
-				spareCt += 1;
-			}
-		
+			else if (cur.equals("food"))
+				foodCt ++;
+			else if (cur.equals("clothes"))
+				clothesCt ++;
+			else if (cur.equals("bullet"))
+				bulletCt ++;
+			else if (cur.equals("axle"))
+				axleCt ++;
+			else if (cur.equals("tongue"))
+				tongueCt++;
+			else if (cur.equals("wheel"))
+				wheelCt++;
+		}
+		JOptionPane.showMessageDialog(null, "You have lost:\n" + foodCt + "lbs of Food\n" + clothesCt + " Clothes\n" + bulletCt + " Bullets\n" + axleCt + " Spare Axles\n" + wheelCt + "  Spare Wheels\n" + tongueCt + " Spare Tongues");
 		}
 	}
