@@ -441,5 +441,14 @@ public class Wagon implements Time, Serializable {
 		}
 		return null;
 	}
+	
+	public void killRandomPartyMember(){
+		Random rand = new Random();
+		Companion c;
+		do{
+			c = party.get(rand.nextInt(5));
+		} while (!(c.isReady() || c instanceof Player));
+		Events.death(this , c);
+	}
 
 }

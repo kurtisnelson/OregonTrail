@@ -37,7 +37,7 @@ public class Events {
 	 *            Companion
 	 */
 	public static void death(Wagon wagon, Companion companion) {
-		JOptionPane.showMessageDialog(null, companion + "has died");
+		JOptionPane.showMessageDialog(null, companion.getName() + " has died");
 		wagon.removeCompanion(companion);
 	}
 
@@ -59,8 +59,10 @@ public class Events {
 			;// Catch Sickness
 		//else if (event < 6)
 		//	;// Random Part Breakdown
-		//else if (event < 7)
-		//	;// Random Party member Death
+		else if (event < 7){
+			//Random party member death
+			wagon.killRandomPartyMember();
+		}
 		//else if (event < 8)
 		//	;//Random Oxen Death
 		else if (event < 11){

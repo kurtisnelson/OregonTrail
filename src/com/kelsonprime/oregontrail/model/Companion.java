@@ -48,4 +48,7 @@ public class Companion implements Time, Serializable{
 		}
 	}
 
+	public String getName(){
+		return name;
+	}
 }
