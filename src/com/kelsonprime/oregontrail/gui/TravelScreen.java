@@ -123,8 +123,14 @@ public class TravelScreen extends JPanel implements Updatable {
 		Image wagonA = new ImageIcon(
 				TravelScreen.class.getResource("/images/OregonTrailIcon.png"))
 				.getImage();
+		Image wagonB = new ImageIcon(
+				TravelScreen.class.getResource("/images/OregonTrailIcon2.png"))
+				.getImage();
 		g.drawImage(regBG, -1500 + (5 * (counter % 4) * wagon.countOxen()) + (5 * current), 0, this);
-		g.drawImage(wagonA, 400, 120, this);
+		if (counter%4 ==0 || counter%4 == 2)
+			g.drawImage(wagonA, 400, 120, this);
+		else
+			g.drawImage(wagonB, 400, 120, this);
 	}
 
 	/**
