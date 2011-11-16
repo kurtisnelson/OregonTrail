@@ -1,8 +1,13 @@
 package com.kelsonprime.oregontrail.gui;
 
 import com.kelsonprime.oregontrail.model.Landmark;
+
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * GUI for a <code>Landmark</code>
@@ -21,6 +26,13 @@ public class LandmarkScreen extends LocationScreen {
 		super(app);
 		this.landmark = landmark;
 		draw();
+		setLayout(new FlowLayout());
+		
+		ButtonListener listener = new ButtonListener();
+		JButton cont = new JButton("Continue");
+		cont.setActionCommand("Continue");
+		cont.addActionListener(listener);
+		add(cont);
 	}
 	
 	public void draw(){
@@ -33,5 +45,18 @@ public class LandmarkScreen extends LocationScreen {
 		lblName.setForeground(Color.RED);
 		lblName.setBounds(175, 146, 70, 15);
 		add(lblName);
+	}
+	
+	private class ButtonListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent ae) {
+			String s = ae.getActionCommand();
+			
+			if (s.equalsIgnoreCase("continue"))
+				getApp().leaveLocation();
+			
+		}
+		
 	}
 }
