@@ -16,4 +16,8 @@ public class Landmark extends Location {
 	public Landmark(String label, int position){
 		super(label, position);
 	}
+	
+	public String getSoundFileName() {
+		return "thanks.wav";
+	}
 }

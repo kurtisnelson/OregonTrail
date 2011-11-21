@@ -80,5 +80,9 @@ public class Crossing extends Location {
 			return "There is no ferry here.";
 		return Integer.toString(ferryCost);
 	}
+	
+	public String getSoundFileName() {
+		return "thanks.wav";
+	}
 
 }

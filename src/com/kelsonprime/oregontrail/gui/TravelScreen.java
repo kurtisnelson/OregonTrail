@@ -36,10 +36,12 @@ public class TravelScreen extends JPanel implements Updatable {
 	private Button travel;
 	private Button change;
 	private Button rest;
+	private Button music;
 	private static final ImageIcon disabledIcon = new ImageIcon();
 	private static final ImageIcon stopIcon = new ImageIcon();
 	private static final ImageIcon moveAheadIcon = new ImageIcon(
 			TravelScreen.class.getResource("/images/MoveAheadButton.png"));
+	private static final ImageIcon musicIcon = new ImageIcon("soundButton.png");
 
 	/**
 	 * Constructor for TravelScreen.
@@ -81,6 +83,13 @@ public class TravelScreen extends JPanel implements Updatable {
 		rest.setBorder(null);
 		rest.setActionCommand("rest");
 		rest.addActionListener(listener);
+		
+		
+		music = new Button(musicIcon);
+		music.setPreferredSize(new Dimension(50, 50));
+		music.setBorder(null);
+		music.setActionCommand("music");
+		music.addActionListener(listener);
 
 		setLayout(null);
 
@@ -93,6 +102,7 @@ public class TravelScreen extends JPanel implements Updatable {
 		options.add(travel);
 		options.add(change);
 		options.add(rest);
+		options.add(music);
 
 		this.add(options);
 
@@ -296,6 +306,17 @@ public class TravelScreen extends JPanel implements Updatable {
 					public void run() {
 						rest();
 					}
+				});
+			} else if (s.equalsIgnoreCase("music")) {
+				Threader.executeNow(new Runnable() {
+					@Override
+					public void run() {
+						if (app.bgSound.isPaused())
+							app.bgSound.start();
+						else 
+							app.bgSound.stop();
+					}
+
 				});
 			}
 		}

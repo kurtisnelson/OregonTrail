@@ -1,6 +1,7 @@
 package com.kelsonprime.oregontrail.gui;
 
 import java.awt.Dimension;
+
 import java.awt.Toolkit;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -34,13 +35,22 @@ import com.kelsonprime.oregontrail.model.Shop;
 import com.kelsonprime.oregontrail.model.Town;
 import com.kelsonprime.oregontrail.model.Wagon;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
 /**
- * Main class for the Application. Tracks all other objects and performs setup and tear down.
+ * Main class for the Application. Tracks all other objects and performs setup
+ * and tear down.
+ * 
  * @author kurt
  * @version $Revision: 1.0 $
  */
 public class OregonTrail {
-	private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+	private final static Logger LOGGER = Logger
+			.getLogger(Logger.GLOBAL_LOGGER_NAME);
 	public final static UserProperties userProperties = new UserProperties();
 	public final static int WIDTH = 600;
 	public final static int HEIGHT = 350;
@@ -48,10 +58,13 @@ public class OregonTrail {
 	JMenuBar mainMenu;
 	JPanel mainPanel;
 	private JFrame frame;
+	public Sound bgSound;
 
 	/**
 	 * Method main.
-	 * @param args String[]
+	 * 
+	 * @param args
+	 *            String[]
 	 */
 	public static void main(String[] args) {
 		// Load in logging prefs
@@ -68,23 +81,25 @@ public class OregonTrail {
 		}
 		LOGGER.setUseParentHandlers(false);
 		LOGGER.log(Level.INFO, "App started");
-		
-		 //Schedule a job for the event dispatch thread:
-        //creating and showing this application's GUI.
+
+		// Schedule a job for the event dispatch thread:
+		// creating and showing this application's GUI.
 		Threader.executeNow(new Runnable() {
-            public void run() {
-            	OregonTrail app = new OregonTrail();
-            	app.open();
-            }
-        });
+			public void run() {
+				OregonTrail app = new OregonTrail();
+				app.open();
+			}
+		});
 	}
 
 	/**
 	 * Create in memory a new instance of the application
 	 */
 	public OregonTrail() {
+		bgSound = new Sound();
 		try {
-			UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+			UIManager.setLookAndFeel(UIManager
+					.getCrossPlatformLookAndFeelClassName());
 		} catch (UnsupportedLookAndFeelException e) {
 			LOGGER.log(Level.WARNING, "Unsupported look and feel", e);
 		} catch (Exception e) {
@@ -92,10 +107,11 @@ public class OregonTrail {
 		}
 		this.mainMenu = new MainMenu(this);
 		frame = new JFrame("Oregon Trail");
-		frame.setIconImage(new ImageIcon("images/OregonTrailIcon.png").getImage());
+		frame.setIconImage(new ImageIcon("images/OregonTrailIcon.png")
+				.getImage());
 		frame.setResizable(false);
 		setPanel(new SplashScreen());
-		
+
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(new Dimension(WIDTH, HEIGHT));
 
@@ -109,8 +125,9 @@ public class OregonTrail {
 
 	/**
 	 * Get app's main JFrame
-	
-	 * @return main JFrame */
+	 * 
+	 * @return main JFrame
+	 */
 	public JFrame getFrame() {
 		return frame;
 	}
@@ -135,8 +152,9 @@ public class OregonTrail {
 
 	/**
 	 * Save game with serialization
-	
-	 * @throws UserInputException  */
+	 * 
+	 * @throws UserInputException
+	 */
 	public void saveGame() throws UserInputException {
 		FileOutputStream fos = null;
 		ObjectOutputStream out = null;
@@ -150,11 +168,12 @@ public class OregonTrail {
 			throw new UserInputException("Save failed");
 		}
 	}
-	
+
 	/**
 	 * Load game using serialization
-	
-	 * @throws UserInputException  */
+	 * 
+	 * @throws UserInputException
+	 */
 	public void loadGame() throws UserInputException {
 		Game loadedGame = null;
 		FileInputStream fis = null;
@@ -169,13 +188,15 @@ public class OregonTrail {
 		} catch (ClassNotFoundException ex) {
 			throw new UserInputException("Invalid load game file");
 		}
-		if(loadedGame != null)
+		if (loadedGame != null)
 			loadGame(loadedGame);
 	}
-	
+
 	/**
 	 * Load a game
-	 * @param game Game to make active
+	 * 
+	 * @param game
+	 *            Game to make active
 	 */
 	public void loadGame(Game game) {
 		this.game = game;
@@ -188,8 +209,19 @@ public class OregonTrail {
 	 */
 	public void updateScreen() {
 		Location cur = game.currentLocation();
+		
+		try {
+			updateMusic();
+		} catch (UnsupportedAudioFileException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (LineUnavailableException e) {
+			e.printStackTrace();
+		}
+		
 		if (cur == null) {
-			if(mainPanel instanceof TravelScreen)
+			if (mainPanel instanceof TravelScreen)
 				return;
 			else
 				setPanel(new TravelScreen(this));
@@ -197,13 +229,33 @@ public class OregonTrail {
 			setPanel(new ShopScreen(this, (Shop) cur));
 		} else if (cur instanceof Landmark) {
 			setPanel(new LandmarkScreen(this, (Landmark) cur));
-		} else if (cur instanceof Town){
+		} else if (cur instanceof Town) {
 			setPanel(new TownScreen(this, (Town) cur));
-		} else if(cur instanceof Crossing){
+		} else if (cur instanceof Crossing) {
 			setPanel(new CrossingScreen(this, (Crossing) cur));
 		}
+		
+
 	}
-	
+
+	/**
+	 * Change the current music to match the location on the map.
+	 */
+	public void updateMusic() throws UnsupportedAudioFileException,
+			IOException, LineUnavailableException {
+		String fname;
+		Location cur = game.currentLocation();
+		
+		if (cur == null) {
+			fname = "horse.wav";
+		}
+			
+		else {
+			fname = cur.getSoundFileName();	
+		}
+		bgSound.music(fname);
+	}
+
 	/**
 	 * Clears the game state and goes to the new game screen
 	 */
@@ -214,7 +266,9 @@ public class OregonTrail {
 
 	/**
 	 * Set the main app panel
-	 * @param p JPanel to set as primary
+	 * 
+	 * @param p
+	 *            JPanel to set as primary
 	 */
 	void setPanel(JPanel p) {
 		frame.add(p);
@@ -223,7 +277,7 @@ public class OregonTrail {
 		mainPanel = p;
 		frame.setVisible(true);
 	}
-	
+
 	/**
 	 * Leaves the current location on the map and updates the game screen
 	 */
@@ -231,35 +285,39 @@ public class OregonTrail {
 		game.leaveLocation();
 		updateScreen();
 	}
-	
+
 	/**
 	 * Get the game's current event listener
-	
-	 * @return GameEventListener to register with */
-	public GameEventListener getListener(){
+	 * 
+	 * @return GameEventListener to register with
+	 */
+	public GameEventListener getListener() {
 		return game.getListener();
 	}
 
 	/**
 	 * Get the current game's wagon
-	
-	 * @return game wagon */
+	 * 
+	 * @return game wagon
+	 */
 	public Wagon getWagon() {
 		return game.getWagon();
 	}
-	
+
 	/**
 	 * Get the current game's map
-	
-	 * @return game map */
+	 * 
+	 * @return game map
+	 */
 	public Map getMap() {
 		return game.getMap();
 	}
-	
+
 	/**
 	 * Get the current game
-	
-	 * @return game */
+	 * 
+	 * @return game
+	 */
 	Game getGame() {
 		return game;
 	}
@@ -274,8 +332,9 @@ public class OregonTrail {
 
 	/**
 	 * Check if the app is ready to continue
-	
-	 * @return Is the app ready? */
+	 * 
+	 * @return Is the app ready?
+	 */
 	public boolean isReady() {
 		return game.isReady();
 	}

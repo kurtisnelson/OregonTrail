@@ -71,5 +71,8 @@ public abstract class Location implements Serializable{
 	public int getRoadLength(){
 		return (int) Math.sqrt(Math.pow(roadX1,2) + Math.pow(roadY1,2));
 	}
-
+	
+	public String getSoundFileName() {
+		return "thanks.wav";
+	}
 }
