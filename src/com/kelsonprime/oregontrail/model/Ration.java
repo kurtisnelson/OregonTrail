@@ -7,11 +7,12 @@ package com.kelsonprime.oregontrail.model;
  * @version $Revision: 1.0 $
  */
 public enum Ration {
-	BARE(1, "Bare"), MEAGER(1, "Meager"), NORMAL(2, "Normal"), WELLFED(3, "Wellfed");
+	BARE(0, "Bare"), MEAGER(1, "Meager"), NORMAL(2, "Normal"), WELLFED(3, "Wellfed");
 	private int portion;
 
 	private String name;
 
+	public static final int MAX_PORTION = 2;
 	/**
 	 * Constructor for Ration.
 	 * @param p int
