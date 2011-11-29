@@ -1,6 +1,7 @@
 package com.kelsonprime.oregontrail.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.kelsonprime.oregontrail.controller.UserInputException;
 
@@ -27,6 +28,25 @@ public class ModelFactory {
 	}
 	
 	/**
+	 * Make standard map
+	 * @return Map
+	 */
+	public static Map buildMap(){
+		final Map map = new Map(new Shop("Independence", 0));
+		final Location river1 = new Crossing("River", 10, 5, 10);
+		map.getStart().setNext(river1, 10, 0);
+		final Location rock = new Landmark("The Big Rock", 20);
+		river1.setNext(rock, 10, 0);
+		final Location town = new Town("A town", 30);
+		rock.setNext(town, 0, 10);
+		final Location shop = new Shop("A shop", 40);
+		town.setNext(shop, 10, 0);
+		final Location end = new Destination("The End", 50);
+		shop.setNext(end, 10, 10);
+		return map;
+	}
+	
+	/**
 	 * Make an occupation from label
 	 * @param name Occupation label
 	 * @return Occupation
@@ -46,8 +66,8 @@ public class ModelFactory {
 	 * @return ArrayList<Companion>
 	 * @throws UserInputException
 	 */
-	public static ArrayList<Companion> buildCompanions(String... companions) throws UserInputException{
-		ArrayList<Companion> companionList = new ArrayList<Companion>(4);
+	public static List<Companion> buildCompanions(String... companions) throws UserInputException{
+		final List<Companion> companionList = new ArrayList<Companion>(4);
 		for(String n : companions){
 			if(!isText(n))
 				throw new UserInputException("Invalid characters in companion name");
@@ -72,5 +92,13 @@ public class ModelFactory {
 			return false;
 		}
 		return true;
+	}
+	
+	/**
+	 * Standard toString
+	 * @return string
+	 */
+	public String toString(){
+		return "";
 	}
 }

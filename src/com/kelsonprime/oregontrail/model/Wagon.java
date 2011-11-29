@@ -14,6 +14,9 @@ import com.kelsonprime.oregontrail.controller.UserInputException;
  * @version .1
  */
 public class Wagon implements Time, Serializable {
+	/**
+	 * Serializable
+	 */
 	private static final long serialVersionUID = 5643405898536801840L;
 
 	/**
@@ -39,20 +42,26 @@ public class Wagon implements Time, Serializable {
 	/**
 	 * @serial Parts being used to move
 	 */
-	private List<Part> activeParts;
+	private final List<Part> activeParts;
 
 	/**
 	 * @serial Parts kept as spares
 	 */
-	private List<Part> spareParts;
+	private final List<Part> spareParts;
 
 	/**
 	 * @serial People in the wagon
 	 */
-	private List<Companion> party;
+	private final List<Companion> party;
 
+	/**
+	 * Money in the wagon
+	 */
 	private int money;
 
+	/**
+	 * Weight of the wagon
+	 */
 	private int wagonWeight;
 
 	/**
@@ -77,13 +86,13 @@ public class Wagon implements Time, Serializable {
 		party.addAll(companions);
 		activeParts = new ArrayList<Part>();
 
-		activeParts.add(new Tongue(100));
-		activeParts.add(new Axle(100));
-		activeParts.add(new Axle(100));
-		activeParts.add(new Wheel(100));
-		activeParts.add(new Wheel(100));
-		activeParts.add(new Wheel(100));
-		activeParts.add(new Wheel(100));
+		activeParts.add(new Tongue());
+		activeParts.add(new Axle());
+		activeParts.add(new Axle());
+		activeParts.add(new Wheel());
+		activeParts.add(new Wheel());
+		activeParts.add(new Wheel());
+		activeParts.add(new Wheel());
 
 		spareParts = new ArrayList<Part>();
 		money = player.startingMoney();
@@ -113,7 +122,7 @@ public class Wagon implements Time, Serializable {
 		for (Part part : activeParts) {
 			part.nextDay(game);
 		}
-		repair();
+		repair(); // $codepro.audit.disable com.instantiations.assist.eclipse.analysis.unusedReturnValue
 
 		// Eat some food.
 		food -= game.getRation().getPortion() * party.size();
@@ -136,8 +145,9 @@ public class Wagon implements Time, Serializable {
 	 * @return no debt incurred
 	 */
 	public boolean hasMoney(int moneyNeeded) {
-		if (money >= moneyNeeded)
+		if (money >= moneyNeeded){
 			return true;
+		}
 		return false;
 	}
 
@@ -179,7 +189,7 @@ public class Wagon implements Time, Serializable {
 	 * @pre weight > 0
 	 * @return true if wagon would be ok, false if overweight.
 	 */
-	public boolean checkWeight(int weight) {
+	public boolean canAddWeight(int weight) {
 		return !(wagonWeight + weight > MAXWEIGHT);
 	}
 
@@ -205,13 +215,13 @@ public class Wagon implements Time, Serializable {
 	public void add(Part part) throws UserInputException {
 		if (part == null) {
 			return;
-		} else if (checkWeight(Part.getWeight(part))) {
+		} else if (canAddWeight(Part.getWeight(part))) {
 			spareParts.add(part);
 		} else {
 			throw new UserInputException(part + " is too heavy for the Wagon!");
 		}
 		addWeight(Part.getWeight(part));
-		this.repair();
+		this.repair(); // $codepro.audit.disable com.instantiations.assist.eclipse.analysis.unusedReturnValue
 	}
 
 	/**
@@ -227,8 +237,8 @@ public class Wagon implements Time, Serializable {
 	 *             If adding the items would make it overweight
 	 */
 	public void add(Item item, int quantity) throws UserInputException {
-		if (checkWeight(quantity * item.getWeight())) {
-			switch (item) {
+		if (canAddWeight(quantity * item.getWeight())) {
+			switch (item) { // $codepro.audit.disable missingDefaultInSwitch
 			case OXEN:
 				oxen += quantity;
 				break;
@@ -255,16 +265,16 @@ public class Wagon implements Time, Serializable {
 	 */
 	public String removeRandomItem() {
 
-		int itemCt = countItems();
-		int foodRatio = food;
-		int clothesRatio = foodRatio + clothes;
-		int bulletRatio = clothesRatio + bullets;
-		int wheelRatio = bulletRatio + countWheels();
-		int AxleRatio = wheelRatio + countAxles();
+		final int itemCt = countItems();
+		final int foodRatio = food;
+		final int clothesRatio = foodRatio + clothes;
+		final int bulletRatio = clothesRatio + bullets;
+		final int wheelRatio = bulletRatio + countWheels();
+		final int axleRatio = wheelRatio + countAxles();
 
 		if (itemCt > 0) {
-			Random rand = new Random();
-			int i = rand.nextInt(itemCt);
+			final Random rnd = new Random();
+			final int i = rnd.nextInt(itemCt);
 			if (i < foodRatio) {
 				food -= 1;
 				return "food";
@@ -277,7 +287,7 @@ public class Wagon implements Time, Serializable {
 			} else if (i < wheelRatio) {
 				spareParts.remove(new Wheel());
 				return "wheel";
-			} else if (i < AxleRatio) {
+			} else if (i < axleRatio) {
 				spareParts.remove(new Axle());
 				return "axle";
 			} else if (spareParts.contains(new Tongue())) {
@@ -295,7 +305,8 @@ public class Wagon implements Time, Serializable {
 	 * @post brokenCount >= 0
 	 * @return Wagon was fully repaired
 	 */
-	public boolean repair() {
+	public boolean repair() { // $codepro.audit.disable
+								// booleanMethodNamingConvention
 		int brokenCount = 0;
 		for (int i = 0; i < activeParts.size(); i++) {
 			if (activeParts.get(i).getHealth() <= 0) {
@@ -322,7 +333,8 @@ public class Wagon implements Time, Serializable {
 	@Override
 	public boolean isReady() {
 		boolean ready = true;
-		repair();
+		repair(); // $codepro.audit.disable
+					// com.instantiations.assist.eclipse.analysis.unusedReturnValue
 		// Check parts
 		int wheel = 0;
 		int tongue = 0;
@@ -336,14 +348,18 @@ public class Wagon implements Time, Serializable {
 				axle++;
 			}
 		}
-		if (countOxen() < 1)
+		if (countOxen() < 1) {
 			ready = false;
-		if (axle < 2)
+		}
+		if (axle < 2) {
 			ready = false;
-		if (wheel < 4)
+		}
+		if (wheel < 4) {
 			ready = false;
-		if (tongue < 1)
+		}
+		if (tongue < 1) {
 			ready = false;
+		}
 		// check if player is dead
 		for (Companion comp : party) {
 			if (comp instanceof Player) {
@@ -462,21 +478,38 @@ public class Wagon implements Time, Serializable {
 		party.remove(companion);
 	}
 
+	/**
+	 * Find the player
+	 * 
+	 * @return player
+	 */
 	public Player getPlayer() {
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < party.size(); i++) {
 			if (party.get(i) instanceof Player)
 				return (Player) party.get(i);
 		}
 		return null;
 	}
 
+	/**
+	 * Kill a random party member
+	 */
 	public void killRandomPartyMember() {
-		Random rand = new Random();
-		Companion c;
-		do {
+		final Random rand = new Random();
+		Companion c = party.get(rand.nextInt(party.size() - 1));
+		while (!(c.isReady() || c instanceof Player)) {
 			c = party.get(rand.nextInt(party.size() - 1));
-		} while (!(c.isReady() || c instanceof Player));
+		}
 		Events.death(this, c);
+	}
+
+	/**
+	 * Standard toString
+	 * 
+	 * @return name
+	 */
+	@Override public String toString() {
+		return "A wagon with " + party.size() + " people in it.";
 	}
 
 }

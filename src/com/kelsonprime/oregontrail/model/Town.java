@@ -2,11 +2,19 @@ package com.kelsonprime.oregontrail.model;
 
 /**
  * Represent a town
+ * @author Kurt
+ * @version $Revision: 1.0 $
  */
 public class Town extends Location {
+	/**
+	 * Serializable
+	 */
 	private static final long serialVersionUID = -9072887803166850420L;
 
-	private Shop shop;
+	/**
+	 * A shop at this town, if any
+	 */
+	private final Shop shop;
 
 	/**
 	 * Create a town

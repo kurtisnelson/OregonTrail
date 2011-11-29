@@ -1,3 +1,4 @@
+// $codepro.audit.disable noAbstractMethods, com.instantiations.assist.eclipse.analysis.audit.rule.effectivejava.preferInterfacesToAbstractClasses
 package com.kelsonprime.oregontrail.model;
 
 import java.io.Serializable;
@@ -5,20 +6,38 @@ import java.io.Serializable;
 /**
  * Represent a destination followed by vector that points to the next <code>Location</code>
  * @author Kurt Nelson
- * @version .1
+ * @version 1
  */
 public abstract class Location implements Serializable{
+	/**
+	 * Serializable
+	 */
 	private static final long serialVersionUID = 4027729795704277442L;
 
-	private String label;
+	/**
+	 * User friendly label
+	 */
+	private final String label;
 
+	/**
+	 * Next location
+	 */
 	private Location next;
 
+	/**
+	 * X distance on map to next location
+	 */
 	private int roadX1;
 
+	/**
+	 * Y distance on map to next location
+	 */
 	private int roadY1;
 
-	private int position;
+	/**
+	 * Distance from start
+	 */
+	private final int position;
 
 	/**
 	 * Constructor for Location.
@@ -27,7 +46,7 @@ public abstract class Location implements Serializable{
 	 */
 	public Location(String label, int position) {
 		if(label == null || label.length() <= 0){
-			label = "A";
+			label = "The";
 		}
 		this.position = position;
 		this.label = label;
@@ -74,7 +93,7 @@ public abstract class Location implements Serializable{
 	 * @return int
 	 */
 	public int getRoadLength(){
-		return (int) Math.sqrt(Math.pow(roadX1,2) + Math.pow(roadY1,2));
+		return (int) Math.sqrt(Math.pow(roadX1, 2) + Math.pow(roadY1, 2));
 	}
 
 }

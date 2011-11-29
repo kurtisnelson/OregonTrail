@@ -1,3 +1,4 @@
+// $codepro.audit.disable hidingInheritedFields
 package com.kelsonprime.oregontrail.model;
 
 /**
@@ -15,12 +16,12 @@ public class Axle extends Part {
 	/**
 	 * Default health of this part (value is 100)
 	 */
-	private static final int DEFAULT_HEALTH = 100;
+	public static final int DEFAULT_HEALTH = 100;
 
 	/**
 	 * Default weight of this part (value is 5)
 	 */
-	private static final int DEFAULT_WEIGHT = 5;
+	public static final int DEFAULT_WEIGHT = 5;
 
 	/**
 	 * Constructor without arguments
@@ -41,6 +42,7 @@ public class Axle extends Part {
 	 * Gets the name of the part in string form
 	 * @return String
 	 */
+	@Override
 	public String toString() {
 		return "Axle";
 	}
@@ -61,7 +63,7 @@ public class Axle extends Part {
 	 */
 	@Override
 	public int compareTo(Object o) throws ClassCastException {
-		Axle ot = (Axle) o;
+		final Axle ot = (Axle) o;
 		return ot.health - this.health;
 	}
 
@@ -73,12 +75,14 @@ public class Axle extends Part {
 	 */
 	@Override
 	public boolean equals(Object o) {
-		if(this == o)
+		if(this == o){
 			return true;
+		}
 		if(o instanceof Axle){
-			Axle axle = (Axle) o;
-			if(axle.getHealth() == this.getHealth())
+			final Axle axle = (Axle) o;
+			if(axle.getHealth() == this.getHealth()){
 				return true;
+			}
 		}
 		return false;
 	}

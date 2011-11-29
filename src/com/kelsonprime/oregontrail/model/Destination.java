@@ -6,6 +6,9 @@ package com.kelsonprime.oregontrail.model;
  * @version .1
  */
 public class Destination extends Landmark {
+	/**
+	 * Serializable
+	 */
 	private static final long serialVersionUID = -5276025153428684728L;
 
 	/**

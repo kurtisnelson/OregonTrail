@@ -59,7 +59,7 @@ public class Companion implements Time, Serializable{
 	 * @return boolean
 	 * @see com.kelsonprime.oregontrail.model.Time#isReady()
 	 */
-	public boolean isReady(){
+	@Override public boolean isReady(){
 		return isAlive;
 	}
 
@@ -70,12 +70,14 @@ public class Companion implements Time, Serializable{
 	 */
 	@Override
 	public void nextDay(Game game) {
-		health-=(Ration.MAX_PORTION-game.getRation().getPortion());
+		health-=(Ration.PROPER_PORTION - game.getRation().getPortion());
 		if (isSick()){
 			health -= SICK_PENALTY;
 		}
-		if (health<0){
+		if (health < 0){
 			health = 0;
+		}else if(health > 100){
+			health = 100;
 		}
 	}
 
@@ -91,7 +93,7 @@ public class Companion implements Time, Serializable{
 	 * Standard toString
 	 * @return Name
 	 */
-	public String toString(){
+	@Override public String toString(){
 		return getName();
 	}
 	

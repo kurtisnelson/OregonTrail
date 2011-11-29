@@ -1,6 +1,9 @@
 package com.kelsonprime.oregontrail.model;
 
 /**
+ * Represent a farmer
+ * @author Kurt
+ * @version 1
  */
 public final class Farmer extends Occupation {
 	/**
@@ -23,16 +26,28 @@ public final class Farmer extends Occupation {
 	 */
 	public static final String LABEL = "Farmer";
 
+	/**
+	 * Provide label
+	 * @return label
+	 */
 	@Override
 	public String toString() {
 		return LABEL;
 	}
 
+	/**
+	 * Starting money
+	 * @return money
+	 */
 	@Override
 	public int getStartingMoney() {
 		return START_MONEY;
 	}
 
+	/**
+	 * Provide description
+	 * @return description
+	 */
 	@Override
 	public String getDescription() {
 		return DESCRIPTION;

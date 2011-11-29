@@ -1,12 +1,22 @@
 package com.kelsonprime.oregontrail.model;
 
 /**
+ * Different items.
+ * @author kurt
+ * @version 1
  */
 public enum Item {
 	BULLETS("Bullets", 1), FOOD("Food", 1), CLOTHES("Clothes", 1), OXEN("Oxen", 0);
-	private int weight;
+	
+	/**
+	 * Weight of the item
+	 */
+	private final int weight;
 
-	private String name;
+	/**
+	 * User friendly name
+	 */
+	private final String name;
 
 	/**
 	 * Constructor for Item.

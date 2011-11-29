@@ -2,11 +2,20 @@ package com.kelsonprime.oregontrail.model;
 
 
 /**
+ * Represent a player
+ * @author Kurt
+ * @version $Revision: 1.0 $
  */
 public class Player extends Companion {
+	/**
+	 * Serializable
+	 */
 	private static final long serialVersionUID = -2572176052523635587L;
 
-	private Occupation occupation;
+	/**
+	 * The player's occupation
+	 */
+	private final Occupation occupation;
 
 	/**
 	 * Constructor for Player.

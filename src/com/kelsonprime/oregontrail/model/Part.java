@@ -1,3 +1,4 @@
+// $codepro.audit.disable com.instantiations.assist.eclipse.analysis.audit.rule.effectivejava.preferInterfacesToAbstractClasses
 package com.kelsonprime.oregontrail.model;
 
 import java.io.Serializable;
@@ -8,10 +9,19 @@ import java.io.Serializable;
  * @version 1
  */
 public abstract class Part implements Time, Comparable<Object>, Serializable {
+	/**
+	 * Serializable
+	 */
 	private static final long serialVersionUID = 735490215309106832L;
 
+	/**
+	 * Default weight of a part
+	 */
 	public static final int DEFAULT_WEIGHT = 5;
 
+	/**
+	 * Default health of a part
+	 */
 	public static final int DEFAULT_HEALTH = 100;
 	
 	/**
@@ -39,6 +49,7 @@ public abstract class Part implements Time, Comparable<Object>, Serializable {
 	 * @param game Game to get pace from
 	 * @see com.kelsonprime.oregontrail.model.Time#nextDay(Game)
 	 */
+	@Override
 	public void nextDay(Game game) {
 		health = (health - game.getPace().getRate());
 	}
@@ -83,7 +94,7 @@ public abstract class Part implements Time, Comparable<Object>, Serializable {
 	 * @return boolean
 	 */
 	@Override
-	public abstract boolean equals(Object o);
+	public abstract boolean equals(Object o); // $codepro.audit.disable checkTypeInEquals, overridingNonAbstractMethod
 	
 	/**
 	 * Method hashCode.

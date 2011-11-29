@@ -15,25 +15,54 @@ import com.kelsonprime.oregontrail.controller.UserInputException;
  * @see com.kelsonprime.oregontrail.gui.ShopScreen
  */
 public class Shop extends Location {
+	/**
+	 * Serializable
+	 */
 	private static final long serialVersionUID = 2474893524066364591L;
 
-	private final static Logger LOGGER = Logger
-			.getLogger(Logger.GLOBAL_LOGGER_NAME);
+	/**
+	 * App logger
+	 */
+	private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
+	/**
+	 * Price scaler
+	 */
 	private static final double PRICE_RATIO = .001;
 
+	/**
+	 * Price of oxen
+	 */
 	private int oxenPrice;
 
+	/**
+	 * Price of food
+	 */
 	private int foodPrice;
 
+	/**
+	 * Price of clothes
+	 */
 	private int clothesPrice;
 
+	/**
+	 * Price of bullets
+	 */
 	private int bulletPrice;
 
+	/**
+	 * Price of wheel
+	 */
 	private int wheelPrice;
 
+	/**
+	 * Price of tongue
+	 */
 	private int tonguePrice;
 
+	/**
+	 * Price of axle
+	 */
 	private int axlePrice;
 
 	/**
@@ -83,7 +112,7 @@ public class Shop extends Location {
 	 *       clothesPrice)
 	 */
 	private void scalePrices(int supplyDistance) {
-		double multiplier = (supplyDistance * PRICE_RATIO) + 1;
+		final double multiplier = (supplyDistance * PRICE_RATIO) + 1;
 		foodPrice *= multiplier;
 		clothesPrice *= multiplier;
 		bulletPrice *= multiplier;
@@ -112,7 +141,7 @@ public class Shop extends Location {
 	 */
 	public void sellToWagon(Wagon w, int axles, int wheels, int tongues)
 			throws UserInputException {
-		List<Part> parts = new LinkedList<Part>();
+		final List<Part> parts = new LinkedList<Part>();
 		while (axles > 0) {
 			parts.add(new Axle());
 			axles--;
@@ -146,7 +175,7 @@ public class Shop extends Location {
 		int weight = 0;
 		int total = 0;
 		for (Part part : parts) {
-			if (w.checkWeight(weight)) {
+			if (w.canAddWeight(weight)) {
 				weight += Part.getWeight(part);
 			} else {
 				throw new UserInputException("Not enough room to buy " + part);
@@ -185,7 +214,7 @@ public class Shop extends Location {
 	 */
 	public void sellToWagon(Wagon w, Item item, int quantity)
 			throws UserInputException {
-		if (!w.checkWeight(quantity * item.getWeight())) {
+		if (!w.canAddWeight(quantity * item.getWeight())) {
 			throw new UserInputException("Not enough space for " + quantity
 					+ " " + item);
 		}
@@ -277,7 +306,7 @@ public class Shop extends Location {
 	 * @param item Part
 	 * @return int
 	 */
-	private int getPrice(Part item) {
+	private int getPrice(Part item) { // $codepro.audit.disable overloadedMethods
 		if (item instanceof Axle) {
 			return axlePrice;
 		} else if (item instanceof Tongue) {

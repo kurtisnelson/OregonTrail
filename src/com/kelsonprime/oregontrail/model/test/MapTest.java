@@ -6,6 +6,7 @@ import com.kelsonprime.oregontrail.model.Game;
 import com.kelsonprime.oregontrail.model.Landmark;
 import com.kelsonprime.oregontrail.model.Location;
 import com.kelsonprime.oregontrail.model.Map;
+import com.kelsonprime.oregontrail.model.ModelFactory;
 import com.kelsonprime.oregontrail.model.Pace;
 
 /**
@@ -180,7 +181,7 @@ public class MapTest {
 	public void testMapFactory_1()
 		throws Exception {
 
-		Map result = Map.mapFactory();
+		Map result = ModelFactory.buildMap();
 
 		// add additional test code here
 		assertNotNull(result);

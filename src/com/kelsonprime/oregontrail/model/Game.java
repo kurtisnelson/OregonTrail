@@ -1,3 +1,4 @@
+// $codepro.audit.disable com.instantiations.assist.eclipse.analysis.audit.rule.effectivejava.alwaysOverridetoString.alwaysOverrideToString
 package com.kelsonprime.oregontrail.model;
 
 import java.io.Serializable;
@@ -14,23 +15,46 @@ import com.kelsonprime.oregontrail.gui.OregonTrail;
  * @version $Revision: 1.0 $
  */
 public class Game implements Time, Serializable {
+	/**
+	 * Serializable
+	 */
 	private static final long serialVersionUID = -1328327188493685888L;
 
+	/**
+	 * GUI hook for event notifications
+	 */
 	private transient GameEventListener reciever;
 
-	private Wagon wagon;
+	/**
+	 * The wagon
+	 */
+	private final Wagon wagon;
 
-	private Map map;
+	/**
+	 * The map
+	 */
+	private final Map map;
 
+	/**
+	 * How many days have passed
+	 */
 	private int days;
 
+	/**
+	 * Current pace
+	 */
 	private Pace pace;
 
+	/**
+	 * Current ration
+	 */
 	private Ration ration;
 
 	/**
 	 * Constructs Game object and initializes all variables like map, wagon etc
-	 * @param wagon Wagon
+	 * 
+	 * @param wagon
+	 *            Wagon
 	 */
 	public Game(Wagon wagon) {
 		this.reciever = new GameEventListener();
@@ -38,11 +62,12 @@ public class Game implements Time, Serializable {
 		this.pace = Pace.STEADY;
 		this.ration = Ration.NORMAL;
 		this.wagon = wagon;
-		this.map = Map.mapFactory();
+		this.map = ModelFactory.buildMap();
 	}
 
 	/**
 	 * Method getListener.
+	 * 
 	 * @return GameEventListener
 	 */
 	public GameEventListener getListener() {
@@ -52,8 +77,9 @@ public class Game implements Time, Serializable {
 	/**
 	 * Gets current location on map
 	 * 
-	
-	 * @return location */
+	 * 
+	 * @return location
+	 */
 	public Location currentLocation() {
 		return map.currentLocation();
 	}
@@ -61,8 +87,9 @@ public class Game implements Time, Serializable {
 	/**
 	 * Number of days since game start
 	 * 
-	
-	 * @return days */
+	 * 
+	 * @return days
+	 */
 	public int getDays() {
 		return days;
 	}
@@ -70,8 +97,9 @@ public class Game implements Time, Serializable {
 	/**
 	 * Current pace
 	 * 
-	
-	 * @return pace */
+	 * 
+	 * @return pace
+	 */
 	public Pace getPace() {
 		return pace;
 	}
@@ -104,8 +132,9 @@ public class Game implements Time, Serializable {
 	/**
 	 * Gets the ration left
 	 * 
-	
-	 * @return ration */
+	 * 
+	 * @return ration
+	 */
 	public Ration getRation() {
 		return ration;
 	}
@@ -121,10 +150,11 @@ public class Game implements Time, Serializable {
 
 	/**
 	 * Method isReady.
+	 * 
 	 * @return boolean
 	 * @see com.kelsonprime.oregontrail.model.Time#isReady()
 	 */
-	public boolean isReady() {
+	@Override public boolean isReady() {
 		// TODO method stub
 		return false;
 	}
@@ -136,8 +166,9 @@ public class Game implements Time, Serializable {
 	 *            What <code>Part</code> the player needs
 	 * @param quantity
 	 *            How many of need
-	
-	 * @return part A list of parts they would give to get need */
+	 * 
+	 * @return part A list of parts they would give to get need
+	 */
 	public List<Part> offerTrade(Part need, int quantity) {
 		// TODO method stub
 		return null;
@@ -146,8 +177,9 @@ public class Game implements Time, Serializable {
 	/**
 	 * Gets the wagon
 	 * 
-	
-	 * @return wagon */
+	 * 
+	 * @return wagon
+	 */
 	public Wagon getWagon() {
 		return wagon;
 	}
@@ -156,14 +188,15 @@ public class Game implements Time, Serializable {
 	 * Move from location
 	 */
 	public void leaveLocation() {
-		map.travel(1);
+		map.travel(1); // $codepro.audit.disable
+						// com.instantiations.assist.eclipse.analysis.unusedReturnValue
 	}
 
 	/**
 	 * Rest for a day
 	 */
 	public void rest() {
-		Pace oldPace = this.getPace();
+		final Pace oldPace = this.getPace();
 		this.setPace(Pace.STOPPED);
 		nextDay();
 		this.setPace(oldPace);
@@ -172,24 +205,31 @@ public class Game implements Time, Serializable {
 	/**
 	 * Gets the current map
 	 * 
-	
-	 * @return map */
+	 * 
+	 * @return map
+	 */
 	public Map getMap() {
 		return map;
 	}
 
 	/**
 	 * Sets the owner of the game
-	 * @param owner OregonTrail
+	 * 
+	 * @param owner
+	 *            OregonTrail
 	 */
 	public void setOwner(OregonTrail owner) {
-		if(reciever == null)
+		if (reciever == null) {
 			reciever = new GameEventListener();
+		}
 		reciever.setOwner(owner);
 	}
 
+	/**
+	 * Pass a day
+	 */
 	public void nextDay() {
-		//TODO hit Events.
+		// TODO hit Events.
 		wagon.nextDay(this);
 		map.nextDay(this);
 		days++;
@@ -197,7 +237,9 @@ public class Game implements Time, Serializable {
 
 	/**
 	 * Method nextDay.
-	 * @param game Game
+	 * 
+	 * @param game
+	 *            Game
 	 * @see com.kelsonprime.oregontrail.model.Time#nextDay(Game)
 	 */
 	@Override

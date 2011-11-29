@@ -26,16 +26,28 @@ public final class Banker extends Occupation {
 	 */
 	public static final String LABEL = "Banker";
 
+	/**
+	 * Provide label
+	 * @return label
+	 */
 	@Override
 	public String toString() {
 		return LABEL;
 	}
 
+	/**
+	 * Starting money
+	 * @return money
+	 */
 	@Override
 	public int getStartingMoney() {
 		return START_MONEY;
 	}
 
+	/**
+	 * Provide description
+	 * @return description
+	 */
 	@Override
 	public String getDescription() {
 		return DESCRIPTION;

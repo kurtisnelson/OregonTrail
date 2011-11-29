@@ -1,3 +1,4 @@
+// $codepro.audit.disable hidingInheritedFields
 package com.kelsonprime.oregontrail.model;
 
 /**
@@ -53,7 +54,7 @@ public class Wheel extends Part {
 	 * 
 	 * @return String
 	 */
-	public String toString() {
+	@Override public String toString() {
 		return "Wheel";
 	}
 
@@ -67,7 +68,7 @@ public class Wheel extends Part {
 	 */
 	@Override
 	public int compareTo(Object o) throws ClassCastException {
-		Wheel ot = (Wheel) o;
+		final Wheel ot = (Wheel) o;
 		return ot.health - this.health;
 	}
 
@@ -84,7 +85,7 @@ public class Wheel extends Part {
 		if (this == o)
 			return true;
 		if (o instanceof Wheel) {
-			Wheel wheel = (Wheel) o;
+			final Wheel wheel = (Wheel) o;
 			if (wheel.getHealth() == this.getHealth())
 				return true;
 		}
@@ -96,7 +97,7 @@ public class Wheel extends Part {
 	 * 
 	 * @return int
 	 */
-	public int hashCode() {
+	@Override public int hashCode() {
 		return super.hashCode();
 	}
 }

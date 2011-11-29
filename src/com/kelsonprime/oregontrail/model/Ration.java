@@ -8,11 +8,22 @@ package com.kelsonprime.oregontrail.model;
  */
 public enum Ration {
 	BARE(0, "Bare"), MEAGER(1, "Meager"), NORMAL(2, "Normal"), WELLFED(3, "Wellfed");
-	private int portion;
+	
+	/**
+	 * The amount of food a ration consumes
+	 */
+	private final int portion;
 
-	private String name;
+	/**
+	 * The user seen name
+	 */
+	private final String name;
 
-	public static final int MAX_PORTION = 2;
+	/**
+	 * What is considered a health maintaining portion
+	 */
+	public static final int PROPER_PORTION = 2;
+	
 	/**
 	 * Constructor for Ration.
 	 * @param p int

@@ -1,10 +1,11 @@
+// $codepro.audit.disable obsoleteModifierUsage
 package com.kelsonprime.oregontrail.model;
 
 /**
  * Allow models to change and mutate with time.
  * 
  * @author Kurt Nelson
- * @version 1.0
+ * @version $Revision: 1.0 $
  */
 public interface Time {
 
@@ -23,5 +24,11 @@ public interface Time {
 	 */
 	public boolean isReady();
 
-	boolean equals(Object o);
+	/**
+	 * Standard equals
+	 * @param o
+	 * @return equals
+	 */
+	@Override
+	public boolean equals(Object o); // $codepro.audit.disable checkTypeInEquals
 }

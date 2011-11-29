@@ -2,6 +2,8 @@ package com.kelsonprime.oregontrail.model;
 
 /**
  * Represent a carpenter
+ * @author Kurt
+ * @version 1
  */
 public final class Carpenter extends Occupation {
 	/**
@@ -24,16 +26,28 @@ public final class Carpenter extends Occupation {
 	 */
 	public static final String LABEL = "Carpenter";
 
+	/**
+	 * Provide label
+	 * @return label
+	 */
 	@Override
 	public String toString() {
 		return LABEL;
 	}
 
+	/**
+	 * Starting money
+	 * @return money
+	 */
 	@Override
 	public int getStartingMoney() {
 		return START_MONEY;
 	}
 
+	/**
+	 * Provide description
+	 * @return description
+	 */
 	@Override
 	public String getDescription() {
 		return DESCRIPTION;

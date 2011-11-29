@@ -7,7 +7,7 @@ import java.io.Serializable;
  * @author kurt
  * @version $Revision: 1.0 $
  */
-public abstract class Occupation implements Serializable {
+public abstract class Occupation implements Serializable { // $codepro.audit.disable com.instantiations.assist.eclipse.analysis.audit.rule.effectivejava.preferInterfacesToAbstractClasses
 	/**
 	 * Serializable
 	 */

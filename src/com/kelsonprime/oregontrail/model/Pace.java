@@ -8,9 +8,15 @@ package com.kelsonprime.oregontrail.model;
  */
 public enum Pace {
 	STOPPED(0,"Stopped"), LEISURELY(1, "Leisurely"), STEADY(2, "Steady"), GRUELING(3, "Grueling");
-	private int rate;
+	/**
+	 * A multiplier for the rate
+	 */
+	private final int rate;
 
-	private String name;
+	/**
+	 * User-friendly name
+	 */
+	private final String name;
 
 	/**
 	 * Constructor for Pace.
@@ -23,7 +29,7 @@ public enum Pace {
 	}
 	
 	/**
-	 * Method toString.
+	 * Standard toString.
 	 * @return String
 	 */
 	public String toString(){
@@ -31,7 +37,7 @@ public enum Pace {
 	}
 	
 	/**
-	 * Method getRate.
+	 * Get rate multiplier
 	 * @return int
 	 */
 	public int getRate(){

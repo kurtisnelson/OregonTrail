@@ -1,3 +1,4 @@
+// $codepro.audit.disable hidingInheritedFields
 package com.kelsonprime.oregontrail.model;
 
 /**
@@ -68,7 +69,7 @@ public class Tongue extends Part {
 	 */
 	@Override
 	public int compareTo(Object o) throws ClassCastException {
-		Tongue ot = (Tongue) o;
+		final Tongue ot = (Tongue) o;
 		return ot.health - this.health;
 	}
 
@@ -85,7 +86,7 @@ public class Tongue extends Part {
 		if (this == o)
 			return true;
 		if (o instanceof Tongue) {
-			Tongue tongue = (Tongue) o;
+			final Tongue tongue = (Tongue) o;
 			if (tongue.getHealth() == this.getHealth())
 				return true;
 		}

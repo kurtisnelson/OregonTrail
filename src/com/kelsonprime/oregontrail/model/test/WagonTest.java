@@ -177,11 +177,11 @@ public class WagonTest {
 	@Test
 	public void checkMoney() throws Exception {
 		Wagon fixture = WagonFactory.createWagon();
-		assertTrue("Does not have 1000 money to spend", fixture.checkMoney(1000));
-		assertTrue("Does not have 2000 money to spend", fixture.checkMoney(2000));
-		assertTrue("Does not have 3000 money to spend", fixture.checkMoney(3000));
-		assertTrue("Cannot recieve 3000 money", fixture.checkMoney(-3000));
-		assertFalse("Has 3001 money to spend", fixture.checkMoney(3001));
+		assertTrue("Does not have 1000 money to spend", fixture.hasMoney(1000));
+		assertTrue("Does not have 2000 money to spend", fixture.hasMoney(2000));
+		assertTrue("Does not have 3000 money to spend", fixture.hasMoney(3000));
+		assertTrue("Cannot recieve 3000 money", fixture.hasMoney(-3000));
+		assertFalse("Has 3001 money to spend", fixture.hasMoney(3001));
 	}
 
 	/**

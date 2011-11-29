@@ -1,14 +1,29 @@
 package com.kelsonprime.oregontrail.model;
 
 /**
+ * Represent a river crossing
+ * @author Kurt
+ * @version 1
  */
 public class Crossing extends Location {
+	/**
+	 * Serializable
+	 */
 	private static final long serialVersionUID = 4849948143004178802L;
 
-	private int depth;
+	/**
+	 * Depth of the river
+	 */
+	private final int depth;
 
-	private int width;
+	/**
+	 * Width of the river
+	 */
+	private final int width;
 
+	/**
+	 * Cost to take the ferry
+	 */
 	private int ferryCost;
 
 	/**
@@ -30,12 +45,13 @@ public class Crossing extends Location {
 	 * @return String
 	 */
 	public String describe(){
-		StringBuilder ret = new StringBuilder();
-		ret.append("This crossing is "+depth+" deep and "+width+" wide.\n");
-		if(isFerry())
-			ret.append("There is a ferry that costs "+ferryCost+".\n");
-		else
+		final StringBuilder ret = new StringBuilder();
+		ret.append("This crossing is " + depth + " deep and " + width + " wide.\n");
+		if(isFerry()){
+			ret.append("There is a ferry that costs " + ferryCost + ".\n");
+		}else{
 			ret.append("There is no ferry.\n");
+		}
 		return ret.toString();
 	}
 	
