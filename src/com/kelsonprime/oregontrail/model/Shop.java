@@ -278,8 +278,4 @@ public class Shop extends Location {
 		}
 		return 0;
 	}
-	
-	public String getSoundFileName() {
-		return "cc-start.wav";
-	}
 }

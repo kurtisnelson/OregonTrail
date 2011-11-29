@@ -24,6 +24,7 @@ import java.util.logging.Logger;
 public class CrossingScreen extends LocationScreen {
 	private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 	private static final long serialVersionUID = -2616586129314449978L;
+
 	Wagon wagon;
 	Crossing crossing;
 	Random rand = new Random();

@@ -25,8 +25,4 @@ public class Destination extends Landmark {
 	public Location next(){
 		return null;
 	}
-	
-	public String getSoundFileName() {
-		return "Game end music.wav";
-	}
 }

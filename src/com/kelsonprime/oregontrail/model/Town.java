@@ -43,9 +43,4 @@ public class Town extends Location {
 	public Shop getShop() {
 		return shop;
 	}
-	
-	public String getSoundFileName() {
-		return "thanks.wav";
-	}
-	
 }
