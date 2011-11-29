@@ -52,7 +52,7 @@ public class Events {
 	 * Generates next day
 	 */
 	public static void nextDay(Game game) {
-		int event = rand.nextInt(25);
+		int event = rand.nextInt(200);
 		Wagon wagon = game.getWagon();
 		Player player = wagon.getPlayer();
 		if (event < 4)
