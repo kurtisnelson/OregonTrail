@@ -8,34 +8,20 @@ public abstract class Occupation implements Serializable {
 	private static final long serialVersionUID = -6040773823566650272L;
 	
 	/**
-	 * Method getOccupations.
+	 * Get list of occupations
 	 * @return Class<?>[]
 	 */
-	public static Class<?>[] getOccupations(){
-		Class<?>[] occs = new Class[3];
-		occs[0] = Banker.class;
-		occs[1] = Carpenter.class;
-		occs[2] = Farmer.class;
+	public static Occupation[] getOccupations(){ // $codepro.audit.disable numericLiterals
+		Occupation[] occs = new Occupation[3];
+		occs[0] = new Banker();
+		occs[1] = new Carpenter();
+		occs[2] = new Farmer(); 
 		return occs;
 	}
 	
-	public Occupation(){
-		
-	}
+	public abstract String toString();
 	
-	/**
-	 * Method getMoney.
-	 * @return int
-	 */
-	public abstract int getMoney();
-	/**
-	 * Method getDescription.
-	 * @return String
-	 */
+	public abstract int getStartingMoney();
+	
 	public abstract String getDescription();
-	/**
-	 * Method getLabel.
-	 * @return String
-	 */
-	public abstract String getLabel();
 }

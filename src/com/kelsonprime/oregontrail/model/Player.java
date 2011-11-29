@@ -18,7 +18,7 @@ public class Player extends Companion {
 	}
 
 	/**
-	 * Method getOccupation.
+	 * Get occupation
 	 * @return Occupation
 	 */
 	public Occupation getOccupation() {
@@ -26,11 +26,11 @@ public class Player extends Companion {
 	}
 
 	/**
-	 * Method startingMoney.
+	 * Get starting money
 	 * @return int
 	 */
 	public int startingMoney() {
-		return occupation.getMoney();
+		return occupation.getStartingMoney();
 	}
 
 }

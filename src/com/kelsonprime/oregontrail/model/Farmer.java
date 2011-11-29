@@ -3,56 +3,38 @@ package com.kelsonprime.oregontrail.model;
 /**
  */
 public final class Farmer extends Occupation {
-	private static final long serialVersionUID = -4579907147578377999L;
+	/**
+	 * Serializable
+	 */
+	private static final long serialVersionUID = 7392693973481195514L;
 
 	/**
-	 * Method getStaticLabel.
-	 * @return String
+	 * Description of the Occupation
 	 */
-	public static String getStaticLabel(){
-		return "Farmer";
-	}
+	public static final String DESCRIPTION = "Can forage for food and takes care of oxen";
 	
 	/**
-	 * Method getStaticMoney.
-	 * @return int
+	 * Starting money
 	 */
-	public static int getStaticMoney(){
-		return 1500;
-	}
-	
+	public static final int START_MONEY = 1500;
+
 	/**
-	 * Method getStaticDescription.
-	 * @return String
+	 * Label of this Occupation
 	 */
-	public static String getStaticDescription(){
-		return "Takes better care of oxen, and can find food along the way";
-	}
-	
-	/**
-	 * Method getMoney.
-	 * @return int
-	 */
+	public static final String LABEL = "Farmer";
+
 	@Override
-	public int getMoney() {
-		return getStaticMoney();
+	public String toString() {
+		return LABEL;
 	}
 
-	/**
-	 * Method getDescription.
-	 * @return String
-	 */
+	@Override
+	public int getStartingMoney() {
+		return START_MONEY;
+	}
+
 	@Override
 	public String getDescription() {
-		return getStaticDescription();
-	}
-
-	/**
-	 * Method getLabel.
-	 * @return String
-	 */
-	@Override
-	public String getLabel() {
-		return getStaticLabel();
+		return DESCRIPTION;
 	}
 }

@@ -7,10 +7,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
@@ -36,8 +33,6 @@ import com.kelsonprime.oregontrail.model.Wagon;
  * GUI for creating a new game
  */
 public class NewGameScreen extends JPanel {
-	private final static Logger LOGGER = Logger
-			.getLogger(Logger.GLOBAL_LOGGER_NAME);
 	private static final long serialVersionUID = 7996950179577943594L;
 	OregonTrail app;
 	private JTextField playerName;
@@ -52,7 +47,9 @@ public class NewGameScreen extends JPanel {
 
 	/**
 	 * Create the GUI
-	 * @param app OregonTrail
+	 * 
+	 * @param app
+	 *            OregonTrail
 	 */
 	public NewGameScreen(OregonTrail app) {
 		super();
@@ -125,26 +122,16 @@ public class NewGameScreen extends JPanel {
 		occPanel.setLocation(175, 30);
 		body.add(occPanel);
 
-		for (Class<?> c : Occupation.getOccupations()) {
-			String occName = "";
-			// Do crazy reflection to dynamically build the GUI!
-			try {
-				Method m = c.getMethod("getStaticLabel");
-				Object ans = m.invoke(null, (Object[]) null);
-				occName = ans.toString();
-			} catch (Exception e) {
-				LOGGER.log(Level.SEVERE, "Occupation reflexion failed.", e);
-			}
-			if (occName.length() > 0) {
-				JRadioButton occButton = new JRadioButton(occName);
-				occButton.setForeground(Color.WHITE);
-				occButton.setBackground(Color.BLACK);
-				occButton.setBounds(178, 27, 75, 23);
-				occButton.setActionCommand(c.getCanonicalName());
-				occButton.addActionListener(listen);
-				occPanel.add(occButton);
-				occupationGroup.add(occButton);
-			}
+		for (Occupation occ : Occupation.getOccupations()) {
+			String occName = occ.toString();
+			JRadioButton occButton = new JRadioButton(occName);
+			occButton.setForeground(Color.WHITE);
+			occButton.setBackground(Color.BLACK);
+			occButton.setBounds(178, 27, 75, 23);
+			occButton.setActionCommand(occName);
+			occButton.addActionListener(listen);
+			occPanel.add(occButton);
+			occupationGroup.add(occButton);
 		}
 
 		JLabel nameLabel = new JLabel("Party Names");
@@ -233,11 +220,13 @@ public class NewGameScreen extends JPanel {
 			newPlayer = ModelFactory.buildPlayer(playerName.getText(),
 					occupation);
 			companionList = ModelFactory.buildCompanions(
-					companionName.getText(), companion1Name.getText(), companion2Name.getText(), companion3Name.getText());
+					companionName.getText(), companion1Name.getText(),
+					companion2Name.getText(), companion3Name.getText());
 		} catch (UserInputException e) {
 			e.generateBox(app.getFrame());
 			return;
-		} catch (NullPointerException e){ // $codepro.audit.disable logExceptions
+		} catch (NullPointerException e) { // $codepro.audit.disable
+											// logExceptions
 			return;
 		}
 
@@ -255,7 +244,9 @@ public class NewGameScreen extends JPanel {
 
 		/**
 		 * Method actionPerformed.
-		 * @param ae ActionEvent
+		 * 
+		 * @param ae
+		 *            ActionEvent
 		 * @see java.awt.event.ActionListener#actionPerformed(ActionEvent)
 		 */
 		@Override
@@ -266,31 +257,13 @@ public class NewGameScreen extends JPanel {
 				return;
 			}
 			/*
-			 * Assume the occupation triggered Do crazy reflection to
-			 * dynamically support new Occupations!
+			 * Assume the occupation triggered
 			 */
-			Class<?> c;
-			try {
-				c = Class.forName(ac);
-			} catch (ClassNotFoundException e) {
-				LOGGER.log(Level.WARNING, "Uncaught action.", e);
-				return;
-			}
-			try {
-				Method m = c.getMethod("getStaticMoney");
-				int money = (Integer) m.invoke(null, (Object[]) null);
-				startingMoney.setText("$" + money);
-			} catch (Exception e) {
-				LOGGER.log(Level.SEVERE,
-						"Occupation getMoney reflection failed.", e);
-			}
-			try {
-				Method m = c.getMethod("getStaticDescription");
-				String ability = (String) m.invoke(null, (Object[]) null);
-				abilityList.setText(ability);
-			} catch (Exception e) {
-				LOGGER.log(Level.SEVERE,
-						"Occupation getDescription reflection failed.", e);
+			for (Occupation occ : Occupation.getOccupations()) {
+				if (occ.toString().equals(ac)) {
+					startingMoney.setText("$" + occ.getStartingMoney());
+					abilityList.setText(occ.getDescription());
+				}
 			}
 		}
 	}

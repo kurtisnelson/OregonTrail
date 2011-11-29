@@ -4,44 +4,38 @@ package com.kelsonprime.oregontrail.model;
  * Represent a carpenter
  */
 public final class Carpenter extends Occupation {
+	/**
+	 * Serializable
+	 */
 	private static final long serialVersionUID = -8843042214187651692L;
+	
+	/**
+	 * Description of the Occupation
+	 */
+	public static final String DESCRIPTION = "Can fix wagon parts when they break";
+	
+	/**
+	 * Starting money
+	 */
+	public static final int START_MONEY=2000;
 
 	/**
-	 * Get label
-	 * @return String
+	 * Label of this Occupation
 	 */
-	public static String getStaticLabel(){
-		return "Carpenter";
-	}
-	
-	/**
-	 * Get starting money
-	 * @return int
-	 */
-	public static int getStaticMoney(){
-		return 2000;
-	}
-	
-	/**
-	 * Get description
-	 * @return String
-	 */
-	public static String getStaticDescription(){
-		return "Can fix wagon parts when they break.";
+	public static final String LABEL = "Carpenter";
+
+	@Override
+	public String toString() {
+		return LABEL;
 	}
 
 	@Override
-	public int getMoney() {
-		return getStaticMoney();
+	public int getStartingMoney() {
+		return START_MONEY;
 	}
 
 	@Override
 	public String getDescription() {
-		return getStaticDescription();
-	}
-
-	@Override
-	public String getLabel() {
-		return getStaticLabel();
+		return DESCRIPTION;
 	}
 }
