@@ -1,3 +1,4 @@
+// $codepro.audit.disable numericLiterals, variableShouldBeFinal, fieldJavadoc
 package com.kelsonprime.oregontrail.gui;
 
 import java.awt.Dimension;
@@ -12,7 +13,7 @@ import javax.swing.JPanel;
  * @see com.kelsonprime.oregontrail.model.Location
  * @author Kurt
  */
-public abstract class LocationScreen extends JPanel {
+public abstract class LocationScreen extends JPanel { // $codepro.audit.disable abstractSpecialization
 	protected Image background;
 	private static final long serialVersionUID = 2247264002726443781L;
 	private OregonTrail app;

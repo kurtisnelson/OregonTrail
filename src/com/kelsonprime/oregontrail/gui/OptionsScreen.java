@@ -1,4 +1,4 @@
-
+// $codepro.audit.disable numericLiterals
 package com.kelsonprime.oregontrail.gui;
 
 import java.awt.BorderLayout;

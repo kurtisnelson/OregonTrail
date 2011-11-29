@@ -95,8 +95,9 @@ public class Crossing extends Location {
 	 * @post Wagon has been updated with anything bad that happened and cost spent
 	 * @return Description of what happened */
 	public String ferry() {
-		if(ferryCost <= 0)
+		if(ferryCost <= 0){
 			return "There is no ferry here.";
+		}
 		return Integer.toString(ferryCost);
 	}
 

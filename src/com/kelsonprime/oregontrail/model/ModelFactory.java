@@ -1,3 +1,4 @@
+// $codepro.audit.disable numericLiterals
 package com.kelsonprime.oregontrail.model;
 
 import java.util.ArrayList;
@@ -20,10 +21,12 @@ public class ModelFactory {
 	 * @throws UserInputException
 	 */
 	public static Player buildPlayer(String name, Occupation occupation) throws UserInputException{
-		if(name.length() < 1)
+		if(name.length() < 1){
 			throw new UserInputException("Invalid name");
-		if(!isText(name))
+		}
+		if(!isText(name)){
 			throw new UserInputException("Invalid characters in name");
+		}
 		return new Player(name, occupation);
 	}
 	
@@ -54,8 +57,9 @@ public class ModelFactory {
 	 */
 	public static Occupation buildOccupation(String name) throws UserInputException{
 		for(Occupation occ : Occupation.getOccupations()){
-			if(occ.toString().equals(name))
+			if(occ.toString().equals(name)){
 				return occ;
+			}
 		}
 		throw new UserInputException("Invalid Occupation");
 	}
@@ -69,8 +73,9 @@ public class ModelFactory {
 	public static List<Companion> buildCompanions(String... companions) throws UserInputException{
 		final List<Companion> companionList = new ArrayList<Companion>(4);
 		for(String n : companions){
-			if(!isText(n))
+			if(!isText(n)){
 				throw new UserInputException("Invalid characters in companion name");
+			}
 			companionList.add(new Companion(n));
 		}
 		return companionList;
@@ -82,16 +87,7 @@ public class ModelFactory {
 	 * @return boolean
 	 */
 	public static boolean isText(String text){
-		for(char c : text.toCharArray()){
-			if(c >= 'A' && c <= 'Z')
-				continue;
-			if(c >= 'a' && c <= 'z')
-				continue;
-			if(c >= '0' && c <= '9')
-				continue;
-			return false;
-		}
-		return true;
+		return text.matches("[A-Za-z0-9]*");
 	}
 	
 	/**

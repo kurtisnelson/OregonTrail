@@ -1,3 +1,4 @@
+// $codepro.audit.disable numericLiterals, variableShouldBeFinal, fieldJavadoc
 package com.kelsonprime.oregontrail.gui;
 
 import javax.imageio.ImageIO;
