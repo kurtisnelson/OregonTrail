@@ -9,7 +9,9 @@ package com.kelsonprime.oregontrail.model;
 public enum Pace {
 	STOPPED(0,"Stopped"), LEISURELY(1, "Leisurely"), STEADY(2, "Steady"), GRUELING(3, "Grueling");
 	private int rate;
+
 	private String name;
+
 	/**
 	 * Constructor for Pace.
 	 * @param rate int

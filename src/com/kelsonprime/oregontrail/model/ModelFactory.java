@@ -5,11 +5,14 @@ import java.util.ArrayList;
 import com.kelsonprime.oregontrail.controller.UserInputException;
 
 /**
+ * Creates various models
+ * @author kurt
+ * @version $Revision: 1.0 $
  */
 public class ModelFactory {
 	
 	/**
-	 * Method buildPlayer.
+	 * Make a player
 	 * @param name String
 	 * @param occupation Occupation
 	 * @return Player
@@ -18,13 +21,13 @@ public class ModelFactory {
 	public static Player buildPlayer(String name, Occupation occupation) throws UserInputException{
 		if(name.length() < 1)
 			throw new UserInputException("Invalid name");
-		if(!validateText(name))
+		if(!isText(name))
 			throw new UserInputException("Invalid characters in name");
 		return new Player(name, occupation);
 	}
 	
 	/**
-	 * Method buildOccupation.
+	 * Make an occupation from label
 	 * @param name Occupation label
 	 * @return Occupation
 	 * @throws UserInputException
@@ -38,15 +41,15 @@ public class ModelFactory {
 	}
 	
 	/**
-	 * Method buildCompanions.
-	 * @param companions String[]
+	 * Make companions from names
+	 * @param companions String[] Names to use
 	 * @return ArrayList<Companion>
 	 * @throws UserInputException
 	 */
 	public static ArrayList<Companion> buildCompanions(String... companions) throws UserInputException{
 		ArrayList<Companion> companionList = new ArrayList<Companion>(4);
 		for(String n : companions){
-			if(!validateText(n))
+			if(!isText(n))
 				throw new UserInputException("Invalid characters in companion name");
 			companionList.add(new Companion(n));
 		}
@@ -54,11 +57,11 @@ public class ModelFactory {
 	}
 	
 	/**
-	 * Method validateText.
+	 * Check if is text
 	 * @param text String
 	 * @return boolean
 	 */
-	public static boolean validateText(String text){
+	public static boolean isText(String text){
 		for(char c : text.toCharArray()){
 			if(c >= 'A' && c <= 'Z')
 				continue;

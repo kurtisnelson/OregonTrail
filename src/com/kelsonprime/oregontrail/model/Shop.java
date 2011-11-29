@@ -16,15 +16,24 @@ import com.kelsonprime.oregontrail.controller.UserInputException;
  */
 public class Shop extends Location {
 	private static final long serialVersionUID = 2474893524066364591L;
+
 	private final static Logger LOGGER = Logger
 			.getLogger(Logger.GLOBAL_LOGGER_NAME);
+
 	private static final double PRICE_RATIO = .001;
+
 	private int oxenPrice;
+
 	private int foodPrice;
+
 	private int clothesPrice;
+
 	private int bulletPrice;
+
 	private int wheelPrice;
+
 	private int tonguePrice;
+
 	private int axlePrice;
 
 	/**
@@ -142,7 +151,7 @@ public class Shop extends Location {
 			} else {
 				throw new UserInputException("Not enough room to buy " + part);
 			}
-			if (w.checkMoney(total * -1)) {
+			if (w.hasMoney(total * -1)) {
 				total += getPrice(part);
 			} else {
 				throw new UserInputException("Not enough money to buy " + part);
@@ -180,7 +189,7 @@ public class Shop extends Location {
 			throw new UserInputException("Not enough space for " + quantity
 					+ " " + item);
 		}
-		if (!w.checkMoney(quantity * getPrice(item))) {
+		if (!w.hasMoney(quantity * getPrice(item))) {
 			throw new UserInputException("Not enough money for " + quantity
 					+ " " + item);
 		}

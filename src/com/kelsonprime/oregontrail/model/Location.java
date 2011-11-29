@@ -9,10 +9,15 @@ import java.io.Serializable;
  */
 public abstract class Location implements Serializable{
 	private static final long serialVersionUID = 4027729795704277442L;
+
 	private String label;
+
 	private Location next;
+
 	private int roadX1;
+
 	private int roadY1;
+
 	private int position;
 
 	/**

@@ -4,8 +4,11 @@ package com.kelsonprime.oregontrail.model;
  */
 public class Crossing extends Location {
 	private static final long serialVersionUID = 4849948143004178802L;
+
 	private int depth;
+
 	private int width;
+
 	private int ferryCost;
 
 	/**

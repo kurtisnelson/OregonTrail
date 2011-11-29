@@ -17,10 +17,15 @@ public class Game implements Time, Serializable {
 	private static final long serialVersionUID = -1328327188493685888L;
 
 	private transient GameEventListener reciever;
+
 	private Wagon wagon;
+
 	private Map map;
+
 	private int days;
+
 	private Pace pace;
+
 	private Ration ration;
 
 	/**

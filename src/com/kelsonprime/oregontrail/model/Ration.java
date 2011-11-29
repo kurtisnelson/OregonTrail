@@ -9,7 +9,9 @@ package com.kelsonprime.oregontrail.model;
 public enum Ration {
 	BARE(1, "Bare"), MEAGER(1, "Meager"), NORMAL(2, "Normal"), WELLFED(3, "Wellfed");
 	private int portion;
+
 	private String name;
+
 	/**
 	 * Constructor for Ration.
 	 * @param p int
@@ -19,6 +21,7 @@ public enum Ration {
 		portion = p;
 		this.name = name;
 	}
+
 	/**
 	 * Method toString.
 	 * @return String
@@ -26,6 +29,7 @@ public enum Ration {
 	public String toString(){
 		return name;
 	}
+
 	/**
 	 * Method getPortion.
 	 * @return int

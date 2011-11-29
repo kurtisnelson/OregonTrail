@@ -11,10 +11,12 @@ public class Tongue extends Part {
 	 * Serializable
 	 */
 	private static final long serialVersionUID = 8766537377409751997L;
+
 	/**
 	 * Default health of this part (value is 125)
 	 */
 	private static final int DEFAULT_HEALTH = 125;
+
 	/**
 	 * Default weight of this part (value is 5)
 	 */

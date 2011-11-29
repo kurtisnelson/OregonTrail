@@ -9,7 +9,9 @@ import java.io.Serializable;
  */
 public class Map implements Time, Serializable{
 	private static final long serialVersionUID = -2179958740456509406L;
+
 	private Location start;
+
 	private int traveled;
 
 	/** 
