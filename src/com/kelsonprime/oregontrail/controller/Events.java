@@ -89,7 +89,7 @@ public class Events {
 			;// Oxen Weak (Pace halved)
 		else if (event < 22)
 			;// Random Party member recovery (health XOR sickness)
-		else if (event < 25)
+		else
 			;// Storm lose days
 	}
 	
@@ -100,8 +100,8 @@ public class Events {
 	 */
 	public static void loseItems(Wagon wagon, double percent){
 		
-		int foodCt, clothesCt, partCt, bulletCt, axleCt, wheelCt, tongueCt;
-		foodCt = clothesCt = partCt = bulletCt = axleCt = wheelCt = tongueCt = 0;
+		int foodCt, clothesCt, bulletCt, axleCt, wheelCt, tongueCt;
+		foodCt = clothesCt = bulletCt = axleCt = wheelCt = tongueCt = 0;
 		String cur;
 		int loseCt = (int) (wagon.countItems() * percent);
 		

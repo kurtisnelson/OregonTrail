@@ -237,7 +237,7 @@ public class NewGameScreen extends JPanel {
 		} catch (UserInputException e) {
 			e.generateBox(app.getFrame());
 			return;
-		} catch (NullPointerException e){
+		} catch (NullPointerException e){ // $codepro.audit.disable logExceptions
 			return;
 		}
 

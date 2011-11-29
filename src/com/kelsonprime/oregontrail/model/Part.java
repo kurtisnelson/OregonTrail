@@ -9,6 +9,8 @@ import java.io.Serializable;
  */
 public abstract class Part implements Time, Comparable<Object>, Serializable {
 	private static final long serialVersionUID = 735490215309106832L;
+	public static final int DEFAULT_WEIGHT = 5;
+	public static final int DEFAULT_HEALTH = 100;
 	
 	/**
 	 * Health of a part
@@ -16,10 +18,10 @@ public abstract class Part implements Time, Comparable<Object>, Serializable {
 	protected int health;
 	
 	/**
-	 * Initialize Part with 100 health
+	 * Initialize Part with default health
 	 */
 	public Part(){
-		this.health = 100;
+		this.health = DEFAULT_HEALTH;
 	}
 	
 	/**

@@ -22,4 +22,6 @@ public interface Time {
 	 * @return true if it is ready
 	 */
 	public boolean isReady();
+
+	boolean equals(Object o);
 }

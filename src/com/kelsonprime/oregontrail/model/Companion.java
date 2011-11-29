@@ -40,7 +40,7 @@ public class Companion implements Time, Serializable{
 	public void nextDay(Game game) {
 		// TODO Auto-generated method stub
 		health-=(4-game.getRation().getPortion());
-		if (sickness != ""){
+		if (sickness.length() > 0){
 			health -=5;
 		}
 		if (health<0){

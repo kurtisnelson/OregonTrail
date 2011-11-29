@@ -17,7 +17,7 @@ public class Map implements Time, Serializable{
 	 * @param start Location
 	 */
 	public Map(Location start){
-		traveled = 0;;
+		traveled = 0;
 		this.start = start;
 	}
 	
