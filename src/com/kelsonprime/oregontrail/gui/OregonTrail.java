@@ -61,8 +61,8 @@ public class OregonTrail {
 		else if (level.equalsIgnoreCase("severe"))
 			LOGGER.setLevel(Level.SEVERE);
 		try {
-			Handler h = new FileHandler("OregonTrail.log");
-			LOGGER.addHandler(h);
+			Handler handler = new FileHandler("OregonTrail.log");
+			LOGGER.addHandler(handler);
 		} catch (Exception e) {
 			LOGGER.log(Level.SEVERE, "Failed to add log handler", e);
 		}
@@ -83,6 +83,7 @@ public class OregonTrail {
 	 * Create in memory a new instance of the application
 	 */
 	public OregonTrail() {
+
 		try {
 			UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
 		} catch (UnsupportedLookAndFeelException e) {
