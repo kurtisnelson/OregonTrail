@@ -79,8 +79,10 @@ public class Axle extends Part {
 			return true;
 		}
 		if(o instanceof Axle){
+
 			final Axle axle = (Axle) o;
 			if(axle.getHealth() == this.getHealth()){
+
 				return true;
 			}
 		}
