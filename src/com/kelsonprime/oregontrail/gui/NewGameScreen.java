@@ -53,7 +53,7 @@ public class NewGameScreen extends JPanel {
 	 *            OregonTrail
 	 */
 	public NewGameScreen(OregonTrail app) {
-		super();
+		
 		this.app = app;
 		setBackground(Color.WHITE);
 		setLayout(new BorderLayout(0, 0));
@@ -123,6 +123,7 @@ public class NewGameScreen extends JPanel {
 		occPanel.setLocation(175, 30);
 		body.add(occPanel);
 
+
 		for (Occupation occ : Occupation.getOccupations()) {
 			String occName = occ.toString();
 			JRadioButton occButton = new JRadioButton(occName);
@@ -133,6 +134,7 @@ public class NewGameScreen extends JPanel {
 			occButton.addActionListener(listen);
 			occPanel.add(occButton);
 			occupationGroup.add(occButton);
+
 		}
 
 		JLabel nameLabel = new JLabel("Party Names");
@@ -260,11 +262,13 @@ public class NewGameScreen extends JPanel {
 			/*
 			 * Assume the occupation triggered
 			 */
+
 			for (Occupation occ : Occupation.getOccupations()) {
 				if (occ.toString().equals(ac)) {
 					startingMoney.setText("$" + occ.getStartingMoney());
 					abilityList.setText(occ.getDescription());
 				}
+
 			}
 		}
 	}
