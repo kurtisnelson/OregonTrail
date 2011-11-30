@@ -20,7 +20,7 @@ public class Button extends JButton {
 	 * @param img ImageIcon
 	 */
 	public Button(ImageIcon img){
-		super();
+		
 		buttonImage = img;
 		setPreferredSize(new Dimension(100, 50));
 		setBackground(new Color(0,0,0,0));
