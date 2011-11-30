@@ -83,11 +83,13 @@ public class Tongue extends Part {
 	 */
 	@Override
 	public boolean equals(Object o) {
+
 		if (this == o)
 			return true;
 		if (o instanceof Tongue) {
 			final Tongue tongue = (Tongue) o;
 			if (tongue.getHealth() == this.getHealth())
+
 				return true;
 		}
 		return false;
