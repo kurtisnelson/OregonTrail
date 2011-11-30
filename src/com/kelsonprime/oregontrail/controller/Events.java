@@ -63,8 +63,15 @@ public class Events {
 			//Random party member death
 			wagon.killRandomPartyMember();
 		}
-		//else if (event < 8)
-		//	;//Random Oxen Death
+		else if (event < 8)
+			//Random Oxen Death
+			try {
+				wagon.add(Item.OXEN, -1);
+				JOptionPane.showMessageDialog(null, "1 of your Oxen has suddenly died!");
+			} catch (UserInputException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		else if (event < 11){
 			//Theft
 			String item = wagon.removeRandomItem();
