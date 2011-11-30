@@ -25,13 +25,14 @@ public abstract class Occupation implements Serializable { // $codepro.audit.dis
 		return occs;
 	}
 	
+
 	/**
 	 * Get the label.
 	 * @return String
 	 */
 	@Override
 	public abstract String toString(); // $codepro.audit.disable overridingNonAbstractMethod
-	
+
 	/**
 	 * Get starting money.
 	 * @return int
