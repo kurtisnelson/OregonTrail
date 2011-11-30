@@ -24,7 +24,7 @@ public class SplashScreen extends JPanel{
 	 * Create main screen
 	 */
 	public SplashScreen(){
-		super();
+		
 		repaint();
 		setSize(new Dimension(600, 300));
 		setBackground(Color.black);
