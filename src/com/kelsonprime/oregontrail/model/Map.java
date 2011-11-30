@@ -173,6 +173,7 @@ public class Map implements Time, Serializable {
 	 */
 	@Override
 	public void nextDay(Game game) {
+
 		// look at pace and # of oxen and move appropriately
 		final Wagon wagon = game.getWagon();
 		final Pace pace = game.getPace();
@@ -197,5 +198,6 @@ public class Map implements Time, Serializable {
 	 */
 	public Location getStart() {
 		return start;
+
 	}
 }
