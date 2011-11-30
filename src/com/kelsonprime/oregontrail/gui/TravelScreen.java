@@ -47,7 +47,7 @@ public class TravelScreen extends JPanel implements Updatable {
 	 * @param app OregonTrail
 	 */
 	public TravelScreen(OregonTrail app) {
-		super();
+		
 		this.app = app;
 		this.wagon = app.getWagon();
 		this.listener = new ButtonListener();
@@ -193,8 +193,8 @@ public class TravelScreen extends JPanel implements Updatable {
 	 */
 	private void rest() {
 		stopTravel(); // Make sure if we were moving we stop.
-		Game g = app.getGame();
-		g.rest();
+		Game game = app.getGame();
+		game.rest();
 		lblTravel.setText("Rested a day");
 
 	}
