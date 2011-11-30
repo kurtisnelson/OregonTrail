@@ -34,28 +34,110 @@ import javax.swing.ImageIcon;
 /**
  * GUI for a <code>Shop</code>
  * @see com.kelsonprime.oregontrail.model.Shop
+ * @author Victoria
+ * @version $Revision: 1.0 $
  */
 public class ShopScreen extends LocationScreen implements KeyListener {
+	/**
+	 * Field serialVersionUID.
+	 * (value is -7550296665413775236)
+	 */
 	private static final long serialVersionUID = -7550296665413775236L;
+	/**
+	 * Field CURRENCY.
+	 * (value is ""$"")
+	 */
 	private static final String CURRENCY = "$";
+	/**
+	 * Field shop.
+	 */
 	private Shop shop;
+	/**
+	 * Field wagon.
+	 */
 	private Wagon wagon;
+	/**
+	 * Field oxenQuantity.
+	 */
 	private JTextField oxenQuantity;
+	/**
+	 * Field axleQuantity.
+	 */
 	private JTextField axleQuantity;
+	/**
+	 * Field wheelQuantity.
+	 */
 	private JTextField wheelQuantity;
+	/**
+	 * Field tongueQuantity.
+	 */
 	private JTextField tongueQuantity;
+	/**
+	 * Field clothesQuantity.
+	 */
 	private JTextField clothesQuantity;
+	/**
+	 * Field bulletQuantity.
+	 */
 	private JTextField bulletQuantity;
+	/**
+	 * Field foodQuantity.
+	 */
 	private JTextField foodQuantity;
+	/**
+	 * Field oxenTotal.
+	 */
 	private JLabel oxenTotal;
+	/**
+	 * Field axleTotal.
+	 */
 	private JLabel axleTotal;
+	/**
+	 * Field wheelTotal.
+	 */
 	private JLabel wheelTotal;
+	/**
+	 * Field tongueTotal.
+	 */
 	private JLabel tongueTotal;
+	/**
+	 * Field clothesTotal.
+	 */
 	private JLabel clothesTotal;
+	/**
+	 * Field bulletsTotal.
+	 */
 	private JLabel bulletsTotal;
+	/**
+	 * Field foodTotal.
+	 */
 	private JLabel foodTotal;
+	/**
+	 * Field moneySpent.
+	 */
 	private int moneySpent;
+	/**
+	 * Field weightUsed.
+	 */
 	private int weightUsed;
+	/**
+	 * Field weightLeft.
+	 */
+	/**
+	 * Field totalWeightAdded.
+	 */
+	/**
+	 * Field weightLabel.
+	 */
+	/**
+	 * Field totalLeft.
+	 */
+	/**
+	 * Field totalPurchase.
+	 */
+	/**
+	 * Field moneyLabel.
+	 */
 	private JLabel moneyLabel, totalPurchase, totalLeft, weightLabel,
 			totalWeightAdded, weightLeft;
 
@@ -392,8 +474,8 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 	/**
 	 * Method keyPressed.
 	 * @param ke KeyEvent
-	 * @see java.awt.event.KeyListener#keyPressed(KeyEvent)
-	 */
+	
+	 * @see java.awt.event.KeyListener#keyPressed(KeyEvent) */
 	@Override
 	public void keyPressed(KeyEvent ke) {
 
@@ -402,8 +484,8 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 	/**
 	 * Method keyReleased.
 	 * @param ke KeyEvent
-	 * @see java.awt.event.KeyListener#keyReleased(KeyEvent)
-	 */
+	
+	 * @see java.awt.event.KeyListener#keyReleased(KeyEvent) */
 	@Override
 	public void keyReleased(KeyEvent ke) {
 		update();
@@ -468,8 +550,8 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 	/**
 	 * Method keyTyped.
 	 * @param ke KeyEvent
-	 * @see java.awt.event.KeyListener#keyTyped(KeyEvent)
-	 */
+	
+	 * @see java.awt.event.KeyListener#keyTyped(KeyEvent) */
 	@Override
 	public void keyTyped(KeyEvent ke) {
 
@@ -477,14 +559,15 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 
 	/**
 	 * Listen for buttons
+	 * @author Victoria
 	 */
 	private class ButtonListener implements ActionListener {
 
 		/**
 		 * Method actionPerformed.
 		 * @param ae ActionEvent
-		 * @see java.awt.event.ActionListener#actionPerformed(ActionEvent)
-		 */
+		
+		 * @see java.awt.event.ActionListener#actionPerformed(ActionEvent) */
 		@Override
 		public void actionPerformed(ActionEvent ae) {
 			String s = ae.getActionCommand();
