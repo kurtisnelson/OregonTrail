@@ -14,6 +14,7 @@ public final class UserProperties extends Properties {
 	private static final long serialVersionUID = 6812054977753648712L;
 	
 	public UserProperties (){
+
 			try{
 				this.loadFromXML(new FileInputStream("user.conf"));
 			}catch(Exception e){
