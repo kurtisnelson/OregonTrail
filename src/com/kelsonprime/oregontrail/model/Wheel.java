@@ -82,11 +82,13 @@ public class Wheel extends Part {
 	 */
 	@Override
 	public boolean equals(Object o) {
+
 		if (this == o)
 			return true;
 		if (o instanceof Wheel) {
 			final Wheel wheel = (Wheel) o;
 			if (wheel.getHealth() == this.getHealth())
+
 				return true;
 		}
 		return false;
