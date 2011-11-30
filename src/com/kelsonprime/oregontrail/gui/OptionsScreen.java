@@ -44,7 +44,7 @@ public class OptionsScreen extends JFrame implements Updatable {
 	 * @param app in which to change ration/pace
 	 */
 	public OptionsScreen(OregonTrail app) {
-		super();
+		
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setSize(400, 400);
 		this.setVisible(true);
@@ -129,16 +129,16 @@ public class OptionsScreen extends JFrame implements Updatable {
 	 * @see com.kelsonprime.oregontrail.controller.Updatable#update()
 	 */
 	public void update(){
-		Wagon w = app.getWagon();
-		foodField.setText(Integer.toString(w.countFood()));
+		Wagon wagon = app.getWagon();
+		foodField.setText(Integer.toString(wagon.countFood()));
 	}
 	
 	public void centerFrame(){
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		// Determine the new location of the window
-		int w = this.getSize().width;
+		int width = this.getSize().width;
 		int h = this.getSize().height;
-		int x = (dim.width / 2) - w / 2;
+		int x = (dim.width / 2) - width / 2;
 		int y = (dim.height / 2) - h / 2;
 		// Move the window
 		this.setLocation(x, y);
