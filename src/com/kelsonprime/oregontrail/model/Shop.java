@@ -64,7 +64,9 @@ public class Shop extends Location {
 	 * Price of axle
 	 */
 	private int axlePrice;
-
+	
+	private Town town;
+	
 	/**
 	 * Class constructor with default prices and no supply distance price
 	 * scaling.
@@ -76,6 +78,7 @@ public class Shop extends Location {
 	 */
 	public Shop(String name, int position) {
 		this(name, position, 0);
+		this.town = null;
 	}
 
 	/**
@@ -315,5 +318,13 @@ public class Shop extends Location {
 			return wheelPrice;
 		}
 		return 0;
+	}
+	
+	public void setTown(Town t){
+		town = t;
+	}
+	
+	public Town getTown(){
+		return town;
 	}
 }

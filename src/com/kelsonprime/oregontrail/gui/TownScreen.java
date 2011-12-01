@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 import com.kelsonprime.oregontrail.controller.IconFactory;
 import com.kelsonprime.oregontrail.model.Town;
@@ -21,8 +22,8 @@ import com.kelsonprime.oregontrail.model.Town;
 public class TownScreen extends LocationScreen {
 
 	private static final long serialVersionUID = 2954231432340769351L;
-	Image img = new ImageIcon(TownScreen.class.getResource("images/tempTown.jpg")).getImage();
 	Town town;
+	Button shopB, innB, change;
 	
 	/**
 	 * Constructor for TownScreen.
@@ -32,38 +33,39 @@ public class TownScreen extends LocationScreen {
 	public TownScreen(OregonTrail app, Town town) {
 		super(app);
 		
-		Image shopBtn = new ImageIcon(TownScreen.class.getResource("images/tempShop.jpg")).getImage();
-		Image innBtn = new ImageIcon(TownScreen.class.getResource("images/tempInn.jpg")).getImage();
+		this.town = town;
 		
 		ButtonListener bl = new ButtonListener();
 		
-		Button shopB = new Button(new ImageIcon(shopBtn));
+		shopB = new Button(new ImageIcon(TownScreen.class.getResource("/images/tempShop.png")));
+		shopB.setBounds(160, 140, 100, 100);
 		shopB.addActionListener(bl);
 		shopB.setPreferredSize(new Dimension(100, 100));
+		shopB.setSize(100, 100);
 		shopB.setActionCommand("shop");
+		shopB.setBorder(null);
 		
-		
-		Button innB = new Button(new ImageIcon(innBtn));
-		innB.setBounds(0, 76, 81, -76);
+		Button innB = new Button(new ImageIcon(TownScreen.class.getResource("/images/tempInn.png")));
+		innB.setBounds(300, 140, 100, 100);
 		innB.setPreferredSize(new Dimension(100, 100));
 		innB.addActionListener(bl);
 		innB.setActionCommand("inn");
+		innB.setBorder(null);
 		
 		if (town.getShop() != null)
-			add(shopB);
-		add(innB);
+			this.add(shopB);
+		this.add(innB);
 		
 		JButton leaveButton = new JButton();
-		leaveButton.setLocation(160, 12);
-		leaveButton.setSize(50, 22);
+		leaveButton.setBounds(492, 246, 50, 22);
 		leaveButton.setBackground(Color.WHITE);
 		leaveButton.setOpaque(false);
 		leaveButton.setBorderPainted(false);
 		leaveButton.setRolloverEnabled(false);
-		leaveButton.setSelectedIcon(IconFactory.arrow());
-		leaveButton.setIcon(new ImageIcon(ShopScreen.class.getResource("/images/arrow.png")));
+		leaveButton.setIcon(new ImageIcon(TownScreen.class.getResource("/images/arrow.png")));
 		leaveButton.setMnemonic('n');
-		add(leaveButton);
+		this.add(leaveButton);
+		
 		leaveButton.setActionCommand("leave");
 		leaveButton.addActionListener(bl);
 
@@ -75,7 +77,7 @@ public class TownScreen extends LocationScreen {
 	 */
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
-		g.drawImage(img, 0, 0, this);
+		g.drawImage(new ImageIcon(TownScreen.class.getResource("/images/tempTown.jpg")).getImage(), 0, 0, this);
 	}
 	
 	/**
@@ -97,6 +99,7 @@ public class TownScreen extends LocationScreen {
 				//TODO launch shop screen, but return here when done.
 			} else if (s.equalsIgnoreCase("inn")){
 				getApp().getGame().rest();
+				JOptionPane.showMessageDialog(null, "You rest at the inn and your party members feel much healithier!");
 				//TODO Rest (in town)
 			} else if (s.equalsIgnoreCase("leave")){
 				getApp().leaveLocation();

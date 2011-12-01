@@ -35,17 +35,22 @@ public class ModelFactory {
 	 * @return Map
 	 */
 	public static Map buildMap(){
-		final Map map = new Map(new Shop("Independence", 0));
+		final Shop first = new Shop("Independence", 0);
+		final Map map = new Map(first);
+		final Town independence = new Town("Independence", 0, first);
+		first.setTown(independence);
 		final Location river1 = new Crossing("River", 10, 5, 10);
 		map.getStart().setNext(river1, 10, 0);
 		final Location rock = new Landmark("The Big Rock", 20);
 		river1.setNext(rock, 10, 0);
 		final Location town = new Town("A town", 30);
 		rock.setNext(town, 0, 10);
-		final Location shop = new Shop("A shop", 40);
-		town.setNext(shop, 10, 0);
+		final Shop shop = new Shop("Shop Town", 40);
+		final Location shopTown = new Town("A shop town", 40, shop);
+		shop.setTown((Town)shopTown);
+		town.setNext(shopTown, 10, 0);
 		final Location end = new Destination("The End", 50);
-		shop.setNext(end, 10, 10);
+		shopTown.setNext(end, 10, 10);
 		return map;
 	}
 	

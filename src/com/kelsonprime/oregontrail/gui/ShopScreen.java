@@ -581,7 +581,10 @@ public class ShopScreen extends LocationScreen implements KeyListener {
 				bulletsTotal.setText(Integer.toString(wagon.countBullets()));
 				foodTotal.setText(Integer.toString(wagon.countFood()));
 			} else if (s.equals("leave")) {
-				getApp().leaveLocation();
+				if (shop.getTown() == null)
+					getApp().leaveLocation();
+				else
+					getApp().setPanel(new TownScreen(getApp(), shop.getTown()));
 			}
 
 		}
