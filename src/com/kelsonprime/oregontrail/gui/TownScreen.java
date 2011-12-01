@@ -4,7 +4,6 @@ package com.kelsonprime.oregontrail.gui;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -12,7 +11,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
-import com.kelsonprime.oregontrail.controller.IconFactory;
 import com.kelsonprime.oregontrail.model.Town;
 
 /**
