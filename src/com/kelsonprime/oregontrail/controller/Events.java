@@ -56,15 +56,26 @@ public class Events {
 		Wagon wagon = game.getWagon();
 		Player player = wagon.getPlayer();
 		if (event < 4)
-			;// Catch Sickness
-		//else if (event < 6)
-		//	;// Random Part Breakdown
+			// Catch Sickness
+			wagon.giveRandomSickness();
+		else if (event < 6)
+			;// Random Part Breakdown
 		else if (event < 7){
 			//Random party member death
 			wagon.killRandomPartyMember();
 		}
-		//else if (event < 8)
-		//	;//Random Oxen Death
+		else if (event < 8){
+			//Random Oxen Death
+			if (wagon.countOxen() > 1){
+				try {
+					wagon.add(Item.OXEN, -1);
+				} catch (UserInputException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				JOptionPane.showMessageDialog(null, "1 of your oxen has suddenly died!");
+			}
+		}
 		else if (event < 11){
 			//Theft
 			String item = wagon.removeRandomItem();

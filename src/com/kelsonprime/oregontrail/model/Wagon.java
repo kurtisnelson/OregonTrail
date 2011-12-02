@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import javax.swing.JOptionPane;
+
 import com.kelsonprime.oregontrail.controller.Events;
 import com.kelsonprime.oregontrail.controller.UserInputException;
 
@@ -501,6 +504,16 @@ public class Wagon implements Time, Serializable {
 			c = party.get(rand.nextInt(party.size() - 1));
 		}
 		Events.death(this, c);
+	}
+	
+	public void giveRandomSickness() {
+		final Random rand = new Random();
+		Companion c = party.get(rand.nextInt(party.size() - 1));
+		while (!(c.isReady())) {
+			c = party.get(rand.nextInt(party.size() - 1));
+		}
+		c.becomeSick();
+		JOptionPane.showMessageDialog(null, c.toString() + " has become sick with Dysentery!");
 	}
 
 	/**

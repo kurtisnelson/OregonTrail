@@ -104,4 +104,12 @@ public class Companion implements Time, Serializable{
 	public boolean isSick(){
 		return sickness.length() > 0;
 	}
+	
+	public void becomeSick(){
+		sickness = "Dysentery";
+	}
+	
+	public void removeSickness(){
+		sickness = "";
+	}
 }
