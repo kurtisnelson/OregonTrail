@@ -200,4 +200,8 @@ public class Map implements Time, Serializable {
 		return start;
 
 	}
+	
+	public void setFailure(){
+		traveled = -1;
+	}
 }
