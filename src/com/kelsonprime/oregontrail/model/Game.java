@@ -155,7 +155,10 @@ public class Game implements Time, Serializable {
 	 * @see com.kelsonprime.oregontrail.model.Time#isReady()
 	 */
 	@Override public boolean isReady() {
-		// TODO method stub
+		for (Companion person: wagon.getParty()){
+			if (person.isReady())
+				return true;
+		}
 		return false;
 	}
 
@@ -230,9 +233,13 @@ public class Game implements Time, Serializable {
 	 */
 	public void nextDay() {
 		// TODO hit Events.
-		wagon.nextDay(this);
-		map.nextDay(this);
-		days++;
+		if (isReady()){
+			wagon.nextDay(this);
+			map.nextDay(this);
+			days++;
+		} else {
+			
+		}
 	}
 
 	/**

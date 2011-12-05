@@ -120,7 +120,8 @@ public class Wagon implements Time, Serializable {
 	public void nextDay(Game game) {
 		// TODO take current location into account.
 		for (Companion person : party) {
-			person.nextDay(game);
+			if (person.isReady())
+				person.nextDay(game);
 		}
 		for (Part part : activeParts) {
 			part.nextDay(game);
@@ -524,5 +525,8 @@ public class Wagon implements Time, Serializable {
 	@Override public String toString() {
 		return "A wagon with " + party.size() + " people in it.";
 	}
-
+	
+	public List<Companion> getParty(){
+		return party;
+	}
 }
