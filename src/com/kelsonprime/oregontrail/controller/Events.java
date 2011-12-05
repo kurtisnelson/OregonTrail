@@ -4,12 +4,15 @@ import java.util.Random;
 
 import javax.swing.JOptionPane;
 
+import com.kelsonprime.oregontrail.model.Axle;
 import com.kelsonprime.oregontrail.model.Companion;
 import com.kelsonprime.oregontrail.model.Farmer;
 import com.kelsonprime.oregontrail.model.Game;
 import com.kelsonprime.oregontrail.model.Item;
 import com.kelsonprime.oregontrail.model.Player;
+import com.kelsonprime.oregontrail.model.Tongue;
 import com.kelsonprime.oregontrail.model.Wagon;
+import com.kelsonprime.oregontrail.model.Wheel;
 
 /**
  * Generates random events for the game
@@ -95,7 +98,15 @@ public class Events {
 				}
 		}
 		else if (event < 18)
-			;// Find Wagon of free stuff
+			try {
+				wagon.add(new Wheel());
+				wagon.add(new Axle());
+				wagon.add(new Tongue());
+				JOptionPane.showMessageDialog(null, "You find an abandoned wagon and gather\nthe parts from the wagon.\n You've gained:\n1 Wheel\n1 Axle\n1 Tongue.");
+			} catch (UserInputException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		else if (event < 20)
 			;// Oxen Weak (Pace halved)
 		else if (event < 22)
